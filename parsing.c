@@ -35,6 +35,7 @@ type: REDIRECT, WORD, WORD, PIPE, WORD, WORD, NULL*/
 
 
 /*--------------syntax analysis------------------*/
+//if you don't understand the things below, look at example codes and come back to see what I'm thinking!
 
 // <pipeline>    :	 <cmd>
 //               |   <pipeline> '|' <cmd>
@@ -61,6 +62,35 @@ type: REDIRECT, WORD, WORD, PIPE, WORD, WORD, NULL*/
 // <filename>    : WORD
 
 // <file_path>   : WORD
+
+//for example, this would be the way of taking syntax:
+
+t_token token;
+
+void	syntax_simple_cmd()
+{
+	if (token.type == T_WORD)
+	{
+		if (token.type == T_WORD)
+			;
+	}
+	else
+		return (fail_to_find_cmd);
+}
+
+void	syntax_cmd()
+{
+	syntax_simple_cmd();
+	if (token.type == T_REDIRECT)
+		syntax_redirects();
+}
+
+void	syntax_pipeline()
+{
+	syntax_cmd();
+	if (token.type == T_PIPE)
+		syntax_pipeline();
+}
 
 
 
