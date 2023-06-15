@@ -9,6 +9,7 @@
 	2-3)identify token
 3. syntax analysis
 	3-1)Check grammar rules: https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html#tag_02_10_02
+	3-2)AST creation Q&A on stack overflow: https://stackoverflow.com/questions/52666511/create-an-ast-from-bash-in-c
 */
 
 
@@ -49,7 +50,7 @@ type: REDIRECT, WORD, WORD, PIPE, WORD, WORD, NULL*/
 
 // <argv>         : <file_path> <args>
 
-// <redirects>    : <io_redirect>
+// <redirects>    :  <io_redirect>
 //                 |  <redirects> <io_redirect>
 
 // <io_redirect>  : '<'   <filename>
