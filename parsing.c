@@ -37,7 +37,7 @@ type: REDIRECT, WORD, WORD, PIPE, WORD, WORD, NULL*/
 
 /*--------------syntax analysis------------------*/
 //if you don't understand the things below, look at example codes or parsing idea picture
-//and come back to see what I'm thinking!
+//and come back to see what I'm talking!
 
 // <pipeline>    :	 <cmd>
 //               |   <pipeline> '|' <cmd>
