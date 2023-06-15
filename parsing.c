@@ -35,7 +35,8 @@ type: REDIRECT, WORD, WORD, PIPE, WORD, WORD, NULL*/
 
 
 /*--------------syntax analysis------------------*/
-//if you don't understand the things below, look at example codes and come back to see what I'm thinking!
+//if you don't understand the things below, look at example codes or parsing idea picture
+//and come back to see what I'm thinking!
 
 // <pipeline>    :	 <cmd>
 //               |   <pipeline> '|' <cmd>
@@ -91,6 +92,11 @@ void	syntax_pipeline()
 	if (token.type == T_PIPE)
 		syntax_pipeline();
 }
+
+
+
+
+
 
 
 
