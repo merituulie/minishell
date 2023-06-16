@@ -2,7 +2,7 @@
 #include "minishell.h"
 
 /* parsing order
-1. Readline using readline function
+1. Readline using readline function (change input to chunk to make token)
 2. lexical analysis
 	2-1)skip whitespace
 	2-2)deal with quotation marks(?)
@@ -10,6 +10,14 @@
 3. syntax analysis
 	3-1)Check grammar rules: https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html#tag_02_10_02
 	3-2)AST creation Q&A on stack overflow: https://stackoverflow.com/questions/52666511/create-an-ast-from-bash-in-c
+	3-3)syntax error handling
+		ex. if there is no word_token in the front or back of the pipe_token
+		ex. if there is no_token after redirect_token
+4. create cmd_list
+
+Questions: where do we deal with $?
+			$ is dealt in echo ?$ or expr $? or echo "$USER"cases. 
+
 */
 
 
@@ -21,8 +29,9 @@
 #define T_WORD 1
 #define T_REDIRECT 2
 #define T_PIPE 3
-#define T_DOUBLE_QUOTES 4
+#define T_DOUBLE_QUOTES 4 
 #define T_SINGLE_QUOTES 5
+#define T_SPACE 6
 
 typedef struct s_token{
 	int		type;
@@ -67,6 +76,8 @@ type: REDIRECT, WORD, WORD, PIPE, WORD, WORD, NULL*/
 
 //for example, this would be the way of taking syntax:
 
+//------- example below is like syntax tree, but it wouldn't be really needed
+//unless you want to do it in syntax tree way(this is not necessary)-----------
 t_token token;
 
 void	syntax_simple_cmd()
