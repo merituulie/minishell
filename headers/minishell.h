@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/13 17:53:49 by meskelin         ###   ########.fr       */
+/*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
+/*   Updated: 2023/06/19 14:57:20 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int hello()
+#ifndef MINISHELL_H
+# define MINISHELL_H
+
+typedef struct	s_command
 {
-	return (0);
-}
+	char	*command;
+	char	*command_flags;
+	char	*infile_name;
+	char	*outfile_name;
+	int		file_descriptors;
+	int		pid;
+} t_command;
+
+#endif
