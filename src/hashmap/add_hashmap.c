@@ -16,7 +16,12 @@ static t_node	*new_node(char *key, char *value)
 {
 	t_node *new;
 
-	new = (t_node *){ key, value, NULL };
+	new = (t_node *)ft_calloc(1, sizeof(*new));
+	if (!new)
+		return (NULL);
+	new->key = key;
+	new->value = value;
+	new->next = NULL;
 	return (new);
 }
 

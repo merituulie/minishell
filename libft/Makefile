@@ -5,46 +5,39 @@
 #                                                     +:+ +:+         +:+      #
 #    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/03/24 10:24:51 by meskelin         ###   ########.fr        #
+#    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
+#    Updated: 2022/11/28 11:52:51 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
-LIBFT_PATH = ./libft
+NAME = libft.a
+
+SRC_FILES = ft_memset \
+ft_strncmp \
+ft_bzero \
+ft_calloc \
+
+H_FILES = libft
+
+LIB_NAME = libft.a
+
+SRC = $(addsuffix .c, $(SRC_FILES))
+OBJ = $(addsuffix .o, $(SRC_FILES))
+HS = $(addsuffix .h, $(H_FILES))
 
 BUILD_FLAGS = -Wall -Wextra -Werror
 
-HASHMAP_SRC = add_hahsmap \
-				clear_hashmap \
-				utils_hashmap
-
-H_FILES = hashmap \
-		minishell
-
-HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
-HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
-HPRE = $(addsuffix ./headers/, $(H_FILES))
-HSUFF = $(addsuffix .h, $(HPRE))
-
-.PHONY = all
 all: $(NAME)
 
 $(NAME):
-	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) main.c \
-	-L $(LIBFT_PATH) -lft -o $(NAME)
+	cc $(BUILD_FLAGS) -c $(SRC) -I $(HS)
+	ar rc $(LIB_NAME) $(OBJ)
+	ranlib $(LIB_NAME)
 
-.PHONY: clean
 clean:
-	make fclean -C $(LIBFT_PATH)
-	rm -f $(SRCSO)
+	rm -f $(OBJ) $(B_SRC:.c=.o)
 
-.PHONY: fclean
 fclean: clean
-	make clean -C $(LIBFT_PATH)
-	rm -f $(NAME)
+	rm -f $(LIB_NAME)
 
-.PHONY: re
 re: fclean all
-
