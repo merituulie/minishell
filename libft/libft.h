@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 13:23:23 by meskelin         ###   ########.fr       */
+/*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
+/*   Updated: 2023/06/20 12:39:44 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./headers/minishell.h"
-#include "./headers/hashmap.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-int	main(void)
-{
-	return (0);
-}
+# include <stdlib.h>
+# include <unistd.h>
+
+size_t	ft_strlen(const char *s);
+void	*ft_memset(void	*b, int c, size_t len);
+void	ft_bzero(void *s, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
+
+#endif

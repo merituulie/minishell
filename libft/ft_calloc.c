@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 13:23:23 by meskelin         ###   ########.fr       */
+/*   Created: 2022/11/03 11:00:30 by meskelin          #+#    #+#             */
+/*   Updated: 2022/11/18 12:08:37 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./headers/minishell.h"
-#include "./headers/hashmap.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_calloc(size_t count, size_t size)
 {
-	return (0);
+	void	*ptr;
+	size_t	amount;
+
+	if (count == 0 || size == 0)
+		return (ft_calloc(1, 1));
+	amount = count * size;
+	if (amount % size != 0 || amount % count != 0)
+		return (NULL);
+	ptr = (void *)malloc(sizeof(*ptr) * amount);
+	if (!ptr)
+	{
+		return (NULL);
+	}
+	ft_bzero(ptr, amount);
+	return (ptr);
 }
