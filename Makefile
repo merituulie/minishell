@@ -6,14 +6,14 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/20 15:34:00 by jhusso           ###   ########.fr        #
+#    Updated: 2023/06/20 15:49:31 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -lreadline
+BUILD_FLAGS = -Wall -Wextra -Werror -lreadline -w
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
