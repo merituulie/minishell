@@ -148,3 +148,9 @@ void	syntax_pipeline()
 // 	}
 // 	return (0);
 // }
+
+/*  export LDFLAGS="-L/Users/yoonslee/.brew/opt/readline/lib"
+  export CPPFLAGS="-I/Users/yoonslee/.brew/opt/readline/include"
+  
+  gcc -lreadline -L/Users/yoonslee/.brew/opt/readline/lib -I/Users/yoonslee/.brew/opt/readline/include t_parsing.c 
+  */
