@@ -6,7 +6,7 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/20 14:50:07 by jhusso           ###   ########.fr        #
+#    Updated: 2023/06/20 15:34:00 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,18 @@ HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap
 
-LEXER__SRC = lexer \
+LEXER_SRC = lexer \
 
 H_FILES = hashmap \
-		minishell
+		minishell \
+		lexer
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
+
+LEXER_PRE = $(addprefix ./src/lexer/, $(LEXER_SRC))
+LEXER_SUFF = $(addsuffix .c, $(LEXER_PRE))
+
 HPRE = $(addsuffix ./headers/, $(H_FILES))
 HSUFF = $(addsuffix .h, $(HPRE))
 
@@ -34,7 +39,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

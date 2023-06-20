@@ -6,14 +6,12 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/20 14:53:08 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/20 15:28:04 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../headers/lexer.h"
 #include "../../libft/libft.h"
-#include "./headers/lexer.h"
-
-// /*Does not handle quotes*/
 
 int	count_words(char const *str, char c)
 {
@@ -76,27 +74,29 @@ char	**set_words(char **array, int words, char const *s, char c)
 	return (array);
 }
 
-char	**ft_shell_split(char const *s, char c)
+char	**ft_trimcmd(char const *s, int *delims)
 {
 	char	**array;
 	int		words;
 
 	if (s == NULL)
 		return (NULL);
-	words = count_words(s, c);
+	words = count_words(s, delims);
 	array = (char **)malloc(sizeof(char *) * (words + 1));
 	if (array == NULL)
 		return (NULL);
 	array[words] = NULL;
-	array = set_words(array, words, s, c);
+	array = set_words(array, words, s, delims);
 	return (array);
 }
 
-char	**lexer(char *str)
+char	**ft_lexer(char *str)
 {
-	int delim[] = {9, 32};
+	int delims[] = {9, 32};
 
-	ft_shell_split(str, delim);
+	printf("TESTING\n");
+
+	// ft_trimcmd(str, delims);
 
 }
 

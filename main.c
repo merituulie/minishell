@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 14:51:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/20 15:28:12 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int main(void)
 	// int delim = 9;
 
 	int i = 0;
-	tokens = lexer(readline(PINK "Jose's PinkShell >> " BORING));
-	// // printf("%s\n", av[1]);
+	tokens = ft_lexer(readline(PINK "Jose's PinkShell >> " BORING));
+
 	while (tokens[i])
 	{
 		printf("%i = %s\n", i, tokens[i]);
