@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 13:37:28 by yoonslee          #+#    #+#              #
-#    Updated: 2023/05/23 15:22:34 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/06/20 15:41:40 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_put
 ft_split.c ft_printf.c ft_printf_utils.c ft_printf_ptr.c ft_printf_hex.c ft_lstnew_bonus.c\
 ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c\
 ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c\
-get_next_line.c get_next_line_bonus.c ft_split_one_str_out.c ft_strcmp.c ft_strjoin_gnl.c
+get_next_line.c get_next_line_bonus.c ft_split_one_str_out.c ft_strcmp.c ft_strjoin_gnl.c\
+ft_strncat.c ft_strncpy.c
 
 OBJS = $(SRCS:.c=.o)
 

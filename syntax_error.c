@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:21:30 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/06/20 14:00:59 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:12:48 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ int	syntax_error(char **str)
 	i = 0;
 	while (str[i])
 	{
-		if (i > 0 && str[i] == '|' && (!str[i - 1] || !str[i + 1]))
+		if (str[0] == '|' || (str[i] == '|' && !str[i + 1]))
 			syntax_error_msg(1, str);
 		if ((str[i] == '<' || str[i] == '<' || str[i] == '>>' || str[i] == '<<')
-			&& !str[i])
+			&& !str[i + 1])
 			syntax_error_msg(2, str);
 		i++;
 	}
 	return (0);
 }
-

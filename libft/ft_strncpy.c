@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 16:48:14 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/06/20 15:42:31 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/06/20 14:47:29 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/06/20 15:42:58 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*find the character c in the s string
-return value: pointer to first occurence of character 'c'
-returns null pointer if character is not found*/
-char	*ft_strchr(const char *s, int c)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i])
+	while (src[i] && i < n)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+		dest[i] = src[i];
 		i++;
 	}
-	return (0);
+	while (i < n)
+	{
+		dest[i++] = '\0';
+	}
+	return (dest);
 }
