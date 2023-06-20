@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/19 16:57:57 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/20 10:01:46 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@
 #define BORING "\x1b[0m"
 
 /*Does not handle quotes*/
-
-// int	check_spaces(char *str, int i)
-// {
-// 	while (str[i] == 32 || str[i] == 9)
-// 		i++;
-// 	return (i);
-// }
 
 int	count_words(char const *str, int *delimeters)
 {
@@ -63,25 +56,25 @@ int	count_words(char const *str, int *delimeters)
 	return (nb_words + tokens);
 }
 
-int	word_length(char const *s, int i, int *delimeters)
+int	word_length(char const *s, int j)
 {
 	int	size;
-	int	j;
 
 	size = 0;
-	while (s[i])
+	while (s[j] != 9 && s[j] != 32 && s[j])
 	{
-		j = 0;
-		while (delimeters[j] != '\0')
+		if (s[j] == 124 || s[j] == 60 || s[j] == 47 || s[j] == 62)
 		{
-			if (s[i] == delimeters[j])
-				return (size);
-			else
-				j++;
+			size++;
+			return (size);
 		}
-		size++;
-		i++;
+		else
+		{
+			size++;
+			j++;
+		}
 	}
+	j++;
 	return (size);
 }
 
@@ -104,15 +97,18 @@ char	**set_words(char **array, int words, char const *s, int *delimeters)
 
 	i = 0;
 	j = 0;
-	// printf("string in set_word: %s\n", s);
+	// printf("words in set_word: %d\n", words);
 	while (i < words)
 	{
-		while (is_delimeter(delimeters, s[j]) == true)
+		while (s[j] == 9 || s[j] == 32)
 		{
+			// printf("HERE\n");
 			j++;
 		}
-		printf("j = %i\n", j);
-		size = word_length(s, j, delimeters);
+		// printf("before j = %i\n", j);
+		// printf("s[j] == %c\n", s[j]);
+		size = word_length(s, j);
+		// printf("%i word len = %i\n", i+1, size);
 		// printf("word length: %i\n", size);
 		array[i] = malloc(size + 1);
 		ft_strlcpy(array[i], &s[j], size + 1);
@@ -149,7 +145,7 @@ char	**ft_shell_split(char const *s, int *delimeters)
 int main(void)
 {
 	char	**tokens;
-	int delim[] = {32, 9, 10, 59}; 
+	int delim[] = {32, 9, 10, 59};
 	int i = 0;
 
 	tokens = ft_shell_split(readline(PINK "Jose's PinkShell >> " BORING), delim);
