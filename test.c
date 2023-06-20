@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 13:35:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:42:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,13 @@ char	*expand_var(t_data ms, char *str, int start)
 	//realloc the string and send it back.
 }
 
-/*check the occurence of double quotes '"'*/
+/*check the occurence of double quotes '"'
+s_quotes is single quote, d_quote is double quote.
+s_quotes will be 1 if it happens before d_quotes but if it closes,
+it will become 0.
+expanding to env only happens if there is $ and something after, and
+if there is no single quote in front of it. it does not count if double quote
+exists or not.*/
 char	**expand_quote_check(t_data ms, char **str)
 {
 	int	i;
