@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 13:23:23 by meskelin         ###   ########.fr       */
+/*   Created: 2022/10/28 08:43:30 by meskelin          #+#    #+#             */
+/*   Updated: 2022/11/15 19:56:43 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./headers/minishell.h"
-#include "./headers/hashmap.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	return (0);
+	unsigned char	*p;
+
+	p = (unsigned char *)b;
+	while (len-- > 0)
+	{
+		*p = (unsigned char)c;
+		p++;
+	}
+	p = NULL;
+	return (b);
 }
