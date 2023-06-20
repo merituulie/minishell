@@ -6,15 +6,31 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 10:24:13 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:35:32 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*finding matching variable and send the value back.
+If no matches, return NULL*/
+char	*find_env(t_data ms, char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ms.env->key == str[i])
+			return (ms.env->value);
+		i++;
+	}
+	return (NULL);
+}
+
 /*check if the word comes after '$' is expandable part
 using env variables. */
-void	expand_var(t_data ms, char *str, int start)
+char	*expand_var(t_data ms, char *str, int start)
 {
 	int		end;
 	int		start;
@@ -27,13 +43,13 @@ void	expand_var(t_data ms, char *str, int start)
 			end++;
 	var = ft_substr(str, start, end - start);
 	if (!var)
-		return malloc failure;
-	var = find_env(ms, var);//finding matching variable and send the value back. if no matches, return NULL
+		return (malloc_failure);
+	var = find_env(ms, var);
 	//realloc the string and send it back.
 }
 
 /*check the occurence of double quotes '"'*/
-void	expand_quote_check(t_data ms, char **str)
+char	**expand_quote_check(t_data ms, char **str)
 {
 	int	i;
 	int	j;
@@ -53,7 +69,7 @@ void	expand_quote_check(t_data ms, char **str)
 			else if (str[i][j] == '\'' && !d_quotes)
 				s_quotes = 1;
 			else if (str[i][j] == '$' && str[i][j + 1] && !s_quotes)
-				expand_var(ms, str[i], i);
+				str[i] = expand_var(ms, str[i], i);
 			else if (str[i][j] == '\'' && s_quotes == 1)
 				s_quotes = 0;
 			j++;
