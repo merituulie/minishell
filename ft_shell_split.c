@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/20 10:01:46 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/20 10:17:47 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ int	count_words(char const *str, int *delimeters)
 	while (str[i] != '\0' && str[i + 1])
 	{
 		j = 0;
-
-		while (str[i] == 32 || str[i] == 9)
+		while (str[i] == 32 || str[i] == 9) // need to add str[i] == 10 || str[i] == 59 ??
 		{
 			if (str[i - 1] != 32 && str[i - 1] != 9)
 				nb_words++;
@@ -48,6 +47,8 @@ int	count_words(char const *str, int *delimeters)
 		{
 			i++;
 			tokens++;
+			if (str[i - 1] != 32 && str[i - 1] != 9)
+				nb_words++;
 		}
 		i++;
 	}
