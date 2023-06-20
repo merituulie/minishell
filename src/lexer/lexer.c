@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_shell_split.c                                   :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/20 14:21:12 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:53:08 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <readline/readline.h> //-lreadline
-
-#define PINK "\x1b[38;2;255;192;203m" //"\x1b[35m"
-#define BORING "\x1b[0m"
+#include "../../libft/libft.h"
+#include "./headers/lexer.h"
 
 // /*Does not handle quotes*/
 
@@ -83,7 +76,7 @@ char	**set_words(char **array, int words, char const *s, char c)
 	return (array);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_shell_split(char const *s, char c)
 {
 	char	**array;
 	int		words;
@@ -99,18 +92,11 @@ char	**ft_split(char const *s, char c)
 	return (array);
 }
 
-int main(void)
+char	**lexer(char *str)
 {
-	char	**tokens;
-	// int delim = 9;
+	int delim[] = {9, 32};
 
-	int i = 0;
-	tokens = ft_split(readline(PINK "Jose's PinkShell >> " BORING), 32);
-	// // printf("%s\n", av[1]);
-	while (tokens[i])
-	{
-		printf("%i = %s\n", i, tokens[i]);
-		i ++;
-	}
-	return (0);
+	ft_shell_split(str, delim);
+
 }
+

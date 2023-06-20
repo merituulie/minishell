@@ -3,21 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/20 12:35:27 by meskelin         ###   ########.fr        #
+#    Updated: 2023/06/20 14:50:07 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra -Werror -lreadline
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap
+
+LEXER__SRC = lexer \
 
 H_FILES = hashmap \
 		minishell
