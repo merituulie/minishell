@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/19 14:42:32 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/19 16:57:57 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,45 @@
 
 /*Does not handle quotes*/
 
+// int	check_spaces(char *str, int i)
+// {
+// 	while (str[i] == 32 || str[i] == 9)
+// 		i++;
+// 	return (i);
+// }
+
 int	count_words(char const *str, int *delimeters)
 {
 	int	nb_words;
+	int	tokens;
 	int	i;
+	int	j;
 
 	nb_words = 0;
-	if (*str == 0)
+	tokens = 0;
+	i = 0;
+	if (str[i] == 0)
 		return (0);
-	while (*str != '\0' && *(str + 1))
+	while (str[i] != '\0' && str[i + 1])
 	{
-		i = 0;
-		while (delimeters[i] != '\0')
+		j = 0;
+
+		while (str[i] == 32 || str[i] == 9)
 		{
-			if (delimeters[i] == *str )
+			if (str[i - 1] != 32 && str[i - 1] != 9)
 				nb_words++;
-			i ++;
+			i++;
 		}
-		if (*str == 124 || *str == 60 || *str == 47 || *str == 62)
-			nb_words++;
-		str++;
+		if (str[i] == 124 || str[i] == 60 || str[i] == 47 || str[i] == 62)
+		{
+			i++;
+			tokens++;
+		}
+		i++;
 	}
-	if (*str != delimeters[i])
+	if (str[i] != delimeters[i])
 		nb_words++;
-	return (nb_words);
+	return (nb_words + tokens);
 }
 
 int	word_length(char const *s, int i, int *delimeters)
@@ -134,7 +149,7 @@ char	**ft_shell_split(char const *s, int *delimeters)
 int main(void)
 {
 	char	**tokens;
-	int delim[] = {32, 9, 10, 59};
+	int delim[] = {32, 9, 10, 59}; 
 	int i = 0;
 
 	tokens = ft_shell_split(readline(PINK "Jose's PinkShell >> " BORING), delim);
