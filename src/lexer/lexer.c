@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/20 17:05:50 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/20 17:40:02 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int	count_words(char const *str, int *delims)
 			if (is_delim(delims, str[i - 1]) == false)
 				word_count++;
 		}
-		if (str[i] == 34)
+		if (str[i] == 34 || str[i] == 39)
 		{
+			// find_next_quote(str, i);
 			i++;
 			while (str[i] != 34)
 				i++;
@@ -49,8 +50,11 @@ int	count_words(char const *str, int *delims)
 		}
 		i++;
 	}
-	if (is_delim(delims, str[i - 1]) == false && str[i - 1] != 34)
-		word_count++;
+	if (str[i - 1] != 34 && str[i - 1] != 39)
+	{
+		if (is_delim(delims, str[i - 1]) == false && str[i - 1] != 34 && str[i - 1] != 39)
+			word_count++;
+	}
 	return (word_count);
 }
 
