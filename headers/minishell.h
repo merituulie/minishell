@@ -1,10 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD:test.c
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
 /*   Updated: 2023/06/20 13:42:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
@@ -106,3 +107,24 @@ int	main(int argc, char **argv, char **envp)
 
 	return (0);
 }
+=======
+/*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
+/*   Updated: 2023/06/19 14:57:20 by meskelin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MINISHELL_H
+# define MINISHELL_H
+
+typedef struct	s_command
+{
+	char	*command;
+	char	*command_flags;
+	char	*infile_name;
+	char	*outfile_name;
+	int		file_descriptors;
+	int		pid;
+} t_command;
+
+#endif
+>>>>>>> 69841e448826ffed4799a1c199e6f862c5b33d93:headers/minishell.h
