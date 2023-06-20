@@ -1,47 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstsize.c                                          :+:      :+:    :+:   */
+/*   utils_hashmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:23:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/03/24 16:08:05 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:27:18 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/hashmap.h"
+#include "../../headers/hashmap.h"
+#include "../../libft/libft.h"
+#include <stdio.h>
 
 /// @brief Get a value from the hashmap with the key.
 /// @param head The first node on the hashmap.
 /// @param key The key to search for a node.
 /// @return The node with the key, NULL if not found.
-t_node *get_value(t_node **head, char *key)
+t_node	*get_value(t_node **head, char *key)
 {
 	t_node	*temp;
 
 	temp = *head;
 	while (temp)
 	{
-		if (ft_strcmp(temp->key, key) == 0)
+		if (ft_strncmp(temp->key, key, ft_strlen(key)) == 0)
 			return (temp);
 		temp = temp->next;
 	}
 	return (NULL);
 }
 
-static void	delete_head(t_node **head, char *key)
+static int	delete_head(t_node **head, char *key)
 {
 	t_node	*new_head;
 
-	new_head = *head;
-	if (ft_strcmp(new_head->key, key) == 0)
+	new_head = NULL;
+	if (ft_strncmp((*head)->key, key, ft_strlen(key)) == 0)
 	{
-		new_head = *head->next;
-		free(*head);
-		head = &new_head;
-		return ;
+		if ((*head)->next)
+		{
+			new_head = (*head)->next;
+			*head = new_head;
+			free(new_head);
+		}
+		else
+			free(*head);
+		return (1);
 	}
+	return (0);
 }
 
 /// @brief Delete a value based on the key given as a paarameter.
@@ -49,23 +57,25 @@ static void	delete_head(t_node **head, char *key)
 /// @param key The key to search from the hashmap to be deleted.
 void	delete_value(t_node **head, char *key)
 {
-	t_node	*temp;
-	t_node	*to_be_deleted;
+	t_node	*previous;
+	t_node	*current;
 
 	if (!*head)
 		return ;
-	delete_head(head, key);
-	temp = *head;
-	while (temp)
+	if (delete_head(head, key))
+		return ;
+	previous = *head;
+	current = (*head)->next;
+	while (current)
 	{
-		if (ft_strcmp(temp->key, key) == 0)
+		if (ft_strncmp(current->key, key, ft_strlen(key)) == 0)
 		{
-			to_be_deleted = temp;
-			temp = temp->next;
-			free(to_be_deleted);
+			previous->next = current->next;
+			free(current);
 			break ;
 		}
-		temp = temp->next;
+		previous = current;
+		current = current->next;
 	}
 }
 

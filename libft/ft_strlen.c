@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 13:23:23 by meskelin         ###   ########.fr       */
+/*   Created: 2022/10/27 17:42:55 by meskelin          #+#    #+#             */
+/*   Updated: 2023/06/20 12:39:29 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./headers/minishell.h"
-#include "./headers/hashmap.h"
+#include "libft.h"
 
-int	main(void)
+size_t	ft_strlen(const char *s)
 {
-	return (0);
+	size_t	counter;
+
+	counter = 0;
+	while (*s != '\0')
+	{
+		counter++;
+		s++;
+	}
+	return (counter);
 }

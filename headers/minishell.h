@@ -6,14 +6,16 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/19 14:57:20 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:28:00 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-typedef struct	s_command
+# include <stdio.h>
+
+typedef struct s_command
 {
 	char	*command;
 	char	*command_flags;
@@ -21,6 +23,6 @@ typedef struct	s_command
 	char	*outfile_name;
 	int		file_descriptors;
 	int		pid;
-} t_command;
+}	t_command;
 
 #endif

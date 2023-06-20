@@ -6,13 +6,14 @@
 #    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2022/11/28 11:52:51 by meskelin         ###   ########.fr        #
+#    Updated: 2023/06/20 12:39:56 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC_FILES = ft_memset \
+SRC_FILES = ft_strlen \
+ft_memset \
 ft_strncmp \
 ft_bzero \
 ft_calloc \
