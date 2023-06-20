@@ -1,6 +1,6 @@
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include <stdio.h> //printf, perror
 # include <stdlib.h> //malloc, free, exit, getenv

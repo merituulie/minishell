@@ -6,11 +6,11 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 13:57:05 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:01:01 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "headers/parsing.h"
 
 /*finding matching variable and send the value back.
 If no matches, return NULL*/

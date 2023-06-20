@@ -6,11 +6,11 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:21:30 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/06/20 12:59:24 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:00:59 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "headers/parsing.h"
 
 /*free double pointer string*/
 void	free_char_array(char **str)
