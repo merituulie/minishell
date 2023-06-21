@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/21 10:01:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/21 11:28:02 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ bool	is_delim(int *delims, char c)
 	while (*delims != '\0')
 	{
 		if (*delims == c)
+		{
+			// printf("returning true\n");
 			return (true);
+		}
 		delims++;
 	}
+	// printf("returning false\n");
 	return (false);
 }
 
@@ -43,9 +47,9 @@ int	count_tokens(char const *str, int *delims)
 		return (0);
 	while (i < len)
 	{
-		if (str[i] == 34) // || str[i] == 39
+		if (str[i] == 34 || str[i] == 39)
 				quote_flag = !quote_flag;
-		else if (is_delim(delims, str[i]) == true && !quote_flag)
+		else if (is_delim(delims, str[i]) == true && quote_flag == 0)
 		{
 			token_count++;
 			// printf("HERE token count %i\ni = %i\n", token_count, i);
@@ -69,25 +73,35 @@ char	**ft_trimcmd(char **token_array, char *str, int *delims, int token_count)
 	start = 0;
 	i = 0;
 	j = 0;
-	while (i < token_count)
+	while (j < token_count && str[i] != '\0')
 	{
 		if (str[i] == 34 || str[i] == 39)
 			quote_flag = !quote_flag;
-		else if (is_delim(delims, str[i]) == true && !quote_flag)
+		else if (is_delim(delims, str[i]) == true && quote_flag == 0)
 		{
 			token_array[j] = ft_calloc((i - start + 1), sizeof(char *));
-			ft_strlcpy( token_array[j], str[start], (i - start));
-			token_array[i - start] = '\0';
-			start = start + i;
+			if (!token_array[j])
+				return (0);
+			// printf("HERE\n");
+			ft_strlcpy(token_array[j], &str[start], (i - start + 1));
+			// printf("start index= %i\n", start);
+			// printf("i index= %i\n", i);
+			// printf("TALLENNETTU SANA%i: %s\n", j, token_array[j]);
+			start = i + 1;
+			j++;
 		}
-		j++;
 		i++;
 	}
-	i = 0;
-	while (i <token_count)
+	if (str[i] == '\0')
 	{
-		printf("%s\n", token_array[i]);
-		i++;
+		token_array[j] = ft_calloc((i - start + 1), sizeof(char *));
+		if (!token_array[j])
+			return (0);
+		// printf("HERE\n");
+		ft_strlcpy(token_array[j], &str[start], (i - start + 1));
+		// printf("start index= %i\n", start);
+		// printf("i index= %i\n", i);
+		// printf("TALLENNETTU SANA%i: %s\n", j, token_array[j]);
 	}
 }
 
@@ -98,19 +112,18 @@ char	**ft_lexer(char *str)
 	char	**trimcmd_array;
 
 	token_count = count_tokens(str, delims);
-	// printf("count in main: %i\n", token_count);
 	trimcmd_array = ft_calloc(token_count + 1, sizeof(char *));
 	if (!trimcmd_array)
 		return (-1);
 	trimcmd_array = ft_trimcmd(trimcmd_array, str, delims, token_count);
-	//
+	//PRINTING ARRAY
 	int i = 0;
 	while (i <token_count)
 	{
 		printf("%s\n", trimcmd_array[i]);
 		i++;
 	}
-	//
+	// PRINTING ARRAY
 	return (0);
 
 }
