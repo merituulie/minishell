@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/20 16:42:34 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/21 09:27:44 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 // char	**set_words(char **array, int words, char const *s, int *delims);
 
 bool	is_delim(int *delims, char c);
-int		count_words(char const *str, int *delims);
-char	**ft_trimcmd(char const *s, int *delims);
+int		count_tokens(char const *str, int *delims);
+char	**ft_trimcmd(char **token_array, char *str, int *delims, int token_count);
 char	**ft_lexer(char *str);
 
 #endif

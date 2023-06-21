@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/21 08:15:20 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/21 10:01:45 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@ bool	is_delim(int *delims, char c)
 
 // considers only double quotes for now!
 
-int	count_words(char const *str, int *delims)
+int	count_tokens(char const *str, int *delims)
 {
 	int	len;
-	int	word_count;
+	int	token_count;
 	int	quote_flag;
 	int	i;
+	int start = 0;
+
 	len = ft_strlen(str);
-	word_count = 0;
+	// printf("LEN=%i\n", len);
+	token_count = 0;
 	quote_flag = 0;
 	i = 0;
 	if (!str)
@@ -43,70 +46,47 @@ int	count_words(char const *str, int *delims)
 		if (str[i] == 34) // || str[i] == 39
 				quote_flag = !quote_flag;
 		else if (is_delim(delims, str[i]) == true && !quote_flag)
-				word_count++;
+		{
+			token_count++;
+			// printf("HERE token count %i\ni = %i\n", token_count, i);
+		}
 		i++;
 	}
-	if (i == len)
-		word_count++;
-	// printf("words= %i\n", word_count);
-	return (word_count);
+	if (str[i] == '\0' && is_delim(delims, str[i-1]) == false)
+		token_count++;
+	printf("tokens= %i\n", token_count);
+	return (token_count);
 }
 
-// int	word_length(char const *s, int i, char c)
-// {
-// 	int	size;
-
-// 	size = 0;
-// 	while (s[i] != c && s[i])
-// 	{
-// 		size++;
-// 		i++;
-// 	}
-// 	return (size);
-// }
-
-// char	**set_words(char **array, int words, char const *s, int *delims)
-// {
-// 	int		size;
-// 	int		i;
-// 	int		j;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (i < words)
-// 	{
-// 		while (s[j] == c)
-// 			j++;
-// 		size = word_length(s, j, c);
-// 		array[i] = malloc(size + 1);
-// 		ft_strlcpy(array[i], &s[j], size + 1);
-// 		if (array[i] == NULL)
-// 		{
-// 			while (--i)
-// 				free(array[i]);
-// 			return (NULL);
-// 		}
-// 		j = j + size;
-// 		i++;
-// 	}
-// 	return (array);
-// }
-
-char	**ft_trimcmd(char const *str, int *delims)
+char	**ft_trimcmd(char **token_array, char *str, int *delims, int token_count)
 {
 	int	quote_flag;
+	int	start;
 	int	i;
-
+	int	j;
 
 	quote_flag = 0;
-	while (i < len)
+	start = 0;
+	i = 0;
+	j = 0;
+	while (i < token_count)
 	{
 		if (str[i] == 34 || str[i] == 39)
 			quote_flag = !quote_flag;
-		else if (is_delim(delims, str[i]) == true)
+		else if (is_delim(delims, str[i]) == true && !quote_flag)
 		{
-
+			token_array[j] = ft_calloc((i - start + 1), sizeof(char *));
+			ft_strlcpy( token_array[j], str[start], (i - start));
+			token_array[i - start] = '\0';
+			start = start + i;
 		}
+		j++;
+		i++;
+	}
+	i = 0;
+	while (i <token_count)
+	{
+		printf("%s\n", token_array[i]);
 		i++;
 	}
 }
@@ -114,14 +94,23 @@ char	**ft_trimcmd(char const *str, int *delims)
 char	**ft_lexer(char *str)
 {
 	int		delims[] = {9, 32}; // , 10, 59
-	int		word_count;
-	char	**trimcmd_tokens;
+	int		token_count;
+	char	**trimcmd_array;
 
-	word_count = count_words(str, delims);
-	trimcmd_tokens = calloc(word_count + 1, sizeof(char *));
-	if (!trimcmd_tokens)
+	token_count = count_tokens(str, delims);
+	// printf("count in main: %i\n", token_count);
+	trimcmd_array = ft_calloc(token_count + 1, sizeof(char *));
+	if (!trimcmd_array)
 		return (-1);
-	trimcmd_tokens = ft_trimcmd(str, delims);
+	trimcmd_array = ft_trimcmd(trimcmd_array, str, delims, token_count);
+	//
+	int i = 0;
+	while (i <token_count)
+	{
+		printf("%s\n", trimcmd_array[i]);
+		i++;
+	}
+	//
 	return (0);
 
 }
