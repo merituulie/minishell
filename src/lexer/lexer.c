@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/21 08:06:53 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/21 08:15:20 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ bool	is_delim(int *delims, char c)
 	return (false);
 }
 
+// considers only double quotes for now!
+
 int	count_words(char const *str, int *delims)
 {
 	int	len;
@@ -36,9 +38,9 @@ int	count_words(char const *str, int *delims)
 	i = 0;
 	if (!str)
 		return (0);
-	while (i < len) // && str[i + 1]
+	while (i < len)
 	{
-		if (str[i] == 34 || str[i] == 39)
+		if (str[i] == 34) // || str[i] == 39
 				quote_flag = !quote_flag;
 		else if (is_delim(delims, str[i]) == true && !quote_flag)
 				word_count++;
@@ -46,7 +48,7 @@ int	count_words(char const *str, int *delims)
 	}
 	if (i == len)
 		word_count++;
-	printf("words= %i\n", word_count);
+	// printf("words= %i\n", word_count);
 	return (word_count);
 }
 
@@ -92,12 +94,10 @@ int	count_words(char const *str, int *delims)
 
 char	**ft_trimcmd(char const *str, int *delims)
 {
-	int	len;
 	int	quote_flag;
 	int	i;
 
 
-	len = ft_strlen;
 	quote_flag = 0;
 	while (i < len)
 	{
@@ -113,13 +113,15 @@ char	**ft_trimcmd(char const *str, int *delims)
 
 char	**ft_lexer(char *str)
 {
-	int		delims[] = {9, 32};
+	int		delims[] = {9, 32}; // , 10, 59
 	int		word_count;
 	char	**trimcmd_tokens;
 
 	word_count = count_words(str, delims);
-	// trimcmd_tokens = malloc
-	ft_trimcmd(str, delims);
+	trimcmd_tokens = calloc(word_count + 1, sizeof(char *));
+	if (!trimcmd_tokens)
+		return (-1);
+	trimcmd_tokens = ft_trimcmd(str, delims);
 	return (0);
 
 }
