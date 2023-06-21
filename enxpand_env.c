@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 16:51:17 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:25:57 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,14 @@ int	main(int argc, char **argv, char **envp)
 
 	str = malloc(sizeof(char *) * 10);
 	str[0] = ft_strdup("<file1");
-	str[1] = "wc";
-	str[2] = "-l";
-	str[3] = "|";
-	str[4] = ">";
-	str[5] = "file2";
-	str[6] = "\"$user it's me hi I'm the problem it's me\"";
-	str[6] = "hel\"lo'$userit'smehi\" I'm the problem it's me'";
-	str[7] = "user'name\"$user\"?hds'af";
+	str[1] = ft_strdup("wc");
+	str[2] = ft_strdup("-l");
+	str[3] = ft_strdup("|");
+	str[4] = ft_strdup(">");
+	str[5] = ft_strdup("file2");
+	str[6] = ft_strdup("\"$user it's me hi I'm the problem it's me\"");
+	str[6] = ft_strdup("hel\"lo'$userit'smehi\" I'm the problem it's me'");
+	str[7] = ft_strdup("user'name\"$user\"?hds'af");
 	str[8] = NULL;
 	(void)argc;
 	(void)argv;

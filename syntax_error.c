@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:21:30 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/06/20 17:12:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:22:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,35 @@ void	syntax_error_msg(int i, char **str)
 {
 	if (i == 1)
 		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
-	else
+	if (i == 2)
 		ft_putstr_fd("syntax error near unexpected token 'newline'\n", 2);
+	if (i == 3)
+		ft_putstr_fd("syntax error :quotes not ended\n", 2);
 	free_char_array(str);
 	exit(258);
 }
 
 /*check the syntax error: if there is error, send exit message with
-proper exit value. can we use exit(258)? I don't know :/ */
+proper exit value. 
+can we use exit(258)? I don't know :/ */
 int	syntax_error(char **str)
 {
 	int	i;
+	int	s_quotes;
 
 	i = 0;
 	while (str[i])
 	{
 		if (str[0] == '|' || (str[i] == '|' && !str[i + 1]))
 			syntax_error_msg(1, str);
-		if ((str[i] == '<' || str[i] == '<' || str[i] == '>>' || str[i] == '<<')
+		if ((str[i] == '<' || str[i] == '>' || str[i] == '>>' || str[i] == '<<')
 			&& !str[i + 1])
 			syntax_error_msg(2, str);
+		if ((str[i] == '\"'))
+		{
+			
+		}
+			syntax_error_msg(3, str);
 		i++;
 	}
 	return (0);

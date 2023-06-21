@@ -27,7 +27,7 @@ typedef struct s_node
 
 typedef struct s_data
 {
-	t_node	*env;
+	char	**env;
 	char	**args;
 
 }	t_data;
