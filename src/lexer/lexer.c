@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/20 17:40:02 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/21 08:06:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,27 @@ bool	is_delim(int *delims, char c)
 
 int	count_words(char const *str, int *delims)
 {
+	int	len;
 	int	word_count;
+	int	quote_flag;
 	int	i;
-
+	len = ft_strlen(str);
 	word_count = 0;
+	quote_flag = 0;
 	i = 0;
-	if (str[i] == 0)
+	if (!str)
 		return (0);
-	while (str[i] != '\0' && str[i + 1])
+	while (i < len) // && str[i + 1]
 	{
-		if (is_delim(delims, str[i]) == true)
-		{
-			if (is_delim(delims, str[i - 1]) == false)
-				word_count++;
-		}
 		if (str[i] == 34 || str[i] == 39)
-		{
-			// find_next_quote(str, i);
-			i++;
-			while (str[i] != 34)
-				i++;
-			word_count++;
-		}
+				quote_flag = !quote_flag;
+		else if (is_delim(delims, str[i]) == true && !quote_flag)
+				word_count++;
 		i++;
 	}
-	if (str[i - 1] != 34 && str[i - 1] != 39)
-	{
-		if (is_delim(delims, str[i - 1]) == false && str[i - 1] != 34 && str[i - 1] != 39)
-			word_count++;
-	}
+	if (i == len)
+		word_count++;
+	printf("words= %i\n", word_count);
 	return (word_count);
 }
 
@@ -98,28 +90,35 @@ int	count_words(char const *str, int *delims)
 // 	return (array);
 // }
 
-char	**ft_trimcmd(char const *s, int *delims)
+char	**ft_trimcmd(char const *str, int *delims)
 {
-	char	**array;
-	int		words;
+	int	len;
+	int	quote_flag;
+	int	i;
 
-	if (s == NULL)
-		return (NULL);
-	words = count_words(s, delims);
-	printf("WORD COUNT: %i\n", words);
-	printf("HERE\n");
-	// array = (char **)malloc(sizeof(char *) * (words + 1));
-	// if (array == NULL)
-	// 	return (NULL);
-	// array[words] = NULL;
-	// // array = set_words(array, words, s, delims);
-	// return (array);
+
+	len = ft_strlen;
+	quote_flag = 0;
+	while (i < len)
+	{
+		if (str[i] == 34 || str[i] == 39)
+			quote_flag = !quote_flag;
+		else if (is_delim(delims, str[i]) == true)
+		{
+
+		}
+		i++;
+	}
 }
 
 char	**ft_lexer(char *str)
 {
-	int delims[] = {9, 32};
+	int		delims[] = {9, 32};
+	int		word_count;
+	char	**trimcmd_tokens;
 
+	word_count = count_words(str, delims);
+	// trimcmd_tokens = malloc
 	ft_trimcmd(str, delims);
 	return (0);
 
