@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 17:42:55 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/22 14:39:15 by jhusso           ###   ########.fr       */
+/*   Created: 2023/06/22 13:31:00 by jhusso            #+#    #+#             */
+/*   Updated: 2023/06/22 13:31:13 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/lexer.h"
+#include "../../libft/libft.h"
 
-size_t	ft_strlen(const char *s)
+void	init_set(int *set)
 {
-	size_t	counter;
-
-	counter = 0;
-	while (*s != '\0')
-	{
-		counter++;
-		s++;
-	}
-	return (counter);
+	set[0] = 32;
+	set[1] = 9;
+	set[2] = 10;
+	set[3] = 59;
 }

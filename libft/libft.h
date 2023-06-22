@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 15:47:10 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/22 14:31:29 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	ft_bzero(void *s, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_strtrim(char *s1, int *set);
 
 #endif
