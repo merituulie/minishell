@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/23 11:32:59 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:14:31 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LEXER_H
 
 // Jose's PinkShell color stuffffffff
-# define PINK "\x1b[38;2;255;192;203m" //"\x1b[35m"
+# define PINK "\x1b[38;2;255;192;203m"
 # define BORING "\x1b[0m"
 
 # include <stdlib.h>
@@ -38,7 +38,7 @@ char		**put_array(char **token_array, char *str, t_lexer *lexer);
 char		**ft_lexer(char *str);
 
 // lexer_init.c
-void	init_set(int *set);
-void	init_struct(t_lexer *lexer, char *str);
+void		init_set(int *set);
+void		init_struct(t_lexer *lexer, char *str);
 
 #endif

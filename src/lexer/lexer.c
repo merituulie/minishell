@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/23 11:30:59 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:10:22 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static bool	is_delim(int *delims, char c)
 	while (*delims != '\0')
 	{
 		if (*delims == c)
-		{
-			// printf("HERE *\n");
 			return (true);
-		}
 		delims++;
 	}
 	return (false);
@@ -47,7 +44,7 @@ static void	count_tokens(char const *str, t_lexer *lexer, int len)
 		if (str[i] == 39)
 			lexer->sq_flag = !lexer->sq_flag;
 		else if ((is_delim(lexer->delims, str[i]) == true \
-			&& is_delim(lexer->delims, str[i-1]) == false) \
+			&& is_delim(lexer->delims, str[i - 1]) == false) \
 			&& is_same_quote(lexer->dq_flag, lexer->sq_flag) == true)
 			lexer->token_count++;
 		i++;
@@ -74,7 +71,7 @@ char	**ft_trimcmd(char **token_array, char *str, t_lexer *lexer)
 		if (str[i] == 39)
 			lexer->sq_flag = !lexer->sq_flag;
 		else if ((is_delim(lexer->delims, str[i]) == true \
-			&& is_delim(lexer->delims, str[i-1]) == false) \
+			&& is_delim(lexer->delims, str[i - 1]) == false) \
 			&& is_same_quote(lexer->dq_flag, lexer->sq_flag) == true)
 		{
 			token_array[j] = ft_calloc((i - start + 1), sizeof(char *));
@@ -97,7 +94,7 @@ char	**ft_trimcmd(char **token_array, char *str, t_lexer *lexer)
 
 char	**ft_lexer(char *str)
 {
-	t_lexer lexer;
+	t_lexer	lexer;
 	char	*trimmed_line;
 	char	**put_array;
 	char	**trimmed_array;
@@ -118,7 +115,6 @@ char	**ft_lexer(char *str)
 	while (i < lexer.token_count)
 	{
 		trimmed_array[i] = ft_strtrim(put_array[i], lexer.delims);
-		printf("after trimmin: %s\n", trimmed_array[i]);
 		i++;
 	}
 	ft_free_array(put_array);

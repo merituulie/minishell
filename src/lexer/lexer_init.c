@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:31:00 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/23 11:30:25 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:10:45 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	init_set(int *set)
 	set[2] = 10;
 	set[3] = 59;
 }
+
 void	init_struct(t_lexer *lexer, char *str)
 {
-	// ft_bzero(lexer, sizeof(lexer));
 	init_set(lexer->delims);
 	lexer->token_count = 0;
 	lexer->dq_flag = 0;
