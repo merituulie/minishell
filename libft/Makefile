@@ -6,7 +6,7 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/22 12:25:58 by jhusso           ###   ########.fr        #
+#    Updated: 2023/06/23 11:29:16 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ ft_bzero \
 ft_calloc \
 ft_strlcpy \
 ft_strtrim \
+ft_free_array \
 
 H_FILES = libft
 

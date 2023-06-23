@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/22 14:50:29 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/23 11:32:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,23 @@
 # include <string.h>
 # include <stdbool.h>
 
+typedef struct s_lexer
+{
+	int	delims[4];
+	int	token_count;
+	int	dq_flag;
+	int	sq_flag;
+}	t_lexer;
+
 // lexer.c
 bool static	is_delim(int *delims, char c);
 static bool	is_same_quote(int d_quote_flag, int s_quote_flag);
-int			count_tokens(char const *str, int *delims, int len);
-char		**ft_trimcmd(char **token_array, char *str, int *delims, \
-			int token_count);
+static void	count_tokens(char const *str, t_lexer *lexer, int len);
+char		**put_array(char **token_array, char *str, t_lexer *lexer);
 char		**ft_lexer(char *str);
 
-// lexer_utils.c
+// lexer_init.c
 void	init_set(int *set);
+void	init_struct(t_lexer *lexer, char *str);
 
 #endif
