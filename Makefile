@@ -6,7 +6,7 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/23 10:43:58 by jhusso           ###   ########.fr        #
+#    Updated: 2023/06/24 09:17:29 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ HASHMAP_SRC = add_hashmap \
 				utils_hashmap
 
 LEXER_SRC = lexer \
-			lexer_init
+			split_delims \
+			split_operands \
 
 H_FILES = hashmap \
 		minishell \

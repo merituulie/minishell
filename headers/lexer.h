@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/24 09:00:39 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/24 09:59:54 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,24 @@ typedef struct s_lexer
 {
 	int	delims[4];
 	int	token_count;
+	int	op_count;
 	int	dq_flag;
 	int	sq_flag;
 }	t_lexer;
 
 // lexer.c
-bool static	is_delim(int *delims, char c);
-static bool	is_same_quote(int d_quote_flag, int s_quote_flag);
-static void	count_tokens(char const *str, t_lexer *lexer, int len);
-char		**put_array(char **token_array, char *str, t_lexer *lexer);
-char		**ft_lexer(char *str);
-
-// lexer_init.c
 void		init_set(int *set);
 void		init_struct(t_lexer *lexer, char *str);
+char		**ft_lexer(char *str);
 
+// split_delims.c
+bool static	is_delim(int *delims, char c);
+static bool	is_same_quote(int d_quote_flag, int s_quote_flag);
+void		count_tokens_de(char const *str, t_lexer *lexer, int len);
+char		**split_de(char **token_array, char *str, t_lexer *lexer);
+
+// split_operands.c
+void		count_op(char const *str, t_lexer *lexer, int len);
+char		**put_array_op(char **token_array, char *str, t_lexer *lexer);
+char		**split_op(char **token_array, t_lexer *lexer);
 #endif
