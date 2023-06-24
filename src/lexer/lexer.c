@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/24 18:31:30 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/24 18:51:35 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ char	**ft_lexer(char *str)
 	int		i;
 
 	init_struct(&lexer, str);
-	trimmed_line = ft_strtrim(str, &lexer);
+	trimmed_line = ft_strtrim(str, lexer.delims, 4);
 	printf("trimmed line: %s\n", trimmed_line);
 	count_tokens_de(trimmed_line, &lexer, ft_strlen(trimmed_line));
 	put_array = ft_calloc(lexer.token_count + 1, sizeof(char *));
 	if (!put_array)
 		return (-1);
 	put_array = split_de(put_array, trimmed_line, &lexer);
-	i = 0;
-	while (i < lexer.token_count)
-	{
-		printf("put array[%i]: %s\n", i, put_array[i]);
-		i++;
-	}
+	// i = 0;
+	// while (i < lexer.token_count)
+	// {
+	// 	printf("put array[%i]: %s\n", i, put_array[i]);
+	// 	i++;
+	// }
 	free (trimmed_line);
 	split_array_de = ft_calloc(lexer.token_count + 1, sizeof(char *));
 	if (!split_array_de)
@@ -68,7 +68,7 @@ char	**ft_lexer(char *str)
 	while (i < lexer.token_count)
 	{
 		printf("before first phase: %s\n", put_array[i]);
-		split_array_de[i] = ft_strtrim(put_array[i], lexer.delims);
+		split_array_de[i] = ft_strtrim(put_array[i], lexer.delims, 4);
 		printf("After first phase: %s\n", split_array_de[i]);
 		i++;
 	}

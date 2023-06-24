@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 09:16:07 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/24 17:37:08 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/24 18:35:18 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**split_op(char **split_array_de, t_lexer *lexer)
 		count_op(split_array_de[i], lexer, ft_strlen(split_array_de[i]));
 		i++;
 	}
-	// printf("op count:%i\n", lexer->op_count);
+	printf("op count:%i\n", lexer->op_count);
 	split_array_op = ft_calloc((lexer->op_count + lexer->token_count), sizeof(char *));
 	if (!split_array_op)
 		return (NULL); // error
