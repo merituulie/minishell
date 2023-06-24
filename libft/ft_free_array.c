@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/24 11:41:28 by jhusso           ###   ########.fr       */
+/*   Created: 2023/04/03 14:33:36 by jhusso            #+#    #+#             */
+/*   Updated: 2023/06/23 11:29:05 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./headers/minishell.h"
-#include "./headers/hashmap.h"
-#include "./headers/lexer.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_free_array(char **array)
 {
-	char	**cmd_line;
+	int	i;
 
-	while (1)
-		cmd_line = ft_lexer(readline(PINK "Jose's PinkShell: " BORING));
-	ft_free_array(cmd_line);
-	return (0);
+	i = 0;
+	while (array[i])
+	{
+		free (array[i]);
+		i++;
+	}
+	free (array);
 }

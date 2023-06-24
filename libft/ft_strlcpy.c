@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/24 11:41:28 by jhusso           ###   ########.fr       */
+/*   Created: 2022/10/26 12:06:00 by jhusso            #+#    #+#             */
+/*   Updated: 2022/11/11 16:30:09 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./headers/minishell.h"
-#include "./headers/hashmap.h"
-#include "./headers/lexer.h"
+#include "libft.h"
 
-int	main(void)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	**cmd_line;
+	size_t	slen;
 
-	while (1)
-		cmd_line = ft_lexer(readline(PINK "Jose's PinkShell: " BORING));
-	ft_free_array(cmd_line);
-	return (0);
+	slen = ft_strlen(src);
+	if (!dstsize)
+		return (slen);
+	while (dstsize - 1 > 0 && *src)
+	{
+		*dst = *(char *)src;
+		dst++;
+		src++;
+		dstsize--;
+	}
+	*dst = '\0';
+	return (slen);
 }

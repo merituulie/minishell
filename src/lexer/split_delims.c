@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 09:12:16 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/24 09:14:04 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/24 18:31:10 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 
 static bool	is_delim(int *delims, char c)
 {
-	while (*delims != '\0')
+	int	i;
+
+	i = 0;
+	while (i < 4)
 	{
-		if (*delims == c)
+		// printf("delim = %i\n", delims[i]);
+		if (delims[i] == c)
 			return (true);
-		delims++;
+		i++;
 	}
 	return (false);
 }
@@ -39,6 +43,7 @@ void	count_tokens_de(char const *str, t_lexer *lexer, int len)
 	i = 0;
 	while (i < len)
 	{
+		// printf("str[%i] = %c\n", i, str[i]);
 		if (str[i] == 34)
 			lexer->dq_flag = !lexer->dq_flag;
 		if (str[i] == 39)
@@ -51,16 +56,15 @@ void	count_tokens_de(char const *str, t_lexer *lexer, int len)
 	}
 	if (str[i] == '\0' && is_delim(lexer->delims, str[i - 1]) == false)
 		lexer->token_count++;
+	printf("token count: %i\n", lexer->token_count);
 }
 
-char	**split_de(char **token_array, char *str, t_lexer *lexer)
+char	**split_de(char **array, char *str, t_lexer *lexer)
 {
 	int	start;
 	int	i;
 	int	j;
 
-	lexer->dq_flag = 0;
-	lexer->sq_flag = 0;
 	start = 0;
 	i = 0;
 	j = 0;
@@ -74,20 +78,23 @@ char	**split_de(char **token_array, char *str, t_lexer *lexer)
 			&& is_delim(lexer->delims, str[i - 1]) == false) \
 			&& is_same_quote(lexer->dq_flag, lexer->sq_flag) == true)
 		{
-			token_array[j] = ft_calloc((i - start + 1), sizeof(char *));
-			if (!token_array[j])
+			array[j] = ft_calloc((i - start + 1), sizeof(char *));
+			if (!array[j])
 				return (0);
-			ft_strlcpy(token_array[j], &str[start], (i - start + 1));
+			ft_strlcpy(array[j], &str[start], (i - start + 1));
 			start = i + 1;
+			// printf("# %s\n", array[j]);
 			j++;
 		}
 		i++;
 	}
 	if (str[i] == '\0')
 	{
-		token_array[j] = ft_calloc((i - start + 1), sizeof(char *));
-		if (!token_array[j])
+		array[j] = ft_calloc((i - start + 1), sizeof(char *));
+		if (!array[j])
 			return (0);
-		ft_strlcpy(token_array[j], &str[start], (i - start + 1));
+		ft_strlcpy(array[j], &str[start], (i - start + 1));
+		// printf("# %s\n", array[j]);
 	}
+	return (array);
 }

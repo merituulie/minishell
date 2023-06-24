@@ -6,103 +6,112 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 09:16:07 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/24 10:00:00 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/24 17:37:08 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
 
-// static bool	is_delim(int *delims, char c)
-// {
-// 	while (*delims != '\0')
-// 	{
-// 		if (*delims == c)
-// 			return (true);
-// 		delims++;
-// 	}
-// 	return (false);
-// }
-
-// static bool	is_same_quote(int d_quote_flag, int s_quote_flag)
-// {
-// 	if (d_quote_flag == 0 && s_quote_flag == 0)
-// 		return (true);
-// 	else
-// 		return (false);
-// }
-
-void	count_op(char const *str, t_lexer *lexer, int len)
+static bool	is_operand(int *operands, char c)
 {
 	int	i;
 
 	i = 0;
-	if (str[i] == 62 || str[i] == 60)
+	while (i < 3)
 	{
-		lexer->op_count ++;
-		if (str[i + 1] == 62 || str[i + 1] == 60)
-			lexer->op_count ++;
+		if (operands[i] == c)
+			return (true);
+		i++;
 	}
-	if (str[len - 1] == 62 || str[len - 1] == 60)
-	{
-		lexer->op_count ++;
-		if (str[len - 2] == 62 || str[len -2] == 60)
-			lexer->op_count ++;
-	}
+	return (false);
 }
 
-// char	**put_array_op(char **token_array, char *str, t_lexer *lexer)
-// {
-// 	int	start;
-// 	int	i;
-// 	int	j;
+static bool	over_one_op(char *str, int i)
+{
+	if (str[i] == str[i - 1])
+		return (true);
+	else
+		return (false);
+}
 
-// 	lexer->dq_flag = 0;
-// 	lexer->sq_flag = 0;
-// 	start = 0;
-// 	i = 0;
-// 	j = 0;
-// 	while (j < lexer->token_count && str[i] != '\0')
-// 	{
-// 		if (str[i] == 34)
-// 			lexer->dq_flag = !lexer->dq_flag;
-// 		if (str[i] == 39)
-// 			lexer->sq_flag = !lexer->sq_flag;
-// 		else if ((is_delim(lexer->delims, str[i]) == true \
-// 			&& is_delim(lexer->delims, str[i - 1]) == false) \
-// 			&& is_same_quote(lexer->dq_flag, lexer->sq_flag) == true)
-// 		{
-// 			token_array[j] = ft_calloc((i - start + 1), sizeof(char *));
-// 			if (!token_array[j])
-// 				return (0);
-// 			ft_strlcpy(token_array[j], &str[start], (i - start + 1));
-// 			start = i + 1;
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	if (str[i] == '\0')
-// 	{
-// 		token_array[j] = ft_calloc((i - start + 1), sizeof(char *));
-// 		if (!token_array[j])
-// 			return (0);
-// 		ft_strlcpy(token_array[j], &str[start], (i - start + 1));
-// 	}
-// }
-
-char	**split_op(char **token_array, t_lexer *lexer)
+static void	count_op(char const *str, t_lexer *lexer, int len)
 {
 	int	i;
-	char **separate_op;
+
+	i = 0;
+	while (i < len)
+	{
+		if (str[i] == 62 || str[i] == 60 || str[i] == 124)
+		{
+			if (over_one_op(str, i) == false)
+				lexer->op_count++;
+		}
+		i++;
+	}
+}
+static int	set_string(char *split_array_op, char *split_array_de, int k, t_lexer *lexer)
+{
+	int	start;
+
+	start = 0;
+	while (is_operand(lexer->operands, split_array_de[k]) == false)
+		k++;
+	if (is_operand(lexer->operands, split_array_de[k]) == true)
+	{
+		if (is_operand(lexer->operands, split_array_de[k + 1]) == true)
+			k += 2;
+	}
+	split_array_op = ft_calloc((k - start + 1), sizeof(char *));
+	if (!split_array_op)
+		return (0);
+	ft_strlcpy(split_array_op, split_array_de, (k - start));
+	return (k);
+}
+
+char	**put_array_op(char **split_array_op, char **split_array_de, t_lexer *lexer)
+{
+	int	i; // loops split_array_op
+	int	j; // loops split_array_de
+	int	k; // goes trough split_array_de[j] indexes
+
+	i = 0;
+	j = 0;
+	while (i < lexer->token_count + lexer->op_count)
+	{
+		k = 0;
+		while (k < ft_strlen(split_array_de[j]))
+		{
+			set_string(split_array_op[i], split_array_de[j], k, lexer);
+			i++;
+		}
+		i++;
+		j++;
+	}
+	// if (str[i] == '\0')
+	// {
+	// 	split_array_de[j] = ft_calloc((i - start + 1), sizeof(char *));
+	// 	if (!split_array_de[j])
+	// 		return (0);
+	// 	ft_strlcpy(split_array_de[j], &str[start], (i - start + 1));
+	// }
+}
+
+char	**split_op(char **split_array_de, t_lexer *lexer)
+{
+	int	i;
+	char **split_array_op;
 
 	i = 0;
 	while (i < lexer->token_count)
 	{
-		count_op(token_array[i], lexer, ft_strlen(token_array[i]));
+		count_op(split_array_de[i], lexer, ft_strlen(split_array_de[i]));
 		i++;
 	}
-	printf("op count:%i\n", lexer->op_count);
-	separate_op = ft_calloc((lexer->op_count + lexer->token_count), sizeof(char *));
-	// separate_op = put_array_op(separate_op, token_array, lexer);
-	return (separate_op);
+	// printf("op count:%i\n", lexer->op_count);
+	split_array_op = ft_calloc((lexer->op_count + lexer->token_count), sizeof(char *));
+	if (!split_array_op)
+		return (NULL); // error
+	split_array_op = put_array_op(split_array_op, split_array_de, lexer);
+	return (split_array_op);
 }
