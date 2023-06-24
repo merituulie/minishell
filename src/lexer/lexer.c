@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/23 12:10:22 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/24 09:01:25 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ char	**ft_lexer(char *str)
 	while (i < lexer.token_count)
 	{
 		trimmed_array[i] = ft_strtrim(put_array[i], lexer.delims);
+		printf("%s\n", trimmed_array[i]);
 		i++;
 	}
 	ft_free_array(put_array);
