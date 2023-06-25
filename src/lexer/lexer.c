@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/25 09:50:26 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/25 11:00:29 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ char	**ft_lexer(char *str)
 	}
 	ft_free_array(put_array);
 	split_op(split_array_de, &lexer);
+	// printf("HERE\n");
 	return (0);
 }

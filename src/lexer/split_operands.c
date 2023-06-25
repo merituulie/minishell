@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 09:16:07 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/25 10:56:19 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/25 12:24:22 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static bool	is_operand(int *operands, char c)
 	int	i;
 
 	i = 0;
-	// printf("HERE\n");
 	while (i < 3)
 	{
 		if (operands[i] == c)
@@ -88,32 +87,32 @@ char	**put_array_op(char **split_array_op, char **split_array_de, t_lexer *lexer
 
 	i = 0;
 	j = 0;
-	while (split_array_de[i])
-	{
-		printf("split array de [%i]: %s\n", i, split_array_de[i]);
-		i++;
-	}
+	// while (split_array_op[i])
+	// {
+	// 	printf("split array op [%i]: %s\n", i, split_array_op[i]);
+	// 	i++;
+	// }
+	// split_array_op = ft_calloc((lexer->op_count + lexer->token_count + 1), sizeof(char *));
+	// if (!split_array_op)
+	// 	return (NULL);
 	while (i < lexer->token_count + lexer->op_count)
 	{
 		k = 0;
 		while (k < ft_strlen(split_array_de[j]))
 		{
-			k += set_string(split_array_op[i], split_array_de[j], k, lexer);
-			// printf("split array op in put array: %s\n", split_array_op[i]);
-			// k++;
+			k += set_string(&split_array_op[i], split_array_de[j], k, lexer);
+			printf("split array op in put array: %s\n", split_array_op[i]);
 			i++;
 		}
-		// i++;
 		j++;
 	}
+	i = 0;
+	while (i < lexer->op_count + lexer->token_count)
+	{
+		printf("split_array_op[%i]: %s\n", i, split_array_op[i]);
+		i++;
+	}
 	return (split_array_op);
-	// if (str[i] == '\0')
-	// {
-	// 	split_array_de[j] = ft_calloc((i - start + 1), sizeof(char *));
-	// 	if (!split_array_de[j])
-	// 		return (0);
-	// 	ft_strlcpy(split_array_de[j], &str[start], (i - start + 1));
-	// }
 }
 
 char	**split_op(char **split_array_de, t_lexer *lexer)
@@ -127,15 +126,9 @@ char	**split_op(char **split_array_de, t_lexer *lexer)
 		count_op(split_array_de[i], lexer, ft_strlen(split_array_de[i]));
 		i++;
 	}
-	// printf("op count:%i\n", lexer->op_count);
-	split_array_op = ft_calloc((lexer->op_count + lexer->token_count), sizeof(char *));
+	split_array_op = ft_calloc((lexer->op_count + lexer->token_count + 1), sizeof(char *));
 	if (!split_array_op)
 		return (NULL); // error
 	split_array_op = put_array_op(split_array_op, split_array_de, lexer);
-	while (i < lexer->op_count + lexer->token_count)
-	{
-		printf("split_array_op[%i]: %s\n", split_array_op);
-		i++;
-	}
 	return (split_array_op);
 }

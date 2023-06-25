@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 09:12:16 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/25 09:50:44 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/25 11:04:23 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**split_de(char **array, char *str, t_lexer *lexer)
 				return (0);
 			ft_strlcpy(array[j], &str[start], (i - start + 1));
 			start = i + 1;
-			// printf("# %s\n", array[j]);
+			printf("# %s\n", array[j]);
 			j++;
 		}
 		i++;
@@ -94,7 +94,7 @@ char	**split_de(char **array, char *str, t_lexer *lexer)
 		if (!array[j])
 			return (0);
 		ft_strlcpy(array[j], &str[start], (i - start + 1));
-		// printf("# %s\n", array[j]);
+		printf("# %s\n", array[j]);
 	}
 	return (array);
 }

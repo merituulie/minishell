@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/24 18:38:42 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/25 12:21:09 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char		**ft_lexer(char *str);
 
 // split_delims.c
 static	char	is_set(char const c, int *set);
-bool static	is_delim(int *delims, char c);
+bool static		is_delim(int *delims, char c);
 static bool	is_same_quote(int d_quote_flag, int s_quote_flag);
 void		count_tokens_de(char const *str, t_lexer *lexer, int len);
 char		**split_de(char **split_array_de, char *str, t_lexer *lexer);
