@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 09:12:16 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/24 18:31:10 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/25 09:50:44 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	count_tokens_de(char const *str, t_lexer *lexer, int len)
 	}
 	if (str[i] == '\0' && is_delim(lexer->delims, str[i - 1]) == false)
 		lexer->token_count++;
-	printf("token count: %i\n", lexer->token_count);
+	// printf("token count: %i\n", lexer->token_count);
 }
 
 char	**split_de(char **array, char *str, t_lexer *lexer)

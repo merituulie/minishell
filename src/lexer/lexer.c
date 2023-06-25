@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/24 18:51:35 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/25 09:50:26 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**ft_lexer(char *str)
 
 	init_struct(&lexer, str);
 	trimmed_line = ft_strtrim(str, lexer.delims, 4);
-	printf("trimmed line: %s\n", trimmed_line);
+	// printf("trimmed line: %s\n", trimmed_line);
 	count_tokens_de(trimmed_line, &lexer, ft_strlen(trimmed_line));
 	put_array = ft_calloc(lexer.token_count + 1, sizeof(char *));
 	if (!put_array)
@@ -67,12 +67,12 @@ char	**ft_lexer(char *str)
 	i = 0;
 	while (i < lexer.token_count)
 	{
-		printf("before first phase: %s\n", put_array[i]);
+		// printf("before first phase: %s\n", put_array[i]);
 		split_array_de[i] = ft_strtrim(put_array[i], lexer.delims, 4);
-		printf("After first phase: %s\n", split_array_de[i]);
+		// printf("After first phase: %s\n", split_array_de[i]);
 		i++;
 	}
 	ft_free_array(put_array);
-	// split_op(split_array_de, &lexer);
+	split_op(split_array_de, &lexer);
 	return (0);
 }
