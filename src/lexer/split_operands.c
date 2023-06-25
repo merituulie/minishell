@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 09:16:07 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/25 12:24:22 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/25 13:01:20 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static int	set_string(char *split_array_op, char *split_array_de, int k, t_lexer
 	int	start;
 
 	start = k;
-	printf("k in set string = %i\n", k);
-	printf("start in set string = %i\n", start);
+	// printf("k in set string = %i\n", k);
+	// printf("start in set string = %i\n", start);
 	if (is_operand(lexer->operands, split_array_de[k]) == true)
 	{
 		if (is_operand(lexer->operands, split_array_de[k + 1]) == true)
@@ -100,7 +100,7 @@ char	**put_array_op(char **split_array_op, char **split_array_de, t_lexer *lexer
 		k = 0;
 		while (k < ft_strlen(split_array_de[j]))
 		{
-			k += set_string(&split_array_op[i], split_array_de[j], k, lexer);
+			k += set_string(split_array_op[i], split_array_de[j], k, lexer);
 			printf("split array op in put array: %s\n", split_array_op[i]);
 			i++;
 		}

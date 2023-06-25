@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/25 11:00:29 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/25 12:42:52 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**ft_lexer(char *str)
 	{
 		// printf("before first phase: %s\n", put_array[i]);
 		split_array_de[i] = ft_strtrim(put_array[i], lexer.delims, 4);
-		// printf("After first phase: %s\n", split_array_de[i]);
+		printf("After first phase: %s\n", split_array_de[i]);
 		i++;
 	}
 	ft_free_array(put_array);
