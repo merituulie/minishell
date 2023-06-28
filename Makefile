@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/20 12:35:27 by meskelin         ###   ########.fr        #
+#    Updated: 2023/06/28 19:56:59 by emmameinert      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap
 
-BUILTIN_SRC = env
+ENV_SRC = init
 
 H_FILES = hashmap \
 		env \
@@ -27,8 +27,8 @@ H_FILES = hashmap \
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
-BUILTIN_PRE = $(addprefix ./src/builtin/, $(BUILTIN_SRC))
-BUILTIN_SUFF = $(addsuffix .c, $(BUILTIN_PRE))
+ENV_PRE = $(addprefix ./src/env/, $(ENV_SRC))
+ENV_SUFF = $(addsuffix .c, $(ENV_PRE))
 HPRE = $(addsuffix ./headers/, $(H_FILES))
 HSUFF = $(addsuffix .h, $(HPRE))
 
@@ -37,7 +37,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(BUILTIN_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

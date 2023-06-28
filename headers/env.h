@@ -1,8 +1,13 @@
 #ifndef ENV_H
     #define ENV_H
 
-#include "stdio.h"
+#include "hashmap.h"
 
-int ft_env(char **str);
+typedef struct s_env 
+{
+    struct s_node **vars;
+}   t_env;
+
+void    fill_env(char **envp, t_env **env);
 
 #endif  
