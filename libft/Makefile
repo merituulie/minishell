@@ -17,6 +17,7 @@ ft_memset \
 ft_strncmp \
 ft_bzero \
 ft_calloc \
+ft_split
 
 H_FILES = libft
 

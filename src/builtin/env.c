@@ -6,7 +6,6 @@
 
 //str is just envp right now, will replaced later with access to our own envp
 
-
 int ft_env(char **str) 
 {
     int i;
