@@ -25,5 +25,6 @@ typedef struct s_command
 	int		pid;
 }	t_command;
 
+int handle_commands(t_command **commands, t_env **env);
 
 #endif

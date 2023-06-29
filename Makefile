@@ -37,7 +37,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) command_handler.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean
