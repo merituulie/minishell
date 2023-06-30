@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/25 12:42:52 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/30 10:33:27 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,38 +42,21 @@ char	**ft_lexer(char *str)
 {
 	t_lexer	lexer;
 	char	*trimmed_line;
-	char	**put_array;
 	char	**split_array_de;
-	int		i;
+	char	**split_array_op;
 
 	init_struct(&lexer, str);
 	trimmed_line = ft_strtrim(str, lexer.delims, 4);
 	// printf("trimmed line: %s\n", trimmed_line);
-	count_tokens_de(trimmed_line, &lexer, ft_strlen(trimmed_line));
-	put_array = ft_calloc(lexer.token_count + 1, sizeof(char *));
-	if (!put_array)
-		return (-1);
-	put_array = split_de(put_array, trimmed_line, &lexer);
-	// i = 0;
-	// while (i < lexer.token_count)
-	// {
-	// 	printf("put array[%i]: %s\n", i, put_array[i]);
-	// 	i++;
-	// }
-	free (trimmed_line);
-	split_array_de = ft_calloc(lexer.token_count + 1, sizeof(char *));
-	if (!split_array_de)
-		return (-1);
-	i = 0;
+	split_array_de = split_de(trimmed_line, &lexer);
+	// printf("lexer.token_count: %i\n", lexer.token_count);
+	int i = 0;
 	while (i < lexer.token_count)
 	{
-		// printf("before first phase: %s\n", put_array[i]);
-		split_array_de[i] = ft_strtrim(put_array[i], lexer.delims, 4);
-		printf("After first phase: %s\n", split_array_de[i]);
+		printf("split_array_de[%i]: %s\n", i, split_array_de[i]);
 		i++;
 	}
-	ft_free_array(put_array);
-	split_op(split_array_de, &lexer);
 	// printf("HERE\n");
-	return (0);
+	split_array_op = split_op(split_array_op, split_array_de, &lexer);
+
 }

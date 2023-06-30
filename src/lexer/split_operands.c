@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 09:16:07 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/25 13:01:20 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/30 10:31:43 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	count_op(char const *str, t_lexer *lexer, int len)
 		}
 		i++;
 	}
+		// printf("lexer->op_count: %i\n", lexer->op_count);
 }
 static int	set_string(char *split_array_op, char *split_array_de, int k, t_lexer *lexer)
 {
@@ -79,7 +80,7 @@ static int	set_string(char *split_array_op, char *split_array_de, int k, t_lexer
 	return (k);
 }
 
-char	**put_array_op(char **split_array_op, char **split_array_de, t_lexer *lexer)
+void	**put_array_op(char **split_array_op, char **split_array_de, t_lexer *lexer)
 {
 	int	i; // loops split_array_op
 	int	j; // loops split_array_de
@@ -87,14 +88,6 @@ char	**put_array_op(char **split_array_op, char **split_array_de, t_lexer *lexer
 
 	i = 0;
 	j = 0;
-	// while (split_array_op[i])
-	// {
-	// 	printf("split array op [%i]: %s\n", i, split_array_op[i]);
-	// 	i++;
-	// }
-	// split_array_op = ft_calloc((lexer->op_count + lexer->token_count + 1), sizeof(char *));
-	// if (!split_array_op)
-	// 	return (NULL);
 	while (i < lexer->token_count + lexer->op_count)
 	{
 		k = 0;
@@ -112,20 +105,29 @@ char	**put_array_op(char **split_array_op, char **split_array_de, t_lexer *lexer
 		printf("split_array_op[%i]: %s\n", i, split_array_op[i]);
 		i++;
 	}
-	return (split_array_op);
+}
+/*
+1) if first is quote
+2) if op found
+3)if op not found
+*/
+
+void		search_op(char *split_array_de, t_lexer *lexer)
+{
+
 }
 
-char	**split_op(char **split_array_de, t_lexer *lexer)
+char	**split_op(char **split_array_op, char **split_array_de, t_lexer *lexer)
 {
 	int	i;
-	char **split_array_op;
 
 	i = 0;
-	while (i < lexer->token_count)
+	while (i < lexer->token_count)//loop strings
 	{
-		count_op(split_array_de[i], lexer, ft_strlen(split_array_de[i]));
+		search_op(split_array_de[i], lexer);
 		i++;
 	}
+	// printf("lexer->op_count: %i\n", lexer->op_count);
 	split_array_op = ft_calloc((lexer->op_count + lexer->token_count + 1), sizeof(char *));
 	if (!split_array_op)
 		return (NULL); // error
