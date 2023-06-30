@@ -6,11 +6,12 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 11:15:53 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/30 10:29:22 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:35:50 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h> // HOXHOXHOX
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -38,5 +39,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		start++;
 	}
 	sub[i] = '\0';
+	printf("res: %s\n", res);
 	return (res);
 }

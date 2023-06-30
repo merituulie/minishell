@@ -6,22 +6,23 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/30 10:18:24 by jhusso           ###   ########.fr        #
+#    Updated: 2023/06/30 11:17:23 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC_FILES = ft_strlen \
-ft_memset \
-ft_strncmp \
-ft_bzero \
+SRC_FILES = ft_bzero \
 ft_calloc \
-ft_strlcpy \
-ft_strtrim \
 ft_free_array \
-ft_substr \
+ft_memset \
 ft_strcpy \
+ft_strdup \
+ft_strlcpy \
+ft_strlen \
+ft_strncmp \
+ft_strtrim \
+ft_substr \
 
 H_FILES = libft
 

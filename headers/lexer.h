@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/06/30 09:38:35 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/30 10:51:34 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void		init_struct(t_lexer *lexer, char *str);
 char		**ft_lexer(char *str);
 
 // split_delims.c
-static	char	is_set(char const c, int *set);
-bool static		is_delim(int *delims, char c);
+static char	is_set(char const c, int *set);
+static bool	is_delim(int *delims, char c);
 static bool	is_same_quote(int d_quote_flag, int s_quote_flag);
 void		count_tokens_de(char const *str, t_lexer *lexer, int len);
 char		**put_array_de(char **array, char *str, t_lexer *lexer);
@@ -53,4 +53,5 @@ static int	set_string(char *split_array_op, char *split_array_de, int k, t_lexer
 void		**put_array_op(char **split_array_op, char **split_array_de, t_lexer *lexer);
 void		search_op(char *split_array_de, t_lexer *lexer);
 char		**split_op(char **split_array_op, char **split_array_de, t_lexer *lexer);
+
 #endif
