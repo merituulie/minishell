@@ -38,8 +38,22 @@ typedef struct s_data
 }	t_data;
 
 int		main(int argc, char **argv, char **envp);
+
+/*expand_env.c*/
 char	**expand_quote_check(t_data *ms, char **str);
 void	expand_var(t_data *ms, char *str, int start);
 void	realloc_var(t_data *ms, char *str, char *var, int start);
+char	*find_env(t_data *ms, char *var, int var_size);
+
+/*libft_files.c -- delete later*/
+size_t	ft_strlen(const char *str);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_strdup(const char *s1);
+int		ft_isalnum(int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	*ft_memcpy(void	*dst, const void *src, size_t n);
+
 
 #endif
