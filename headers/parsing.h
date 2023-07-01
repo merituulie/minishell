@@ -16,24 +16,30 @@
 # include <term.h> //tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
-typedef struct s_node
-{
-	char			*key;
-	char			*value;
-	struct s_node	*next;
-}	t_node;
+// typedef struct s_node
+// {
+// 	char			*key;
+// 	char			*value;
+// 	struct s_node	*next;
+// }	t_node;
 
 typedef struct s_data
 {
 	char	**env;
 	char	**args;
+	int		start;
+	int		end;
+	int		s_quotes;
+	int		d_quotes;
+	char	*out;
 
 }	t_data;
 
 int		main(int argc, char **argv, char **envp);
-char	**expand_quote_check(t_data ms, char **str);
-char	*expand_var(t_data ms, char *str, int start);
+char	**expand_quote_check(t_data *ms, char **str);
+char	*expand_var(t_data *ms, char *str, int start);
+void	realloc_var(t_data *ms, char *str, char *var, int start);
 
 #endif

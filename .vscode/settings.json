@@ -1,7 +1,6 @@
 {
 	"files.associations": {
-		"*.excalidraw": "json",
-		"*.excalidrawlib": "json",
-		"minishell.h": "c"
+		"readline.h": "c",
+		"fcntl.h": "c"
 	}
 }
