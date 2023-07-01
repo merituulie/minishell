@@ -39,7 +39,7 @@ typedef struct s_data
 
 int		main(int argc, char **argv, char **envp);
 char	**expand_quote_check(t_data *ms, char **str);
-char	*expand_var(t_data *ms, char *str, int start);
+void	expand_var(t_data *ms, char *str, int start);
 void	realloc_var(t_data *ms, char *str, char *var, int start);
 
 #endif

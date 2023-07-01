@@ -167,15 +167,14 @@ void	*ft_memcpy(void	*dst, const void *src, size_t n)
 // //I THINK THIS SOLUTION IS STUPIDO///
 // I DO REALLOCATE FUNCTION AND REALLOCATE THE WHOLE STRING
 // BUT HOWWWWWWWWWWWWWWWWWWWWWWWWWW// */
-char	*expand_var(t_data *ms, char *str, int start)
+void	expand_var(t_data *ms, char *str, int start)
 {
 	char	*var;
-	char 	*out;
 
 	ms->start = start;
 	ms->end = start + 1;
 	if (!ft_isalnum(str[ms->end]))
-		out = ft_calloc(0, sizeof(char));
+		ms->out = ft_calloc(0, sizeof(char));
 	while (ft_isalnum(str[ms->end]))
 			ms->end++;
 	printf("str[end] is %c\n", str[ms->end]);
@@ -186,7 +185,6 @@ char	*expand_var(t_data *ms, char *str, int start)
 	realloc_var(ms, str, var, ft_strlen(str));
 	// printf("out is %s\n");
 	free(var);
-	return (out);
 }
 
  /*finding matching variable and send the value back.
@@ -201,7 +199,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	search = ft_calloc(var_size, sizeof(char));
 	while (i++ < var_size)
 		search[i] = var[1 + i];
-	printf("cutted var is %s\n", search);
+	printf("var without $, search str is: %s\n", search);
 	// i = 0;
 	// while (ms->env.key[i])
 	// {
@@ -214,6 +212,8 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	// }
 	//free(search);
 	//return(NULL);
+	//-----from here down, this is just to check before env is ready, the codes
+	//commented out is the version for the minishell------
 	i = 0;
 	while (ms->env[i])
 	{
@@ -324,24 +324,23 @@ int	main(int argc, char **argv, char **envp)
 	t_data	ms;
 	char	**str;
 
-	str = malloc(sizeof(char *) * 10);
-	str[0] = ft_strdup("<file1");
-	str[1] = ft_strdup("wc");
-	str[2] = ft_strdup("-l");
-	str[3] = ft_strdup("|");
-	str[4] = ft_strdup("\"$USER-*r> it's me hi I'm the problem it's me\"");
-	str[5] = ft_strdup("'file2'");
-	str[6] = ft_strdup("\"\'\"$US\'ER\"\' it's me hi I'm the problem it's me\"");
-	str[7] = ft_strdup("hel\"lo'$userit'smehi\" I'm the problem it's me'");
-	str[8] = ft_strdup("user'name\"$user\"?hds'af");
-	str[9] = ft_strdup("\0");
-	// str = malloc(sizeof(char *) * 2);
-	// str[0] = ft_strdup("\"$USER-*r> it's me hi I'm the problem it's me\"");
+	// str = malloc(sizeof(char *) * 10);
+	// str[0] = ft_strdup("<file1");
+	// str[1] = ft_strdup("wc");
+	// str[2] = ft_strdup("-l");
+	// str[3] = ft_strdup("|");
+	// str[4] = ft_strdup("\"$USER-*r> it's me hi I'm the problem it's me\"");
+	// str[5] = ft_strdup("'file2'");
+	// str[6] = ft_strdup("\"\'\"$US\'ER\"\' it's me hi I'm the problem it's me\"");
+	// str[7] = ft_strdup("hel\"lo'$userit'smehi\" I'm the problem it's me'");
+	// str[8] = ft_strdup("user'name\"$user\"?hds'af");
+	// str[9] = ft_strdup("\0");
+	str = malloc(sizeof(char *) * 2);
+	str[0] = ft_strdup("\"\'\"$US\'ER\"\' it's me hi I'm the problem it's me\"");
 	// str[1] = ft_strdup("'$file2'");
 	// str[2] = ft_strdup("hel\"lo'$userit'smehi\" I'm the problem it's me'");
 	// str[3] = ft_strdup("user'name\"$user\"?hds'af");
-	// str[1] = ft_strdup("\0");
-	printf("print the str[6] : %s\n", str[6]);
+	str[1] = ft_strdup("\0");
 	(void)argc;
 	(void)argv;
 	ms.env = envp;
