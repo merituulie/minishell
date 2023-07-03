@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/03 07:57:10 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/03 09:38:35 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ size_t	ft_arrlen(const char **array)
 		counter++;
 		array++;
 	}
-	// printf("arrlen in function= %i\n", counter);
 	return (counter);
 }
 
@@ -50,6 +49,16 @@ char **allocate_2d_array(char **old_array)
 	if (!new_array)
 		return (NULL);
 	return (new_array);
+}
+
+void **trim_last_line(char **array, int line_index)
+{
+	size_t	arr_len;
+	char	*new_last_line;
+
+	new_last_line = ft_strtrim(array[line_index], " \t\n");
+	free(array[line_index]);
+	array[line_index] = new_last_line;
 }
 
 char	**add_line(char **old_array, size_t len, size_t del_index, int del_line_index)
@@ -84,8 +93,8 @@ char	**parse_line(char **array, size_t len)
 	size_t		i;
 	size_t		j;
 	size_t		arrlen;
+	char		*new_last_line;
 
-	// printf("coming from main array[0]: %s\n", array[0]);
 	i = 0;
 	while (i < ft_arrlen(array))
 	{
@@ -94,26 +103,31 @@ char	**parse_line(char **array, size_t len)
 		{
 			if (is_delim(array[i][j]) == true)
 			{
-				// printf("found delim in array[%i] at index %i\n\n", i, j);
+				printf("found delim in array[%i] at index %i\n\n", i, j);
 				arrlen = ft_arrlen(array);
 				array = add_line(array, arrlen, j, i);
+				if (is_delim(array[i + 1][0]) == true)
+					trim_last_line(array, i + 1);
 			}
 			j++;
 		}
 		i++;
 	}
-	int u = 0;
-	while (array[u])
-	{
-		printf("after add_line array[%u]: %s\n", u, array[u]);
-		u++;
-	}
+	//
+		int u = 0;
+		while (array[u])
+		{
+			printf("after add_line array[%u]: %s\n", u, array[u]);
+			u++;
+		}
+	//
 }
 
 char	**ft_lexer(char *str)
 {
 	char	*trimmed_str;
 	char	**new_str;
+	char	**parsed_line;
 	int		len;
 
 	trimmed_str = ft_strtrim(str, " \t");
@@ -122,5 +136,6 @@ char	**ft_lexer(char *str)
 	if (!new_str)
 		return (0);
 	new_str[0] = ft_strdup(trimmed_str);
-	parse_line(new_str, len);
+	parsed_line = parse_line(new_str, len);
+	ft_free_array(new_str);
 }
