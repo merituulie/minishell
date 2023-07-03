@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_array.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/03 16:00:03 by meskelin          #+#    #+#             */
+/*   Updated: 2023/07/03 18:09:23 by yoonslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int ft_print_arr(char **str) 
+int	ft_print_arr(char **str)
 {
-    int i;
-    
-    i = 0;
-    while (str[i])
-    {
-        printf("%s\n", str[i]);
-        i++;
-    }
-    return (0);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		printf("%s\n", str[i]);
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:16:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:01:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:21:52 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 t_node	*new_node(char *key, char *value)
 {
 	t_node	*new;
+
 	new = (t_node *)ft_calloc(1, sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->key = key;
 	new->value = value;
-	new->next = NULL; 
+	new->next = NULL;
 	return (new);
 }
 
@@ -55,8 +56,6 @@ t_node	**set_value(t_node **head, char *key, char *value)
 	{
 		temp = get_last(head);
 		temp->next = new_node(key, value);
-		printf("temp->key is %s\n", temp->key);
-		printf("temp->value is %s\n", temp->value);
 	}
 	return (head);
 }

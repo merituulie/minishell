@@ -5,6 +5,8 @@
 		"readline.h": "c",
 		"fcntl.h": "c",
 		"curses.h": "c",
-		"parsing.h": "c"
+		"parsing.h": "c",
+		"libft.h": "c",
+		"string.h": "c"
 	}
 }

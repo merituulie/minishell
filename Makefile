@@ -6,26 +6,28 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 13:55:45 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/03 18:25:06 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -g
+BUILD_FLAGS = -Wall -Wextra -Werror
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap
 
-ENV_SRC = init
-
+ENV_SRC = init \
+		env
+		
 PARSER_SRC = expand_env
 
 H_FILES = hashmap \
 		env \
-		parsing
+		parsing \
+		minishell
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
@@ -41,7 +43,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) $(PARSER_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) $(PARSER_SUFF) parsing_main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean
@@ -56,4 +58,3 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
-

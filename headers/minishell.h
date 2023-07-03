@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 13:08:13 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:07:40 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,5 @@ typedef struct s_command
 	int		file_descriptors;
 	int		pid;
 }	t_command;
-
-// int handle_commands(t_command **commands, t_env **env);
 
 #endif
