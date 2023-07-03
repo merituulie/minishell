@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/02 13:47:11 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/03 13:13:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 
 int main(int ac, char **av)
 {
+	char **parsed;
+
+
 	if (ac == 2)
 	{
-		ft_lexer(av[1]);
+		parsed = ft_lexer(av[1]);
+		printf("HERE\n");
 	}
 	return (0);
 }

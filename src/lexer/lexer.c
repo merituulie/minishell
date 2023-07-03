@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/03 09:38:35 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/03 13:15:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ char	**add_line(char **old_array, size_t len, size_t del_index, int del_line_ind
 	i = 0;
 	if (del_line_index == 0)
 	{
-		new_array[i++] = ft_substr(old_array[i], 0, del_index);
+		new_array[i] = ft_substr(old_array[i], 0, del_index);
+		i++;
 		new_array[i] = ft_substr(old_array[i - 1], del_index + 1, ft_strlen(old_array[i-1]));
 	}
 	while (i < ft_arrlen(old_array))
@@ -84,7 +85,8 @@ char	**add_line(char **old_array, size_t len, size_t del_index, int del_line_ind
 			new_array[i] = ft_strdup(old_array[i]);
 		i++;
 	}
-	ft_free_array(old_array);
+	if (old_array)
+		ft_free_array(old_array);
 	return (new_array);
 }
 
@@ -103,7 +105,7 @@ char	**parse_line(char **array, size_t len)
 		{
 			if (is_delim(array[i][j]) == true)
 			{
-				printf("found delim in array[%i] at index %i\n\n", i, j);
+				// printf("found delim in array[%i] at index %i\n\n", i, j);
 				arrlen = ft_arrlen(array);
 				array = add_line(array, arrlen, j, i);
 				if (is_delim(array[i + 1][0]) == true)
@@ -117,10 +119,11 @@ char	**parse_line(char **array, size_t len)
 		int u = 0;
 		while (array[u])
 		{
-			printf("after add_line array[%u]: %s\n", u, array[u]);
+			printf("after add_line array[%u]: %s\tp: %p\n", u, array[u], &(*array[u]));
 			u++;
 		}
 	//
+	return(array);
 }
 
 char	**ft_lexer(char *str)
@@ -137,5 +140,11 @@ char	**ft_lexer(char *str)
 		return (0);
 	new_str[0] = ft_strdup(trimmed_str);
 	parsed_line = parse_line(new_str, len);
-	ft_free_array(new_str);
+	free(trimmed_str);
+	if (new_str)
+	{
+		printf("HERE\n");
+		ft_free_array(new_str);
+	}
+	return (parsed_line);
 }
