@@ -6,22 +6,20 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/24 09:17:29 by jhusso           ###   ########.fr        #
+#    Updated: 2023/07/02 14:34:38 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -lreadline -w
+BUILD_FLAGS = -Wall -Wextra -Werror -lreadline -w -fsanitize=address
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap
 
 LEXER_SRC = lexer \
-			split_delims \
-			split_operands \
 
 H_FILES = hashmap \
 		minishell \

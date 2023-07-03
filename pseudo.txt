@@ -1,0 +1,41 @@
+lexer.txt
+
+input -> ft_strtrim
+ft_strlen(trimmed str)
+
+new str calloc 2 char*
+new str 0 size of len +1
+
+ft_strncpy trimmed stringi uuteen allokoituun 0 indeksiin.
+
+aloita parsingi (use pointer to go trough every char):
+while trimmed array len
+if (space, tab or newline)
+->  everything before is a token
+-> add_str (array, index)
+if (< or > or |)
+-> check if << or >>
+-> make as separate token
+if (“ or ‘)
+-> one token until find another “ or ‘
+trimmed_array++;
+
+char **add_str(char **array,  int index)
+function that takes in an allocated array and allocates new with one more line
+
+->  new_array = ft_calloc(sizeof(array) + 1, sizeof(char *));
+while (old_array[i + 1])
+{
+new_array[i] = strdup(old_array[i]);
+i++;
+}
+new_array[i] = substr(old_array[i], start index = 0 end index = index)
+i++;
+copy all the rest of the str to new_array[i];
+free old_array
+return new array
+
+try this idea first with just delimiting by spaces
+spaces can be trimmed from tokens later on
+then add the operands to be delimited
+then take care of quotes
