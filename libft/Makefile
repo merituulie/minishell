@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 18:15:00 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/03 19:10:46 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ ft_print_array \
 ft_strdup \
 ft_isalnum \
 ft_substr \
-ft_free_null_str
+ft_free_null_str \
+ft_putchar_fd \
+ft_putstr_fd \
 
 H_FILES = libft
 

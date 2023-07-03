@@ -6,13 +6,12 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 18:44:42 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:04:25 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/parsing.h"
 #include "../../libft/libft.h"
-#include <string.h>
 
 /*check if the word comes after '$' is expandable part
 using env variables.*/

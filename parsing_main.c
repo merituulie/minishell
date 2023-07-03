@@ -6,13 +6,13 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:50:18 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/03 18:32:38 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:03:32 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h> //printf, perror
 #include "headers/parsing.h"
-#include "../../libft/libft.h"
+#include "libft/libft.h"
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -20,9 +20,8 @@ int	main(int argc, char **argv, char **envp)
 	// t_node	*node;
 	char	**str;
 
-	str = malloc(sizeof(char *) * 2);
+	str = ft_calloc(2, sizeof(char *));
 	str[0] = ft_strdup("\"\'\"$US\'ER\"\' it's me hi I'm the problem it's me\"");
-	str[1] = ft_strdup("\0");
 	(void)argc;
 	(void)argv;
 	ms.env = NULL;

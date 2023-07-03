@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 18:25:06 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/03 19:10:12 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HASHMAP_SRC = add_hashmap \
 ENV_SRC = init \
 		env
 		
-PARSER_SRC = expand_env
+PARSER_SRC = expand_env \
+			syntax_error
 
 H_FILES = hashmap \
 		env \
