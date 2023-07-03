@@ -1,0 +1,7 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/yoonslee/Desktop/mn_shell'
+make -C ./libft
+cc -Wall -Wextra -Werror -g ./src/hashmap/add_hashmap.c ./src/hashmap/clear_hashmap.c ./src/hashmap/utils_hashmap.c ./src/env/init.c ./src/parser/expand_env.c main.c \
+	-L ./libft -lft -o minishell
+make: Leaving directory `/Users/yoonslee/Desktop/mn_shell'
+ 

@@ -5,44 +5,48 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/02 13:37:28 by yoonslee          #+#    #+#              #
-#    Updated: 2023/06/20 15:41:40 by yoonslee         ###   ########.fr        #
+#    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
+#    Updated: 2023/07/03 16:11:45 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
-ft_isprint.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strchr.c\
-ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strrchr.c ft_tolower.c ft_toupper.c\
-ft_strnstr.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_itoa.c\
-ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
-ft_split.c ft_printf.c ft_printf_utils.c ft_printf_ptr.c ft_printf_hex.c ft_lstnew_bonus.c\
-ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c\
-ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c\
-get_next_line.c get_next_line_bonus.c ft_split_one_str_out.c ft_strcmp.c ft_strjoin_gnl.c\
-ft_strncat.c ft_strncpy.c
 
-OBJS = $(SRCS:.c=.o)
+SRC_FILES = ft_strlen \
+ft_memset \
+ft_strncmp \
+ft_bzero \
+ft_calloc \
+ft_split \
+ft_strlcpy \
+ft_memcpy  \
+ft_print_array \
+ft_strdup \
+ft_isalnum \
+ft_substr \
+ft_free_null_str
 
-HEADER = libft.h
-CC = cc
-FLAGS = -Wall -Wextra -Werror
+H_FILES = libft
+
+LIB_NAME = libft.a
+
+SRC = $(addsuffix .c, $(SRC_FILES))
+OBJ = $(addsuffix .o, $(SRC_FILES))
+HS = $(addsuffix .h, $(H_FILES))
+
+BUILD_FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME):$(OBJS)
-		ar rcs $(NAME) $(OBJS)
-		ranlib $(NAME)
-
-$(OBJS):$(SRCS)
-		${CC} -c ${FLAGS} $(SRCS) -I $(HEADER)
+$(NAME):
+	cc $(BUILD_FLAGS) -c $(SRC) -I $(HS)
+	ar rc $(LIB_NAME) $(OBJ)
+	ranlib $(LIB_NAME)
 
 clean:
-		rm -rf $(OBJS)
+	rm -f $(OBJ) $(B_SRC:.c=.o)
 
 fclean: clean
-		rm -rf $(NAME)
+	rm -f $(LIB_NAME)
 
 re: fclean all
-
-.PHONY: all, bonus, clean, fclean, re

@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   clear_hashmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 17:42:55 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 12:39:29 by meskelin         ###   ########.fr       */
+/*   Created: 2022/11/08 21:53:34 by meskelin          #+#    #+#             */
+/*   Updated: 2023/06/20 13:22:46 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/hashmap.h"
 
-size_t	ft_strlen(const char *s)
+static void	ft_clr_rec(t_node *node)
 {
-	size_t	counter;
+	if (!node)
+		return ;
+	ft_clr_rec(node->next);
+	node->next = NULL;
+	node->key = NULL;
+	node->value = NULL;
+	free(node);
+}
 
-	counter = 0;
-	while (*s != '\0')
-	{
-		counter++;
-		s++;
-	}
-	return (counter);
+/// @brief Clear out the whole hashmap.
+/// @param head The first node to the hashmap.
+void	clear_hashmap(t_node **head)
+{
+	if (!head || !*head)
+		return ;
+	ft_clr_rec(*head);
+	*head = NULL;
 }

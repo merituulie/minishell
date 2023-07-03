@@ -3,40 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 14:48:23 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/05/04 13:08:25 by yoonslee         ###   ########.fr       */
+/*   Created: 2022/11/02 19:42:06 by meskelin          #+#    #+#             */
+/*   Updated: 2022/11/18 15:54:56 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-compare s1 and s2 till the length of n.
-returns positive if s1's & s2's first unmatching
-character exists and *s1>*s2
- */
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t			i;
-	unsigned char	*st1;
-	unsigned char	*st2;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
+	size_t			index;
 
-	i = 0;
-	st1 = (unsigned char *) s1;
-	st2 = (unsigned char *) s2;
-	while ((i < n) && ((*st1 != '\0') || (*st2 != '\0')))
+	index = 0;
+	ptr1 = (unsigned char *)s1;
+	ptr2 = (unsigned char *)s2;
+	if (ptr1 == ptr2)
+		return (0);
+	while ((ptr1[index] != '\0' || ptr2[index] != '\0') && index < n)
 	{
-		if (*st1 == *st2)
-		{
-			st1++;
-			st2++;
-			i++;
-		}
-		else
-		{
-			return (*st1 - *st2);
-		}
+		if (ptr1[index] != ptr2[index])
+			return (ptr1[index] - ptr2[index]);
+		index++;
 	}
 	return (0);
 }

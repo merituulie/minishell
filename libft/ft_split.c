@@ -3,83 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 14:20:31 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/05/17 14:25:56 by yoonslee         ###   ########.fr       */
+/*   Created: 2022/10/28 08:43:30 by meskelin          #+#    #+#             */
+/*   Updated: 2023/06/28 19:20:50 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_words(char const *s, char c)
+static int	ft_count_words(const char *str, const char limit)
 {
-	int	count_word;
+	const char	*s;
+	int			counter;
 
-	count_word = 0;
+	s = str;
+	counter = 0;
 	while (*s)
 	{
-		while (*s == c)
-			s++;
-		if (*s)
-			count_word++;
-		while (*s != '\0' && *s != c)
-			s++;
+		if (*s != limit)
+			if (s == str || *(s - 1) == limit)
+				counter++;
+		s++;
 	}
-	return (count_word);
+	return (counter);
 }
 
-static char	**ft_freeall(char **out)
+static void	ft_add_words(char **new, const char *str, char limit, int index)
 {
-	int	i;
+	const char	*ptr;
+	const char	*start;
 
-	i = 0;
-	while (out[i])
+	ptr = str;
+	while (*ptr)
 	{
-		free(out[i++]);
-	}
-	free(out);
-	return (NULL);
-}
-
-static void	ft_putintostr(char **str, char const *s, char c)
-{
-	char const	*tmp;
-
-	tmp = s;
-	while (*tmp)
-	{
-		while (*s == c)
-			s++;
-		tmp = s;
-		while (*tmp && *tmp != c)
-			tmp++;
-		if (*tmp == c || tmp > s)
+		if (*ptr != limit)
 		{
-			*str = ft_substr(s, 0, tmp - s);
-			if (!str || !*str)
+			if (ptr == str || *(ptr - 1) == limit)
 			{
-				ft_freeall(str);
+				start = ptr;
+				while (*ptr && *ptr != limit)
+					ptr++;
+				if (ft_count_words(ptr, limit) > 0)
+					ft_add_words(new, ptr, limit, index + 1);
+				new[index] = (char *)malloc(ptr - start + 1);
+				if (new[index] != NULL)
+					ft_strlcpy(new[index], start, ptr - start + 1);
 				return ;
 			}
-			s = tmp;
-			str++;
 		}
+		else
+			ptr++;
 	}
-	*str = NULL;
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**out;
-	int		count_word;
+	char	**split;
+	size_t	count;
 
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	count_word = ft_count_words(s, c);
-	out = (char **)malloc(sizeof(char *) * (count_word + 1));
-	if (!out)
+	count = ft_count_words(s, c);
+	split = (char **)malloc(sizeof(char *) * (count + 1));
+	if (split == NULL)
 		return (NULL);
-	ft_putintostr(out, s, c);
-	return (out);
+	split[count] = NULL;
+	ft_add_words(split, s, c, 0);
+	return (split);
 }

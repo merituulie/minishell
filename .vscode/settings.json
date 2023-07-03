@@ -1,6 +1,10 @@
 {
 	"files.associations": {
+		"*.excalidraw": "json",
+		"*.excalidrawlib": "json",
 		"readline.h": "c",
-		"fcntl.h": "c"
+		"fcntl.h": "c",
+		"curses.h": "c",
+		"parsing.h": "c"
 	}
 }

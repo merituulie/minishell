@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_free_null_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 17:42:55 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 12:39:29 by meskelin         ###   ########.fr       */
+/*   Created: 2023/07/03 16:09:31 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/07/03 16:11:27 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+/*free the str & null terminates the entire str and return it*/
+char	*ft_free_null_str(char *str)
 {
-	size_t	counter;
-
-	counter = 0;
-	while (*s != '\0')
-	{
-		counter++;
-		s++;
-	}
-	return (counter);
+	free(str);
+	str = NULL;
+	return (str);
 }

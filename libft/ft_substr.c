@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:51:14 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/06/29 12:16:44 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/03 11:14:34 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-ft_substr(char const *s, unsigned int start, size_t len)
-*/
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*out;
