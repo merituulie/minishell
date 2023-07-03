@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+         #
+#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 16:17:07 by emmameinert      ###   ########.fr        #
+#    Updated: 2023/07/03 16:28:16 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap
 
-ENV_SRC = init
+ENV_SRC = init \
+		env
 
 H_FILES = hashmap \
 		env \
@@ -37,7 +38,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) main.c ./src/env.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

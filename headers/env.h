@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:55:08 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:26:11 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:08:25 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ typedef struct s_env
 }	t_env;
 
 void	fill_env(char **envp, t_env **env);
-void	print_env(t_node **head);
+char	*ft_env(t_env **env, int isPiped);
 
 #endif
