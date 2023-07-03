@@ -9,5 +9,6 @@ typedef struct s_env
 }   t_env;
 
 void    fill_env(char **envp, t_env **env);
+void    print_env(t_node **head);
 
 #endif  

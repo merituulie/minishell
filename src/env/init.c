@@ -21,8 +21,6 @@ void    fill_env(char **envp, t_env **env)
     {
         key_value = ft_split(envp[i], '=');
         (*env)->vars = set_value((*env)->vars, key_value[0], key_value[1]);
-        free(key_value[1]);
-        free(key_value[0]);
         free(key_value);
         i++;
     }
