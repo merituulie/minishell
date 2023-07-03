@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 13:04:59 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/03 16:17:07 by emmameinert      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -37,7 +37,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) main.c ./src/env.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

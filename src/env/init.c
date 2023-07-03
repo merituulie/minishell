@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:06:45 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:17:21 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:24:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	fill_env(char **envp, t_env **env)
 	{
 		key_value = ft_split(envp[i], '=');
 		(*env)->vars = set_value((*env)->vars, key_value[0], key_value[1]);
-		free(key_value[1]);
-		free(key_value[0]);
 		free(key_value);
 		i++;
 	}

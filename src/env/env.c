@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 15:55:08 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:26:11 by meskelin         ###   ########.fr       */
+/*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
+/*   Updated: 2023/07/03 16:26:22 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#include "../headers/minishell.h"
+#include "../headers/env.h"
 
-# include "hashmap.h"
-
-typedef struct s_env
+void	print_env(t_node **head)
 {
-	struct s_node	**vars;
-}	t_env;
+	t_node	*temp;
 
-void	fill_env(char **envp, t_env **env);
-void	print_env(t_node **head);
-
-#endif
+	temp = *head;
+	while (temp)
+	{
+		printf("%s=%s\n", temp->key, temp->value);
+		temp = temp->next;
+	}
+}
