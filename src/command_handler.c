@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 19:48:42 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:49:20 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*handle_command(t_command *command,
 			t_env **env, char *input, int isPiped)
 {
 	if (!input)
-		printf("%s", input); // just printing here or otherwise itll complain
+		printf("%s", input); /* just printing here or otherwise itll complain */
 	if (ft_strncmp(command->command, "env", 3) == 0)
 		return (ft_env(env, isPiped));
 	else if (ft_strncmp(command->command, "echo", 4) == 0)
