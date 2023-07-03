@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 15:55:08 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 17:28:44 by meskelin         ###   ########.fr       */
+/*   Created: 2022/11/03 14:36:59 by meskelin          #+#    #+#             */
+/*   Updated: 2023/07/03 18:25:54 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#include "libft.h"
 
-# include "hashmap.h"
-
-typedef struct s_env
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	struct s_node	**vars;
-}	t_env;
+	char	*str;
+	int		index;
 
-void	fill_env(char **envp, t_env **env);
-char	*ft_env(t_env **env, int isPiped);
-
-#endif
+	index = 0;
+	if (!s1)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (NULL);
+	while (*s1)
+		str[index++] = *(s1++);
+	while (*s2)
+		str[index++] = *(s2++);
+	str[index] = '\0';
+	return (str);
+}
