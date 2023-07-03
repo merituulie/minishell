@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_hashmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:16:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/28 19:44:10 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/03 15:59:32 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 t_node	*new_node(char *key, char *value)
 {
 	t_node	*new;
+
 	new = (t_node *)ft_calloc(1, sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->key = key;
 	new->value = value;
-	new->next = NULL; 
+	new->next = NULL;
 	return (new);
 }
 

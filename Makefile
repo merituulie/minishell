@@ -6,20 +6,21 @@
 #    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 15:53:02 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/03 17:12:23 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap
 
-ENV_SRC = init
+ENV_SRC = init \
+		env
 
 H_FILES = hashmap \
 		env \
