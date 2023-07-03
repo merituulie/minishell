@@ -6,9 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Mon Jul  3 16:11:59 2023
+# Make data base, printed on Mon Jul  3 16:56:55 2023
 
 # Variables
 
@@ -55,7 +54,6 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Yju7LRDfr7/Listeners
 # automatic
 %F = $(notdir $%)
 # makefile (from `Makefile', line 18)
- 
 HASHMAP_SRC = add_hashmap clear_hashmap utils_hashmap
 # environment
 PWD = /Users/yoonslee/Desktop/mn_shell
@@ -127,8 +125,6 @@ MFLAGS = -Rrqp
 XPC_SERVICE_NAME = com.microsoft.VSCode.688
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
-# environment
-VSCODE_L10N_BUNDLE_LOCATION = 
 # automatic
 +F = $(notdir $+)
 # environment
@@ -166,7 +162,7 @@ LANG = C
 # environment
 VSCODE_PID = 71729
 # variable set hash-table stats:
-# Load=76/1024=7%, Rehash=0, Collisions=5/117=4%
+# Load=75/1024=7%, Rehash=0, Collisions=5/116=4%
 
 # Pattern-specific Variable Values
 
@@ -174,9 +170,9 @@ VSCODE_PID = 71729
 
 # Directories
 
-# . (device 16777227, inode 1425348): 11 files, no impossibilities.
+# . (device 16777227, inode 1425348): 12 files, no impossibilities.
 
-# 11 files, no impossibilities in 1 directories.
+# 12 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -207,7 +203,7 @@ all: minishell
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-07-03 13:55:45
+#  Last modified 2023-07-03 16:56:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -221,7 +217,6 @@ minishell:
 #  Needs to be updated (-q is set).
 # automatic
 # @ := minishell
- 
 # automatic
 # % := 
 # automatic
@@ -289,6 +284,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Jul  3 16:11:59 2023
+# Finished Make data base on Mon Jul  3 16:56:55 2023
 
  
