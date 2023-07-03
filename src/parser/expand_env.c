@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 17:01:55 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:44:42 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	expand_var(t_data *ms, char *str, int start)
 char	*find_env(t_data *ms, char *var, int var_size)
 {
 	int		i;
-	// t_node	*node;
+	t_node	*node;
 	char	*search;
 
 	i = -1;
@@ -52,27 +52,13 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	printf("var without $, search str is: %s\n", search);
-	// i = 0;
-	// node = get_value((ms->env)->vars, search);
-	// return (node->value);
-	// free(search);
-	// return(NULL);
-	// -----from here down, this is just to check before env is ready, the codes
-	// commented out is the version for the minishell------
 	i = 0;
-	while (ms->env[i])
-	{
-		if (!ft_strncmp(ms->env[i], search, ft_strlen(search)))
-		{
-			printf("expanded to environment variables\n");
-			free(search);
-			return (ms->env[i]);
-		}
-		i++;
-	}
-	printf("no variables. null string\n");
+	node = get_value((ms->env)->vars, search);
+	printf("HERE\n");
 	free(search);
-	return (NULL);
+	if (node->value)
+		return (node->value);
+	return(NULL);
 }
 
 /*takes back the expanded result from '$something'

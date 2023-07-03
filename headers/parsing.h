@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/03 16:17:29 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:27:13 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@
 # include <readline/history.h>
 # include "env.h"
 
-	// struct s_env	*env;
 typedef struct s_data
 {
-	char			**env;
+	struct s_env	*env;
 	char			**args;
 	int				start;
 	int				end;

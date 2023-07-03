@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:50:18 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/03 18:04:28 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:32:38 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	ms;
+	// t_node	*node;
 	char	**str;
 
 	str = malloc(sizeof(char *) * 2);
@@ -24,9 +25,8 @@ int	main(int argc, char **argv, char **envp)
 	str[1] = ft_strdup("\0");
 	(void)argc;
 	(void)argv;
-	ms.env = envp;
-	// ms.env = NULL;
-	// fill_env(envp, &ms.env);
+	ms.env = NULL;
+	fill_env(envp, &ms.env);
 	// ms.env = env;
 	// node = get_value(ms.env->vars, "PWD");
 	// printf("node is %p\n", node);
