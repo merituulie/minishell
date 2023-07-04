@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:21:30 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/03 19:09:47 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:05:24 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,23 @@ can we use exit(258)? I don't know :/ */
 int	syntax_error(char **str)
 {
 	int	i;
-	int	j;
 
 	i = -1;
+	printf("here!\n");
 	while (str[++i])
 	{
-		printf("here\n");
-		j = -1;
-		while (str[i][++j])
-		{
-			if (str[0][0] == '|' && !str[1])
-				syntax_error_msg(1, str);
-			if ((str[i][j] == '<' || str[i][j] == '>') && !str[i + 1])
-				syntax_error_msg(2, str);
-			if ((str[i][j] == '<' && str[i][j + 1] == '<') && !str[i + 1])
-				syntax_error_msg(2, str);
-			if ((str[i][j] == '>' && str[i][j + 1] == '>') && !str[i + 1])
-				syntax_error_msg(2, str);
-			if (str[i][0] == 34 || str[i][0] == 39)
-				quote_check(str, i, str[i][0]);
-		}
+		if (str[0][0] == '|' && !str[1])
+			syntax_error_msg(1, str);
+		if ((str[i][0] == '<' && !str[i][1]) && !str[i + 1])
+			syntax_error_msg(2, str);
+		if ((str[i][0] == '>' && !str[i][1]) && !str[i + 1])
+			syntax_error_msg(2, str);
+		if ((str[i][0] == '<' && str[i][1] == '<') && !str[i + 1])
+			syntax_error_msg(2, str);
+		if ((str[i][0] == '>' && str[i][1] == '>') && !str[i + 1])
+			syntax_error_msg(2, str);
+		if (str[i][0] == 34 || str[i][0] == 39)
+			quote_check(str, i, str[i][0]);
 	}
 	return (0);
 }
