@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/04 11:24:18 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:50:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ char	**expand_quote_check(t_data *ms, char **str)
 	while (str[++i])
 	{
 		j = -1;
+		quotes_init(ms);
 		while (str[i][++j])
 		{
 			if (str[i][j] == 34 && !ms->s_quotes)

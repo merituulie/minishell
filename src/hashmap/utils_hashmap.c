@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:23:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 18:38:57 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:48:47 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_node	*get_value(t_node **head, char *key)
 	temp = *head;
 	while (temp)
 	{
-		if (ft_strncmp(temp->key, key, ft_strlen(key)) == 0)
+		if (ft_strncmp_all(temp->key, key, ft_strlen(key)) == 0)
 			return (temp);
 		temp = temp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/03 19:09:29 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:55:08 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,8 @@ void	free_char_array(char **str);
 void	syntax_error_msg(int i, char **str);
 void	quote_check(char **str, int i, char quote);
 int		syntax_error(char **str);
+
+/*utils.c*/
+void	quotes_init(t_data *ms);
 
 #endif

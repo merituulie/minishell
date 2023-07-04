@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 19:42:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/04 18:29:11 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/07/04 17:42:15 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/07/04 17:43:55 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/parsing.h"
+#include "../../libft/libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+/*initialize the quotes count to zero*/
+void	quotes_init(t_data *ms)
 {
-	unsigned char	*ptr1;
-	unsigned char	*ptr2;
-	size_t			index;
-
-	index = 0;
-	ptr1 = (unsigned char *)s1;
-	ptr2 = (unsigned char *)s2;
-	if (ptr1 == ptr2)
-		return (0);
-	while ((ptr1[index] != '\0' || ptr2[index] != '\0') && index < n)
-	{
-		if (ptr1[index] != ptr2[index])
-			return (ptr1[index] - ptr2[index]);
-		index++;
-	}
-	return (0);
+	ms->s_quotes = 0;
+	ms->d_quotes = 0;
 }
