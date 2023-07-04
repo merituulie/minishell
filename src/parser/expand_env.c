@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 19:04:25 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:24:18 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	printf("var without $, search str is: %s\n", search);
 	i = 0;
 	node = get_value((ms->env)->vars, search);
-	printf("HERE\n");
+	if (!(node))
+	{
+		printf("HERE\n");
+		return(NULL);
+	}
 	free(search);
-	if (node->value)
-		return (node->value);
-	return(NULL);
+	return (node->value);
 }
 
 /*takes back the expanded result from '$something'
@@ -72,21 +74,29 @@ void	realloc_var(t_data *ms, char *str, char *var, int old_size)
 	printf("realloc var is %s\n", var);
 	printf("old_size is %d\n", old_size);
 	new = find_env(ms, var, ft_strlen(var));
+	printf("HERE1\n");
 	printf("new is %s\n", new);
-	new_size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
+	if (!new)
+		new_size = ft_strlen(str) - ft_strlen(var);
+	else
+		new_size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
 	printf("new_size is %d\n", new_size);
 	ms->out = ft_calloc(new_size, sizeof(char));
 	ms->out = ft_memcpy(ms->out, str, ms->start);
 	printf("memcpy after ms->out is %s\n", ms->out);
 	printf("ms->start is %d\n", ms->start);
-	i = 0;
-	while (new[i])
+	leftover = ms->start;
+	if (new)
 	{
-		ms->out[ms->start + i] = new[i];
-		i++;
+		i = 0;
+		while (new[i])
+		{
+			ms->out[ms->start + i] = new[i];
+			i++;
+		}
+		printf("append env expand ms->out is %s\n", ms->out);
+		leftover = ms->start + i;
 	}
-	printf("append env expand ms->out is %s\n", ms->out);
-	leftover = ms->start + i;
 	i = 0;
 	printf("str[ms->end + i] is %c\n", str[ms->end + i]);
 	while ((leftover + i) < new_size)
@@ -137,10 +147,10 @@ char	**expand_quote_check(t_data *ms, char **str)
 				free(str[i]);
 				str[i] = ft_strdup(ms->out);
 				free(ms->out);
-				printf("Final print is %s\n", str[i]);
 				break ;
 			}
 		}
+		printf("Final print is %s\n", str[i]);
 	}
 	return (str);
 }

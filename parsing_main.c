@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:50:18 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/03 19:03:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:27:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	main(int argc, char **argv, char **envp)
 	// t_node	*node;
 	char	**str;
 
-	str = ft_calloc(2, sizeof(char *));
-	str[0] = ft_strdup("\"\'\"$US\'ER\"\' it's me hi I'm the problem it's me\"");
+	str = ft_calloc(3, sizeof(char *));
+	str[1] = ft_strdup("\"\'\"$US\'ER\"\' it's me hi I'm the problem it's me\"");
+	str[0] = ft_strdup("'$USER/hello'");
+	printf("str[0] is %s\n", str[0]);
 	(void)argc;
 	(void)argv;
 	ms.env = NULL;
