@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:50:59 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:25:25 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@
 int main(int ac, char **av)
 {
 	char **parsed;
+	int	i = -1;
 
 	if (ac == 2)
 	{
 		parsed = ft_lexer(av[1]);
 	}
+	while (parsed[++i])
+		printf("parsed is %s\n", parsed[i]);
 	if (parsed)
 		ft_free_array(parsed);
 	return (0);

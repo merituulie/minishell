@@ -3,28 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:33:36 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/03 16:51:06 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:23:40 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void	ft_free_array(char **array)
 {
 	int	i;
 
-	if (array == NULL)
+	printf("I come to free arrays!\n");
+	if (!array)
 		return ;
 	i = 0;
-	while (array[i] != NULL)
+	while (array[i])
 	{
-		free (array[i]);
+		if (array[i])
+			free(array[i]);
 		array[i] = NULL;
 		i++;
 	}
-	free (array);
+	if (array)
+		free(array);
+	printf("successfully freed!\n");
 }
