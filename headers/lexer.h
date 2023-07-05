@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/05 11:34:16 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:15:05 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,11 @@ char	**add_line(char **old_array, size_t len, size_t index, int current);
 char	**parse_line(char **array, size_t len);
 char	**ft_lexer(char *str);
 int		quote_index(char *str, int j);
+
+/*syntax_error.c*/
+void	syntax_error(char *str);
+int		check_if_nothing(char *str, int i);
+bool	is_white(char c);
+void	syntax_error_msg(int i, char *str);
 
 #endif

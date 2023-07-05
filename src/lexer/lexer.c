@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/05 14:23:46 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:30:42 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int	quote_index(char *str, int j)
 		if (str[temp] == str[j])
 			return (temp);
 	}
-	// printf("ERROR\n");
 	return (j);
 }
 
@@ -192,7 +191,7 @@ char	**ft_lexer(char *str)
 	trimmed_str = ft_strtrim(str, " \t");
 	len = ft_strlen(trimmed_str);
 	printf("trimmed string len: %i\n", len);
-	
+	syntax_error(trimmed_str);
 	new_str = (char **)ft_calloc(2, sizeof(char *));
 	if (!new_str)
 		return (0);
