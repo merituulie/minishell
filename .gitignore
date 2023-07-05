@@ -1,1 +1,3 @@
 .vscode/
+minishell.dSYM/Contents/Resources/DWARF/minishell
+*.o
