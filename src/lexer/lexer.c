@@ -6,12 +6,14 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/04 17:04:45 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:21:58 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
+
+/*handling "" case??*/
 
 size_t	ft_arrlen(const char **array)
 {
@@ -39,6 +41,7 @@ bool	is_delim(char c)
 	}
 	return (false);
 }
+
 char **allocate_2d_array(char **old_array)
 {
 	char	**new_array;
@@ -57,50 +60,75 @@ void **trim_last_line(char **array, int line_index)
 	char	*new_last_line;
 
 	new_last_line = ft_strtrim(array[line_index], " \t\n");
+	printf("new_last_line is %s\n", new_last_line);
 	free(array[line_index]);
 	array[line_index] = new_last_line;
+	printf("array[%d] is %s\n", line_index, array[line_index]);
 }
+
+// char	*special_case1(char *old_array, int i, int del_index)
+// {
+// 	char	*out;
+
+// 	if (del_index == 0)
+// 		del_index = 1;
+// 	out = ft_substr(old_array, i, del_index);
+// 	return (out);
+// }
+
+// char	*special_case2(char *old_array, int del_index, int len)
+// {
+// 	char	*out;
+
+// 	if (del_index == 0)
+// 		del_index = 1;
+// 	if (len == 1)
+// 		del_index = 0;
+// 	out = ft_substr(old_array, del_index, len);
+// 	return (out);
+// }
 
 char	**add_line(char **old_array, size_t len, size_t del_index, int del_line_index)
 {
 	char	**new_array;
 	int		i;
 
-	printf("\n----------addline function starts-----------\n");
-	printf("del_line_index: %d\n", del_line_index);
-	printf("del_index: %d\n", del_index);
 	new_array = allocate_2d_array(old_array);
-	i = 0;
+	i = -1;
 	if (del_line_index == 0)
 	{
 		new_array[0] = ft_substr(old_array[0], 0, del_index);
-		printf("old_array[0] is %s\n", old_array[0]);
-		printf("length is %d\n", ft_strlen(old_array[0]) - del_index);
 		new_array[1] = ft_substr(old_array[0], del_index, (ft_strlen(old_array[0]) - del_index));
-		printf("new_array[1] is %s\n", new_array[1]);
 	}
 	else
 	{
-		while (i < ft_arrlen(old_array))
+		while (++i < ft_arrlen(old_array))
 		{
 			if (i == del_line_index)
 			{
 				new_array[i] = ft_substr(old_array[i], 0, del_index);
-				printf("new_array[%d] is %s\n", i, new_array[i]);
-				new_array[i+1] = ft_substr(old_array[i], del_index + 1, ft_strlen(old_array[i]));
-				printf("new_array[%d] is %s\n", i, new_array[i]);
+				new_array[i + 1] = ft_substr(old_array[i], del_index + 1, ft_strlen(old_array[i]));
 			}
 			else
-			{
 				new_array[i] = ft_strdup(old_array[i]);
-				printf("new_array[%d] is %s\n", i, new_array[i]);
-			}
-			i++;
 		}
 	}
 	ft_free_array(old_array);
-	printf("\n----------addline function ends-----------\n");
 	return (new_array);
+}
+
+int	quote_index(char *str, int j)
+{
+	int	temp;
+
+	temp = j;
+	while (str[temp++])
+	{
+		if (str[temp] == str[j])
+			return (temp);
+	}
+	// printf("ERROR\n");
+	return (j);
 }
 
 char	**parse_line(char **array, size_t len)
@@ -108,22 +136,18 @@ char	**parse_line(char **array, size_t len)
 	size_t		i;
 	size_t		j;
 	size_t		arrlen;
-	char		*out;
-	char		*new_last_line;
 
 	i = 0;
-	printf("\n-------parse_line function starts---------\n");
 	while (i < ft_arrlen(array))
 	{
 		j = 0;
 		while (j < ft_strlen(array[i]))
 		{
+			if (array[i][j] == 34 || array[i][j] == 39)
+				j = quote_index(array[i], j);
 			if (is_delim(array[i][j]) == true)
 			{
-				printf("found delim in array[%i] at index %i\n", i, j);
 				arrlen = ft_arrlen(array);
-				printf("arrlen: %d\n", arrlen);
-				printf("i : %d\n", i);
 				array = add_line(array, arrlen, j, i);
 				if (is_delim(array[i + 1][0]) == true)
 					trim_last_line(array, i + 1);
@@ -132,7 +156,6 @@ char	**parse_line(char **array, size_t len)
 		}
 		i++;
 	}
-	printf("\n--------parse_line function ends---------\n");
 	return (array);
 }
 
@@ -142,9 +165,7 @@ char	**ft_lexer(char *str)
 	char	**new_str;
 	char	**parsed_line;
 	int		len;
-	int	i = -1;
 
-	printf("\n--------ft_lexer function starts---------\n");
 	trimmed_str = ft_strtrim(str, " \t");
 	len = ft_strlen(trimmed_str);
 	printf("trimmed string len: %i\n", len);
@@ -153,10 +174,10 @@ char	**ft_lexer(char *str)
 		return (0);
 	new_str[0] = ft_strdup(trimmed_str);
 	free(trimmed_str);
-	parsed_line = parse_line(new_str, len);//parsed_line needs to be malloced to get new_str
-	printf("\n--------back to ft_lexer func------------\n");
-	while (parsed_line[++i])
-		printf("parsed_line is %s\n", parsed_line[i]);
-	printf("\n--------ft_lexer function ends---------\n");
+	parsed_line = parse_line(new_str, len);
+	// int i = -1;
+	// while (parsed_line[++i])
+	// 	printf("parsed_line is %s\n", parsed_line[i]);
 	return (parsed_line);
+	// return (0);
 }

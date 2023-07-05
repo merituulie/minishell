@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/04 17:25:25 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/05 09:44:05 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,33 @@
 #include "./libft/libft.h"
 #include "./headers/lexer.h"
 
-int main(int ac, char **av)
-{
-	char **parsed;
-	int	i = -1;
-
-	if (ac == 2)
-	{
-		parsed = ft_lexer(av[1]);
-	}
-	while (parsed[++i])
-		printf("parsed is %s\n", parsed[i]);
-	if (parsed)
-		ft_free_array(parsed);
-	return (0);
-}
-// int	main(void)
+// int main(int ac, char **av)
 // {
-// 	char	**cmd_line;
+// 	char **cmd_line;
+// 	int	i = -1;
 
-// 	while (1)
-// 		cmd_line = ft_lexer(readline(PINK "Jose's PinkShell: " BORING));
-// 	ft_free_array(cmd_line);
+// 	if (ac == 2)
+// 	{
+// 		cmd_line = ft_lexer(av[1]);
+// 	}
+// 	while (cmd_line[++i])
+// 		printf("cmd_line is %s\n", cmd_line[i]);
+// 	if (cmd_line)
+// 		ft_free_array(cmd_line);
 // 	return (0);
 // }
+int	main(void)
+{
+	char	 *line;
+	char	**cmd_line;
+	int i = -1;
+
+	line = readline(PINK "Jose's PinkShell: " BORING);
+	cmd_line = ft_lexer(line);
+	free(line);
+	while (cmd_line[++i])
+		printf("cmd_line is %s\n", cmd_line[i]);
+	if (cmd_line)
+		ft_free_array(cmd_line);
+	return (0);
+}
