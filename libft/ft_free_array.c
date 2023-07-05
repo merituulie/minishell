@@ -6,29 +6,25 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:33:36 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/05 07:05:22 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/03 16:51:06 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// #include <stdio.h>
+#include <stdio.h>
 
 void	ft_free_array(char **array)
 {
 	int	i;
 
-	// printf("I come to free arrays!\n");
-	if (!array)
+	if (array == NULL)
 		return ;
 	i = 0;
-	while (array[i])
+	while (array[i] != NULL)
 	{
-		if (array[i])
-			free(array[i]);
+		free (array[i]);
 		array[i] = NULL;
 		i++;
 	}
-	if (array)
-		free(array);
-	// printf("successfully freed!\n");
+	free (array);
 }

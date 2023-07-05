@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 07:23:37 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/05 07:05:25 by jhusso           ###   ########.fr       */
+/*   Created: 2022/11/01 11:15:53 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/02 10:09:48 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,29 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*sub;
-	size_t	i;
+	unsigned int	i;
+	char			*sub;
+	char			*res;
 
 	if (s == 0)
-		return (0);
-	if (start > ft_strlen(s))
-		len = 0;
-	if (ft_strlen(s + start) < len)
-		len = ft_strlen(s + start);
-	sub = (char *)malloc((len + 1) * sizeof(char));
-	if (sub == NULL)
 		return (NULL);
+	if (start >= ft_strlen(s))
+		len = 0;
+	if (ft_strlen(start + s) < len)
+		len = ft_strlen(start + s);
+	sub = (char *)malloc(sizeof(char) * (len + 1));
+	if (sub == 0)
+		return (NULL);
+	res = 0;
+	res = ft_strcpy(sub, s);
+	res = sub;
 	i = 0;
-	while (s[start + i] != '\0' && len > 0)
+	while (i < len && s[start] != '\0')
 	{
-		sub[i] = s[start + i];
+		sub[i] = s[start];
 		i++;
-		len--;
+		start++;
 	}
 	sub[i] = '\0';
-	return (sub);
+	return (res);
 }

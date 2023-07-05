@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 17:42:55 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/04 11:05:15 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/06/22 14:39:15 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ size_t	ft_strlen(const char *s)
 	size_t	counter;
 
 	counter = 0;
-	while (s[counter] != '\0')
+	while (*s != '\0')
 	{
 		counter++;
+		s++;
 	}
 	return (counter);
 }
