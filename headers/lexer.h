@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/05 11:34:16 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:57:54 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // lexer.c
 size_t	ft_arrlen(const char **array);
 bool	is_delim(char c);
-char	**add_line(char **old_array, size_t len, size_t index, int current);
+char	**add_line(char **old_array, size_t del_index, int del_line_index, size_t del_len);
 char	**parse_line(char **array, size_t len);
 char	**ft_lexer(char *str);
 int		quote_index(char *str, int j);

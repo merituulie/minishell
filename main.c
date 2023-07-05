@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/05 09:44:05 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:57:56 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(void)
 	cmd_line = ft_lexer(line);
 	free(line);
 	while (cmd_line[++i])
-		printf("cmd_line is %s\n", cmd_line[i]);
+		printf("cmd_line is:\t %s\n", cmd_line[i]);
 	if (cmd_line)
 		ft_free_array(cmd_line);
 	return (0);
