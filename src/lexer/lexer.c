@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/04 14:54:49 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/05 08:46:38 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ char	**add_line(char **old_array, size_t len, size_t del_index, int del_line_ind
 	if (del_line_index == 0)
 	{
 		new_array[i++] = ft_substr(old_array[i], 0, del_index);
-		printf("HWERE\n");
+		// printf("HWERE\n");
 		// printf("len of new_array[%i]: %i\n", i, (ft_strlen(old_array[i-1]) - del_index));
 		new_array[i] = ft_substr(old_array[i - 1], del_index, (ft_strlen(old_array[i - 1]) - del_index));
-		printf("HWERE\n");
+		// printf("HWERE\n");
 		// printf("old_array[%i]: %s, del_index: %i\n", i - 1, old_array[i-1], del_index);
 
 	}
@@ -112,27 +112,29 @@ char	**parse_line(char **array, size_t len)
 		{
 			if (is_delim(array[i][j]) == true)
 			{
-				printf("found delim in array[%i] at index %i\n", i, j);
+				// printf("found delim in array[%i] at index %i\n", i, j);
 				arrlen = ft_arrlen(array);
-				printf("arrlen: %i\n", arrlen);
+				// printf("arrlen: %i\n", arrlen);
 				// printf("array[%i]: %s p: %p\n", i, array[i], &(*array[i]));
 				array = add_line(array, arrlen, j, i);
-				printf("array[i + 1] = %s\n", array[i + 1]);
+				// printf("array[i + 1] = %s\n", array[i + 1]);
 				if (is_delim(array[i + 1][0]) == true)
 					trim_last_line(array, i + 1);
-				printf("array[i + 1] after trim = %s\n", array[i + 1]);
+				// printf("array[i + 1] after trim = %s\n", array[i + 1]);
 			}
 			j++;
 		}
 		i++;
 	}
+	// Printf("HERE\n");
+	return (array);
 	//
-		int u = 0;
-		while (array[u])
-		{
-			printf("after add_line array[%u]: %s\n", u, array[u]);
-			u++;
-		}
+		// int u = 0;
+		// while (array[u])
+		// {
+		// 	printf("after add_line array[%u]: %s\n", u, array[u]);
+		// 	u++;
+		// }
 	//
 }
 
@@ -150,7 +152,20 @@ char	**ft_lexer(char *str)
 	if (!new_str)
 		return (0);
 	new_str[0] = ft_strdup(trimmed_str);
+	if (trimmed_str)
+		free (trimmed_str);
 	parsed_line = parse_line(new_str, len);
-	printf("SEGFAULT\n");
-	// ft_free_array(new_str);
+	// printf("parsed_line[0]: %s\n", new_str[0]);
+	// printf("newstr[0] address: %p", &(*new_str[0]));
+	// printf("newstr[1] address: %p", &(*new_str[1]));
+	return (parsed_line);
 }
+	// printf("SEGFAULT\n");
+	//
+		// 	int u = 0;
+		// while (parsed_line[u])
+		// {
+		// 	printf("parsed_line[%u]: %s\n", u, parsed_line[u]);
+		// 	u++;
+		// }
+	//
