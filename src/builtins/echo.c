@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/06/30 09:41:28 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/06 09:57:18 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,26 @@
 -echo returns 0 if successfull and 1 if not.
 */
 
-int	ft_echo(char **str)
+char	*ft_echo(t_command *command, int isPiped)
 {
 	int	newline;
 	int	i;
-	int	j;
 
-	if (!str)
-		return (1);
 	newline = 0;
-	if (ft_strncmp(str[1], "echo", 5) == 0 && ft_strncmp(str[2], "-n", 3) == 0)
-		newline = 1;
 	i = 0;
-	while (str[i] != NULL)
+	if (isPiped == 1)
+		return (command->command_flags);
+	if (ft_strncmp(command->command_flags, "-n ", 3) == 0)
 	{
-		j = 0;
-		write(1, " ", 1);
-		while (str[i][j])
-		{
-			write(1, &str[i][j], 1);
-			j++;
-		}
+		newline = 1;
+		i = 3;
+	}
+	while (command->command_flags[i] != '\0')
+	{
+		write(1, &command->command_flags[i], 1);
 		i++;
 	}
-	if (newline == 1)
+	if (newline == 0 || command->command_flags == NULL)
 		write(1, "\n", 1);
 	return (0);
 }

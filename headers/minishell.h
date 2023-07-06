@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/30 09:29:52 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/06 08:59:02 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ typedef struct s_command
 	int		pid;
 }	t_command;
 
-int	ft_echo(char **str);
+char	*ft_echo(t_command *command, int isPiped);
 
 #endif

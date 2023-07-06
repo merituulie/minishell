@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/30 09:41:46 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/06 09:56:52 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 #include "./headers/hashmap.h"
 #include "./libft/libft.h"
 
-int	main(int argc, char **argv)
+int	main(void)
 {
+  t_command command;
 
+  command.command_flags = "this is the command okay";
+
+	ft_echo(&command, 0);
+  return (0);
 }
