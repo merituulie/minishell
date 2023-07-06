@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/04 18:50:46 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:57:11 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	expand_var(t_data *ms, char *str, int start)
 	}
 	while (ft_isalnum(str[ms->end]))
 			ms->end++;
-	printf("str[end] is %c\n", str[ms->end]);
+	// printf("str[end] is %c\n", str[ms->end]);
 	var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
 		printf(" malloc fail!\n");
-	printf("var is %s\n", var);
+	// printf("var is %s\n", var);
 	realloc_var(ms, str, var, ft_strlen(str));
 	free(var);
 }
@@ -50,7 +50,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	search = ft_calloc(var_size, sizeof(char));
 	while (i++ < var_size)
 		search[i] = var[1 + i];
-	printf("var without $, search str is: %s\n", search);
+	// printf("var without $, search str is: %s\n", search);
 	i = 0;
 	node = get_value((ms->env)->vars, search);
 	if (!(node))
@@ -71,20 +71,20 @@ void	realloc_var(t_data *ms, char *str, char *var, int old_size)
 	char	*new;
 	int		i;
 
-	printf("realloc var is %s\n", var);
-	printf("old_size is %d\n", old_size);
+	(void)old_size;
+	// printf("realloc var is %s\n", var);
+	// printf("old_size is %d\n", old_size);
 	new = find_env(ms, var, ft_strlen(var));
-	printf("HERE1\n");
-	printf("new is %s\n", new);
+	// printf("new is %s\n", new);
 	if (!new)
 		new_size = ft_strlen(str) - ft_strlen(var);
 	else
 		new_size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
-	printf("new_size is %d\n", new_size);
+	// printf("new_size is %d\n", new_size);
 	ms->out = ft_calloc(new_size, sizeof(char));
 	ms->out = ft_memcpy(ms->out, str, ms->start);
-	printf("memcpy after ms->out is %s\n", ms->out);
-	printf("ms->start is %d\n", ms->start);
+	// printf("memcpy after ms->out is %s\n", ms->out);
+	// printf("ms->start is %d\n", ms->start);
 	leftover = ms->start;
 	if (new)
 	{
@@ -94,17 +94,18 @@ void	realloc_var(t_data *ms, char *str, char *var, int old_size)
 			ms->out[ms->start + i] = new[i];
 			i++;
 		}
-		printf("append env expand ms->out is %s\n", ms->out);
+		// printf("append env expand ms->out is %s\n", ms->out);
 		leftover = ms->start + i;
 	}
 	i = 0;
-	printf("str[ms->end + i] is %c\n", str[ms->end + i]);
+	// printf("str[ms->end + i] is %c\n", str[ms->end + i]);
 	while ((leftover + i) < new_size)
 	{
 		ms->out[leftover + i] = str[ms->end + i];
 		i++;
 	}
-	printf("ms->out is %s\n", ms->out);
+	ms->out[leftover + i] = '\0';
+	// printf("ms->out is %s\n", ms->out);
 }
 
 /*check the occurence of double quotes '"'
@@ -128,27 +129,27 @@ char	**expand_quote_check(t_data *ms, char **str)
 		{
 			if (str[i][j] == 34 && !ms->s_quotes)
 			{
-				printf("d_quote = 1, str[%d][%d] is %c\n", i, j, str[i][j]);	
+				// printf("d_quote = 1, str[%d][%d] is %c\n", i, j, str[i][j]);	
 				ms->d_quotes = 1;
 			}
 			else if (str[i][j] == 39 && !ms->s_quotes && !ms->d_quotes)
 			{
-				printf("s_quote = 1, str[%d][%d] is %c\n", i, j, str[i][j]);
+				// printf("s_quote = 1, str[%d][%d] is %c\n", i, j, str[i][j]);
 				ms->s_quotes = 1;
 			}
 			else if (str[i][j] == 39 && ms->s_quotes)
 			{
-				printf("s_quote = 0, matched! str[%d][%d] is %c\n", i, j, str[i][j]);
+				// printf("s_quote = 0, matched! str[%d][%d] is %c\n", i, j, str[i][j]);
 				ms->s_quotes = 0;
 			}
 			else if (str[i][j] == '$' && !ms->s_quotes)
 			{
-				printf("s_quote no exist! str[%d][%d] is %c\n", i, j, str[i][j]);
+				// printf("s_quote no exist! str[%d][%d] is %c\n", i, j, str[i][j]);
 				expand_var(ms, str[i], j);
 				free(str[i]);
 				str[i] = ft_strdup(ms->out);
 				free(ms->out);
-				break ;
+				j = ms->end;
 			}
 		}
 		printf("Final print is %s\n", str[i]);

@@ -6,14 +6,14 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/04 18:54:30 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/06 13:06:12 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra -Werror -g
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -23,8 +23,8 @@ ENV_SRC = init \
 		env
 		
 PARSER_SRC = expand_env \
-			syntax_error \
-			utils
+			utils \
+			concatenate \
 
 H_FILES = hashmap \
 		env \

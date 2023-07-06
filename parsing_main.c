@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:50:18 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/04 19:06:23 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:06:51 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,34 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	ms;
-	// t_node	*node;
 	char	**str;
+	int i = -1;
 
-	str = ft_calloc(4, sizeof(char *));
+	str = ft_calloc(9, sizeof(char *));
 	str[0] = ft_strdup("\'$USE'R/hello");
-	str[1] = ft_strdup("\"\'\"$US\'ER\"\' it's me hi I'm the problem it's me\"");
+	str[1] = ft_strdup("\"\'\"$US\'ER\"\' it's me hi I'm the problem it's me\'");
 	str[2] = ft_strdup("\'$USER\'");
+	str[3] = ft_strdup("\"$USER-*r> $USERit's me hi I'm the problem it's me\"");
+	str[4] = ft_strdup("\"Hel\"\'lo\'\"\"");
 	(void)argc;
 	(void)argv;
 	ms.env = NULL;
-	if (!syntax_error(str))
-		printf("no syntax error\n");
 	fill_env(envp, &ms.env);
-	// ms.env = env;
-	// node = get_value(ms.env->vars, "PWD");
-	// printf("node is %p\n", node);
-	// printf("value is : %s\n", node->value);
 	ms.end = 0;
 	ms.start = 0;
 	ms.s_quotes = 0;
 	ms.d_quotes = 0;
-	expand_quote_check(&ms, str);
+	str = expand_quote_check(&ms, str);
+	// while (str[++i])
+	// {
+	// 	printf("string [%d] is %s\n", i, str[i]);
+	// }
+	str = concatenate(str, &ms);
+	while (str[++i])
+	{
+		printf("string [%d] is %s\n", i, str[i]);
+	}
+	free_str_array(str);
 	return (0);
 }
 
@@ -54,11 +60,6 @@ int	main(int argc, char **argv, char **envp)
 	// str[8] = ft_strdup("user'name\"$user\"?hds'af");
 	// str[9] = ft_strdup("\0");
 		// int i = 0;
-	// while (str[i])
-	// {
-	// 	printf("string [%d] is %s\n", i, str[i]),
-	// 	i++;
-	// }
 		// str[1] = ft_strdup("'$file2'");
 	// str[2] = ft_strdup("hel\"lo'$userit'smehi\" I'm the problem it's me'");
 	// str[3] = ft_strdup("user'name\"$user\"?hds'af");
