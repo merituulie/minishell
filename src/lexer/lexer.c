@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/05 15:46:47 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/06 09:10:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	is_delim(char c)
 {
 	char *delims;
 
-	delims = " \t\n<>|";
+	delims = " \t\n"; // <>|
 	while (*delims)
 	{
 		if (c == *delims)
@@ -59,48 +59,51 @@ void **trim_last_line(char **array, int line_index)
 	size_t	arr_len;
 	char	*new_last_line;
 
-	new_last_line = ft_strtrim(array[line_index], " \t\n");
-	// printf("new_last_line is %s\n", new_last_line);
-	free(array[line_index]);
-	array[line_index] = new_last_line;
+	if (array[line_index][0] == 32)
+	{
+		new_last_line = ft_strtrim(array[line_index], " \t\n");
+		// printf("new_last_line is %s\n", new_last_line);
+		free(array[line_index]);
+		array[line_index] = new_last_line;
+	}
 	// printf("array[%d] is %s\n", line_index, array[line_index]);
 }
 
-char	*special_case1(char *old_array, int i, int del_index, int del_len)
-{
-	char	*out;
+// char	*special_case1(char *old_array, int i, int del_index, int del_len)
+// {
+// 	char	*out;
 
-	if (del_index == 0)
-		del_index = 1;
-	printf("i is %d\n", i);
-	printf("del_index is %d\n", del_index);
-	if (del_len)
-		out = ft_substr(old_array, i, del_len);
-	else
-		out = ft_substr(old_array, i, del_index);
-	printf("out in special case1 is: %s\n", out);
-	printf("----------------------------------------\n");
-	return (out);
-}
+// 	if (del_index == 0)
+// 		del_index = 1;
+// 	printf("i is %d\n", i);
+// 	printf("del_index is %d\n", del_index);
+// 	if (del_len)
+// 		out = ft_substr(old_array, i, del_len);
+// 	else
+// 		out = ft_substr(old_array, i, del_index);
+// 	printf("out in special case1 is: %s\n", out);
+// 	printf("----------------------------------------\n");
+// 	return (out);
+// }
 
-char	*special_case2(char *old_array, int del_index, int len, int del_len)
-{
-	char	*out;
+// char	*special_case2(char *old_array, int del_index, int len, int del_len)
+// {
+// 	char	*out;
 
-	if (del_index == 0)
-		del_index = 1;
-	printf("del_index is %d\n", del_index);
-	printf("len is %d\n", len);
-	if (del_len)
-		out = ft_substr(old_array, del_index, len);
-	else
-		out = ft_substr(old_array, del_index, len);
-	printf("out in special case2 is: %s\n", out);
-	printf("----------------------------------------\n");
-	return (out);
-}
+// 	if (del_index == 0)
+// 		del_index = 1;
+// 	printf("del_index is %d\n", del_index);
+// 	printf("len is %d\n", len);
+// 	if (del_len)
+// 		out = ft_substr(old_array, del_index, len);
+// 	else
+// 		out = ft_substr(old_array, del_index, len);
+// 	printf("out in special case2 is: %s\n", out);
+// 	printf("----------------------------------------\n");
+// 	return (out);
+// }
 
-char	**add_line(char **old_array, size_t del_index, int del_line_index, size_t del_len)
+char	**add_line(char **old_array, size_t del_index, int del_line_index, size_t del_len) // no need for del_len?
 {
 	char	**new_array;
 	int		i;
@@ -110,8 +113,8 @@ char	**add_line(char **old_array, size_t del_index, int del_line_index, size_t d
 	if (del_line_index == 0)
 	{
 		printf("-------------del_line_index is %d------------------\n", del_line_index);
-		new_array[0] = special_case1(old_array[0], 0, del_index, del_len);
-		new_array[1] = special_case2(old_array[0], del_index, (ft_strlen(old_array[0]) - del_index), del_len);
+		new_array[0] = ft_substr(old_array[0], 0, del_index);
+		new_array[1] = ft_substr(old_array[0], del_index, (ft_strlen(old_array[0]) - del_index));
 	}
 	else
 	{
@@ -120,8 +123,40 @@ char	**add_line(char **old_array, size_t del_index, int del_line_index, size_t d
 		{
 			if (i == del_line_index)
 			{
-				new_array[i] = special_case1(old_array[i], 0, del_index, del_len);
-				new_array[i + 1] = special_case2(old_array[i], del_index + 1, ft_strlen(old_array[i]), del_len);
+				new_array[i] = ft_substr(old_array[i], 0, del_index);
+				new_array[i + 1] = ft_substr(old_array[i], del_index, ft_strlen(old_array[i]));
+			}
+			else
+				new_array[i] = ft_strdup(old_array[i]);
+		}
+	}
+	ft_free_array(old_array);
+	return (new_array);
+}
+
+
+char	**add_line_redir(char **old_array, size_t del_index, int del_line_index, size_t del_len)
+{
+	char	**new_array;
+	int		i;
+
+	new_array = allocate_2d_array(old_array);
+	i = -1;
+	if (del_line_index == 0)
+	{
+		printf("-------------del_line_index is %d------------------\n", del_line_index);
+		new_array[0] = ft_substr(old_array[0], del_index, del_len);
+		new_array[1] = ft_substr(old_array[0], del_len, (ft_strlen(old_array[0]) - del_len));
+	}
+	else
+	{
+		printf("-------------del_line_index is %d------------------\n", del_line_index);
+		while (++i < ft_arrlen(old_array))
+		{
+			if (i == del_line_index)
+			{
+				new_array[i] = ft_substr(old_array[i], del_index, del_len);
+				new_array[i + 1] = ft_substr(old_array[i], del_len, ft_strlen(old_array[i])); //, del_len
 			}
 			else
 				new_array[i] = ft_strdup(old_array[i]);
@@ -170,24 +205,39 @@ char	**parse_line(char **array, size_t len)
 		j = -1;
 		while (++j < ft_strlen(array[i]))
 		{
-			if (array[i][j] == 34 || array[i][j] == 39)
-				j = quote_index(array[i], j);
-			// if (array[i][j] == 62 || array[i][j] == 60)
-			if (is_delim(array[i][j]) == true)
+			if (array[i][0] == 62 || array[i][0] == 60)
 			{
-				del_len = 0;
-				printf("-----------------------------GOING TO ADD_LINE-----\n");
-				printf("array[%i]: %s\n", i, array[i]);
-				printf("i: %i\n", i);
-				printf("j: %i\n", j);
-				printf("del_len: %i\n", del_len);
-				array = add_line(array, j, i, del_len);
+				printf("HERE\n");
 				del_len = double_redir(array[i], j);
-				// if (del_len)
-				// 	j += 1;
-				printf("j after add_line and increment: %i\n", j);
-				if (is_delim(array[i + 1][0]) == true)
+				printf("del_len in HERE: %i\n", del_len);
+				printf("----------------------GOING TO ADD_LINE WITH REDIR-----\n");
+				array = add_line_redir(array, j, i, del_len);
+				trim_last_line(array, i + 1);
+				printf("-----------------------------AFTER ADD_LINE-----\n");
+				int u = -1;
+				while (array[++u])
+					printf("array[%i]: %s\n", u, array[u]);
+				j = del_len;
+			}
+			else
+			{
+				if (array[i][j] == 34 || array[i][j] == 39)
+					j = quote_index(array[i], j);
+				if (is_delim(array[i][j]) == true || array[i][j] == 62 || array[i][j] == 60)
+				{
+					printf("-----------------------------GOING TO ADD_LINE-----\n");
+					printf("array[%i]: %s\n", i, array[i]);
+					printf("i: %i\n", i);
+					printf("j: %i\n", j);
+					del_len = double_redir(array[i], j);
+					printf("del_len: %i\n", del_len);
+					array = add_line(array, j, i, del_len);
 					trim_last_line(array, i + 1);
+					printf("-----------------------------AFTER ADD_LINE-----\n");
+					int u = -1;
+					while (array[++u])
+						printf("array[%i]: %s\n", u, array[u]);
+				}
 			}
 		}
 	}
