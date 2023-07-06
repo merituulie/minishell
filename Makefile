@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/05 15:05:40 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/06 09:21:57 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ HASHMAP_SRC = add_hashmap \
 				utils_hashmap
 
 LEXER_SRC = lexer \
+			lexer_utils \
 			syntax_error
 
 H_FILES = hashmap \

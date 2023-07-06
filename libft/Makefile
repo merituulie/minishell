@@ -6,13 +6,14 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/06/30 11:17:23 by jhusso           ###   ########.fr        #
+#    Updated: 2023/07/06 09:26:39 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC_FILES = ft_bzero \
+SRC_FILES = ft_arrlen \
+ft_bzero \
 ft_calloc \
 ft_free_array \
 ft_memset \

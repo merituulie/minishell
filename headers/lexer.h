@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/05 15:46:16 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/06 10:23:41 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,18 @@
 
 // lexer.c
 size_t	ft_arrlen(const char **array);
-bool	is_delim(char c);
-char	**add_line(char **old_array, size_t del_index, int del_line_index, size_t del_len);
+char	**add_line(char **old_array, size_t del_index, int del_line_index);
+char	**add_line_redir(char **old_array, size_t del_index, int del_line_index, size_t del_len);
+bool	is_operand(char c);
 char	**parse_line(char **array, size_t len);
 char	**ft_lexer(char *str);
+
+//lexer_utils.c
+bool	is_delim(char c);
+char	**allocate_2d_array(char **old_array);
+void	**trim_last_line(char **array, int line_index);
 int		quote_index(char *str, int j);
+int		double_redir(char *str, int j);
 
 /*syntax_error.c*/
 void	syntax_error(char *str);

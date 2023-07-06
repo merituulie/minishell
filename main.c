@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/05 14:57:56 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/06 09:43:13 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@
 // }
 int	main(void)
 {
-	char	 *line;
+	char	*line;
 	char	**cmd_line;
-	int i = -1;
+	int		i;
 
 	line = readline(PINK "Jose's PinkShell: " BORING);
 	cmd_line = ft_lexer(line);
 	free(line);
+	i = -1;
 	while (cmd_line[++i])
 		printf("cmd_line is:\t %s\n", cmd_line[i]);
 	if (cmd_line)
