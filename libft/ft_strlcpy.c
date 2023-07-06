@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_hashmap.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 21:53:34 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:16:42 by meskelin         ###   ########.fr       */
+/*   Created: 2022/10/31 12:57:16 by meskelin          #+#    #+#             */
+/*   Updated: 2023/07/03 17:07:57 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/hashmap.h"
+#include "libft.h"
 
-static void	ft_clr_rec(t_node *node)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	if (!node)
-		return ;
-	ft_clr_rec(node->next);
-	node->next = NULL;
-	node->key = NULL;
-	node->value = NULL;
-	free(node);
-}
+	size_t	len;
+	size_t	src_len;
 
-/// @brief Clear out the whole hashmap.
-/// @param head The first node to the hashmap.
-void	clear_hashmap(t_node **head)
-{
-	if (!head || !*head)
-		return ;
-	ft_clr_rec(*head);
-	*head = NULL;
+	src_len = ft_strlen(src);
+	if (dstsize)
+	{
+		if (src_len >= dstsize)
+		{
+			len = dstsize - 1;
+		}
+		else
+		{
+			len = src_len;
+		}
+		ft_memcpy((char *)dst, (char *)src, len);
+		dst[len] = '\0';
+	}
+	return (src_len);
 }

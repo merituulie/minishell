@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 13:28:00 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:33:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ typedef struct s_command
 	int		file_descriptors;
 	int		pid;
 }	t_command;
+
+char	*ft_pwd(t_env *env, int isPiped);
 
 #endif
