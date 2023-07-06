@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/06 10:27:50 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/06 10:58:45 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,7 @@ char	**add_line_redir(char **old_array, size_t del_index, int del_line_index, si
 	return (new_array);
 }
 
-bool	is_operand(char c)
-{
-	char	*operands;
-
-	operands = "<|>";
-	while (*operands)
-	{
-		if (c == *operands)
-		{
-			printf("HERE\n");
-			return (true);
-		}
-		operands++;
-	}
-	return (false);
-}
-
-char	**parse_line(char **array, size_t len)
+char	**parse_line(char **array, size_t len) // NEEDS TO BE SHORTENED
 {
 	size_t		i;
 	size_t		j;
@@ -103,7 +86,6 @@ char	**parse_line(char **array, size_t len)
 		{
 			if (is_operand(array[i][0]) == true)
 			{
-				printf("1 here at array[%i][%i]: %c\n", i, j, array[i][j]);
 				del_len = double_redir(array[i], j);
 				array = add_line_redir(array, j, i, del_len);
 				trim_last_line(array, i + 1);
@@ -111,7 +93,6 @@ char	**parse_line(char **array, size_t len)
 			}
 			else
 			{
-				printf("2 here at array[%i][%i]: %c\n", i, j, array[i][j]);
 				if (array[i][j] == 34 || array[i][j] == 39)
 					j = quote_index(array[i], j);
 				if (is_delim(array[i][j]) == true || is_operand(array[i][j]) == true)
