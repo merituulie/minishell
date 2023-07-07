@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 19:49:20 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:24:02 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-// if isPiped = 1, we dont need to print anything,
-// we just return whatever the output of the current command is
-// so that the next command can take it as input.
+/*if isPiped = 1, we dont need to print anything,
+we just return whatever the output of the current command is
+so that the next command can take it as input.*/
+/* just printing input or otherwise itll complain */
 static char	*handle_command(t_command *command,
 			t_env **env, char *input, int isPiped)
 {
 	if (!input)
-		printf("%s", input); /* just printing here or otherwise itll complain */
+		printf("%s", input);
 	if (ft_strncmp(command->command, "env", 3) == 0)
 		return (ft_env(env, isPiped));
 	else if (ft_strncmp(command->command, "echo", 4) == 0)
@@ -36,12 +37,13 @@ static char	*handle_command(t_command *command,
 		return (NULL);
 	else
 	{
-		/* if the command given is none of our own ones,
-			we use execp or whatever it is to use the actual command here
-			and return the output of that? */
+		return (NULL);
 	}
 	return (NULL);
 }
+		/* if the command given is none of our own ones,
+			we use execp or whatever it is to use the actual command here
+			and return the output of that? */
 
 int	handle_commands(t_command *commands[], t_env **env)
 {
