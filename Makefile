@@ -6,7 +6,7 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/06 13:37:53 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/07/07 10:07:19 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,4 +57,3 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
-
