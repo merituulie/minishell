@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/05 15:32:09 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:14:36 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ void	quote_check(char *str, int i, char quote)
 	while (str[i])
 	{
 		if (str[i] == quote)
-		{
-			printf("here is the matching quote!, index is %d, quote is %c\n", i, str[i]);
 			return ;
-		}
 		i++;
 	}
 	syntax_error_msg(3, str);
@@ -46,7 +43,7 @@ void	quote_check(char *str, int i, char quote)
 
 bool	is_white(char c)
 {
-	char *delims;
+	char	*delims;
 
 	delims = " \t\n";
 	while (*delims)
