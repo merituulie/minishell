@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/07 13:14:36 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:25:01 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	syntax_error_msg(int i, char *str)
 /*if the single quotes or double quotes doesn't have a pair ending*/
 void	quote_check(char *str, int i, char quote)
 {
-	printf("comes in to quote_check, index is:%d, quote is %c\n", i, quote);
 	i++;
 	while (str[i])
 	{

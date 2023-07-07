@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:50:18 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/07 13:05:45 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:26:14 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv, char **envp)
 	i = -1;
 	while (cmd_line[++i])
 	{
-		printf("cmd [%d] is %s\n", i, cmd_line[i]);
+		printf("after parsing, cmd_line[%d] is %s\n", i, cmd_line[i]);
 	}
 	free_str_array(cmd_line);
 	return (0);
