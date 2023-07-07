@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/06 11:00:07 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/07 07:11:34 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ char	**allocate_2d_array(char **old_array)
 	return (new_array);
 }
 
-void	**trim_last_line(char **array, int line_index)
+void	trim_last_line(char **array, int line_index)
 {
-	size_t	arr_len;
 	char	*new_last_line;
 
 	if (array[line_index][0] == 32)

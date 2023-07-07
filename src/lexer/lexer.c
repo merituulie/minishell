@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/06 10:58:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/07 07:10:04 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ char	**add_line_redir(char **old_array, size_t del_index, int del_line_index, si
 	return (new_array);
 }
 
-char	**parse_line(char **array, size_t len) // NEEDS TO BE SHORTENED
+char	**parse_line(char **array) // NEEDS TO BE SHORTENED
 {
 	size_t		i;
 	size_t		j;
-	size_t		arrlen;
+	// size_t		arrlen;
 	size_t		del_len;
 
 	i = -1;
@@ -121,6 +121,6 @@ char	**ft_lexer(char *str)
 		return (0);
 	new_str[0] = ft_strdup(trimmed_str);
 	free(trimmed_str);
-	parsed_line = parse_line(new_str, len);
+	parsed_line = parse_line(new_str);
 	return (parsed_line);
 }
