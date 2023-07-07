@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/06 12:47:52 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:01:26 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "env.h"
+# include "lexer.h"
+# include "../libft/libft.h"
 
 typedef struct s_data
 {

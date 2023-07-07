@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 09:19:47 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:06:17 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ typedef struct s_command
 	int		file_descriptors;
 	int		pid;
 }	t_command;
+
+char	*ft_echo(t_command *command, int isPiped);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:06:00 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/07 09:30:52 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/07 09:52:17 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 	src_len = ft_strlen(src);
 	if (!dstsize)
-		return (slen);
+		return (src_len);
 	if (dstsize)
 	{
 		if (src_len >= dstsize)

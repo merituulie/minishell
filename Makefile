@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/07 09:19:11 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/07 12:05:03 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline -w
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
-				utils_hashmap
+				utils_hashmap \
 
 ENV_SRC = init \
 		env
