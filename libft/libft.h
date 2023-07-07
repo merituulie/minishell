@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/07 09:38:41 by yoonslee         ###   ########.fr       */
+/*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
+/*   Updated: 2023/07/07 09:40:05 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H
