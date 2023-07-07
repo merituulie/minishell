@@ -6,13 +6,46 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:50:18 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/06 15:06:51 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/07 09:26:10 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h> //printf, perror
 #include "headers/parsing.h"
 #include "libft/libft.h"
+#include "headers/lexer.h"
+
+// int main(int ac, char **av)
+// {
+// 	char **cmd_line;
+// 	int	i = -1;
+
+// 	if (ac == 2)
+// 	{
+// 		cmd_line = ft_lexer(av[1]);
+// 	}
+// 	while (cmd_line[++i])
+// 		printf("cmd_line is %s\n", cmd_line[i]);
+// 	if (cmd_line)
+// 		ft_free_array(cmd_line);
+// 	return (0);
+// }
+int	main(void)
+{
+	char	*line;
+	char	**cmd_line;
+	int		i;
+
+	line = readline(PINK "Jose's PinkShell: " BORING);
+	cmd_line = ft_lexer(line);
+	free(line);
+	i = -1;
+	while (cmd_line[++i])
+		printf("cmd_line is:\t %s\n", cmd_line[i]);
+	if (cmd_line)
+		ft_free_array(cmd_line);
+	return (0);
+}
 
 int	main(int argc, char **argv, char **envp)
 {

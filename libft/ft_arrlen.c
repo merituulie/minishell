@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 17:42:55 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/22 14:39:15 by jhusso           ###   ########.fr       */
+/*   Created: 2023/07/06 09:25:23 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/06 09:25:56 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_arrlen(const char **array)
 {
 	size_t	counter;
 
 	counter = 0;
-	while (*s != '\0')
+	while (*array != '\0')
 	{
 		counter++;
-		s++;
+		array++;
 	}
 	return (counter);
 }
