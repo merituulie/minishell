@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 07:26:44 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:45:57 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include "../headers/env.h"
+# include "../libft/libft.h"
 
 typedef struct s_command
 {
@@ -25,6 +27,8 @@ typedef struct s_command
 	int		pid;
 }	t_command;
 
-//char	*ft_pwd(t_env *env, int isPiped);
+int		handle_commands(t_command *commands[], t_env **env);
+char	*ft_env(t_env **env, int isPiped);
+char	*ft_pwd(t_env *env, int isPiped);
 
 #endif

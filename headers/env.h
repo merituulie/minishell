@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:55:08 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 10:07:31 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:43:46 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ typedef struct s_env
 
 void	fill_env(char **envp, t_env **env);
 char	*ft_env(t_env **env, int isPiped);
-char	*ft_pwd(t_env *env, int isPiped); // move somewhere else??
 #endif
