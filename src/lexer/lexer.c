@@ -6,69 +6,78 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/10 13:52:12 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:41:14 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
 
-char	**add_line(char **old_array, size_t del_index, int del_line_index)
+/// @brief Inner loop for parsing trough strings in array.
+/// @param array
+/// @param deli index where delimeter is found.
+/// @param del_line_index index of the line in array, where delimeter is found.
+char	**add_line(char **array, size_t deli, int del_line_index)
 {
-	char	**new_array;
+	char	**n_array;
 	int		i;
 
-	new_array = allocate_2d_array(old_array);
+	n_array = allocate_2d_array(array);
 	i = -1;
 	if (del_line_index == 0)
 	{
-		new_array[0] = ft_substr(old_array[0], 0, del_index);
-		new_array[1] = ft_substr(old_array[0], del_index, (ft_strlen(old_array[0]) - del_index));
+		n_array[0] = ft_substr(array[0], 0, deli);
+		n_array[1] = ft_substr(array[0], deli, (ft_strlen(array[0]) - deli));
 	}
 	else
 	{
-		while (++i < ft_arrlen(old_array))
+		while (++i < ft_arrlen(array))
 		{
 			if (i == del_line_index)
 			{
-				new_array[i] = ft_substr(old_array[i], 0, del_index);
-				new_array[i + 1] = ft_substr(old_array[i], del_index, ft_strlen(old_array[i]));
+				n_array[i] = ft_substr(array[i], 0, deli);
+				n_array[i + 1] = ft_substr(array[i], deli, ft_strlen(array[i]));
 			}
 			else
-				new_array[i] = ft_strdup(old_array[i]);
+				n_array[i] = ft_strdup(array[i]);
 		}
 	}
-	ft_free_array(old_array);
-	return (new_array);
+	ft_free_array(array);
+	return (n_array);
 }
 
-char	**add_line_redir(char **old_array, size_t del_index, int del_line_index, size_t del_len)
+/// @brief Inner loop for parsing trough strings in array.
+/// @param array
+/// @param del_i index where delimeter is found.
+/// @param delli index of the line in array, where delimeter is found.
+/// @param dlen delimeter len (in case of redirectors and pipe)
+char	**add_line_redir(char **array, size_t del_i, int del_li, size_t dlen)
 {
-	char	**new_array;
+	char	**n_array;
 	int		i;
 
-	new_array = allocate_2d_array(old_array);
+	n_array = allocate_2d_array(array);
 	i = -1;
-	if (del_line_index == 0)
+	if (del_li == 0)
 	{
-		new_array[0] = ft_substr(old_array[0], del_index, del_len);
-		new_array[1] = ft_substr(old_array[0], del_len, (ft_strlen(old_array[0]) - del_len));
+		n_array[0] = ft_substr(array[0], del_i, dlen);
+		n_array[1] = ft_substr(array[0], dlen, (ft_strlen(array[0]) - dlen));
 	}
 	else
 	{
-		while (++i < ft_arrlen(old_array))
+		while (++i < ft_arrlen(array))
 		{
-			if (i == del_line_index)
+			if (i == del_li)
 			{
-				new_array[i] = ft_substr(old_array[i], del_index, del_len);
-				new_array[i + 1] = ft_substr(old_array[i], del_len, ft_strlen(old_array[i]));
+				n_array[i] = ft_substr(array[i], del_i, dlen);
+				n_array[i + 1] = ft_substr(array[i], dlen, ft_strlen(array[i]));
 			}
 			else
-				new_array[i] = ft_strdup(old_array[i]);
+				n_array[i] = ft_strdup(array[i]);
 		}
 	}
-	ft_free_array(old_array);
-	return (new_array);
+	ft_free_array(array);
+	return (n_array);
 }
 
 char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len)
@@ -99,6 +108,8 @@ char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len)
 	return (temp);
 }
 
+/// @brief Outer loop for parsing trough strings in array.
+/// @param array 2d array, holding whole input in array[0].
 char	**parse_line(char **array)
 {
 	size_t	i;
@@ -115,9 +126,7 @@ char	**parse_line(char **array)
 	return (array);
 }
 
-
-
-
+/// @param str user input from readline.
 char	**ft_lexer(char *str)
 {
 	char	*trimmed_str;
