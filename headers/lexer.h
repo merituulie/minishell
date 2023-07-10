@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/07 07:11:51 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/10 13:48:35 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include <stdbool.h>
 
 // lexer.c
-size_t	ft_arrlen(const char **array);
 char	**add_line(char **old_array, size_t del_index, int del_line_index);
-char	**add_line_redir(char **old_array, size_t del_index, int del_line_index, size_t del_len);
+char	**add_line_redir(char **old_array, size_t del_index, \
+		int del_line_index, size_t del_len);
+char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len);
 char	**parse_line(char **array);
 char	**ft_lexer(char *str);
 

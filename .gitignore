@@ -1,4 +1,5 @@
 .vscode/
-minishell.dSYM/Contents/Resources/DWARF/minishell
+*minishell.dSYM/Contents/Resources/DWARF/minishell
+*minishell.dSYM/Contents/Resources/DWARF/minishell
 *.o
-.DS_Store
+*.DS_Store

@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/07 07:10:04 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/10 13:52:12 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,40 +71,52 @@ char	**add_line_redir(char **old_array, size_t del_index, int del_line_index, si
 	return (new_array);
 }
 
-char	**parse_line(char **array) // NEEDS TO BE SHORTENED
+char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len)
 {
-	size_t		i;
-	size_t		j;
-	// size_t		arrlen;
-	size_t		del_len;
+	char	**temp;
 
-	i = -1;
-	while (++i < ft_arrlen(array) && array[i])
+	temp = *array;
+	while (++j < ft_strlen(temp[i]))
 	{
-		j = -1;
-		while (++j < ft_strlen(array[i]))
+		if (is_operand(temp[i][0]) == true)
 		{
-			if (is_operand(array[i][0]) == true)
+			del_len = double_redir(temp[i], j);
+			temp = add_line_redir(temp, j, i, del_len);
+			trim_last_line(temp, i + 1);
+			j = del_len;
+		}
+		else
+		{
+			if (temp[i][j] == 34 || temp[i][j] == 39)
+				j = quote_index(temp[i], j);
+			if (is_delim(temp[i][j]) == true || is_operand(temp[i][j]) == true)
 			{
-				del_len = double_redir(array[i], j);
-				array = add_line_redir(array, j, i, del_len);
-				trim_last_line(array, i + 1);
-				j = del_len;
-			}
-			else
-			{
-				if (array[i][j] == 34 || array[i][j] == 39)
-					j = quote_index(array[i], j);
-				if (is_delim(array[i][j]) == true || is_operand(array[i][j]) == true)
-				{
-					array = add_line(array, j, i);
-					trim_last_line(array, i + 1);
-				}
+				temp = add_line(temp, j, i);
+				trim_last_line(temp, i + 1);
 			}
 		}
 	}
+	return (temp);
+}
+
+char	**parse_line(char **array)
+{
+	size_t	i;
+	size_t	j;
+	size_t	del_len;
+
+	i = -1;
+	del_len = 0;
+	while (++i < ft_arrlen(array) && array[i])
+	{
+		j = -1;
+		array = parse_line_helper(&array, i, j, del_len);
+	}
 	return (array);
 }
+
+
+
 
 char	**ft_lexer(char *str)
 {
