@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 18:34:09 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:05:02 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ static char	*to_string(t_env **env)
 	return (output);
 }
 
-char	*ft_env(t_env **env, int isPiped)
+void	*ft_env(t_env **env, t_command *next)
 {
-	if (isPiped)
-		return (to_string(env));
+	if (next)
+	{
+		next->input = to_string(env);
+	}
 	else
 	{
 		print_env((*env)->vars);
-		return (NULL);
 	}
 }

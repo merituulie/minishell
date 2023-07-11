@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 19:06:30 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:47:02 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ typedef struct s_command
 	int		pid;
 }	t_command;
 
-int	handle_commands(t_command *commands[], t_env **env);
+int	handle_commands(t_command *commands, t_env **env);
 
 #endif
