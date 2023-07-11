@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"hashmap.h": "c"
+		"hashmap.h": "c",
+		"minishell.h": "c"
 	}
 }

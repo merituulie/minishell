@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_hashmap.c                                    :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 21:53:34 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:16:42 by meskelin         ###   ########.fr       */
+/*   Created: 2023/07/03 15:55:08 by meskelin          #+#    #+#             */
+/*   Updated: 2023/07/03 17:28:44 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/hashmap.h"
+#ifndef ENV_H
+# define ENV_H
 
-static void	ft_clr_rec(t_node *node)
-{
-	if (!node)
-		return ;
-	ft_clr_rec(node->next);
-	node->next = NULL;
-	node->key = NULL;
-	node->value = NULL;
-	free(node);
-}
+# include "hashmap.h"
 
-/// @brief Clear out the whole hashmap.
-/// @param head The first node to the hashmap.
-void	clear_hashmap(t_node **head)
+typedef struct s_env
 {
-	if (!head || !*head)
-		return ;
-	ft_clr_rec(*head);
-	*head = NULL;
-}
+	struct s_node	**vars;
+}	t_env;
+
+void	fill_env(char **envp, t_env **env);
+char	*ft_env(t_env **env, int isPiped);
+
+#endif

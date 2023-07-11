@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_hashmap.c                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 21:53:34 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:16:42 by meskelin         ###   ########.fr       */
+/*   Created: 2022/11/03 14:36:59 by meskelin          #+#    #+#             */
+/*   Updated: 2023/07/03 18:25:54 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/hashmap.h"
+#include "libft.h"
 
-static void	ft_clr_rec(t_node *node)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (!node)
-		return ;
-	ft_clr_rec(node->next);
-	node->next = NULL;
-	node->key = NULL;
-	node->value = NULL;
-	free(node);
-}
+	char	*str;
+	int		index;
 
-/// @brief Clear out the whole hashmap.
-/// @param head The first node to the hashmap.
-void	clear_hashmap(t_node **head)
-{
-	if (!head || !*head)
-		return ;
-	ft_clr_rec(*head);
-	*head = NULL;
+	index = 0;
+	if (!s1)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (NULL);
+	while (*s1)
+		str[index++] = *(s1++);
+	while (*s2)
+		str[index++] = *(s2++);
+	str[index] = '\0';
+	return (str);
 }

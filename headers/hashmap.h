@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:14:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/29 11:41:15 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/11 08:14:36 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ typedef struct s_node
 t_node	*new_node(char *key, char *value);
 int		hashmap_size(t_node **head);
 t_node	*get_value(t_node **head, char *key);
-void	set_value(t_node **head, char *key, char *value);
+t_node	**set_value(t_node **head, char *key, char *value);
 void	delete_value(t_node **head, char *key);
 void	clear_hashmap(t_node **head);
+t_node	*get_last(t_node **head);
 
 #endif

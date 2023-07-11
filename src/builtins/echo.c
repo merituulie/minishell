@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/07 10:15:12 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/11 08:26:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ char	*ft_echo(t_command *command, int isPiped)
 	}
 	if (newline == 0 || command->command_flags == NULL)
 		write(1, "\n", 1);
-	return (0);
+	return (NULL);
 }

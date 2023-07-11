@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_hashmap.c                                    :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 21:53:34 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 16:16:42 by meskelin         ###   ########.fr       */
+/*   Created: 2022/10/28 14:05:43 by meskelin          #+#    #+#             */
+/*   Updated: 2022/11/21 16:37:32 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/hashmap.h"
+#include "libft.h"
 
-static void	ft_clr_rec(t_node *node)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	if (!node)
-		return ;
-	ft_clr_rec(node->next);
-	node->next = NULL;
-	node->key = NULL;
-	node->value = NULL;
-	free(node);
-}
+	char	*str;
+	char	*dest;
 
-/// @brief Clear out the whole hashmap.
-/// @param head The first node to the hashmap.
-void	clear_hashmap(t_node **head)
-{
-	if (!head || !*head)
-		return ;
-	ft_clr_rec(*head);
-	*head = NULL;
+	str = (char *)src;
+	dest = (char *)dst;
+	if (!str && !dest && n > 0)
+		return (NULL);
+	while (n-- > 0)
+		*(dest++) = *(str++);
+	dest = NULL;
+	str = NULL;
+	return (dst);
 }
