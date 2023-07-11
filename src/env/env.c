@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/11 15:05:02 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:16:38 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ static char	*to_string(t_env **env)
 void	*ft_env(t_env **env, t_command *next)
 {
 	if (next)
-	{
 		next->input = to_string(env);
-	}
 	else
-	{
 		print_env((*env)->vars);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/11 15:09:09 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:16:45 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ so that the next command can take it as input.*/
 static char	*handle_command(t_command *command,
 			t_command *next, t_env **env)
 {
-	if (ft_strncmp(command->command, "env", 3) == 0)
+	if (ft_strncmp_all(command->command, "env") == 0)
 		return (ft_env(env, next));
-	else if (ft_strncmp(command->command, "echo", 4) == 0)
+	else if (ft_strncmp_all(command->command, "echo") == 0)
 		return (NULL);
-	else if (ft_strncmp(command->command, "cd", 2) == 0)
+	else if (ft_strncmp_all(command->command, "cd") == 0)
 		return (NULL);
-	else if (ft_strncmp(command->command, "pwd", 3) == 0)
+	else if (ft_strncmp_all(command->command, "pwd") == 0)
 		return (NULL);
-	else if (ft_strncmp(command->command, "export", 6) == 0)
+	else if (ft_strncmp_all(command->command, "export") == 0)
 		return (NULL);
-	else if (ft_strncmp(command->command, "unset", 5) == 0)
+	else if (ft_strncmp_all(command->command, "unset") == 0)
 		return (NULL);
-	else if (ft_strncmp(command->command, "exit", 4) == 0)
+	else if (ft_strncmp_all(command->command, "exit") == 0)
 		return (NULL);
 	else
 	{
@@ -39,9 +39,6 @@ static char	*handle_command(t_command *command,
 	}
 	return (NULL);
 }
-		/* if the command given is none of our own ones,
-			we use execp or whatever it is to use the actual command here
-			and return the output of that? */
 
 int	handle_commands(t_command *commands, t_env **env)
 {
