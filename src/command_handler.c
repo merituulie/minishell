@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 10:24:02 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/11 08:08:16 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*handle_command(t_command *command,
 	else if (ft_strncmp(command->command, "cd", 2) == 0)
 		return (NULL);
 	else if (ft_strncmp(command->command, "pwd", 3) == 0)
-		return (NULL);
+		return (ft_pwd(*env, isPiped));
 	else if (ft_strncmp(command->command, "export", 6) == 0)
 		return (NULL);
 	else if (ft_strncmp(command->command, "unset", 5) == 0)

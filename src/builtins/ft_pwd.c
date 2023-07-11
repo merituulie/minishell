@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:08:29 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/07 09:54:08 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/11 08:09:00 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ char	*ft_pwd(t_env *env, int isPiped)
 {
 	t_node	*correct_node;
 
+	if (!env)
+	{
+		printf("Environment error\n");
+		return (NULL);
+	}
 	correct_node = get_value(env->vars, "PWD");
 	if (isPiped == 0)
 	{
