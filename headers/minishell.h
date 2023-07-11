@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/11 14:47:02 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:08:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@
 # include "../headers/env.h"
 # include "../libft/libft.h"
 
+/* If input is 'echo -n "Hello, my name if"' then
+command -> "echo"
+flags -> "n"
+input -> "hello my name"
+full_cmd -> "echo -n "Hello, my name if"" */
 typedef struct s_command
 {
 	char	*command;
-	char	*command_flags;
+	char	*flags;
+	char	*input;
+	char	*full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
 	int		file_descriptors;
