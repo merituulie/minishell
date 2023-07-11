@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 19:06:30 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:28:22 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@
 # include "../headers/env.h"
 # include "../libft/libft.h"
 
+/*command is command it self, ex)"echo"
+flag is ex) "n"
+input is ex) "hello my name"
+full_cmd is ex) "echo -n hello my name"*/
 typedef struct s_command
 {
 	char	*command;
-	char	*command_flags;
+	char	*flags;
+	char	*input;
+	char	*full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
 	int		file_descriptors;
