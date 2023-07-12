@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:23:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/06/20 13:27:18 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:18:03 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_node	*get_value(t_node **head, char *key)
 	temp = *head;
 	while (temp)
 	{
-		if (ft_strncmp(temp->key, key, ft_strlen(key)) == 0)
+		if (ft_strncmp_all(temp->key, key) == 0)
 			return (temp);
 		temp = temp->next;
 	}
@@ -37,7 +37,7 @@ static int	delete_head(t_node **head, char *key)
 	t_node	*new_head;
 
 	new_head = NULL;
-	if (ft_strncmp((*head)->key, key, ft_strlen(key)) == 0)
+	if (ft_strncmp_all((*head)->key, key) == 0)
 	{
 		if ((*head)->next)
 		{
