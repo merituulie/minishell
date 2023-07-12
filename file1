@@ -1,0 +1,13 @@
+total 48
+drwxr-xr-x  12 vvu  2020    408 Jul 12 17:58 .
+drwxr-xr-x  48 vvu  2020   1700 Jul 11 13:59 ..
+drwxr-xr-x  13 vvu  2020    442 Jul 11 17:53 .git
+drwxr-xr-x   3 vvu  2020    102 Jul 11 14:09 .vscode
+-rw-r--r--   1 vvu  2020   1906 Jul 12 13:35 Makefile
+-rw-r--r--   1 vvu  2020      0 Jul 12 17:58 file1
+drwxr-xr-x   5 vvu  2020    170 Jul 11 13:59 headers
+drwxr-xr-x  29 vvu  2020    986 Jul 12 17:56 libft
+-rw-r--r--   1 vvu  2020   2042 Jul 12 17:57 main.c
+-rwxr-xr-x   1 vvu  2020  14072 Jul 12 17:56 minishell
+drwxr-xr-x   3 vvu  2020    102 Jul 12 13:33 minishell.dSYM
+drwxr-xr-x   6 vvu  2020    204 Jul 11 14:04 src

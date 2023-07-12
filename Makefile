@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 17:12:23 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/12 13:35:42 by vvu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#-fsanitize=address,undefined -g
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g
+BUILD_FLAGS = -Wall -Wextra -Werror 
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -26,10 +27,14 @@ H_FILES = hashmap \
 		env \
 		minishell
 
+COMMAND_SRC = init_command \
+
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
 ENV_PRE = $(addprefix ./src/env/, $(ENV_SRC))
 ENV_SUFF = $(addsuffix .c, $(ENV_PRE))
+COMMAND_PRE = $(addprefix ./src/command/, $(COMMAND_SRC))
+COMMAND_SUFF = $(addsuffix .c, $(COMMAND_PRE))
 HPRE = $(addsuffix ./headers/, $(H_FILES))
 HSUFF = $(addsuffix .h, $(HPRE))
 
@@ -38,7 +43,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) ./src/command_handler.c main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) $(COMMAND_SUFF) -lreadline ./src/command_handler.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean
