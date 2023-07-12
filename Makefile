@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 17:12:23 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/12 16:32:31 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) ./src/command_handler.c main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(ENV_SUFF) ./src/command_handler.c  ./src/command_executer.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

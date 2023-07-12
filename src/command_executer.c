@@ -37,7 +37,7 @@ static char	*find_path(char *cmd, t_node **head)
 	return (path);
 }
 
-int command_execution(char *cmd, t_env **env, int fd, int isPiped)
+int command_execution(char *cmd, t_env **env)
 {
 	t_env *temp;
 	char *path;
@@ -47,5 +47,5 @@ int command_execution(char *cmd, t_env **env, int fd, int isPiped)
 	if (!path)
 		return (NULL);
 	execve(path, cmd, temp->vars); 
-	return (fd);
+	return (0);
 }

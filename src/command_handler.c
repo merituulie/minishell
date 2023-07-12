@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/12 16:19:24 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:33:47 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static char	*handle_command(t_command *command,
 	else if (ft_strncmp_all(command->command, "exit") == 0)
 		return (NULL);
 	else
-	{
-		return (NULL);
+	{	
+		command_execution(command->command, env);
 	}
 	return (NULL);
 }
