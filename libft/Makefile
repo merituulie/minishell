@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/03 17:58:45 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/12 16:18:13 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ ft_split \
 ft_strlcpy \
 ft_memcpy  \
 ft_print_array \
-ft_strjoin
+ft_strjoin \
+free_array 
 
 H_FILES = libft
 
