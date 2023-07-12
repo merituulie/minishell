@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 10:24:02 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:00:21 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 we just return whatever the output of the current command is
 so that the next command can take it as input.*/
 /* just printing input or otherwise itll complain */
+
+
 static char	*handle_command(t_command *command,
 			t_env **env, char *input, int isPiped)
 {
