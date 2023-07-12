@@ -6,7 +6,7 @@
 /*   By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/12 18:53:49 by vvu              ###   ########.fr       */
+/*   Updated: 2023/07/12 19:05:12 by vvu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	count_struct(char **input, int	struct_count)
 	index = 0;
 	while (input[index])
 	{
-		if (ft_strchr("|", input[index][0])) 
+		if (ft_strchr("<|>", input[index][0])) 
 		{
 			struct_count++;
 			index++;
