@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/11 12:28:22 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:08:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include "../headers/env.h"
 # include "../libft/libft.h"
 
-/*command is command it self, ex)"echo"
-flag is ex) "n"
-input is ex) "hello my name"
-full_cmd is ex) "echo -n hello my name"*/
+/* If input is 'echo -n "Hello, my name if"' then
+command -> "echo"
+flags -> "n"
+input -> "hello my name"
+full_cmd -> "echo -n "Hello, my name if"" */
 typedef struct s_command
 {
 	char	*command;
@@ -33,6 +34,6 @@ typedef struct s_command
 	int		pid;
 }	t_command;
 
-int	handle_commands(t_command *commands[], t_env **env);
+int	handle_commands(t_command *commands, t_env **env);
 
 #endif
