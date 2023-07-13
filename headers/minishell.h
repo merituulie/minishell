@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/11 15:08:36 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:11:54 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <readline/readline.h>
 # include "../headers/env.h"
 # include "../libft/libft.h"
 
@@ -33,6 +34,8 @@ typedef struct s_command
 	int		file_descriptors;
 	int		pid;
 }	t_command;
+
+char	*ft_echo(t_command *command, int isPiped);
 
 int	handle_commands(t_command *commands, t_env **env);
 

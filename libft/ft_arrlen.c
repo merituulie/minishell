@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 15:55:08 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/13 12:09:39 by jhusso           ###   ########.fr       */
+/*   Created: 2023/07/06 09:25:23 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/06 09:25:56 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#include "libft.h"
 
-# include "hashmap.h"
-
-typedef struct s_env
+size_t	ft_arrlen(const char **array)
 {
-	struct s_node	**vars;
-}	t_env;
+	size_t	counter;
 
-void	fill_env(char **envp, t_env **env);
-void	*ft_env(t_env **env, t_command *next);
-
-#endif
+	counter = 0;
+	while (*array != '\0')
+	{
+		counter++;
+		array++;
+	}
+	return (counter);
+}

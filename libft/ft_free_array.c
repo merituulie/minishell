@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 12:06:00 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/07 09:52:17 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/04/03 14:33:36 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/05 09:43:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	ft_free_array(char **array)
 {
-	size_t	len;
-	size_t	src_len;
+	int	i;
 
-	src_len = ft_strlen(src);
-	if (!dstsize)
-		return (src_len);
-	if (dstsize)
+	if (!array)
+		return ;
+	i = 0;
+	while (array[i])
 	{
-		if (src_len >= dstsize)
-		{
-			len = dstsize - 1;
-		}
-		else
-		{
-			len = src_len;
-		}
-		ft_memcpy((char *)dst, (char *)src, len);
-		dst[len] = '\0';
+		if (array[i])
+			free(array[i]);
+		array[i] = NULL;
+		i++;
 	}
-	return (src_len);
+	if (array)
+		free(array);
 }
