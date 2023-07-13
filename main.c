@@ -12,6 +12,8 @@
 
 #include <stdio.h> //printf, perror
 #include "headers/parsing.h"
+#include "headers/env.h"
+#include "headers/minishell.h"
 #include "libft/libft.h"
 
 int	main(int argc, char **argv, char **envp)
