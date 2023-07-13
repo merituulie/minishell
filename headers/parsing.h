@@ -27,8 +27,6 @@
 # include <term.h> //tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "env.h"
-# include "lexer.h"
 # include "../libft/libft.h"
 
 typedef struct s_data
