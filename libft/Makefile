@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/07 09:22:30 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/13 12:18:58 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ ft_substr \
 ft_strncmp_all \
 ft_strtrim \
 ft_substr \
+ft_memcpy  \
+ft_print_array \
+ft_strjoin
 
 H_FILES = libft
 

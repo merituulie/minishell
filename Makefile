@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/07 12:05:03 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/13 12:21:56 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HASHMAP_SRC = add_hashmap \
 
 ENV_SRC = init \
 		env
-		
+
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
@@ -31,7 +31,7 @@ LEXER_SRC = lexer \
 PARSER_SRC = expand_env \
 			utils \
 			concatenate \
-			
+
 H_FILES = hashmap \
 		minishell \
 		lexer
@@ -52,7 +52,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(PARSER_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(PARSER_SUFF) ./src/command_handler.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

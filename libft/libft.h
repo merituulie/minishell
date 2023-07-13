@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 12:06:08 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:16:22 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 size_t	ft_arrlen(const char **array);
 void	ft_bzero(void *s, size_t n);
+int		ft_strncmp_all(const char *s1, const char *s2);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_free_null_str(char *str);
 void	ft_free_array(char **array);
@@ -37,5 +38,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_print_array(char **str);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
