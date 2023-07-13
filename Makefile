@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/13 13:04:17 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/13 13:13:43 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ LEXER_PRE = $(addprefix ./src/lexer/, $(LEXER_SRC))
 LEXER_SUFF = $(addsuffix .c, $(LEXER_PRE))
 PARSER_PRE = $(addprefix ./src/parser/, $(PARSER_SRC))
 PARSER_SUFF = $(addsuffix .c, $(PARSER_PRE))
-HPRE = $(addsuffix ./headers/, $(H_FILES))
+HPRE = $(addprefix ./headers/, $(H_FILES))
 HSUFF = $(addsuffix .h, $(HPRE))
 
 .PHONY = all

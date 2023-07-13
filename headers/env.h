@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:55:08 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/13 12:55:10 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:18:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ typedef struct s_env
 }	t_env;
 
 void	fill_env(char **envp, t_env **env);
-void	*ft_env(t_env **env, t_command *next);
+// void	*ft_env(t_env **env, t_command *next);
 
 #endif
