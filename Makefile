@@ -36,6 +36,7 @@ H_FILES = hashmap \
 		minishell \
 		lexer \
 		parsing \
+		env \
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
