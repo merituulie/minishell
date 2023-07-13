@@ -1,5 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/yoonslee/Desktop/parsing'
-make: Nothing to be done for `all'.
-make: Leaving directory `/Users/yoonslee/Desktop/parsing'
- 
