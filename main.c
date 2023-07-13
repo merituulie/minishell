@@ -12,6 +12,7 @@
 
 #include <stdio.h> //printf, perror
 #include "headers/parsing.h"
+#include "headers/lexer.h"
 #include "headers/env.h"
 #include "headers/minishell.h"
 #include "libft/libft.h"
