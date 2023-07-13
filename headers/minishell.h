@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 # include <readline/readline.h>
-# include "../headers/env.h"
 # include "../libft/libft.h"
 
 /* If input is 'echo -n "Hello, my name if"' then
