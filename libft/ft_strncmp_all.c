@@ -23,7 +23,7 @@ int	ft_strncmp_all(const char *s1, const char *s2, size_t n)
 	ptr2 = (unsigned char *)s2;
 	if (ptr1 == ptr2)
 		return (0);
-	if (ft_strlen(s1) > n || ft_strlen(s2) > n)
+	if (ft_strlen(s1) != n || ft_strlen(s2) != n)
 		return (1);
 	while ((ptr1[index] != '\0' || ptr2[index] != '\0') && index < n)
 	{
