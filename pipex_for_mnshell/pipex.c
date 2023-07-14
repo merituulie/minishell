@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:59:01 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/14 13:05:35 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:59:41 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,12 @@ int	main(int argc, char *argv[], char **envp)
 	pipex = ft_calloc(1, sizeof(t_pipex));
 	if (!pipex)
 		error_msg(pipex, 4);
+	pipex->amount = argc - 1;
+	pipex->pid = ft_calloc((pipex->amount), sizeof(int));
 	pipex->tmpin = dup(0);
 	pipex->tmpout = dup(0);
-	while (argv[++i]){
+	while (argv[++i])
+	{
 		pipex->envp = envp;
 		argv_check(argv[i], pipex);
 		find_path(pipex, envp);
@@ -99,8 +102,7 @@ int	main(int argc, char *argv[], char **envp)
 		printf("found path, path is %s\n", pipex->cmd1_path);
 		first_child_process(pipex, flag, j);
 		flag++;
-		// close_all(pipex);
-		waitpid(pipex->pid1[j], NULL, 0);
+		waitpid(pipex->pid[j], NULL, 0);
 		j++;
 		free_all(pipex);
 	}
