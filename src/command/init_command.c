@@ -6,21 +6,21 @@
 /*   By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/12 19:05:12 by vvu              ###   ########.fr       */
+/*   Updated: 2023/07/14 14:24:29 by vvu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 
-static int	count_struct(char **input, int	struct_count)
+static int count_struct(char **input, int struct_count)
 {
-	int	index;
+	int index;
 
 	index = 0;
 	while (input[index])
 	{
-		if (ft_strchr("<|>", input[index][0])) 
+		if (ft_strchr("<|>", input[index][0]))
 		{
 			struct_count++;
 			index++;
@@ -31,68 +31,86 @@ static int	count_struct(char **input, int	struct_count)
 	return (struct_count);
 }
 
-/*static t_command	*full_cmd_strjoin(t_command *cmd, int track)
+static char *put_to_input(char **input, int *index)
 {
-	char	*first_join;
+	int		str_len;
+	int		cur_index;
+	char	*str;
+	int		word_count = 0;
 
+	str_len = 0;
+	cur_index = *index;
+	while (input[*index] != NULL && !ft_strchr("<|>",input[*index][0]))
+	{
+		str_len += ft_strlen(input[*index]);
+		(*index)++;
+		word_count++;
+	}
+	str = malloc(sizeof(char) * (str_len + word_count + 1));
+	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
+	while (++cur_index < *index)
+	{
+		ft_strlcat(str, " ", str_len + word_count + 1);
+		ft_strlcat(str, input[cur_index], str_len + word_count + 1);
+	}
+	return (str);
+}
 
-	printf("here 0\n");
-	printf("command: %s flags: %s input: %s\n", cmd[track].command, cmd[track].flags, cmd[track].input);
-	//first_join = NULL;
-	if (cmd[track].flags == NULL) 
-		cmd[track].flags = "";
-	first_join = ft_strjoin(cmd[track].command, cmd[track].flags);
-	printf("first_join: %s\n", first_join);
-	cmd[track].full_cmd = ft_strjoin(first_join, cmd[track].input);
-	free(first_join);
-	printf("full_cmd: %s\n", cmd[track].full_cmd);	
-	
-	printf("heree\n");
-	printf("command: %s flags: %s input: %s\n", cmd[track].command, cmd[track].flags, cmd[track].input);
-	//first_join = NULL;
-	first_join = ft_strjoin(cmd[track].command, cmd[track].flags);
-	printf("first_join: %s\n", first_join);
-	cmd[track].full_cmd = ft_strjoin(first_join, cmd[track].input);
-	free(first_join);
-	printf("full_cmd: %s\n", cmd[track].full_cmd);
-	return (cmd);
-}*/
-
-static t_command	*put_cmd_to_struct(t_command *cmd, int index, int struct_count, char **input)
+static char	*put_to_flags(char **input, int	*index)
 {
-	int	track;
+	int	cur_index;
+
+	cur_index = *index;
+	if (input[*index][0] == '-')
+	{
+		(*index)++;
+		return (input[cur_index]);
+	}
+	else
+		return (NULL);
+}
+
+static t_command *put_cmd_to_struct(t_command *cmd, int index, int struct_count, char **input)
+{
+	int track;
 
 	track = -1;
 	while (track++ < struct_count)
 	{
-		if (input[index] && ft_strncmp("|", input[index], 1))
-		{
-			cmd[track].command = input[index++];
-			if (input[index][0] == '-')
-				cmd[track].flags = input[index++];
-			cmd[track].input = input[index++];
-		}
-		else if (!ft_strncmp("|", input[index++], 1))
-		{
-			cmd[track].command = input[index++];
-			if (input[index][0] == '-')
-				cmd[track].flags = input[index++];
-			cmd[track].input = input[index++];
-		}
-		//cmd = full_cmd_strjoin(cmd, track);
+		cmd[track].command = input[index++];
+		cmd[track].flags = put_to_flags(input, &index);
+		cmd[track].input = put_to_input(input, &index);
 	}
-	return (cmd);	
+	cmd[struct_count + 1].command = NULL;
+	return (cmd);
 }
 
-t_command	*init_cmds(t_command *cmd, char **input)
+t_command *init_cmds(t_command *cmd, char **input)
 {
-	int	index;
-	int	struct_count;
-	
+	int index;
+	int struct_count;
+
 	index = 0;
 	struct_count = 0;
 	struct_count = count_struct(input, struct_count);
-	cmd = ft_calloc(struct_count, sizeof(t_command));
+	cmd = ft_calloc(struct_count + 1,sizeof(t_command));
 	cmd = put_cmd_to_struct(cmd, index, struct_count, input);
+	/*
+	int	i = 0;
+	while (cmd[i].command)
+	{
+		printf("before main Command: %s\n", cmd[i].command);
+		printf("before main flags: %s\n",cmd[i].flags);
+		printf("before main input: %s\n", cmd[i].input);
+		i++;
+	}
+	*/
+	//This to remain that it is funny that for some reason the char*flags in the struct 
+	//is not assign to null;it got segfault when I try to printf it out, just only that, we can printf
+	//the other thing without problem. could be memory allocate by using ft_calloc
+	//but we just need our command = null then we stop extract thing to do in minishell.
+	//printf("second Command: %s\n", cmd[1].command);
+	//printf("second flags: %s\n",cmd[1].flags);
+	//printf("second input: %s\n", cmd[1].input);
 	return (cmd);
 }

@@ -56,11 +56,21 @@ int	main(void)
 		else
 		{
 			cmd = ft_split(buf, ' ');
-			lst_cmd =  init_cmds(lst_cmd, cmd);
-			printf("In main: command: %s flags: %s input: %s \n", lst_cmd[0].command, lst_cmd[0].flags, lst_cmd[0].input);
-			printf("In main: command: %s flags: %s input: %s \n", lst_cmd[1].command, lst_cmd[1].flags, lst_cmd[1].input );
-			printf("In main: command: %s flags: %s input: %s \n", lst_cmd[2].command, lst_cmd[2].flags, lst_cmd[2].input );
+			lst_cmd = init_cmds(lst_cmd, cmd);
+			int i = 0;
+			while (lst_cmd[i].command)
+			{
+				printf("In Main: I: %d\n", i);
+				printf("Command: %s\n", lst_cmd[i].command);
+				printf("flags: %s\n",lst_cmd[i].flags);
+				printf("input: %s\n", lst_cmd[i].input);
+				free(lst_cmd[i].command);
+				free(lst_cmd[i].flags);
+				free(lst_cmd[i].input);
+				i++;
+			}
 		}
+		free(cmd);
 		free(buf);
 	}
 	return 0;

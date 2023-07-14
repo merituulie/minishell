@@ -6,7 +6,7 @@
 #    By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/12 14:51:02 by vvu              ###   ########.fr        #
+#    Updated: 2023/07/14 10:12:09 by vvu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ ft_print_array \
 ft_strjoin \
 ft_strchr \
 ft_strdup \
+ft_strlcat \
 
 H_FILES = libft
 
