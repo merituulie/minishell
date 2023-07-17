@@ -40,7 +40,7 @@ int ft_strcmp(char *s1, char *s2)
 int	main(void)
 {
 	char		*buf;
-	char		**cmd;
+	char		**input;
 	t_command	*lst_cmd;
 
 	lst_cmd = NULL;
@@ -55,22 +55,20 @@ int	main(void)
 		}
 		else
 		{
-			cmd = ft_split(buf, ' ');
-			lst_cmd = init_cmds(lst_cmd, cmd);
+			input = ft_split(buf, ' ');
+			lst_cmd = init_cmds(input);
 			int i = 0;
+			printf("command[1] is %s\n", lst_cmd[1].command);
 			while (lst_cmd[i].command)
 			{
-				printf("In Main: I: %d\n", i);
-				printf("Command: %s\n", lst_cmd[i].command);
-				printf("flags: %s\n",lst_cmd[i].flags);
-				printf("input: %s\n", lst_cmd[i].input);
-				free(lst_cmd[i].command);
-				free(lst_cmd[i].flags);
-				free(lst_cmd[i].input);
+				printf("In Main: i is %d\n", i);
+				printf("Command: %s, address %p\n", lst_cmd[i].command, &lst_cmd[i].command);
+				printf("flags: %s, address %p\n", lst_cmd[i].flags, &lst_cmd[i].flags);
+				printf("input: %s, address %p\n", lst_cmd[i].input, &lst_cmd[i].input);
 				i++;
 			}
 		}
-		free(cmd);
+		free(input);
 		free(buf);
 	}
 	return 0;
