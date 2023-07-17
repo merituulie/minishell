@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/17 18:29:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:50:07 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,22 @@ static char	*put_to_flags(char **input, int	*index)
 		return (NULL);
 }
 
-void	put_full_cmd(t_command *cmd, int struct_count)
+void	put_full_cmd(t_command *cmd, int struct_count, int track)
 {
-	int		track;
-
 	track = -1;
 	while (++track < struct_count)
 	{
-		cmd[track].full_cmd = ft_calloc(4, sizeof (char *));
+		if (ft_strchr("<|>", cmd[track].command[0]))
+			return ;
+		else
+			cmd[track].full_cmd = ft_calloc(4, sizeof (char *));
+		cmd[track].full_cmd[0] = ft_strdup(cmd[track].command);
 		if (!cmd[track].flags && cmd[track].input)
-		{
-			cmd[track].full_cmd[0] = ft_strdup(cmd[track].command);
 			cmd[track].full_cmd[1] = ft_strdup(cmd[track].input);
-		}
 		else if (cmd[track].flags && !cmd[track].input)
-		{
-			cmd[track].full_cmd[0] = ft_strdup(cmd[track].command);
 			cmd[track].full_cmd[1] = ft_strdup(cmd[track].flags);
-		}
 		else if (cmd[track].flags && cmd[track].input)
 		{
-			cmd[track].full_cmd[0] = ft_strdup(cmd[track].command);
 			cmd[track].full_cmd[1] = ft_strdup(cmd[track].flags);
 			cmd[track].full_cmd[2] = ft_strdup(cmd[track].input);
 		}
@@ -119,16 +114,15 @@ t_command	*init_cmds(char **input)
 	t_command	*cmd;
 	int			index;
 	int			struct_count;
+	int			track;
 
 	index = 0;
 	struct_count = 0;
+	track = 0;
 	struct_count = count_struct(input, struct_count);
 	printf("struct count is %d\n", struct_count);
 	cmd = ft_calloc(struct_count + 1, sizeof(t_command));
-	printf("here1\n");
 	put_cmd_to_struct(cmd, index, struct_count, input);
-	printf("here2\n");
-	put_full_cmd(cmd, struct_count);
-	printf("here3\n");
+	put_full_cmd(cmd, struct_count, track);
 	return (cmd);
 }
