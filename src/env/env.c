@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/13 12:58:19 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:01:21 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	*to_string(t_env **env)
 	return (output);
 }
 
-void	*ft_env(t_env **env, t_command *next)
+void	ft_env(t_env **env, t_command *next)
 {
 	if (next)
 		next->input = to_string(env);

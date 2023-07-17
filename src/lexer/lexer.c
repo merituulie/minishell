@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/10 15:41:14 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/17 13:09:12 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len)
 /// @param array 2d array, holding whole input in array[0].
 char	**parse_line(char **array)
 {
-	size_t	i;
+	int		i;
 	size_t	j;
 	size_t	del_len;
 

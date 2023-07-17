@@ -5,16 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/13 13:13:43 by yoonslee         ###   ########.fr        #
+#    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
+#    Updated: 2023/07/17 16:07:00 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline -w
+BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -28,8 +27,11 @@ LEXER_SRC = lexer \
 			char_checks \
 			syntax_error
 
+COMMAND_SRC = init_command \
+			command_utils \
+
 PARSER_SRC = expand_env \
-			utils \
+			parser_utils \
 			concatenate \
 
 H_FILES = hashmap \
@@ -38,10 +40,13 @@ H_FILES = hashmap \
 		parsing \
 		env \
 
+
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
 ENV_PRE = $(addprefix ./src/env/, $(ENV_SRC))
 ENV_SUFF = $(addsuffix .c, $(ENV_PRE))
+COMMAND_PRE = $(addprefix ./src/command/, $(COMMAND_SRC))
+COMMAND_SUFF = $(addsuffix .c, $(COMMAND_PRE))
 LEXER_PRE = $(addprefix ./src/lexer/, $(LEXER_SRC))
 LEXER_SUFF = $(addsuffix .c, $(LEXER_PRE))
 PARSER_PRE = $(addprefix ./src/parser/, $(PARSER_SRC))
@@ -54,7 +59,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(PARSER_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMAND_SUFF) $(PARSER_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean
