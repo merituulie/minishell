@@ -5,42 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 17:42:15 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/17 12:52:56 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/07/17 15:18:20 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parsing.h"
+#include "../../headers/minishell.h"
+#include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
 
-/*initialize the quotes count to zero*/
-void	quotes_init(t_data *ms)
+char	*ft_strchr_null(const char *s, int c)
 {
-	ms->s_quotes = 0;
-	ms->d_quotes = 0;
-}
-
-void	free_str_array(char **str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
+	while (*s)
 	{
-		if (str[i])
-		{
-			free(str[i]);
-			str[i] = NULL;
-		}
+		if (*s == (char) c)
+			return ((char *)s);
+		s++;
 	}
-	if (str)
-		free(str);
+	return (NULL);
 }
 
-void	ms_init(t_data *ms)
+//here it <<, >> case should be added.
+int	count_struct(char **input, int struct_count)
 {
-	ms->end = 0;
-	ms->start = 0;
-	ms->s_quotes = 0;
-	ms->d_quotes = 0;
+	int	index;
+
+	index = 0;
+	while (input[index])
+	{
+		if ((ft_strchr_null("<|>", input[index][0])) || index == 0)
+		{
+			struct_count++;
+			index++;
+		}
+		else
+			index++;
+	}
+	return (struct_count);
 }

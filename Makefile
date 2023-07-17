@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/17 12:57:48 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/17 13:37:22 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline -w
-BUILD_FLAGS = -Wall -Wextra -Werror -g
+BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -30,6 +29,9 @@ LEXER_SRC = lexer \
 			char_checks \
 			syntax_error
 
+COMMAND_SRC = init_command \
+			utils \
+
 PARSER_SRC = expand_env \
 			utils \
 			concatenate \
@@ -40,7 +42,6 @@ H_FILES = hashmap \
 		parsing \
 		env \
 
-COMMAND_SRC = init_command \
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
@@ -60,7 +61,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(PARSER_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMAND_SUFF) $(PARSER_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

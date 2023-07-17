@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   char_checks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:53:56 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/06 11:00:41 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/17 13:13:03 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ int	double_redir(char *str, int j)
 		else
 			return (1);
 	}
+	return (0);
 }

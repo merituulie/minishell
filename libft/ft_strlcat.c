@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:16:55 by vvu               #+#    #+#             */
-/*   Updated: 2023/01/16 15:44:43 by vvu              ###   ########.fr       */
+/*   Updated: 2023/07/17 14:01:45 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,23 @@
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	dest_size;
-	size_t	src_size;
+	size_t	dst_len;
+	size_t	src_len;
 
 	i = 0;
-	src_size = ft_strlen(src);
+	src_len = ft_strlen(src);
 	if (dstsize == 0)
-		return (src_size);
-	dest_size = ft_strlen(dst);
-	if (dstsize <= dest_size)
-		return (src_size + dstsize);
-	while (src[i] && (dest_size + i < dstsize - 1))
+		return (src_len);
+	dst_len = ft_strlen(dst);
+	if (dstsize <= dst_len)
+		return (src_len + dstsize);
+	if (!src)
+		return (dst_len + src_len);
+	while (src[i] && (dst_len + i < dstsize - 1))
 	{
-		dst[dest_size + i] = src[i];
+		dst[dst_len + i] = src[i];
 		i++;
 	}
-	dst[dest_size + i] = '\0';
-	return (dest_size + src_size);
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }

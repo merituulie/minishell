@@ -6,31 +6,13 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/17 11:35:13 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:20:40 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
-
-//here it <<, >> case should be added.
-static int	count_struct(char **input, int struct_count)
-{
-	int	index;
-
-	index = 0;
-	while (input[index])
-	{
-		if ((ft_strchr("<|>", input[index][0])) || index == 0)
-		{
-			struct_count++;
-			index++;
-		}
-		else
-			index++;
-	}
-	return (struct_count);
-}
+#include "../../libft/libft.h"
 
 static char	*put_to_input(char **input, int *index)
 {
@@ -42,7 +24,8 @@ static char	*put_to_input(char **input, int *index)
 	space_count = -1;
 	str_len = 0;
 	cur_index = *index;
-	while (input[*index] != NULL && !ft_strchr("<|>", input[*index][0]))
+	while ((*index) < ft_arrlen(input) && \
+	!ft_strchr_null("<|>", input[*index][0]))
 	{
 		str_len += ft_strlen(input[*index]);
 		(*index)++;
@@ -81,16 +64,12 @@ void	put_cmd_to_struct(t_command *cmd, int index, \
 	track = -1;
 	while (++track < struct_count)
 	{
-		printf("index is %d\n", index);
 		if (ft_strchr("|", input[index][0]))
 			index++;
 		cmd[track].command = ft_strdup(input[index++]);
-		printf("cmd[%d].command is %s\n", track, cmd[track].command);
 		cmd[track].flags = put_to_flags(input, &index);
-		printf("cmd[%d].flags is %s\n", track, cmd[track].flags);
 		str = put_to_input(input, &index);
 		cmd[track].input = ft_strdup(str);
-		printf("cmd[%d].input is %s\n", track, cmd[track].input);
 		free(str);
 	}
 }
@@ -105,9 +84,8 @@ t_command	*init_cmds(char **input)
 	index = 0;
 	struct_count = 0;
 	struct_count = count_struct(input, struct_count);
-	printf("struct count is %d\n", struct_count);
+	// printf("struct count is %d\n", struct_count);
 	cmd = ft_calloc(struct_count + 1, sizeof(t_command));
 	put_cmd_to_struct(cmd, index, struct_count, input);
-	printf("---before returning to main\n");
 	return (cmd);
 }

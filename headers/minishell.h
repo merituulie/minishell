@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/17 12:48:08 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:18:26 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ typedef struct s_command
 	int		pid;
 }	t_command;
 
-int			handle_commands(t_command *commands[], t_env **env);
 t_command	*init_cmds(char **input);
+int			count_struct(char **input, int struct_count);
+char		*ft_strchr_null(const char *s, int c);
+
 char		*ft_echo(t_command *command, int isPiped);
 
 // int	handle_commands(t_command *commands, t_env **env);
