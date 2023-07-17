@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/13 13:18:36 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:55:33 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ int		double_redir(char *str, int j);
 
 /*syntax_error.c*/
 void	syntax_error(char *str);
+void	syntax_error2(char *str, int i);
+int		quote_check(char *str, int i, char quote);
 int		check_if_nothing(char *str, int i);
-bool	is_white(char c);
 void	syntax_error_msg(int i, char *str);
 
 #endif

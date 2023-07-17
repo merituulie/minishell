@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/11 11:44:07 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:57:41 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,42 +22,44 @@ void	syntax_error_msg(int i, char *str)
 	if (i == 2)
 		printf("syntax error near unexpected token 'newline'\n");
 	if (i == 3)
+		printf("syntax error near unexpected token `>'\n");
+	if (i == 4)
+		printf("syntax error near unexpected token `<'\n");
+	if (i == 5)
 		printf("syntax error: quotes not ended\n");
 	free(str);
 	exit(258);
 }
 
-/*if the single quotes or double quotes doesn't have a pair ending*/
-void	quote_check(char *str, int i, char quote)
+int	quote_check(char *str, int i, char quote)
 {
 	i++;
 	while (str[i])
 	{
 		if (str[i] == quote)
-			return ;
+			return (i);
 		i++;
 	}
-	syntax_error_msg(3, str);
+	syntax_error_msg(5, str);
 }
 
-bool	is_white(char c)
+/*if the single quotes or double quotes doesn't have a pair ending*/
+void	syntax_error2(char *str, int i)
 {
-	char	*delims;
-
-	delims = " \t\n";
-	while (*delims)
+	i = -1;
+	while (str[++i])
 	{
-		if (c == *delims)
-			return (true);
-		delims++;
+		if (str[i] == 34 || str[i] == 39)
+		{
+			i = quote_check(str, i, str[i]);
+		}
 	}
-	return (false);
 }
 
 int	check_if_nothing(char *str, int i)
 {
 	i++;
-	while (str[i] && is_white(str[i]) == true)
+	while (str[i] && is_delim(str[i]) == true)
 		i++;
 	if (!str[i])
 		return (1);
@@ -74,7 +76,8 @@ void	syntax_error(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (str[0] == '|' && check_if_nothing(str, i))
+		if (str[0] == '|' && check_if_nothing(str, i) || \
+			(str[i] == '|' && str[i + 1] == '|'))
 			syntax_error_msg(1, str);
 		if (str[i] == '|' && check_if_nothing(str, i))
 			syntax_error_msg(1, str);
@@ -84,15 +87,10 @@ void	syntax_error(char *str)
 			syntax_error_msg(2, str);
 		if ((str[i] == '>' && str[i + 1] == '>') && check_if_nothing(str, i))
 			syntax_error_msg(2, str);
+		if ((str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>'))
+			syntax_error_msg(3, str);
+		if ((str[i] == '<' && str[i + 1] == '<' && str[i + 2] == '<'))
+			syntax_error_msg(4, str);
 	}
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == 34 || str[i] == 39)
-		{
-			quote_check(str, i, str[i]);
-			return ;
-		}
-	}
+	syntax_error2(str, i);
 }
-//forgot to add <<<<<<<, oor >>>>>F>>>>>> |||||||
