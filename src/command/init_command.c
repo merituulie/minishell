@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/17 15:20:40 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:01:20 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static char	*put_to_input(char **input, int *index)
 	space_count = -1;
 	str_len = 0;
 	cur_index = *index;
+	if (ft_strchr_null("<|>", input[*index][0]))
+		return (NULL);
 	while ((*index) < ft_arrlen(input) && \
 	!ft_strchr_null("<|>", input[*index][0]))
 	{
@@ -67,9 +69,19 @@ void	put_cmd_to_struct(t_command *cmd, int index, \
 		if (ft_strchr("|", input[index][0]))
 			index++;
 		cmd[track].command = ft_strdup(input[index++]);
-		cmd[track].flags = put_to_flags(input, &index);
+		if (input[index] == NULL)
+			return ;
+		str = put_to_flags(input, &index);
+		if (str == NULL)
+			cmd[track].flags = NULL;
+		else
+			cmd[track].flags = ft_strdup(str);
+		free(str);
 		str = put_to_input(input, &index);
-		cmd[track].input = ft_strdup(str);
+		if (str == NULL)
+			cmd[track].input = NULL;
+		else
+			cmd[track].input = ft_strdup(str);
 		free(str);
 	}
 }
@@ -84,7 +96,7 @@ t_command	*init_cmds(char **input)
 	index = 0;
 	struct_count = 0;
 	struct_count = count_struct(input, struct_count);
-	// printf("struct count is %d\n", struct_count);
+	printf("struct count is %d\n", struct_count);
 	cmd = ft_calloc(struct_count + 1, sizeof(t_command));
 	put_cmd_to_struct(cmd, index, struct_count, input);
 	return (cmd);

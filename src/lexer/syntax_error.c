@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/17 15:57:41 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:17:25 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	quote_check(char *str, int i, char quote)
 		i++;
 	}
 	syntax_error_msg(5, str);
+	return (-1);
 }
 
 /*if the single quotes or double quotes doesn't have a pair ending*/
@@ -52,6 +53,8 @@ void	syntax_error2(char *str, int i)
 		if (str[i] == 34 || str[i] == 39)
 		{
 			i = quote_check(str, i, str[i]);
+			if (i == -1)
+				printf("didn't go to syntax_error_msg!\n");
 		}
 	}
 }
@@ -76,7 +79,7 @@ void	syntax_error(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (str[0] == '|' && check_if_nothing(str, i) || \
+		if ((str[0] == '|' && check_if_nothing(str, i)) || \
 			(str[i] == '|' && str[i + 1] == '|'))
 			syntax_error_msg(1, str);
 		if (str[i] == '|' && check_if_nothing(str, i))

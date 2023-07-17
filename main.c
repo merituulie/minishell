@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/17 16:01:42 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:15:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char **argv, char **envp)
 		printf("cmd[%d].flags is %s$\n", ms.i, cmd[ms.i].flags);
 		printf("cmd[%d].input is %s$\n", ms.i, cmd[ms.i].input);
 	}
+	// handle_commands(cmd, &env); to send env, we need to have env_struct in the minishell header.
 	free_str_array(cmd_line);
 	return (0);
 }
