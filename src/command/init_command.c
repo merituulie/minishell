@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/14 14:24:29 by vvu              ###   ########.fr       */
+/*   Updated: 2023/07/17 09:32:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 
+//here it <<, >> case should be added.
 static int count_struct(char **input, int struct_count)
 {
 	int index;
@@ -20,7 +21,7 @@ static int count_struct(char **input, int struct_count)
 	index = 0;
 	while (input[index])
 	{
-		if (ft_strchr("<|>", input[index][0]))
+		if ((ft_strchr("<|>", input[index][0])) || index == 0)
 		{
 			struct_count++;
 			index++;
@@ -36,7 +37,7 @@ static char *put_to_input(char **input, int *index)
 	int		str_len;
 	int		cur_index;
 	char	*str;
-	int		word_count = 0;
+	int		space_count = -1;
 
 	str_len = 0;
 	cur_index = *index;
@@ -44,14 +45,17 @@ static char *put_to_input(char **input, int *index)
 	{
 		str_len += ft_strlen(input[*index]);
 		(*index)++;
-		word_count++;
+		space_count++;
 	}
-	str = malloc(sizeof(char) * (str_len + word_count + 1));
+	str = malloc(sizeof(char) * (str_len + space_count + 1));
 	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
+	printf("str after strlcpy is now %s|\n", str);
 	while (++cur_index < *index)
 	{
-		ft_strlcat(str, " ", str_len + word_count + 1);
-		ft_strlcat(str, input[cur_index], str_len + word_count + 1);
+		ft_strlcat(str, " ", str_len + space_count + 1);
+		printf("str after first strlcat is now %s|\n", str);
+		ft_strlcat(str, input[cur_index], str_len + space_count + 1);
+		printf("str after second strlcat is now %s|\n", str);
 	}
 	return (str);
 }
@@ -73,27 +77,38 @@ static char	*put_to_flags(char **input, int	*index)
 static t_command *put_cmd_to_struct(t_command *cmd, int index, int struct_count, char **input)
 {
 	int track;
+	char	*str;
 
 	track = -1;
-	while (track++ < struct_count)
+	printf("here1\n");
+	while (++track < struct_count)
 	{
-		cmd[track].command = input[index++];
+		printf("index is %d\n", index);
+		if (ft_strchr("|", input[index][0]))
+			index++;
+		cmd[track].command = ft_strdup(input[index++]);
+		printf("here2\n");
 		cmd[track].flags = put_to_flags(input, &index);
-		cmd[track].input = put_to_input(input, &index);
+		printf("here3\n");
+		str = put_to_input(input, &index);
+		cmd[track].input = ft_strdup(str);
+		free(str);
+		printf("here4\n");
 	}
 	cmd[struct_count + 1].command = NULL;
 	return (cmd);
 }
 
-t_command *init_cmds(t_command *cmd, char **input)
+t_command	*init_cmds(t_command *cmd, char **input)
 {
-	int index;
-	int struct_count;
+	int	index;
+	int	struct_count;
 
 	index = 0;
 	struct_count = 0;
 	struct_count = count_struct(input, struct_count);
-	cmd = ft_calloc(struct_count + 1,sizeof(t_command));
+	printf("struct count is %d\n", struct_count);
+	cmd = ft_calloc(struct_count + 1, sizeof(t_command));
 	cmd = put_cmd_to_struct(cmd, index, struct_count, input);
 	/*
 	int	i = 0;
