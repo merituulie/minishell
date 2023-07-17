@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/17 13:37:22 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/17 16:05:25 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,10 @@ LEXER_SRC = lexer \
 			syntax_error
 
 COMMAND_SRC = init_command \
-			utils \
+			command_utils \
 
 PARSER_SRC = expand_env \
-			utils \
+			parser_utils \
 			concatenate \
 
 H_FILES = hashmap \
