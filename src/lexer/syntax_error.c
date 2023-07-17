@@ -76,7 +76,7 @@ void	syntax_error(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (str[0] == '|' && check_if_nothing(str, i) || \
+		if ((str[0] == '|' && check_if_nothing(str, i)) || \
 			(str[i] == '|' && str[i + 1] == '|'))
 			syntax_error_msg(1, str);
 		if (str[i] == '|' && check_if_nothing(str, i))
