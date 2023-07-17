@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 11:10:28 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/17 12:53:53 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/07/06 09:25:23 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/06 09:25:56 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+size_t	ft_arrlen(const char **array)
 {
-	char	*str;
-	int		len;
-	int		i;
+	size_t	counter;
 
-	len = ft_strlen(s1);
-	i = 0;
-	str = malloc (sizeof(char) *(len + 1));
-	if (!str)
-		return (0);
-	while (s1[i] != '\0')
+	counter = 0;
+	while (*array != '\0')
 	{
-		str[i] = s1[i];
-		i++;
+		counter++;
+		array++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (counter);
 }

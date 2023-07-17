@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:55:08 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 17:28:44 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:18:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ENV_H
 
 # include "hashmap.h"
+# include "minishell.h"
 
 typedef struct s_env
 {
@@ -21,6 +22,6 @@ typedef struct s_env
 }	t_env;
 
 void	fill_env(char **envp, t_env **env);
-char	*ft_env(t_env **env, int isPiped);
+// void	*ft_env(t_env **env, t_command *next);
 
 #endif

@@ -3,73 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/12 15:51:20vvu              ###   ########.fr       */
+/*   Updated: 2023/07/17 12:49:25 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
-#include "headers/hashmap.h"
+#include <stdio.h> //printf, perror
+#include "headers/parsing.h"
+#include "headers/lexer.h"
 #include "headers/env.h"
+#include "headers/minishell.h"
 #include "libft/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 
-
-int ft_strcmp(char *s1, char *s2)
+int	main(int argc, char **argv, char **envp)
 {
-	unsigned char *str1;
-	unsigned char *str2;
+	char	*line;
+	char	**cmd_line;
+	int		i;
+	int		j;
+	t_data	ms;
+	t_command *cmd;
 
-	str1 = (unsigned char *) s1;
-	str2 = (unsigned char *) s2;
-	if (!str1 || !str2)
-		return (*str1 - *str2);
-	while (*str1)
-	{	
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
- 	}
-	return (*str1 - *str2);
-}
-
-int	main(void)
-{
-	char		*buf;
-	char		**input;
-	t_command	*lst_cmd;
-
-	lst_cmd = NULL;
-	while (1)
+	(void)argc;
+	(void)argv;
+	line = readline(PINK "Jose's PinkShell: " BORING);
+	cmd_line = ft_lexer(line);
+	free(line);
+	i = -1;
+	while (cmd_line[++i])
+		printf("cmd_line is: %s\n", cmd_line[i]);
+	ms.env = NULL;
+	fill_env(envp, &ms.env);
+	ms.end = 0;
+	ms.start = 0;
+	ms.s_quotes = 0;
+	ms.d_quotes = 0;
+	cmd_line = expand_quote_check(&ms, cmd_line);
+	cmd_line = concatenate(cmd_line, &ms);
+	while (cmd_line[++i])
+	i = -1;
 	{
-		buf = readline("Rainbow>> ");
-		add_history(buf);
-		if (ft_strcmp(buf, "exit") == 0)
-		{
-			free(buf);
-			break;
-		}
-		else
-		{
-			input = ft_split(buf, ' ');
-			lst_cmd = init_cmds(input);
-			int i = 0;
-			printf("command[1] is %s\n", lst_cmd[1].command);
-			while (lst_cmd[i].command)
-			{
-				printf("In Main: i is %d\n", i);
-				printf("Command: %s, address %p\n", lst_cmd[i].command, &lst_cmd[i].command);
-				printf("flags: %s, address %p\n", lst_cmd[i].flags, &lst_cmd[i].flags);
-				printf("input: %s, address %p\n", lst_cmd[i].input, &lst_cmd[i].input);
-				i++;
-			}
-		}
-		free(input);
-		free(buf);
+		printf("after parsing, cmd_line[%d] is %s\n", i, cmd_line[i]);
 	}
-	return 0;
+	cmd = init_cmds(cmd_line);
+	free_str_array(cmd_line);
+	return (0);
 }

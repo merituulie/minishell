@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/17 11:29:11 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:48:08 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 # define MINISHELL_H
 
 # include <stdio.h>
-# include "../libft/libft.h"
-# include "hashmap.h"
-# include "env.h"
 # include <readline/readline.h>
-# include <readline/history.h>
-/*command is command it self, ex)"echo"
-flag is ex) "n"
-input is ex) "hello my name"
-full_cmd is ex) "echo -n hello my name"*/
+# include "../libft/libft.h"
+# include "env.h"
+# include "parsing.h"
+# include "lexer.h"
+
+/* If input is 'echo -n "Hello, my name if"' then
+command -> "echo"
+flags -> "n"
+input -> "hello my name"
+full_cmd -> "echo -n "Hello, my name if"" */
 typedef struct s_command
 {
 	char	*command;
@@ -35,7 +37,10 @@ typedef struct s_command
 	int		pid;
 }	t_command;
 
-int		handle_commands(t_command *commands[], t_env **env);
+int			handle_commands(t_command *commands[], t_env **env);
 t_command	*init_cmds(char **input);
+char		*ft_echo(t_command *command, int isPiped);
+
+// int	handle_commands(t_command *commands, t_env **env);
 
 #endif

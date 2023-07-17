@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp_all.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 11:10:28 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/17 12:53:53 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/07/04 18:29:38 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/07/13 12:55:54 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_strncmp_all(const char *s1, const char *s2)
 {
-	char	*str;
-	int		len;
-	int		i;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
+	size_t			index;
+	size_t			len;
 
+	index = 0;
 	len = ft_strlen(s1);
-	i = 0;
-	str = malloc (sizeof(char) *(len + 1));
-	if (!str)
+	ptr1 = (unsigned char *)s1;
+	ptr2 = (unsigned char *)s2;
+	if (ptr1 == ptr2)
 		return (0);
-	while (s1[i] != '\0')
+	if (ft_strlen(s2) != len)
+		return (1);
+	while ((ptr1[index] != '\0' || ptr2[index] != '\0') && index < len)
 	{
-		str[i] = s1[i];
-		i++;
+		if (ptr1[index] != ptr2[index])
+			return (ptr1[index] - ptr2[index]);
+		index++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (0);
 }
