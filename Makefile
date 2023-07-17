@@ -5,12 +5,10 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/17 16:05:25 by yoonslee         ###   ########.fr        #
+#    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
+#    Updated: 2023/07/17 16:07:00 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
 
 NAME = minishell
 LIBFT_PATH = ./libft
