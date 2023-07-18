@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/17 17:01:20 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/18 09:49:23 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static char	*put_to_flags(char **input, int	*index)
 		return (NULL);
 }
 
+/* if issues with flags, we might need to add another free for the
+strdup for flags */
 void	put_cmd_to_struct(t_command *cmd, int index, \
 		int struct_count, char **input)
 {
@@ -76,7 +78,6 @@ void	put_cmd_to_struct(t_command *cmd, int index, \
 			cmd[track].flags = NULL;
 		else
 			cmd[track].flags = ft_strdup(str);
-		free(str);
 		str = put_to_input(input, &index);
 		if (str == NULL)
 			cmd[track].input = NULL;
