@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/18 16:03:38 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:34:04 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	copy_keyvalue(char **output, t_node *node)
 	*output = temp;
 }
 
-static char	*to_string(t_env **env)
+char	*env_to_string(t_env **env)
 {
 	char	*output;
 	t_node	*temp_node;
@@ -58,7 +58,7 @@ static char	*to_string(t_env **env)
 void	ft_env(t_env **env, t_command *next)
 {
 	if (next)
-		next->input = to_string(env);
+		next->input = env_to_string(env);
 	else
 		print_env((*env)->vars);
 }

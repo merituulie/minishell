@@ -6,7 +6,7 @@
 #    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/18 16:10:08 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/18 16:17:56 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ all: $(NAME)
 $(NAME):
 	make -C $(LIBFT_PATH)
 	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
-	$(COMMAND_SUFF) $(PARSER_SUFF) ./src/command_handler.c main.c \
+	$(COMMAND_SUFF) $(PARSER_SUFF) ./src/command_handler.c ./src/command_executer.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

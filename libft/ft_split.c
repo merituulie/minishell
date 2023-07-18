@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 08:43:30 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/13 13:24:33 by vvu              ###   ########.fr       */
+/*   Updated: 2023/07/18 16:23:00 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**ft_split(char const *s, char c)
 	char	**split;
 	size_t	count;
 
-	if (s == NULL)
+	if (!s)
 		return (NULL);
 	count = ft_count_words(s, c);
 	split = (char **)malloc(sizeof(char *) * (count + 1));

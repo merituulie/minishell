@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/18 16:11:35 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:36:54 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	execute_command(t_command *command,
 		return ;
 	else
 	{
-		return ;
+		ft_execve(command, env);
 	}
 }
 
