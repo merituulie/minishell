@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/17 16:07:00 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/18 16:10:08 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,11 @@ HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap \
 
-ENV_SRC = init \
+ENV_SRC = init_env \
 		env
+
+COMMON_SRC =	file \
+				pipe
 
 LEXER_SRC = lexer \
 			lexer_utils \
@@ -38,13 +41,14 @@ H_FILES = hashmap \
 		minishell \
 		lexer \
 		parsing \
-		env \
 
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
 ENV_PRE = $(addprefix ./src/env/, $(ENV_SRC))
 ENV_SUFF = $(addsuffix .c, $(ENV_PRE))
+COMMON_PRE = $(addprefix ./src/common/, $(COMMON_SRC))
+COMMON_SUFF = $(addsuffix .c, $(COMMON_PRE))
 COMMAND_PRE = $(addprefix ./src/command/, $(COMMAND_SRC))
 COMMAND_SUFF = $(addsuffix .c, $(COMMAND_PRE))
 LEXER_PRE = $(addprefix ./src/lexer/, $(LEXER_SRC))
@@ -59,7 +63,8 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMAND_SUFF) $(PARSER_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	$(COMMAND_SUFF) $(PARSER_SUFF) ./src/command_handler.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

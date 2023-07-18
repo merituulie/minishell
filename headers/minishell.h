@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/17 15:18:26 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:11:20 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include "../libft/libft.h"
-# include "env.h"
 # include "parsing.h"
 # include "lexer.h"
+# include "hashmap.h"
 
 /* If input is 'echo -n "Hello, my name if"' then
 command -> "echo"
@@ -33,16 +33,38 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
-	int		file_descriptors;
+	int		pipe_fds[2];
+	int		infile_fd;
+	int		outfile_fd;
 	int		pid;
+	int		id;
 }	t_command;
 
+typedef struct s_env
+{
+	struct s_node	**vars;
+}	t_env;
+
+// INITIALIZING
+void		fill_env(char **envp, t_env **env);
 t_command	*init_cmds(char **input);
 int			count_struct(char **input, int struct_count);
 char		*ft_strchr_null(const char *s, int c);
 
+// IMPLEMENTED COMMANDS
 char		*ft_echo(t_command *command, int isPiped);
+void		ft_env(t_env **env, t_command *next);
 
-// int	handle_commands(t_command *commands, t_env **env);
+// COMMAND HANDLER
+int			execute_commands(t_command *commands, int command_count, t_env **env);
+void		execute_command(t_command *command, t_command *next, t_env **env);
+
+// PIPING
+int			handle_pipe(t_command *commands, t_env **env);
+void		wait_children(int *pids, int count);
+
+// COMMON
+void		open_files(t_command **current);
+void		close_files(int *pipe_fds, t_command *current);
 
 #endif

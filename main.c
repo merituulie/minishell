@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/18 09:58:05 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:03:19 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
-#include "headers/env.h"
 #include "headers/minishell.h"
 #include "libft/libft.h"
-#include <readline/readline.h>
-#include <readline/history.h>
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -50,7 +47,7 @@ int	main(int argc, char **argv, char **envp)
 		printf("cmd[%d].flags is %s$\n", ms.i, cmd[ms.i].flags);
 		printf("cmd[%d].input is %s$\n", ms.i, cmd[ms.i].input);
 	}
-	// handle_commands(cmd, &env); to send env, we need to have env_struct in the minishell header.
+	// execute_commands(cmd, &env); to send env, we need to have env_struct in the minishell header.
 	while (ms.i >= 0)
 	{
 		if (cmd[ms.i].command)

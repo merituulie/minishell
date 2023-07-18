@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/17 13:01:21 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:03:38 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
-#include "../../headers/env.h"
 
 static void	print_env(t_node **head)
 {
