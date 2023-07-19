@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/19 10:22:10 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:44:10 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	put_full_cmd(t_command *cmd, int struct_count, int track)
 	}
 }
 
-
 void	put_cmd_to_struct(t_command *cmd, int index, \
 		int struct_count, char **input)
 {
@@ -108,7 +107,7 @@ void	put_cmd_to_struct(t_command *cmd, int index, \
 }
 
 /*only handles pipe now. <, >, >>. < cases are not handled*/
-t_command	*init_cmds(char **input)
+t_command	*init_cmds(t_data *ms, char **input)
 {
 	t_command	*cmd;
 	int			index;
