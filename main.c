@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 09:42:21 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:22:29 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ int	main(int argc, char **argv, char **envp)
 		}
 	}
 	// handle_commands(cmd, &env); to send env, we need to have env_struct in the minishell header.
-	free_str_array(cmd_line);
+	while (ms.i >= 0)
+	{
+		if (cmd[ms.i].command)
+			free(cmd[ms.i].command);
+		if (cmd[ms.i].flags)
+			free(cmd[ms.i].flags);
+		if (cmd[ms.i].input)
+			free(cmd[ms.i].input);
+		ms.i--;
+	}
+	if (cmd)
+		free(cmd);
+	if (cmd_line)
+		free_str_array(cmd_line);
 	return (0);
 }
