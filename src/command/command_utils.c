@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/19 10:16:59 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:07:01 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	strdup_if_not_null(t_command *cmd, int track, char *name, char *str)
 {
 	if (!ft_strncmp_all("flags", name))
 	{
-		printf("name is %s\n", name);
 		if (str == NULL)
 			cmd[track].flags = NULL;
 		else
@@ -60,7 +59,6 @@ void	strdup_if_not_null(t_command *cmd, int track, char *name, char *str)
 	}
 	else if (!ft_strncmp_all("input", name))
 	{
-		printf("name is %s\n", name);
 		if (str == NULL)
 			cmd[track].input = NULL;
 		else

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/17 12:52:41 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:03:47 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ typedef struct s_data
 	char			*out;
 	int				i;
 	int				j;
+	int				struct_count;
 }	t_data;
-
-int		main(int argc, char **argv, char **envp);
 
 /*expand_env.c*/
 char	**expand_quote_check(t_data *ms, char **str);
