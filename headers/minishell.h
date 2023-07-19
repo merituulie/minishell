@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 11:11:11 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:49:59 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int			count_struct(char **input, int struct_count);
 char		*ft_strchr_null(const char *s, int c);
 void		strdup_if_not_null(t_command *cmd, int track, \
 	char *name, char *str);
+void		strdup_filename(t_command *cmd, int track, char *str);
+void		put_full_cmd(t_command *cmd, int struct_count, int track);
 
 char		*ft_echo(t_command *command, int isPiped);
 
