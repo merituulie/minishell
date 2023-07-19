@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/18 16:44:06 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:34:05 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,11 @@ int	main(int argc, char **argv, char **envp)
 	cmd_line = ft_lexer(line);
 	free(line);
 	ms.i = -1;
-	while (cmd_line[++(ms.i)])
-		printf("cmd_line is: %s\n", cmd_line[ms.i]);
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
 	cmd_line = expand_quote_check(&ms, cmd_line);
 	cmd_line = concatenate(cmd_line, &ms);
 	ms.i = -1;
-	while (cmd_line[++(ms.i)])
-	{
-		printf("after parsing, cmd_line[%d] is %s$\n", ms.i, cmd_line[ms.i]);
-	}
 	cmd = init_cmds(cmd_line);
 	ms.i = -1;
 	while (cmd[++(ms.i)].command)
@@ -46,6 +40,12 @@ int	main(int argc, char **argv, char **envp)
 		printf("cmd[%d].command is %s$\n", ms.i, cmd[ms.i].command);
 		printf("cmd[%d].flags is %s$\n", ms.i, cmd[ms.i].flags);
 		printf("cmd[%d].input is %s$\n", ms.i, cmd[ms.i].input);
+		if (cmd[ms.i].full_cmd)
+		{
+			printf("cmd[%d].full_cmd[0] is %s\n", ms.i, cmd[ms.i].full_cmd[0]);
+			printf("cmd[%d].full_cmd[1] is %s\n", ms.i, cmd[ms.i].full_cmd[1]);
+			printf("cmd[%d].full_cmd[2] is %s\n", ms.i, cmd[ms.i].full_cmd[2]);
+		}
 	}
 	// execute_commands(cmd, &env); to send env, we need to have env_struct in the minishell header.
 	while (ms.i >= 0)

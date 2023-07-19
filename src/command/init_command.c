@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/18 09:49:23 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:22:10 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,29 @@ static char	*put_to_flags(char **input, int	*index)
 		return (NULL);
 }
 
-/* if issues with flags, we might need to add another free for the
-strdup for flags */
+void	put_full_cmd(t_command *cmd, int struct_count, int track)
+{
+	track = -1;
+	while (++track < struct_count)
+	{
+		if (ft_strchr("<>", cmd[track].command[0]))
+			return ;
+		else
+			cmd[track].full_cmd = ft_calloc(4, sizeof (char *));
+		cmd[track].full_cmd[0] = ft_strdup(cmd[track].command);
+		if (!cmd[track].flags && cmd[track].input)
+			cmd[track].full_cmd[1] = ft_strdup(cmd[track].input);
+		else if (cmd[track].flags && !cmd[track].input)
+			cmd[track].full_cmd[1] = ft_strdup(cmd[track].flags);
+		else if (cmd[track].flags && cmd[track].input)
+		{
+			cmd[track].full_cmd[1] = ft_strdup(cmd[track].flags);
+			cmd[track].full_cmd[2] = ft_strdup(cmd[track].input);
+		}
+	}
+}
+
+
 void	put_cmd_to_struct(t_command *cmd, int index, \
 		int struct_count, char **input)
 {
@@ -71,19 +92,18 @@ void	put_cmd_to_struct(t_command *cmd, int index, \
 		if (ft_strchr("|", input[index][0]))
 			index++;
 		cmd[track].command = ft_strdup(input[index++]);
+		if (!cmd[track].command)
+			printf("strdup allocation fail!");
 		if (input[index] == NULL)
 			return ;
 		str = put_to_flags(input, &index);
-		if (str == NULL)
-			cmd[track].flags = NULL;
-		else
-			cmd[track].flags = ft_strdup(str);
+		strdup_if_not_null(cmd, track, "flags", str);
+		str = NULL;
+		if (input[index] == NULL)
+			return ;
 		str = put_to_input(input, &index);
-		if (str == NULL)
-			cmd[track].input = NULL;
-		else
-			cmd[track].input = ft_strdup(str);
-		free(str);
+		strdup_if_not_null(cmd, track, "input", str);
+		str = NULL;
 	}
 }
 
@@ -93,12 +113,15 @@ t_command	*init_cmds(char **input)
 	t_command	*cmd;
 	int			index;
 	int			struct_count;
+	int			track;
 
 	index = 0;
 	struct_count = 0;
+	track = 0;
 	struct_count = count_struct(input, struct_count);
 	printf("struct count is %d\n", struct_count);
 	cmd = ft_calloc(struct_count + 1, sizeof(t_command));
 	put_cmd_to_struct(cmd, index, struct_count, input);
+	put_full_cmd(cmd, struct_count, track);
 	return (cmd);
 }
