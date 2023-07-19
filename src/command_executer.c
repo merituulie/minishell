@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_executer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:20:43 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/18 16:36:27 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:24:36 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_execve(t_command *command, t_env **env)
 {
 	char	*path;
 	char	**vars;
-
+ 
 	path = find_path(command->command, (*env)->vars);
 	if (!path)
 		return (-1);

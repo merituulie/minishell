@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/19 11:07:01 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:01:12 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,21 @@ int	count_struct(char **input, int struct_count)
 	return (struct_count);
 }
 
-void	strdup_if_not_null(t_command *cmd, int track, char *name, char *str)
+void	parse_input(t_command *cmd, int track, char *str)
 {
-	if (!ft_strncmp_all("flags", name))
-	{
-		if (str == NULL)
-			cmd[track].flags = NULL;
-		else
-		{
-			cmd[track].flags = ft_strdup(str);
-			if (!cmd[track].flags)
-				printf("strdup allocation fail!\n");
-		}
-	}
-	else if (!ft_strncmp_all("input", name))
-	{
-		if (str == NULL)
-			cmd[track].input = NULL;
-		else
-		{
-			cmd[track].input = ft_strdup(str);
-			if (!cmd[track].input)
-				printf("strdup allocation fail!\n");
-		}
-	}
+	if (!str)
+		return ;
+	
+	cmd[track].input = ft_strdup(str);
+	if (!cmd[track].input)
+		printf("strdup allocation fail!\n");
+}
+
+void	parse_flags(t_command *cmd, int track, char *str)
+{
+	if (!str)
+		return ;
+	cmd[track].flags = ft_strdup(str);
+	if (!cmd[track].flags)
+		printf("strdup allocation fail!\n");
 }

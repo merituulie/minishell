@@ -6,8 +6,8 @@ void	free_char_array(char **str)
 	char	*input;
 
 	i = 0;
-	if (str == NULL)
-		exit(1);
+	if (!str)
+		return ;
 	while (str[i])
 	{
 		input = str[i];

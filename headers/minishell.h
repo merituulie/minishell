@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 11:14:42 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:31:07 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
-	int		pipe_fds[2];
-	int		infile_fd;
-	int		outfile_fd;
+	int		*fds;
 	int		pid;
 	int		id;
 }	t_command;
@@ -52,25 +50,24 @@ void		fill_env(char **envp, t_env **env);
 t_command	*init_cmds(t_data *ms, char **input);
 int			count_struct(char **input, int struct_count);
 char		*ft_strchr_null(const char *s, int c);
-void		strdup_if_not_null(t_command *cmd, int track, \
-	char *name, char *str);
+void		parse_flags(t_command *cmd, int track, char *str);
+void		parse_input(t_command *cmd, int track, char *str);
 
 // IMPLEMENTED COMMANDS
 char		*ft_echo(t_command *command, int isPiped);
-void		ft_env(t_env **env, t_command *next);
+void		ft_env(t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, t_env **env);
-void		execute_command(t_command *command, t_command *next, t_env **env);
+void		execute_command(t_command *command, t_env **env);
 
 // PIPING
-int			handle_pipe(t_command *commands, t_env **env);
+int			handle_pipe(t_command *commands, t_env **env, int last);
 void		wait_children(int *pids, int count);
 
 // COMMON
-void		open_files(t_command **current);
-void		close_files(int *pipe_fds, t_command *current);
+void		close_files(int *pipe_fds);
 
 // TO STRINGS
 char	*env_to_string(t_env **env);

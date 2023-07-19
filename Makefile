@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/18 16:17:56 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/19 14:12:30 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ HASHMAP_SRC = add_hashmap \
 ENV_SRC = init_env \
 		env
 
-COMMON_SRC =	file \
-				pipe
+COMMON_SRC =	pipe
 
 LEXER_SRC = lexer \
 			lexer_utils \

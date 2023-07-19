@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 11:11:52 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:50:26 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv, char **envp)
 			printf("cmd[%d].full_cmd[2] is %s\n", ms.i, cmd[ms.i].full_cmd[2]);
 		}
 	}
-	// execute_commands(cmd, &env); to send env, we need to have env_struct in the minishell header.
+	execute_commands(cmd, ms.struct_count, &ms.env);
 	while (ms.i >= 0)
 	{
 		if (cmd[ms.i].command)

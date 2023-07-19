@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/19 11:05:45 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:59:35 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*put_to_flags(char **input, int	*index)
 		return (NULL);
 }
 
-void	put_full_cmd(t_command *cmd, int struct_count, int track)
+static void	put_full_cmd(t_command *cmd, int struct_count, int track)
 {
 	track = -1;
 	while (++track < struct_count)
@@ -80,7 +80,7 @@ void	put_full_cmd(t_command *cmd, int struct_count, int track)
 }
 
 
-void	put_cmd_to_struct(t_command *cmd, int index, \
+static void	put_cmd_to_struct(t_command *cmd, int index, \
 		int struct_count, char **input)
 {
 	int		track;
@@ -94,15 +94,15 @@ void	put_cmd_to_struct(t_command *cmd, int index, \
 		cmd[track].command = ft_strdup(input[index++]);
 		if (!cmd[track].command)
 			printf("strdup allocation fail!");
-		if (input[index] == NULL)
+		if (!input[index])
 			return ;
 		str = put_to_flags(input, &index);
-		strdup_if_not_null(cmd, track, "flags", str);
+		parse_flags(cmd, track, str);
 		str = NULL;
-		if (input[index] == NULL)
+		if (!input[index])
 			return ;
 		str = put_to_input(input, &index);
-		strdup_if_not_null(cmd, track, "input", str);
+		parse_input(cmd, track, str);
 		str = NULL;
 	}
 }
