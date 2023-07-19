@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 10:34:05 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:11:52 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **envp)
 	cmd_line = expand_quote_check(&ms, cmd_line);
 	cmd_line = concatenate(cmd_line, &ms);
 	ms.i = -1;
-	cmd = init_cmds(cmd_line);
+	cmd = init_cmds(&ms, cmd_line);
 	ms.i = -1;
 	while (cmd[++(ms.i)].command)
 	{

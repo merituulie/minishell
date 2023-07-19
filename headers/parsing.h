@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/18 16:02:19 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:13:16 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ typedef struct s_data
 	char			*out;
 	int				i;
 	int				j;
+	int				struct_count;
 }	t_data;
-
-int		main(int argc, char **argv, char **envp);
 
 /*expand_env.c*/
 char	**expand_quote_check(t_data *ms, char **str);

@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 10:33:27 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:14:42 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ typedef struct s_env
 	struct s_node	**vars;
 }	t_env;
 
+typedef struct s_data	t_data;
+
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
-t_command	*init_cmds(char **input);
+t_command	*init_cmds(t_data *ms, char **input);
 int			count_struct(char **input, int struct_count);
 char		*ft_strchr_null(const char *s, int c);
 void		strdup_if_not_null(t_command *cmd, int track, \
