@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/17 18:50:07 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:17:18 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	put_full_cmd(t_command *cmd, int struct_count, int track)
 	track = -1;
 	while (++track < struct_count)
 	{
-		if (ft_strchr("<|>", cmd[track].command[0]))
+		if (ft_strchr("<>", cmd[track].command[0]))
 			return ;
 		else
 			cmd[track].full_cmd = ft_calloc(4, sizeof (char *));
@@ -79,6 +79,7 @@ void	put_full_cmd(t_command *cmd, int struct_count, int track)
 	}
 }
 
+
 void	put_cmd_to_struct(t_command *cmd, int index, \
 		int struct_count, char **input)
 {
@@ -91,20 +92,18 @@ void	put_cmd_to_struct(t_command *cmd, int index, \
 		if (ft_strchr("|", input[index][0]))
 			index++;
 		cmd[track].command = ft_strdup(input[index++]);
+		if (!cmd[track].command)
+			printf("strdup allocation fail!");
 		if (input[index] == NULL)
 			return ;
 		str = put_to_flags(input, &index);
-		if (str == NULL)
-			cmd[track].flags = NULL;
-		else
-			cmd[track].flags = ft_strdup(str);
-		free(str);
+		strdup_if_not_null(cmd, track, "flags", str);
+		str = NULL;
+		if (input[index] == NULL)
+			return ;
 		str = put_to_input(input, &index);
-		if (str == NULL)
-			cmd[track].input = NULL;
-		else
-			cmd[track].input = ft_strdup(str);
-		free(str);
+		strdup_if_not_null(cmd, track, "input", str);
+		str = NULL;
 	}
 }
 
