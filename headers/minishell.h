@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 11:09:06 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:11:11 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_command
 	int		file_descriptors;
 	int		pid;
 }	t_command;
+
+typedef struct s_data	t_data;
 
 t_command	*init_cmds(t_data *ms, char **input);
 int			count_struct(char **input, int struct_count);

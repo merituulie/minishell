@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/19 10:44:10 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:12:11 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,15 @@ t_command	*init_cmds(t_data *ms, char **input)
 {
 	t_command	*cmd;
 	int			index;
-	int			struct_count;
 	int			track;
 
 	index = 0;
-	struct_count = 0;
+	ms->struct_count = 0;
 	track = 0;
-	struct_count = count_struct(input, struct_count);
-	printf("struct count is %d\n", struct_count);
-	cmd = ft_calloc(struct_count + 1, sizeof(t_command));
-	put_cmd_to_struct(cmd, index, struct_count, input);
-	put_full_cmd(cmd, struct_count, track);
+	ms->struct_count = count_struct(input, ms->struct_count);
+	printf("struct count is %d\n", ms->struct_count);
+	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
+	put_cmd_to_struct(cmd, index, ms->struct_count, input);
+	put_full_cmd(cmd, ms->struct_count, track);
 	return (cmd);
 }
