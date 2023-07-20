@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 16:29:21 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:52:30 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,8 @@ void	wait_children(int *pids, int count)
 	int	i;
 
 	i = 0;
-	// printf("wait count %d\n", count);
 	while (i <= count)
 	{
-		// printf("%d is waiting: %d \n", i, pids[i]);
 		waitpid(pids[i], NULL, 0);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 15:45:50 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:53:25 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	int			pipe_fds[(command_count * 2) - 2];
 
 	i = 0;
-	// handle one and only command before forking or whatevs
+	if (command_count == 1)
+	{
+		ft_execve(commands, env);
+		return (0);
+	}
 	while (i < command_count)
 	{
 		commands->id = i;
