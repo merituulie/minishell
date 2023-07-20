@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 12:50:27 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/20 15:45:38 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	close_files(int *pipe_fds, int fd_count)
 	i = 0;
 	while (i < fd_count)
 	{
-		printf("%d is closing: %d \n", i, pipe_fds[i]);
 		close(pipe_fds[i]);
 		i++;
 	}
@@ -54,10 +53,10 @@ void	wait_children(int *pids, int count)
 	int	i;
 
 	i = 0;
-	printf("wait count %d\n", count);
+	// printf("wait count %d\n", count);
 	while (i <= count)
 	{
-		printf("%d is waiting: %d \n", i, pids[i]);
+		// printf("%d is waiting: %d \n", i, pids[i]);
 		waitpid(pids[i], NULL, 0);
 		i++;
 	}

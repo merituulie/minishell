@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 12:51:36 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/20 15:45:50 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	execute_command(t_command *command, t_env **env)
 {
 	if (ft_strncmp_all(command->command, "env") == 0)
 		ft_env(env);
-	// else if (ft_strncmp_all(command->command, "echo") == 0)
-	// 	return ;
+	else if (ft_strncmp_all(command->command, "echo") == 0)
+		return ;
 	else if (ft_strncmp_all(command->command, "cd") == 0)
 		return ;
 	else if (ft_strncmp_all(command->command, "pwd") == 0)
@@ -53,7 +53,6 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 		i++;
 	}
 	close_files(pipe_fds, command_count * 2 - 2);
-	// wait_children(pids, i - 1);
-	waitpid(-1, NULL, 0);
+	wait_children(pids, i - 1);
 	return (0);
 }
