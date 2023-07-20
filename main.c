@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 16:15:31 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:27:54 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,35 +68,43 @@ int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
 	char		**cmd_line;
+	int 		flag;
 	t_data		ms;
 	t_command	*cmd;
 
+	flag = 1;
 	(void)argc;
 	(void)argv;
-	line = readline(PINK "Jose's PinkShell: " BORING);
-	cmd_line = ft_lexer(line);
-	free(line);
-	ms.env = NULL;
-	fill_env(envp, &ms.env);
-	cmd_line = expand_quote_check(&ms, cmd_line);
-	cmd_line = concatenate(cmd_line, &ms);
-	print_cmd_line(cmd_line);
-	cmd = init_cmds(&ms, cmd_line);
-	print_command(cmd);
-	print_full_command(cmd);
-	execute_commands(cmd, ms.struct_count, &ms.env);
-	ms.i = ms.struct_count;
-	while (ms.i >= 0)
+	while (flag)
 	{
-		if (cmd[ms.i].command)
-			free(cmd[ms.i].command);
-		if (cmd[ms.i].flags)
-			free(cmd[ms.i].flags);
-		if (cmd[ms.i].input)
-			free(cmd[ms.i].input);
-		ms.i--;
+		line = readline(PINK "Jose's PinkShell: " BORING);
+		cmd_line = ft_lexer(line);
+		free(line);
+		ms.env = NULL;
+		fill_env(envp, &ms.env);
+		cmd_line = expand_quote_check(&ms, cmd_line);
+		cmd_line = concatenate(cmd_line, &ms);
+		print_cmd_line(cmd_line);
+		cmd = init_cmds(&ms, cmd_line);
+		print_command(cmd);
+		print_full_command(cmd);
+		execute_commands(cmd, ms.struct_count, &ms.env);
+		if (ft_strncmp(cmd->command, "exit", 4) == 0)
+			flag = 0;
+		ms.i = ms.struct_count;
+		while (ms.i >= 0)
+		{
+			if (cmd[ms.i].command)
+				free(cmd[ms.i].command);
+			if (cmd[ms.i].flags)
+				free(cmd[ms.i].flags);
+			if (cmd[ms.i].input)
+				free(cmd[ms.i].input);
+			ms.i--;
+		}
+		if (cmd)
+			free(cmd);
+		// free(line);
 	}
-	if (cmd)
-		free(cmd);
 	return (0);
 }

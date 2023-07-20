@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 16:34:43 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:14:22 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,10 @@ void		close_files(int *pipe_fds, int command_count);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
+
+// COMMANDS
+
+void	ft_export(char *cmd, t_env *env);
+void	ft_unset(char *cmd, t_env *env);
 
 #endif

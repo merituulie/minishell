@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 15:45:50 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:27:04 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "pwd") == 0)
 		return ;
 	else if (ft_strncmp_all(command->command, "export") == 0)
-		return ;
+		ft_export(command->input, *env);
 	else if (ft_strncmp_all(command->command, "unset") == 0)
-		return ;
+		ft_unset(command->input, *env);
 	else if (ft_strncmp_all(command->command, "exit") == 0)
 		return ;
 	else
@@ -39,7 +39,11 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	int			pipe_fds[(command_count * 2) - 2];
 
 	i = 0;
-	// handle one and only command before forking or whatevs
+	if (command_count == 1)
+	{
+		ft_execve(commands, env);
+		return (0);
+	}
 	while (i < command_count)
 	{
 		commands->id = i;
