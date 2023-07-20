@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 15:30:42 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:30:25 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,36 @@
 
 static void	ft_dup2(int infile_fd, int outfile_fd)
 {
+	printf("fd[0]: %d, fd[1]: %d\n", infile_fd, outfile_fd);
 	if (infile_fd != -2 && dup2(infile_fd, 0) < 0)
 		ft_putstr_fd("Dup 2 error!", 2);
 	if (outfile_fd != -2 && dup2(outfile_fd, 1) < 0)
 		ft_putstr_fd("Dup 2 error!", 2);
+	printf("after dup2: %d\n", infile_fd);
 }
 
-void	close_files(int *pipe_fds)
+void	close_files(int *pipe_fds, int fd_count)
 {
-	close(pipe_fds[0]);
-	close(pipe_fds[1]);
+	int i;
+	
+	i = 0;
+	while (i < fd_count - 1)
+	{
+		close(pipe_fds[i]);
+		i++;
+	}
 }
 
-static void	execute_child(t_command *current, int last, t_env **env, int *pipe_fds)
+static void	execute_child(t_command *current, int command_count, t_env **env, int *pipe_fds)
 {
 	if (current->id == 0)
-		ft_dup2(-2, pipe_fds[1]);
-	else if (last)
-		ft_dup2(pipe_fds[0], -2);
+		ft_dup2(-2, pipe_fds[current->id * 2 + 1]);
+	else if (current->id == command_count - 1) 
+		ft_dup2(pipe_fds[(current->id * 2) - 2], -2);
 	else
-		ft_dup2(pipe_fds[0], pipe_fds[1]);
-	close_files(pipe_fds);
-	execute_command(current, env);
-	printf("%i exiting!\n", getpid());
+		ft_dup2(pipe_fds[current->id * 2 - 2], pipe_fds[current->id * 2 + 1]);
+	close_files(pipe_fds, command_count * 2 - 2);
+	execute_command(current, env); 
 	exit(0);
 }
 
@@ -52,16 +59,12 @@ void	wait_children(int *pids, int count)
 	}
 }
 
-int	handle_pipe(t_command *commands, t_env **env, int last)
+int	handle_pipe(t_command *commands, t_env **env, int command_count, int *pipe_fds)
 {
-	int	pipe_fds[2];
-
-	if (pipe(pipe_fds) < 0)
-		ft_putstr_fd("Piping error!", 2);
 	commands->pid = fork();
 	if (commands->pid < 0)
 		ft_putstr_fd("Forking error!", 2);
 	if (commands->pid == 0)
-		execute_child(commands, last, env, pipe_fds);
+		execute_child(commands, command_count, env, pipe_fds);
 	return (commands->pid);
 }

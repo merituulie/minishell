@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 15:31:07 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:46:41 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ int			execute_commands(t_command *commands, int command_count, t_env **env);
 void		execute_command(t_command *command, t_env **env);
 
 // PIPING
-int			handle_pipe(t_command *commands, t_env **env, int last);
+int			handle_pipe(t_command *commands, t_env **env, int command_count, int *pipe_fds);
 void		wait_children(int *pids, int count);
 
 // COMMON
-void		close_files(int *pipe_fds);
+void		close_files(int *pipe_fds, int command_count);
 
 // TO STRINGS
 char	*env_to_string(t_env **env);

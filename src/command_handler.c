@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 15:30:54 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:32:58 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,23 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 {
 	int			i;
 	int 		pids[command_count];
+	int			pipe_fds[(command_count * 2) - 2];
 
 	i = 0;
 	// handle one and only command before forking or whatevs
 	while (i < command_count)
 	{
 		commands->id = i;
-		if (i == (command_count - 1))
-			pids[i] = handle_pipe(commands, env, 1);
-		else
-			pids[i] = handle_pipe(commands, env, 0);
+		if (i != command_count - 1)
+		{
+			if (pipe(&pipe_fds[i * 2]) < 0)
+				ft_putstr_fd("Piping error!", 2);
+		}
+		pids[i] = handle_pipe(commands, env, command_count, pipe_fds);
 		commands++;
 		i++;
 	}
-	wait_children(pids, i);
+	close_files(pipe_fds, command_count * 2 - 2);
+	wait_children(pids, i - 1);
 	return (0);
 }
