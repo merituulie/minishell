@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 17:53:25 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:55:58 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	execute_command(t_command *command, t_env **env)
 		ft_env(env);
 	else if (ft_strncmp_all(command->command, "echo") == 0)
 		return ;
-	else if (ft_strncmp_all(command->command, "cd") == 0)
+	else if (ft_strncmp_all(command->command, "cd") == 0) //works only w/o pipe
 		return ;
 	else if (ft_strncmp_all(command->command, "pwd") == 0)
 		return ;
-	else if (ft_strncmp_all(command->command, "export") == 0)
+	else if (ft_strncmp_all(command->command, "export") == 0) //works only w/o pipe if it has an argument
 		return ;
-	else if (ft_strncmp_all(command->command, "unset") == 0)
+	else if (ft_strncmp_all(command->command, "unset") == 0) //works only w/o pipe
 		return ;
-	else if (ft_strncmp_all(command->command, "exit") == 0)
+	else if (ft_strncmp_all(command->command, "exit") == 0) //works only w/o pipe
 		return ;
 	else
 		ft_execve(command, env);
