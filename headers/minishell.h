@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/20 08:13:21 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:45:50 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,9 @@ char		*ft_strchr_null(const char *s, int c);
 void		strdup_if_not_null(t_command *cmd, int track, \
 	char *name, char *str);
 
-char		*ft_echo(t_command *command, int isPiped);
+int		handle_commands(t_command *commands, t_env **env);
 
-// int		handle_commands(t_command *commands, t_env **env);
-char	*ft_env(t_env **env, int isPiped);
-char	*ft_pwd(t_env *env, int isPiped);
+int			ft_pwd(t_env **env);
+int			ft_echo(t_command *command);
 
 #endif

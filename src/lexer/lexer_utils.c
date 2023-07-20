@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/07 07:11:34 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/20 11:02:19 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../headers/minishell.h"
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
 

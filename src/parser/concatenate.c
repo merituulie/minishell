@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   concatenate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:26:44 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/07 13:06:29 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:04:32 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../headers/minishell.h"
 #include "../../headers/parsing.h"
 #include "../../libft/libft.h"
 

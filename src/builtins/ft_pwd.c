@@ -6,30 +6,31 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:08:29 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/11 08:18:06 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:08:38 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../libft/libft.h"
-#include "../../headers/env.h"
 #include "../../headers/hashmap.h"
+#include "../../headers/env.h"
+#include "../../libft/libft.h"
 
-char	*ft_pwd(t_env *env, int isPiped)
+int	ft_pwd(t_env **env)
 {
 	t_node	*correct_node;
+	int		i;
 
-	if (!env->vars)
+	i = 0;
+	if (!(*env)->vars)
 	{
 		printf("Environment error\n");
-		return (NULL);
+		return (0);
 	}
-	correct_node = get_value(env->vars, "PWD");
-	if (isPiped == 0)
+	correct_node = get_value((*env)->vars, "PWD");
+	while (correct_node->value[i] != '\0')
 	{
-		printf("%s", correct_node->value);
-		return (NULL);
+		ft_putchar_fd(correct_node->value[i], 2);
+		i++;
 	}
-	else
-		return (correct_node->value);
+	return (0);
 }

@@ -6,14 +6,14 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 08:11:10 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:06:27 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "headers/minishell.h"
 #include "headers/parsing.h"
 #include "headers/lexer.h"
 #include "headers/env.h"
-#include "headers/minishell.h"
 #include "libft/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **envp)
 			printf("cmd[%d].full_cmd[2] is %s\n", ms.i, cmd[ms.i].full_cmd[2]);
 		}
 	}
-	//handle_commands(cmd, &env); to send env, we need to have env_struct in the minishell header.
+	handle_commands(cmd, &ms.env);
 	while (ms.i >= 0)
 	{
 		if (cmd[ms.i].command)

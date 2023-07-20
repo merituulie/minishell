@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   char_checks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:53:56 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/17 13:13:03 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:03:21 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../headers/minishell.h"
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
 

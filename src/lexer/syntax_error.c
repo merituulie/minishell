@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/17 16:17:25 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:03:09 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../headers/minishell.h"
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
 
@@ -70,7 +71,7 @@ int	check_if_nothing(char *str, int i)
 }
 
 /*check the syntax error: if there is error, send exit message with
-proper exit value. 
+proper exit value.
 can we use exit(258)? I don't know :/ */
 void	syntax_error(char *str)
 {

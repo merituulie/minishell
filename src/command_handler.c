@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 08:11:48 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:00:42 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static char	*handle_command(t_command *command,
 			t_command *next, t_env **env)
 {
 	if (ft_strncmp_all(command->command, "env") == 0)
-		return (ft_env(env, next));
+		ft_env(env, next);
 	else if (ft_strncmp_all(command->command, "echo") == 0)
-		return (NULL);
+		ft_echo(command);
 	else if (ft_strncmp_all(command->command, "cd") == 0)
 		return (NULL);
 	else if (ft_strncmp_all(command->command, "pwd") == 0)
-		return (NULL);
+		ft_pwd(env);
 	else if (ft_strncmp_all(command->command, "export") == 0)
 		return (NULL);
 	else if (ft_strncmp_all(command->command, "unset") == 0)
