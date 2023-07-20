@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 11:33:05 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:15:31 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
-#include "headers/env.h"
 #include "headers/minishell.h"
 #include "libft/libft.h"
-#include <readline/readline.h>
-#include <readline/history.h>
 
-void	print_cmd_line(char **str)
+static void	print_cmd_line(char **str)
 {
 	int	i;
 
@@ -30,7 +27,7 @@ void	print_cmd_line(char **str)
 	}
 }
 
-void	print_command(t_command *cmd)
+static void	print_command(t_command *cmd)
 {
 	int	i;
 
@@ -50,7 +47,7 @@ void	print_command(t_command *cmd)
 	}
 }	
 
-void	print_full_command(t_command *cmd)
+static void	print_full_command(t_command *cmd)
 {
 	int	i;
 	int	j;
@@ -87,7 +84,7 @@ int	main(int argc, char **argv, char **envp)
 	cmd = init_cmds(&ms, cmd_line);
 	print_command(cmd);
 	print_full_command(cmd);
-	// handle_commands(cmd, &env); to send env, we need to have env_struct in the minishell header.
+	execute_commands(cmd, ms.struct_count, &ms.env);
 	ms.i = ms.struct_count;
 	while (ms.i >= 0)
 	{
