@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 11:30:25 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/20 12:50:27 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 static void	ft_dup2(int infile_fd, int outfile_fd)
 {
-	printf("fd[0]: %d, fd[1]: %d\n", infile_fd, outfile_fd);
 	if (infile_fd != -2 && dup2(infile_fd, 0) < 0)
-		ft_putstr_fd("Dup 2 error!", 2);
+		ft_putstr_fd("infile_fd:  Dup 2 error!", 2);
 	if (outfile_fd != -2 && dup2(outfile_fd, 1) < 0)
 		ft_putstr_fd("Dup 2 error!", 2);
-	printf("after dup2: %d\n", infile_fd);
 }
 
 void	close_files(int *pipe_fds, int fd_count)
@@ -27,8 +25,9 @@ void	close_files(int *pipe_fds, int fd_count)
 	int i;
 	
 	i = 0;
-	while (i < fd_count - 1)
+	while (i < fd_count)
 	{
+		printf("%d is closing: %d \n", i, pipe_fds[i]);
 		close(pipe_fds[i]);
 		i++;
 	}
@@ -39,12 +38,15 @@ static void	execute_child(t_command *current, int command_count, t_env **env, in
 	if (current->id == 0)
 		ft_dup2(-2, pipe_fds[current->id * 2 + 1]);
 	else if (current->id == command_count - 1) 
-		ft_dup2(pipe_fds[(current->id * 2) - 2], -2);
+		ft_dup2(pipe_fds[(current->id * 2) - 2], - 2);
 	else
+	{
 		ft_dup2(pipe_fds[current->id * 2 - 2], pipe_fds[current->id * 2 + 1]);
+	}
 	close_files(pipe_fds, command_count * 2 - 2);
 	execute_command(current, env); 
-	exit(0);
+	// close_files(pipe_fds, command_count * 2 - 2);
+	// exit(0);
 }
 
 void	wait_children(int *pids, int count)
@@ -52,8 +54,10 @@ void	wait_children(int *pids, int count)
 	int	i;
 
 	i = 0;
+	printf("wait count %d\n", count);
 	while (i <= count)
 	{
+		printf("%d is waiting: %d \n", i, pids[i]);
 		waitpid(pids[i], NULL, 0);
 		i++;
 	}
