@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 10:46:41 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/20 16:11:48 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@
 # include "lexer.h"
 # include "hashmap.h"
 
-/* If input is 'echo -n "Hello, my name if"' then
-command -> "echo"
-flags -> "n"
-input -> "hello my name"
-full_cmd -> "echo -n "Hello, my name if"" */
 typedef struct s_command
 {
 	char	*command;
@@ -49,9 +44,21 @@ typedef struct s_data	t_data;
 void		fill_env(char **envp, t_env **env);
 t_command	*init_cmds(t_data *ms, char **input);
 int			count_struct(char **input, int struct_count);
+/*add_command.c*/
+char		*put_to_input(char **input, int *index);
+char		*put_to_flags(char **input, int	*index);
+char		*put_to_file(char **input, int **index);
+void		put_redirection(t_command *cmd, int *index, \
+			int track, char **input);
+void		put_cmd_to_struct(t_command *cmd, int index, \
+					int struct_count, char **input);
+/*utils_command.c*/
 char		*ft_strchr_null(const char *s, int c);
-void		parse_flags(t_command *cmd, int track, char *str);
-void		parse_input(t_command *cmd, int track, char *str);
+void		strdup_if_not_null(t_command *cmd, int track, \
+			char *name, char *str);
+void		strdup_filename(t_command *cmd, int track, char *str);
+void		put_fullcmd(t_command *cmd, int i, int track);
+void		full_cmd(t_command *cmd, int struct_count, int track);
 
 // IMPLEMENTED COMMANDS
 char		*ft_echo(t_command *command, int isPiped);

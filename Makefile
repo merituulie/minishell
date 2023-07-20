@@ -6,7 +6,7 @@
 #    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/19 14:12:30 by emeinert         ###   ########.fr        #
+#    Updated: 2023/07/20 16:07:46 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,11 @@ COMMON_SRC =	pipe
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error
+			syntax_error 
 
 COMMAND_SRC = init_command \
-			command_utils \
+			utils_command \
+			add_command \
 
 PARSER_SRC = expand_env \
 			parser_utils \

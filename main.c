@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/19 13:50:26 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:08:31 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,104 @@
 #include "headers/lexer.h"
 #include "headers/minishell.h"
 #include "libft/libft.h"
+
+void	print_cmd_line(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		printf("cmd_line is %s\n", str[i]);
+		i++;
+	}
+}
+
+void	print_command(t_command *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd[++i].command)
+	{
+		if (cmd[i].command)
+			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+		if (cmd[i].flags)
+			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+		if (cmd[i].input)
+			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
+		if (cmd[i].infile_name)
+			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+		if (cmd[i].outfile_name)
+			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+	}
+}	
+
+void	print_full_command(t_command *cmd)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (cmd[++i].full_cmd)
+	{
+		j = 0;
+		while (cmd[(i)].full_cmd[j])
+		{
+			printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+			j++;
+		}
+	}
+}
+
+void	print_cmd_line(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		printf("cmd_line is %s\n", str[i]);
+		i++;
+	}
+}
+
+void	print_command(t_command *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd[++i].command)
+	{
+		if (cmd[i].command)
+			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+		if (cmd[i].flags)
+			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+		if (cmd[i].input)
+			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
+		if (cmd[i].infile_name)
+			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+		if (cmd[i].outfile_name)
+			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+	}
+}	
+
+void	print_full_command(t_command *cmd)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (cmd[++i].full_cmd)
+	{
+		j = 0;
+		while (cmd[(i)].full_cmd[j])
+		{
+			printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+			j++;
+		}
+	}
+}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -27,27 +125,16 @@ int	main(int argc, char **argv, char **envp)
 	line = readline(PINK "Jose's PinkShell: " BORING);
 	cmd_line = ft_lexer(line);
 	free(line);
-	ms.i = -1;
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
 	cmd_line = expand_quote_check(&ms, cmd_line);
 	cmd_line = concatenate(cmd_line, &ms);
-	ms.i = -1;
+	print_cmd_line(cmd_line);
 	cmd = init_cmds(&ms, cmd_line);
-	ms.i = -1;
-	while (cmd[++(ms.i)].command)
-	{
-		printf("cmd[%d].command is %s$\n", ms.i, cmd[ms.i].command);
-		printf("cmd[%d].flags is %s$\n", ms.i, cmd[ms.i].flags);
-		printf("cmd[%d].input is %s$\n", ms.i, cmd[ms.i].input);
-		if (cmd[ms.i].full_cmd)
-		{
-			printf("cmd[%d].full_cmd[0] is %s\n", ms.i, cmd[ms.i].full_cmd[0]);
-			printf("cmd[%d].full_cmd[1] is %s\n", ms.i, cmd[ms.i].full_cmd[1]);
-			printf("cmd[%d].full_cmd[2] is %s\n", ms.i, cmd[ms.i].full_cmd[2]);
-		}
-	}
+	print_command(cmd);
+	print_full_command(cmd);
 	execute_commands(cmd, ms.struct_count, &ms.env);
+	ms.i = ms.struct_count;
 	while (ms.i >= 0)
 	{
 		if (cmd[ms.i].command)
@@ -60,7 +147,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	if (cmd)
 		free(cmd);
-	if (cmd_line)
-		free_str_array(cmd_line);
 	return (0);
 }
