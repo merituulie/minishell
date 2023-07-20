@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/20 11:33:42 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:35:05 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	put_fullcmd(t_command *cmd, int i, int track)
 			printf("strdup fail!\n");
 	}
 }
-
 
 void	full_cmd(t_command *cmd, int struct_count, int track)
 {
