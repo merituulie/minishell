@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/17 16:07:00 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/20 09:48:22 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,11 @@ ENV_SRC = init \
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error
+			syntax_error 
 
 COMMAND_SRC = init_command \
-			command_utils \
+			utils_command \
+			add_command \
 
 PARSER_SRC = expand_env \
 			parser_utils \

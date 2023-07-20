@@ -6,20 +6,36 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:26:44 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/07 13:06:29 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:08:35 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/parsing.h"
 #include "../../libft/libft.h"
 
+static void	delete_quotes2(char *str, int index, int size, t_data *ms)
+{
+	int	i;
+
+	i = -1;
+	index = 0;
+	while (++i < size)
+	{
+		if (((index + i) == ms->start || (index + i) == ms->end) \
+								&& ms->start != ms->end - 1)
+			index++;
+		else if ((index + i) == ms->start && ms->start == ms->end - 1)
+			index = index + 2;
+		ms->out[i] = str[index + i];
+	}
+	ms->out[i] = '\0';
+}
+
 /*reallocate the string and delete the first matching quotes*/
 void	delete_quotes(char *str, int index, int size, t_data *ms)
 {
 	char	quote;
-	int		i;
 
-	i = -1;
 	quote = str[index];
 	ms->start = index;
 	while (str[++index])
@@ -32,14 +48,7 @@ void	delete_quotes(char *str, int index, int size, t_data *ms)
 	}
 	ms->end = index;
 	ms->out = ft_calloc(size, sizeof(char));
-	index = 0;
-	while (++i < size)
-	{
-		if ((index + i) == ms->start || (index + i) == ms->end)
-			index++;
-		ms->out[i] = str[index + i];
-	}
-	ms->out[i] = '\0';
+	delete_quotes2(str, index, size, ms);
 }
 
 /*check if the str has quotes, then find the other matching quote,
@@ -62,6 +71,8 @@ char	**concatenate(char **str, t_data *ms)
 				delete_quotes(str[i], j, ft_strlen(str[i]), ms);
 				free(str[i]);
 				str[i] = ft_strdup(ms->out);
+				if (!str[i])
+					printf("strdup error!\n");
 				free(ms->out);
 				j = ms->end - 2;
 			}

@@ -6,12 +6,13 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:29:38 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/13 12:55:54 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:19:29 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*returns 0 if s1 and s2 is same, if not returns something that is not 0*/
 int	ft_strncmp_all(const char *s1, const char *s2)
 {
 	unsigned char	*ptr1;
