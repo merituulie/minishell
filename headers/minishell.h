@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 16:15:56 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:34:43 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_data	t_data;
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
+
+/*init_command.c*/
 t_command	*init_cmds(t_data *ms, char **input);
 int			count_struct(char **input, int struct_count);
 /*add_command.c*/
@@ -66,17 +68,19 @@ void		ft_env(t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 
 // COMMAND HANDLER
-int			execute_commands(t_command *commands, int command_count, t_env **env);
+int			execute_commands(t_command *commands, int command_count, \
+					t_env **env);
 void		execute_command(t_command *command, t_env **env);
 
 // PIPING
-int			handle_pipe(t_command *commands, t_env **env, int command_count, int *pipe_fds);
+int			handle_pipe(t_command *commands, t_env **env, int command_count, \
+				int *pipe_fds);
 void		wait_children(int *pids, int count);
 
 // COMMON
 void		close_files(int *pipe_fds, int command_count);
 
 // TO STRINGS
-char	*env_to_string(t_env **env);
+char		*env_to_string(t_env **env);
 
 #endif
