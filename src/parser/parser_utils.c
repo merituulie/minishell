@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 12:06:00 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/07 09:52:17 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/07/04 17:42:15 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/07/17 12:52:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/parsing.h"
+#include "../../libft/libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+/*initialize the quotes count to zero*/
+void	quotes_init(t_data *ms)
 {
-	size_t	len;
-	size_t	src_len;
+	ms->s_quotes = 0;
+	ms->d_quotes = 0;
+}
 
-	src_len = ft_strlen(src);
-	if (!dstsize)
-		return (src_len);
-	if (dstsize)
+void	free_str_array(char **str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
 	{
-		if (src_len >= dstsize)
+		if (str[i])
 		{
-			len = dstsize - 1;
+			free(str[i]);
+			str[i] = NULL;
 		}
-		else
-		{
-			len = src_len;
-		}
-		ft_memcpy((char *)dst, (char *)src, len);
-		dst[len] = '\0';
 	}
-	return (src_len);
+	if (str)
+		free(str);
+}
+
+void	ms_init(t_data *ms)
+{
+	ms->end = 0;
+	ms->start = 0;
+	ms->s_quotes = 0;
+	ms->d_quotes = 0;
 }

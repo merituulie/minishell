@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   ft_free_null_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/20 08:14:05 by rmakinen         ###   ########.fr       */
+/*   Created: 2023/07/03 16:09:31 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/07/03 16:11:27 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef ENV_H
-# define ENV_H
-
-# include "hashmap.h"
-# include "minishell.h"
-
-typedef struct s_env
+/*free the str & null terminates the entire str and return it*/
+char	*ft_free_null_str(char *str)
 {
-	struct s_node	**vars;
-}	t_env;
-
-void	fill_env(char **envp, t_env **env);
-// void	*ft_env(t_env **env, t_command *next);
-
-#endif
+	free(str);
+	str = NULL;
+	return (str);
+}

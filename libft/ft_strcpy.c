@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/20 08:14:05 by rmakinen         ###   ########.fr       */
+/*   Created: 2022/11/20 13:57:31 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/07 13:24:53 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef ENV_H
-# define ENV_H
-
-# include "hashmap.h"
-# include "minishell.h"
-
-typedef struct s_env
+char	*ft_strcpy(char *dst, const char *src)
 {
-	struct s_node	**vars;
-}	t_env;
+	char	*start;
 
-void	fill_env(char **envp, t_env **env);
-// void	*ft_env(t_env **env, t_command *next);
-
-#endif
+	start = dst;
+	while (*src != '\0')
+	{
+		*dst = *src;
+		dst++;
+		src++;
+	}
+	*dst = '\0';
+	return (start);
+}

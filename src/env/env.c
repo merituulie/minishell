@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 12:26:53 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/20 08:09:59 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
@@ -56,13 +57,10 @@ static char	*to_string(t_env **env)
 	return (output);
 }
 
-char	*ft_env(t_env **env, int isPiped)
+void	ft_env(t_env **env, t_command *next)
 {
-	if (isPiped)
-		return (to_string(env));
+	if (next)
+		next->input = to_string(env);
 	else
-	{
 		print_env((*env)->vars);
-		return (NULL);
-	}
 }

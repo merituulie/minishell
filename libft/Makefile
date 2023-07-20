@@ -6,22 +6,39 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/07 12:30:28 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/07/20 08:05:23 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC_FILES = ft_strlen \
-ft_memset \
-ft_strncmp \
-ft_bzero \
+SRC_FILES = ft_bzero \
+ft_arrlen \
 ft_calloc \
+ft_free_null_str \
+ft_free_array \
+ft_isalnum \
+ft_memcpy  \
+ft_memset \
+ft_print_array \
+ft_putchar_fd \
+ft_putstr_fd \
 ft_split \
+ft_strcpy \
+ft_strdup \
 ft_strlcpy \
+ft_strlen \
+ft_strncmp \
+ft_substr \
+ft_strncmp_all \
+ft_strtrim \
+ft_substr \
 ft_memcpy  \
 ft_print_array \
-ft_strjoin
+ft_strjoin \
+ft_strchr \
+ft_strdup \
+ft_strlcat \
 
 H_FILES = libft
 

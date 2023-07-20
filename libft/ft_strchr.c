@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vvu <vvu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/20 08:14:05 by rmakinen         ###   ########.fr       */
+/*   Created: 2022/10/26 11:45:17 by vvu               #+#    #+#             */
+/*   Updated: 2022/12/02 17:10:17 by vvu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef ENV_H
-# define ENV_H
-
-# include "hashmap.h"
-# include "minishell.h"
-
-typedef struct s_env
+char	*ft_strchr(const char *s, int c)
 {
-	struct s_node	**vars;
-}	t_env;
-
-void	fill_env(char **envp, t_env **env);
-// void	*ft_env(t_env **env, t_command *next);
-
-#endif
+	while (*s)
+	{
+		if (*s == (char) c)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
+}

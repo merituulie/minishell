@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/20 08:14:05 by rmakinen         ###   ########.fr       */
+/*   Created: 2022/11/09 14:02:18 by yoonslee          #+#    #+#             */
+/*   Updated: 2022/11/09 14:08:24 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef ENV_H
-# define ENV_H
-
-# include "hashmap.h"
-# include "minishell.h"
-
-typedef struct s_env
+void	ft_putstr_fd(char *s, int fd)
 {
-	struct s_node	**vars;
-}	t_env;
+	int	i;
 
-void	fill_env(char **envp, t_env **env);
-// void	*ft_env(t_env **env, t_command *next);
-
-#endif
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
+}
