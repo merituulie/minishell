@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 16:08:31 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:15:31 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "headers/minishell.h"
 #include "libft/libft.h"
 
-void	print_cmd_line(char **str)
+static void	print_cmd_line(char **str)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	print_cmd_line(char **str)
 	}
 }
 
-void	print_command(t_command *cmd)
+static void	print_command(t_command *cmd)
 {
 	int	i;
 
@@ -47,56 +47,7 @@ void	print_command(t_command *cmd)
 	}
 }	
 
-void	print_full_command(t_command *cmd)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (cmd[++i].full_cmd)
-	{
-		j = 0;
-		while (cmd[(i)].full_cmd[j])
-		{
-			printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
-			j++;
-		}
-	}
-}
-
-void	print_cmd_line(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		printf("cmd_line is %s\n", str[i]);
-		i++;
-	}
-}
-
-void	print_command(t_command *cmd)
-{
-	int	i;
-
-	i = -1;
-	while (cmd[++i].command)
-	{
-		if (cmd[i].command)
-			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-		if (cmd[i].flags)
-			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-		if (cmd[i].input)
-			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
-		if (cmd[i].infile_name)
-			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-		if (cmd[i].outfile_name)
-			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-	}
-}	
-
-void	print_full_command(t_command *cmd)
+static void	print_full_command(t_command *cmd)
 {
 	int	i;
 	int	j;
