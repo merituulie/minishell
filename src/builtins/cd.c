@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/21 10:59:45 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:45:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,18 @@
 /*chdir changes the current working directory to dirctory path that is given.
 chdir returns 0 if successful, 1 if not.
 go_dir function will chdir with the arguments that is given*/
-static void	go_dir(t_env *env, char *arg)
+static void	go_dir(t_env **env, t_command *command)
 {
 	t_node	*temp;
 
-	temp = *env->vars;
-	printf("arg is %s\n", arg);
-	if (!arg)
+	temp = *((*env)->vars);
+	if (command->input == NULL)
 	{
-		temp = get_value(env->vars, "HOME");
+		temp = get_value((*env)->vars, "HOME");
 		if (chdir(temp->value))
 			printf("can't find home/error");
 	}
-	else if (chdir(arg))
+	else if (chdir(command->full_cmd[1]))
 		printf("can't change to dir");
 	printf("go_dir executed\n");
 }
@@ -39,29 +38,26 @@ static void	go_dir(t_env *env, char *arg)
 /*when cd function is called, OLDPWD is created in env.
 After create the OLDPWD, update PWD and return from
 the function. cd, cd ., cd .. cases are handled*/
-void	ft_cd(t_command *command, t_env *env)
+void	ft_cd(t_command *command, t_env **env)
 {
-	char	**args;
 	char	*old_pwd;
 	t_node	*temp;
 
-	temp = *env->vars;
-	old_pwd = ft_strdup(getcwd(NULL, 0));
+	temp = *(*env)->vars;
+	old_pwd = getcwd(NULL, 0);
+	printf("old_pwd is %s\n", old_pwd);
 	if (!old_pwd)
 		perror("PWD doesn't exist");
-	if (!get_value(&temp, "OLDPWD"))
-		set_value(&temp, ft_strdup("OLDPWD"), old_pwd);
+	if (get_value((*env)->vars, "OLDPWD") == NULL)
+		set_value((*env)->vars, "OLDPWD", old_pwd);
 	else
 	{
 		temp = get_value(&temp, "OLDPWD");
-		temp->value = ft_strdup(old_pwd);
+		temp->value = old_pwd;
 	}
-	printf("temp->key is %s, temp->value is %s\n", temp->key, temp->value);
-	args = ft_split(command->flags, 32);
-	go_dir(env, args[1]);
-	temp = *env->vars;
-	temp = get_value(&temp, "PWD");
-	temp->value = ft_strdup(getcwd(NULL, 0));
-	printf("temp->key is %s, temp->value is %s\n", temp->key, temp->value);
+	go_dir(env, command);
+	temp = NULL;
+	temp = get_value((*env)->vars, "PWD");
+	temp->value = getcwd(NULL, 0);
 	free(old_pwd);
 }

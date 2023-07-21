@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/21 10:59:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:33:26 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "echo") == 0)
 		return ;
 	else if (ft_strncmp_all(command->command, "cd") == 0)
-		ft_cd(command, *env);
+		ft_cd(command, env);
 	else if (ft_strncmp_all(command->command, "pwd") == 0)
 		return ;
 	else if (ft_strncmp_all(command->command, "export") == 0)

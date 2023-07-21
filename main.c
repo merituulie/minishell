@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/21 11:07:26 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:22:13 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,54 @@
 #include "headers/minishell.h"
 #include "libft/libft.h"
 
-static void	print_cmd_line(char **str)
-{
-	int	i;
+// static void	print_cmd_line(char **str)
+// {
+// 	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		printf("cmd_line is %s\n", str[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		printf("cmd_line is %s\n", str[i]);
+// 		i++;
+// 	}
+// }
 
-static void	print_command(t_command *cmd)
-{
-	int	i;
+// static void	print_command(t_command *cmd)
+// {
+// 	int	i;
 
-	i = -1;
-	while (cmd[++i].command)
-	{
-		if (cmd[i].command)
-			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-		if (cmd[i].flags)
-			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-		if (cmd[i].input)
-			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
-		if (cmd[i].infile_name)
-			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-		if (cmd[i].outfile_name)
-			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-	}
-}	
+// 	i = -1;
+// 	while (cmd[++i].command)
+// 	{
+// 		if (cmd[i].command)
+// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+// 		if (cmd[i].flags)
+// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+// 		if (cmd[i].input)
+// 			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
+// 		if (cmd[i].infile_name)
+// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+// 		if (cmd[i].outfile_name)
+// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+// 	}
+// }	
 
-static void	print_full_command(t_command *cmd)
-{
-	int	i;
-	int	j;
+// static void	print_full_command(t_command *cmd)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = -1;
-	while (cmd[++i].full_cmd)
-	{
-		j = 0;
-		while (cmd[(i)].full_cmd[j])
-		{
-			printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
-			j++;
-		}
-	}
-}
+// 	i = -1;
+// 	while (cmd[++i].full_cmd)
+// 	{
+// 		j = 0;
+// 		while (cmd[(i)].full_cmd[j])
+// 		{
+// 			printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+// 			j++;
+// 		}
+// 	}
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -89,10 +89,10 @@ int	main(int argc, char **argv, char **envp)
 		free(line);
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
-		print_cmd_line(cmd_line);
+		// print_cmd_line(cmd_line);
 		cmd = init_cmds(&ms, cmd_line);
-		print_command(cmd);
-		print_full_command(cmd);
+		// print_command(cmd);
+		// print_full_command(cmd);
 		execute_commands(cmd, ms.struct_count, &ms.env);
 		if (ft_strncmp(cmd->command, "exit", 4) == 0)
 			flag = 0;
