@@ -10,6 +10,8 @@ static char	*find_key(char *cmd)
 
 	flag = 0;
 	i = 0;
+	if (cmd[0] >= 48 && cmd[0] <= 57)
+		return (NULL) ;
 	while (cmd[i] != '\0' && cmd[i] != '=')
 	{
 		i++;
@@ -62,10 +64,10 @@ void	ft_export(char *cmd, t_env *env)
 	temp = *env->vars;
 	new_key = find_key(cmd);
 	if (!new_key)
-		return ;
+		return(ft_putstr_fd("input error\n", 2));
 	new_value = find_value(cmd);
 	if (!new_value)
-		return ;
+		return(ft_putstr_fd("input error\n", 2));
 	if (!get_value(&temp, new_key))
 		set_value(&temp, new_key, new_value);
 	else
