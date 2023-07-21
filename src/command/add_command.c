@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/20 11:08:49 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:01:13 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ char	*put_to_file(char **input, int **index)
 	(**index)++;
 	str = malloc(sizeof(char) * (str_len + 1));
 	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
-	printf("str is %s\n", str);
 	return (str);
 }
 
