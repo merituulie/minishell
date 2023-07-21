@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 18:14:22 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:59:04 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 // IMPLEMENTED COMMANDS
 char		*ft_echo(t_command *command, int isPiped);
 void		ft_env(t_env **env);
+void		ft_cd(t_command *command, t_env *env);
 int			ft_execve(t_command *command, t_env **env);
 
 // COMMAND HANDLER

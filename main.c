@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 18:34:37 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:07:26 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,18 @@ int	main(int argc, char **argv, char **envp)
 	flag = 1;
 	(void)argc;
 	(void)argv;
+	ms.env = NULL;
+	fill_env(envp, &ms.env);
 	while (flag)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
+		if (line[0] == '\n' || line[0] == '\0')
+		{
+			free(line);
+			continue ;
+		}
 		cmd_line = ft_lexer(line);
 		free(line);
-		ms.env = NULL;
-		fill_env(envp, &ms.env);
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
 		print_cmd_line(cmd_line);
@@ -104,7 +109,6 @@ int	main(int argc, char **argv, char **envp)
 		}
 		if (cmd)
 			free(cmd);
-		// free(line);
 	}
 	return (0);
 }

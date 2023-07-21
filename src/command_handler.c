@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 18:27:04 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:59:32 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "echo") == 0)
 		return ;
 	else if (ft_strncmp_all(command->command, "cd") == 0)
-		return ;
+		ft_cd(command, *env);
 	else if (ft_strncmp_all(command->command, "pwd") == 0)
 		return ;
 	else if (ft_strncmp_all(command->command, "export") == 0)
@@ -35,13 +35,13 @@ void	execute_command(t_command *command, t_env **env)
 int	execute_commands(t_command *commands, int command_count, t_env **env)
 {
 	int			i;
-	int 		pids[command_count];
+	int			pids[command_count];
 	int			pipe_fds[(command_count * 2) - 2];
 
 	i = 0;
 	if (command_count == 1)
 	{
-		ft_execve(commands, env);
+		execute_command(commands, env);
 		return (0);
 	}
 	while (i < command_count)
