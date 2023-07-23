@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 16:34:43 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:58:12 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 # include <readline/readline.h>
+# include <readline/history.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 # include "parsing.h"
 # include "lexer.h"
@@ -65,6 +67,8 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 // IMPLEMENTED COMMANDS
 char		*ft_echo(t_command *command, int isPiped);
 void		ft_env(t_env **env);
+void		ft_cd(t_command *command, t_env **env);
+int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 
 // COMMAND HANDLER
@@ -82,5 +86,10 @@ void		close_files(int *pipe_fds, int command_count);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
+
+// COMMANDS
+
+void	ft_export(char *cmd, t_env *env);
+void	ft_unset(char *cmd, t_env *env);
 
 #endif

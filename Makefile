@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
+#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/20 16:07:46 by emeinert         ###   ########.fr        #
+#    Updated: 2023/07/21 13:58:43 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,10 @@ H_FILES = hashmap \
 		lexer \
 		parsing \
 
+BUILTIN_SRC = export \
+			echo \
+			cd \
+			heredoc \
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
@@ -57,6 +61,8 @@ PARSER_PRE = $(addprefix ./src/parser/, $(PARSER_SRC))
 PARSER_SUFF = $(addsuffix .c, $(PARSER_PRE))
 HPRE = $(addprefix ./headers/, $(H_FILES))
 HSUFF = $(addsuffix .h, $(HPRE))
+BUILTIN_PRE = $(addprefix ./src/builtins/, $(BUILTIN_SRC))
+BUILTIN_SUFF = $(addsuffix .c, $(BUILTIN_PRE))
 
 .PHONY = all
 all: $(NAME)
@@ -64,7 +70,8 @@ all: $(NAME)
 $(NAME):
 	make -C $(LIBFT_PATH)
 	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
-	$(COMMAND_SUFF) $(PARSER_SUFF) ./src/command_handler.c ./src/command_executer.c main.c \
+	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
+	 ./src/command_executer.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean
