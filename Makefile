@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/21 13:58:43 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/24 09:17:14 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ COMMON_SRC =	pipe
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error 
+			syntax_error
 
 COMMAND_SRC = init_command \
 			utils_command \
@@ -43,9 +43,10 @@ H_FILES = hashmap \
 		parsing \
 
 BUILTIN_SRC = export \
-			echo \
+			ft_echo \
 			cd \
 			heredoc \
+			ft_pwd
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))

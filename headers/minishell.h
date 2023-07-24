@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/21 13:58:12 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:25:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,12 @@ void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
 
 // IMPLEMENTED COMMANDS
-char		*ft_echo(t_command *command, int isPiped);
+int			ft_echo(t_command *command);
 void		ft_env(t_env **env);
 void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
+int			ft_pwd(t_env *env);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
@@ -89,7 +90,7 @@ char		*env_to_string(t_env **env);
 
 // COMMANDS
 
-void	ft_export(char *cmd, t_env *env);
-void	ft_unset(char *cmd, t_env *env);
+void		ft_export(char *cmd, t_env *env);
+void		ft_unset(char *cmd, t_env *env);
 
 #endif
