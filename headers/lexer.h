@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/24 11:22:43 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:43:26 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int		quote_index(char *str, int j);
 int		double_redir(char *str, int j);
 
 /*syntax_error.c*/
-void	syntax_error(char *str, t_env **env);
-void	syntax_error2(char *str, int i, t_env **env);
+int		syntax_error(char *str, t_env **env);
+int		syntax_error2(char *str, int i, t_env **env);
 int		quote_check(char *str, int i, char quote, t_env **env);
 int		check_if_nothing(char *str, int i);
-void	syntax_error_msg(int i, char *str, t_env **env);
+int		syntax_error_msg(int i, char *str, t_env **env);
 
 #endif
