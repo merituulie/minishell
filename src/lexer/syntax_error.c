@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 11:08:46 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:32:51 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* 1 is pipe, 2 is < or > or << or >>
 error value 258 needs to be returned*/
-void	syntax_error_msg(int i, char *str, t_env *env)
+void	syntax_error_msg(int i, char *str, t_env **env)
 {
 	if (i == 1)
 		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
@@ -28,10 +28,10 @@ void	syntax_error_msg(int i, char *str, t_env *env)
 	if (i == 5)
 		ft_putstr_fd("syntax error: quotes not ended\n", 2);
 	free(str);
-	we_exit(258, env);
+	error_code(258, env);
 }
 
-int	quote_check(char *str, int i, char quote, t_env *env)
+int	quote_check(char *str, int i, char quote, t_env **env)
 {
 	i++;
 	while (str[i])
@@ -45,7 +45,7 @@ int	quote_check(char *str, int i, char quote, t_env *env)
 }
 
 /*if the single quotes or double quotes doesn't have a pair ending*/
-void	syntax_error2(char *str, int i, t_env *env)
+void	syntax_error2(char *str, int i, t_env **env)
 {
 	i = -1;
 	while (str[++i])
@@ -72,7 +72,7 @@ int	check_if_nothing(char *str, int i)
 /*check the syntax error: if there is error, send exit message with
 proper exit value.
 can we use exit(258)? I don't know :/ */
-void	syntax_error(char *str, t_env *env)
+int	syntax_error(char *str, t_env **env)
 {
 	int	i;
 
@@ -97,3 +97,5 @@ void	syntax_error(char *str, t_env *env)
 	}
 	syntax_error2(str, i, env);
 }
+
+int syntax_erro()

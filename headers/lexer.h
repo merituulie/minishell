@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/24 11:07:31 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:22:43 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**add_line_redir(char **array, size_t del_index, \
 		int del_line_index, size_t del_len);
 char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len);
 char	**parse_line(char **array);
-char	**ft_lexer(char *str, t_env *env);
+char	**ft_lexer(char *str, t_env **env);
 
 //lexer_utils.c
 char	**allocate_2d_array(char **old_array);
@@ -47,10 +47,10 @@ int		quote_index(char *str, int j);
 int		double_redir(char *str, int j);
 
 /*syntax_error.c*/
-void	syntax_error(char *str, t_env *env);
-void	syntax_error2(char *str, int i, t_env *env);
-int		quote_check(char *str, int i, char quote, t_env *env);
+void	syntax_error(char *str, t_env **env);
+void	syntax_error2(char *str, int i, t_env **env);
+int		quote_check(char *str, int i, char quote, t_env **env);
 int		check_if_nothing(char *str, int i);
-void	syntax_error_msg(int i, char *str, t_env *env);
+void	syntax_error_msg(int i, char *str, t_env **env);
 
 #endif
