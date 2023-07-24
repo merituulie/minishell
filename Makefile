@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/24 10:19:55 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/24 11:03:44 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ COMMON_SRC =	pipe \
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error 
+			syntax_error
 
 COMMAND_SRC = init_command \
 			utils_command \
@@ -47,6 +47,7 @@ BUILTIN_SRC = export \
 			echo \
 			cd \
 			heredoc \
+			pwd
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
