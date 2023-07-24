@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/21 13:58:43 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/24 10:19:55 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HASHMAP_SRC = add_hashmap \
 ENV_SRC = init_env \
 		env
 
-COMMON_SRC =	pipe
+COMMON_SRC =	pipe \
+				save_exit_status \
 
 LEXER_SRC = lexer \
 			lexer_utils \

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/17 13:09:12 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:48:29 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ char	**parse_line(char **array)
 }
 
 /// @param str user input from readline.
-char	**ft_lexer(char *str)
+char	**ft_lexer(char *str, t_env *env)
 {
 	char	*trimmed_str;
 	char	**new_str;
@@ -136,7 +136,7 @@ char	**ft_lexer(char *str)
 
 	trimmed_str = ft_strtrim(str, " \t");
 	len = ft_strlen(trimmed_str);
-	syntax_error(trimmed_str);
+	syntax_error(trimmed_str, env);
 	new_str = (char **)ft_calloc(2, sizeof(char *));
 	if (!new_str)
 		return (0);

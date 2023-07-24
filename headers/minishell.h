@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/21 13:58:12 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:58:20 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,14 @@ void		wait_children(int *pids, int count);
 
 // COMMON
 void		close_files(int *pipe_fds, int command_count);
+void		we_exit(int number, t_env *env);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
 
 // COMMANDS
 
-void	ft_export(char *cmd, t_env *env);
-void	ft_unset(char *cmd, t_env *env);
+void		ft_export(char *cmd, t_env *env);
+void		ft_unset(char *cmd, t_env *env);
 
 #endif

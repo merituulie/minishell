@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/17 16:17:25 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:58:10 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* 1 is pipe, 2 is < or > or << or >>
 error value 258 needs to be returned*/
-void	syntax_error_msg(int i, char *str)
+void	syntax_error_msg(int i, char *str, t_env *env)
 {
 	if (i == 1)
 		printf("syntax error near unexpected token '|'\n");
@@ -28,10 +28,10 @@ void	syntax_error_msg(int i, char *str)
 	if (i == 5)
 		printf("syntax error: quotes not ended\n");
 	free(str);
-	exit(258);
+	we_exit(258, env);
 }
 
-int	quote_check(char *str, int i, char quote)
+int	quote_check(char *str, int i, char quote, t_env *env)
 {
 	i++;
 	while (str[i])
@@ -40,19 +40,19 @@ int	quote_check(char *str, int i, char quote)
 			return (i);
 		i++;
 	}
-	syntax_error_msg(5, str);
+	syntax_error_msg(5, str, env);
 	return (-1);
 }
 
 /*if the single quotes or double quotes doesn't have a pair ending*/
-void	syntax_error2(char *str, int i)
+void	syntax_error2(char *str, int i, t_env *env)
 {
 	i = -1;
 	while (str[++i])
 	{
 		if (str[i] == 34 || str[i] == 39)
 		{
-			i = quote_check(str, i, str[i]);
+			i = quote_check(str, i, str[i], env);
 			if (i == -1)
 				printf("didn't go to syntax_error_msg!\n");
 		}
@@ -72,7 +72,7 @@ int	check_if_nothing(char *str, int i)
 /*check the syntax error: if there is error, send exit message with
 proper exit value. 
 can we use exit(258)? I don't know :/ */
-void	syntax_error(char *str)
+void	syntax_error(char *str, t_env *env)
 {
 	int	i;
 
@@ -81,19 +81,19 @@ void	syntax_error(char *str)
 	{
 		if ((str[0] == '|' && check_if_nothing(str, i)) || \
 			(str[i] == '|' && str[i + 1] == '|'))
-			syntax_error_msg(1, str);
+			syntax_error_msg(1, str, env);
 		if (str[i] == '|' && check_if_nothing(str, i))
-			syntax_error_msg(1, str);
+			syntax_error_msg(1, str, env);
 		if ((str[i] == '<' || str[i] == '>') && check_if_nothing(str, i))
-			syntax_error_msg(2, str);
+			syntax_error_msg(2, str, env);
 		if ((str[i] == '<' && str[i + 1] == '<') && check_if_nothing(str, i))
-			syntax_error_msg(2, str);
+			syntax_error_msg(2, str, env);
 		if ((str[i] == '>' && str[i + 1] == '>') && check_if_nothing(str, i))
-			syntax_error_msg(2, str);
+			syntax_error_msg(2, str, env);
 		if ((str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>'))
-			syntax_error_msg(3, str);
+			syntax_error_msg(3, str, env);
 		if ((str[i] == '<' && str[i + 1] == '<' && str[i + 2] == '<'))
-			syntax_error_msg(4, str);
+			syntax_error_msg(4, str, env);
 	}
-	syntax_error2(str, i);
+	syntax_error2(str, i, env);
 }
