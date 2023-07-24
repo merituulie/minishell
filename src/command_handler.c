@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 10:48:53 by emeinert         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/24 11:06:10 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../headers/minishell.h"
 
@@ -17,11 +18,11 @@ void	execute_command(t_command *command, t_env **env)
 	if (ft_strncmp_all(command->command, "env") == 0)
 		ft_env(env);
 	else if (ft_strncmp_all(command->command, "echo") == 0)
-		return ;
+		ft_echo(command);
 	else if (ft_strncmp_all(command->command, "cd") == 0)
 		ft_cd(command, env);
 	else if (ft_strncmp_all(command->command, "pwd") == 0)
-		return ;
+		ft_pwd(*env);
 	else if (ft_strncmp_all(command->command, "export") == 0)
 		ft_export(command->input, *env);
 	else if (ft_strncmp_all(command->command, "unset") == 0)

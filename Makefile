@@ -5,10 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/24 10:49:53 by emeinert         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2023/07/24 11:06:41 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 NAME = minishell
 LIBFT_PATH = ./libft
@@ -27,7 +29,7 @@ COMMON_SRC =	pipe
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error 
+			syntax_error
 
 COMMAND_SRC = init_command \
 			utils_command \
@@ -46,6 +48,7 @@ BUILTIN_SRC = export \
 			echo \
 			cd \
 			heredoc \
+			pwd
 			exit \
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
