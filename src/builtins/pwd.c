@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:08:29 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/24 09:25:01 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:33:37 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_pwd(t_env *env)
 	if (!env->vars)
 	{
 		printf("Environment error\n");
-		return (0);
+		return (1);
 	}
 	correct_node = get_value(env->vars, "PWD");
 	ft_putstr_fd(correct_node->value, 2);

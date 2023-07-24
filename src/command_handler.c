@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 09:21:31 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:30:50 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "cd") == 0)
 		ft_cd(command, env);
 	else if (ft_strncmp_all(command->command, "pwd") == 0)
-		ft_pwd(*env) ;
+		ft_pwd(*env);
 	else if (ft_strncmp_all(command->command, "export") == 0)
 		ft_export(command->input, *env);
 	else if (ft_strncmp_all(command->command, "unset") == 0)

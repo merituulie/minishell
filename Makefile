@@ -6,7 +6,7 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/24 09:17:14 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/07/24 09:35:01 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,10 @@ H_FILES = hashmap \
 		parsing \
 
 BUILTIN_SRC = export \
-			ft_echo \
+			echo \
 			cd \
 			heredoc \
-			ft_pwd
+			pwd
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
