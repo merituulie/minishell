@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/13 12:54:59 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:13:16 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
-# include "env.h"
 # include "lexer.h"
 # include "minishell.h"
 
@@ -41,12 +40,13 @@ typedef struct s_data
 	int				s_quotes;
 	int				d_quotes;
 	char			*out;
+	int				i;
+	int				j;
+	int				struct_count;
 }	t_data;
 
-int		main(int argc, char **argv, char **envp);
-
 /*expand_env.c*/
-char	**expand_quote_check(t_data *ms, char **str, int i, int j);
+char	**expand_quote_check(t_data *ms, char **str);
 char	*expand_var(t_data *ms, char *str, int start);
 void	realloc_var(t_data *ms, char *str, char *var, int size);
 char	*find_env(t_data *ms, char *var, int var_size);
@@ -57,5 +57,6 @@ char	**concatenate(char **str, t_data *ms);
 /*utils.c*/
 void	quotes_init(t_data *ms);
 void	free_str_array(char **str);
+void	ms_init(t_data *ms);
 
 #endif

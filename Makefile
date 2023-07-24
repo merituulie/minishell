@@ -5,56 +5,73 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/20 17:41:46 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/13 13:13:43 by yoonslee         ###   ########.fr        #
+#    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
+#    Updated: 2023/07/21 13:58:43 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline -w
+BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap \
 
-ENV_SRC = init \
+ENV_SRC = init_env \
 		env
+
+COMMON_SRC =	pipe
 
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error
+			syntax_error 
+
+COMMAND_SRC = init_command \
+			utils_command \
+			add_command \
 
 PARSER_SRC = expand_env \
-			utils \
+			parser_utils \
 			concatenate \
 
 H_FILES = hashmap \
 		minishell \
 		lexer \
 		parsing \
-		env \
+
+BUILTIN_SRC = export \
+			echo \
+			cd \
+			heredoc \
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
 ENV_PRE = $(addprefix ./src/env/, $(ENV_SRC))
 ENV_SUFF = $(addsuffix .c, $(ENV_PRE))
+COMMON_PRE = $(addprefix ./src/common/, $(COMMON_SRC))
+COMMON_SUFF = $(addsuffix .c, $(COMMON_PRE))
+COMMAND_PRE = $(addprefix ./src/command/, $(COMMAND_SRC))
+COMMAND_SUFF = $(addsuffix .c, $(COMMAND_PRE))
 LEXER_PRE = $(addprefix ./src/lexer/, $(LEXER_SRC))
 LEXER_SUFF = $(addsuffix .c, $(LEXER_PRE))
 PARSER_PRE = $(addprefix ./src/parser/, $(PARSER_SRC))
 PARSER_SUFF = $(addsuffix .c, $(PARSER_PRE))
 HPRE = $(addprefix ./headers/, $(H_FILES))
 HSUFF = $(addsuffix .h, $(HPRE))
+BUILTIN_PRE = $(addprefix ./src/builtins/, $(BUILTIN_SRC))
+BUILTIN_SUFF = $(addsuffix .c, $(BUILTIN_PRE))
 
 .PHONY = all
 all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(PARSER_SUFF) main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
+	 ./src/command_executer.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

@@ -6,25 +6,12 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/13 12:58:19 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:48:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
-#include "../../headers/env.h"
-
-static void	print_env(t_node **head)
-{
-	t_node	*temp;
-
-	temp = *head;
-	while (temp)
-	{
-		printf("%s=%s\n", temp->key, temp->value);
-		temp = temp->next;
-	}
-}
 
 static void	copy_keyvalue(char **output, t_node *node)
 {
@@ -41,7 +28,7 @@ static void	copy_keyvalue(char **output, t_node *node)
 	*output = temp;
 }
 
-static char	*to_string(t_env **env)
+char	*env_to_string(t_env **env)
 {
 	char	*output;
 	t_node	*temp_node;
@@ -56,10 +43,7 @@ static char	*to_string(t_env **env)
 	return (output);
 }
 
-void	*ft_env(t_env **env, t_command *next)
+void	ft_env(t_env **env)
 {
-	if (next)
-		next->input = to_string(env);
-	else
-		print_env((*env)->vars);
+	ft_putstr_fd(env_to_string(env), 1);
 }

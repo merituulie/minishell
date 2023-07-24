@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 13:02:57 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:58:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,28 +95,29 @@ it will become 0.
 expanding to env only happens if there is $ and something after, and
 if there is no single quote in front of it. it does not count if double quote
 exists or not.*/
-char	**expand_quote_check(t_data *ms, char **str, int i, int j)
+char	**expand_quote_check(t_data *ms, char **str)
 {
-	i = -1;
-	while (str[++i])
+	ms_init(ms);
+	ms->i = -1;
+	while (str[++(ms->i)])
 	{
-		j = -1;
+		ms->j = -1;
 		quotes_init(ms);
-		while (str[i][++j])
+		while (str[ms->i][++(ms->j)])
 		{
-			if (str[i][j] == 34 && !ms->s_quotes && !ms->d_quotes)
+			if (str[ms->i][ms->j] == 34 && !ms->s_quotes && !ms->d_quotes)
 				ms->d_quotes = 1;
-			else if (str[i][j] == 34 && ms->d_quotes)
+			else if (str[ms->i][ms->j] == 34 && ms->d_quotes)
 				ms->d_quotes = 0;
-			else if (str[i][j] == 39 && !ms->s_quotes && !ms->d_quotes)
+			else if (str[ms->i][ms->j] == 39 && !ms->s_quotes && !ms->d_quotes)
 				ms->s_quotes = 1;
-			else if (str[i][j] == 39 && ms->s_quotes)
+			else if (str[ms->i][ms->j] == 39 && ms->s_quotes)
 				ms->s_quotes = 0;
-			else if (str[i][j] == '$' && !ms->s_quotes)
+			else if (str[ms->i][ms->j] == '$' && !ms->s_quotes)
 			{
-				str[i] = ft_strdup(expand_var(ms, str[i], j));
+				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
 				free(ms->out);
-				j = ms->end - 1;
+				ms->j = ms->end - 1;
 			}
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/13 13:18:36 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:02:54 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdbool.h>
-# include "env.h"
 # include "parsing.h"
-# include "minishell.h"
 
 // lexer.c
 char	**add_line(char **old_array, size_t del_index, int del_line_index);
@@ -45,8 +43,9 @@ int		double_redir(char *str, int j);
 
 /*syntax_error.c*/
 void	syntax_error(char *str);
+void	syntax_error2(char *str, int i);
+int		quote_check(char *str, int i, char quote);
 int		check_if_nothing(char *str, int i);
-bool	is_white(char c);
 void	syntax_error_msg(int i, char *str);
 
 #endif

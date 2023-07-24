@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:25:23 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/06 09:25:56 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/17 13:07:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_arrlen(const char **array)
+int	ft_arrlen(char **array)
 {
-	size_t	counter;
+	int	counter;
 
 	counter = 0;
 	while (*array != '\0')
