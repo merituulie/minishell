@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:53:15 by emmameinert       #+#    #+#             */
-/*   Updated: 2023/07/22 13:28:07 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:02:22 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static  int num_arg_check(char *input, int exit_code)
     {
         exit_code = ft_atoi_exit(input);
         if (exit_code > 255 || exit_code < 0)
-            exit_code = exit_code - 256;
+            exit_code = exit_code - 256; //negative numbers need to become positive
         return (exit_code);
     }    
     else

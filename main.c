@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 10:50:08 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:55:43 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,25 +77,38 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
-	cmd_line = expand_quote_check(&ms, cmd_line);
-	cmd_line = concatenate(cmd_line, &ms);
-	print_cmd_line(cmd_line);
-	cmd = init_cmds(&ms, cmd_line);
-	print_command(cmd);
-	print_full_command(cmd);
-	execute_commands(cmd, ms.struct_count, &ms.env);
-	ms.i = ms.struct_count;
-	while (ms.i >= 0)
+	while (flag)
 	{
-		if (cmd[ms.i].command)
-			free(cmd[ms.i].command);
-		if (cmd[ms.i].flags)
-			free(cmd[ms.i].flags);
-		if (cmd[ms.i].input)
-			free(cmd[ms.i].input);
-		ms.i--;
+		line = readline(PINK "Jose's PinkShell: " BORING);
+		if (line[0] == '\n' || line[0] == '\0')
+		{
+			free(line);
+			continue ;
+		}
+		cmd_line = ft_lexer(line);
+		free(line);
+		cmd_line = expand_quote_check(&ms, cmd_line);
+		cmd_line = concatenate(cmd_line, &ms);
+		// print_cmd_line(cmd_line);
+		cmd = init_cmds(&ms, cmd_line);
+		// print_command(cmd);
+		// print_full_command(cmd);
+		execute_commands(cmd, ms.struct_count, &ms.env);
+		if (ft_strncmp(cmd->command, "exit", 4) == 0)
+			flag = 0;
+		ms.i = ms.struct_count;
+		while (ms.i >= 0)
+		{
+			if (cmd[ms.i].command)
+				free(cmd[ms.i].command);
+			if (cmd[ms.i].flags)
+				free(cmd[ms.i].flags);
+			if (cmd[ms.i].input)
+				free(cmd[ms.i].input);
+			ms.i--;
+		}
+		if (cmd)
+			free(cmd);
 	}
-	if (cmd)
-		free(cmd);
 	return (0);
 }
