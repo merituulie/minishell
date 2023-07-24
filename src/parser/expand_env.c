@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 10:22:37 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:28:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ char	*expand_var(t_data *ms, char *str, int start)
 
 	ms->start = start;
 	ms->end = start + 1;
-	if (!ft_isalnum(str[ms->end] && str[ms->end] != '?'))
+	if (!ft_isalnum(str[ms->end]))
 	{
+		printf("here\n");
 		ms->out = ft_calloc(0, sizeof(char));
 		return (ms->out);
 	}
-	while (ft_isalnum(str[ms->end] || str[ms->end] == '?'))
+	while (ft_isalnum(str[ms->end]))
 			ms->end++;
 	var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
