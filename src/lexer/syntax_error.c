@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 09:35:58 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/24 10:12:47 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	syntax_error_msg(int i, char *str) // anythingg yo free?
 	if (i == 5)
 		ft_putstr_fd("syntax error: quotes not ended\n", 2);
 	free(str);
-	exit(258); //
+	exit(258); //sunnys going to make a function here
 }
 
 int	quote_check(char *str, int i, char quote)
