@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/21 10:48:56 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:04:40 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*env_to_string(t_env **env)
 	while (temp_node)
 	{
 		copy_keyvalue(&output, temp_node);
+		if (temp_node == NULL)
+			return (NULL);
 		temp_node = temp_node->next;
 	}
 	return (output);
@@ -45,5 +47,13 @@ char	*env_to_string(t_env **env)
 
 void	ft_env(t_env **env)
 {
-	ft_putstr_fd(env_to_string(env), 1);
+	char	*temp;
+
+	temp = env_to_string(env);
+	if (temp == NULL)
+	{
+		error_code(errno, env);
+		return ;
+	}
+	ft_putstr_fd(temp, 1);
 }
