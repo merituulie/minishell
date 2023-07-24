@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/24 11:02:34 by yoonslee         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/24 11:07:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LEXER_H
 # define LEXER_H
@@ -21,6 +22,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdbool.h>
+# include <errno.h>
 # include "parsing.h"
 # include "minishell.h"
 

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 11:01:40 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:07:51 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
 	char		**cmd_line;
-	int 		flag;
+	int			flag;
 	t_data		ms;
 	t_command	*cmd;
 

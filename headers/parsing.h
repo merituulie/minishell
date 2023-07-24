@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/19 11:13:16 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/24 07:34:52 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <term.h> //tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <errno.h>
 # include "../libft/libft.h"
 # include "lexer.h"
 # include "minishell.h"

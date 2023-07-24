@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 11:00:25 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:08:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ error value 258 needs to be returned*/
 void	syntax_error_msg(int i, char *str, t_env *env)
 {
 	if (i == 1)
-		printf("syntax error near unexpected token '|'\n");
+		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
 	if (i == 2)
-		printf("syntax error near unexpected token 'newline'\n");
+		ft_putstr_fd("syntax error near unexpected token 'newline'\n", 2);
 	if (i == 3)
-		printf("syntax error near unexpected token `>'\n");
+		ft_putstr_fd("syntax error near unexpected token `>'\n", 2);
 	if (i == 4)
-		printf("syntax error near unexpected token `<'\n");
+		ft_putstr_fd("syntax error near unexpected token `<'\n", 2);
 	if (i == 5)
-		printf("syntax error: quotes not ended\n");
+		ft_putstr_fd("syntax error: quotes not ended\n", 2);
 	free(str);
 	we_exit(258, env);
 }
@@ -70,7 +70,7 @@ int	check_if_nothing(char *str, int i)
 }
 
 /*check the syntax error: if there is error, send exit message with
-proper exit value. 
+proper exit value.
 can we use exit(258)? I don't know :/ */
 void	syntax_error(char *str, t_env *env)
 {
