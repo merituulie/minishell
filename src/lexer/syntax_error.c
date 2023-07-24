@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 11:32:51 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:39:07 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	check_if_nothing(char *str, int i)
 /*check the syntax error: if there is error, send exit message with
 proper exit value.
 can we use exit(258)? I don't know :/ */
-int	syntax_error(char *str, t_env **env)
+void	syntax_error(char *str, t_env **env)
 {
 	int	i;
 
@@ -98,4 +98,3 @@ int	syntax_error(char *str, t_env **env)
 	syntax_error2(str, i, env);
 }
 
-int syntax_erro()

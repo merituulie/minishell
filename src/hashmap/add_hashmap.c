@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_hashmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:16:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/07 12:06:26 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:48:42 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_node	**set_value(t_node **head, char *key, char *value)
 	if (!head || !*head)
 	{
 		head = (t_node **)ft_calloc(1, sizeof(*head));
+		if (!head)
+			return (NULL);
 		*head = new_node(key, value);
 	}
 	else

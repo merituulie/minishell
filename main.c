@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 11:22:52 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:41:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include "headers/minishell.h"
 #include "libft/libft.h"
 
-// static void	print_cmd_line(char **str)
-// {
-// 	int	i;
+static void	print_cmd_line(char **str)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		printf("cmd_line is %s\n", str[i]);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (str[i])
+	{
+		printf("cmd_line is %s\n", str[i]);
+		i++;
+	}
+}
 
 static void	print_command(t_command *cmd)
 {
@@ -45,7 +45,7 @@ static void	print_command(t_command *cmd)
 		if (cmd[i].outfile_name)
 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
 	}
-}	
+}
 
 // static void	print_full_command(t_command *cmd)
 // {
@@ -89,7 +89,7 @@ int	main(int argc, char **argv, char **envp)
 		free(line);
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
-		// print_cmd_line(cmd_line);
+		print_cmd_line(cmd_line);
 		cmd = init_cmds(&ms, cmd_line);
 		print_command(cmd);
 		// print_full_command(cmd);
