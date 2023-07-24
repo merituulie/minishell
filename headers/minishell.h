@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
@@ -93,4 +94,8 @@ char		*env_to_string(t_env **env);
 void		ft_export(char *cmd, t_env *env);
 void		ft_unset(char *cmd, t_env *env);
 
+// SIGNALS:
+void		handle_sig(int sign);
+void		set_signal_action(t_data *ms);
+void		restore_terminal(t_data *ms);
 #endif
