@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 15:45:38 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:54:15 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	execute_child(t_command *current, int command_count, t_env **env, in
 	if (current->id == 0)
 		ft_dup2(-2, pipe_fds[current->id * 2 + 1]);
 	else if (current->id == command_count - 1) 
-		ft_dup2(pipe_fds[(current->id * 2) - 2], - 2);
+		ft_dup2(pipe_fds[(current->id * 2) - 2], -2);
 	else
 	{
 		ft_dup2(pipe_fds[current->id * 2 - 2], pipe_fds[current->id * 2 + 1]);

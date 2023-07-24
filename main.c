@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 16:15:31 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:28:20 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,42 +27,42 @@ static void	print_cmd_line(char **str)
 	}
 }
 
-static void	print_command(t_command *cmd)
-{
-	int	i;
+// static void	print_command(t_command *cmd)
+// {
+// 	int	i;
 
-	i = -1;
-	while (cmd[++i].command)
-	{
-		if (cmd[i].command)
-			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-		if (cmd[i].flags)
-			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-		if (cmd[i].input)
-			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
-		if (cmd[i].infile_name)
-			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-		if (cmd[i].outfile_name)
-			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-	}
-}	
+// 	i = -1;
+// 	while (cmd[++i].command)
+// 	{
+// 		if (cmd[i].command)
+// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+// 		if (cmd[i].flags)
+// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+// 		if (cmd[i].input)
+// 			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
+// 		if (cmd[i].infile_name)
+// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+// 		if (cmd[i].outfile_name)
+// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+// 	}
+// }	
 
-static void	print_full_command(t_command *cmd)
-{
-	int	i;
-	int	j;
+// static void	print_full_command(t_command *cmd)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = -1;
-	while (cmd[++i].full_cmd)
-	{
-		j = 0;
-		while (cmd[(i)].full_cmd[j])
-		{
-			printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
-			j++;
-		}
-	}
-}
+// 	i = -1;
+// 	while (cmd[++i].full_cmd)
+// 	{
+// 		j = 0;
+// 		while (cmd[(i)].full_cmd[j])
+// 		{
+// 			printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+// 			j++;
+// 		}
+// 	}
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -82,8 +82,8 @@ int	main(int argc, char **argv, char **envp)
 	cmd_line = concatenate(cmd_line, &ms);
 	print_cmd_line(cmd_line);
 	cmd = init_cmds(&ms, cmd_line);
-	print_command(cmd);
-	print_full_command(cmd);
+	// print_command(cmd);
+	// print_full_command(cmd);
 	execute_commands(cmd, ms.struct_count, &ms.env);
 	ms.i = ms.struct_count;
 	while (ms.i >= 0)

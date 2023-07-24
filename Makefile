@@ -6,7 +6,7 @@
 #    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/20 16:07:46 by emeinert         ###   ########.fr        #
+#    Updated: 2023/07/22 12:10:48 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ PARSER_SRC = expand_env \
 			parser_utils \
 			concatenate \
 
+BUILTIN_SRC = exit \
+
 H_FILES = hashmap \
 		minishell \
 		lexer \
@@ -57,13 +59,16 @@ PARSER_PRE = $(addprefix ./src/parser/, $(PARSER_SRC))
 PARSER_SUFF = $(addsuffix .c, $(PARSER_PRE))
 HPRE = $(addprefix ./headers/, $(H_FILES))
 HSUFF = $(addsuffix .h, $(HPRE))
+BUILTIN_PRE = $(addprefix ./src/builtins/, $(BUILTIN_SRC))
+BUILTIN_SUFF = $(addsuffix .c, $(BUILTIN_PRE))
 
 .PHONY = all
 all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) \
+	$(BUILTIN_SUFF) $(COMMON_SUFF) \
 	$(COMMAND_SUFF) $(PARSER_SUFF) ./src/command_handler.c ./src/command_executer.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
