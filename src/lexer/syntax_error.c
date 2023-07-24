@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/17 16:17:25 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 07:55:06 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ error value 258 needs to be returned*/
 void	syntax_error_msg(int i, char *str)
 {
 	if (i == 1)
-		printf("syntax error near unexpected token '|'\n");
+		// perror("syntax error near unexpected token '|'\n\n");
+		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
+		// printf("%s\n", strerror(errno));
 	if (i == 2)
 		printf("syntax error near unexpected token 'newline'\n");
 	if (i == 3)
@@ -70,7 +72,7 @@ int	check_if_nothing(char *str, int i)
 }
 
 /*check the syntax error: if there is error, send exit message with
-proper exit value. 
+proper exit value.
 can we use exit(258)? I don't know :/ */
 void	syntax_error(char *str)
 {

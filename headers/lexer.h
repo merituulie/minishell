@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/18 16:02:54 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/24 07:34:22 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdbool.h>
+# include <errno.h>
 # include "parsing.h"
 
 // lexer.c
