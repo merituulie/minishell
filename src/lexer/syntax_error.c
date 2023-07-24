@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 07:55:06 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/24 09:35:58 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,20 @@
 
 /* 1 is pipe, 2 is < or > or << or >>
 error value 258 needs to be returned*/
-void	syntax_error_msg(int i, char *str)
+void	syntax_error_msg(int i, char *str) // anythingg yo free?
 {
 	if (i == 1)
-		// perror("syntax error near unexpected token '|'\n\n");
 		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
-		// printf("%s\n", strerror(errno));
 	if (i == 2)
-		printf("syntax error near unexpected token 'newline'\n");
+		ft_putstr_fd("syntax error near unexpected token 'newline'\n", 2);
 	if (i == 3)
-		printf("syntax error near unexpected token `>'\n");
+		ft_putstr_fd("syntax error near unexpected token `>'\n", 2);
 	if (i == 4)
-		printf("syntax error near unexpected token `<'\n");
+		ft_putstr_fd("syntax error near unexpected token `<'\n", 2);
 	if (i == 5)
-		printf("syntax error: quotes not ended\n");
+		ft_putstr_fd("syntax error: quotes not ended\n", 2);
 	free(str);
-	exit(258);
+	exit(258); //
 }
 
 int	quote_check(char *str, int i, char quote)
