@@ -6,7 +6,11 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/22 12:09:25 by emeinert         ###   ########.fr       */
+=======
+/*   Updated: 2023/07/21 13:58:12 by yoonslee         ###   ########.fr       */
+>>>>>>> 3a3d6a5ce1218c8400ebe54f804cd64946866f81
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +19,8 @@
 
 # include <stdio.h>
 # include <readline/readline.h>
+# include <readline/history.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 # include "parsing.h"
 # include "lexer.h"
@@ -65,6 +71,8 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 // IMPLEMENTED COMMANDS
 char		*ft_echo(t_command *command, int isPiped);
 void		ft_env(t_env **env);
+void		ft_cd(t_command *command, t_env **env);
+int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 void    	ft_exit(t_command *command);
 
@@ -83,5 +91,10 @@ void		close_files(int *pipe_fds, int command_count);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
+
+// COMMANDS
+
+void	ft_export(char *cmd, t_env *env);
+void	ft_unset(char *cmd, t_env *env);
 
 #endif

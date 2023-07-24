@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/22 13:28:20 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:50:08 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include "headers/minishell.h"
 #include "libft/libft.h"
 
-static void	print_cmd_line(char **str)
-{
-	int	i;
+// static void	print_cmd_line(char **str)
+// {
+// 	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		printf("cmd_line is %s\n", str[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		printf("cmd_line is %s\n", str[i]);
+// 		i++;
+// 	}
+// }
 
 // static void	print_command(t_command *cmd)
 // {
@@ -68,22 +68,21 @@ int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
 	char		**cmd_line;
+	int 		flag;
 	t_data		ms;
 	t_command	*cmd;
 
+	flag = 1;
 	(void)argc;
 	(void)argv;
-	line = readline(PINK "Jose's PinkShell: " BORING);
-	cmd_line = ft_lexer(line);
-	free(line);
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
 	cmd_line = expand_quote_check(&ms, cmd_line);
 	cmd_line = concatenate(cmd_line, &ms);
 	print_cmd_line(cmd_line);
 	cmd = init_cmds(&ms, cmd_line);
-	// print_command(cmd);
-	// print_full_command(cmd);
+	print_command(cmd);
+	print_full_command(cmd);
 	execute_commands(cmd, ms.struct_count, &ms.env);
 	ms.i = ms.struct_count;
 	while (ms.i >= 0)

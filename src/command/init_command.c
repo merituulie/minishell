@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/20 16:07:19 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:01:21 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_command	*init_cmds(t_data *ms, char **input)
 	ms->struct_count = 0;
 	track = 0;
 	ms->struct_count = count_struct(input, ms->struct_count);
-	printf("struct count is %d\n", ms->struct_count);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	put_cmd_to_struct(cmd, index, ms->struct_count, input);
 	full_cmd(cmd, ms->struct_count, track);

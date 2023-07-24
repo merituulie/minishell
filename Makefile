@@ -6,7 +6,7 @@
 #    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/22 12:10:48 by emeinert         ###   ########.fr        #
+#    Updated: 2023/07/24 10:49:53 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,13 +37,16 @@ PARSER_SRC = expand_env \
 			parser_utils \
 			concatenate \
 
-BUILTIN_SRC = exit \
-
 H_FILES = hashmap \
 		minishell \
 		lexer \
 		parsing \
 
+BUILTIN_SRC = export \
+			echo \
+			cd \
+			heredoc \
+			exit \
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
@@ -67,9 +70,9 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) \
-	$(BUILTIN_SUFF) $(COMMON_SUFF) \
-	$(COMMAND_SUFF) $(PARSER_SUFF) ./src/command_handler.c ./src/command_executer.c main.c \
+	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
+	 ./src/command_executer.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

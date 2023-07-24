@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/07 10:15:12 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:09:15 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@
 
 char	*ft_echo(t_command *command, int isPiped)
 {
-	int	newline;
+	int	new_line;
 	int	i;
 
-	newline = 0;
+	new_line = 0;
 	i = 0;
 	if (isPiped == 1)
-		return (command->command_flags);
-	if (ft_strncmp(command->command_flags, "-n ", 3) == 0)
+		return (command->flags);
+	if (ft_strncmp(command->flags, "-n ", 3) == 0)
 	{
-		newline = 1;
+		new_line = 1;
 		i = 3;
 	}
-	while (command->command_flags[i] != '\0')
+	while (command->flags[i] != '\0')
 	{
-		write(1, &command->command_flags[i], 1);
+		write(1, &command->flags[i], 1);
 		i++;
 	}
-	if (newline == 0 || command->command_flags == NULL)
+	if (new_line == 0 || command->flags == NULL)
 		write(1, "\n", 1);
 	return (0);
 }
