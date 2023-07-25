@@ -31,6 +31,7 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
+	int		in_heredoc;
 	int		*fds;
 	int		pid;
 	int		id;
@@ -42,6 +43,7 @@ typedef struct s_env
 }	t_env;
 
 typedef struct s_data	t_data;
+
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
@@ -95,7 +97,8 @@ void		ft_export(char *cmd, t_env *env);
 void		ft_unset(char *cmd, t_env *env);
 
 // SIGNALS:
-void		handle_sig(int sign);
 void		set_signal_action(t_data *ms);
 void		restore_terminal(t_data *ms);
+void		ctrl_d_cmd(char *line, t_data *ms);
+void	heredoc_signal(int signo);
 #endif

@@ -1,29 +1,43 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <signal.h>
 
-void sig_handler(int signo) {
-    if (signo == SIGINT) {
-        printf("\nReceived SIGINT\n");
-    }
-    if (signo == SIGQUIT) {
-        printf("\nReceived SIGQUIT\n");
-    }
+void sigint_handler(int sig_num) {
+    // This will be called when we get SIGINT (Ctrl+C)
+    if (sig_num == SIGINT)
+		printf("\n");
+    else if (sig_num == SIGQUIT)
+		printf("\\n");
 }
 
 int main() {
-    if (signal(SIGINT, sig_handler) == SIG_ERR) {
-        printf("\nCannot catch SIGINT\n");
+    struct sigaction sa;
+
+    // Set up the sigaction struct to use our handler
+    sa.sa_handler = sigint_handler;
+
+    // Block all other signals during our handler
+    sigfillset(&sa.sa_mask);
+
+    // No special options
+    sa.sa_flags = 0;
+
+    // Install the handler for SIGINT
+    if (sigaction(SIGINT, &sa, NULL) == -1) {
+        perror("sigaction");
+        exit(1);
     }
 
-    if (signal(SIGQUIT, sig_handler) == SIG_ERR) {
-        printf("\nCannot catch SIGQUIT\n");
-    }
-
-    // continue to read input until EOF (Ctrl+D)
-    char c;
-    while ((c = getchar()) != EOF) {
-        putchar(c);
+    // Ignore SIGQUIT
+    if (signal(SIGQUIT, SIG_IGN) == SIG_ERR) {
+        perror("signal");
+        exit(1);
     }
 
     return 0;
 }
+
+
+
+

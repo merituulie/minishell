@@ -75,18 +75,14 @@ int	main(int argc, char **argv, char **envp)
 	flag = 1;
 	(void)argc;
 	(void)argv;
+	cmd = NULL;
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
 	set_signal_action(&ms);	
 	while (flag)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
-		if (line == NULL)
-		{
-			write(1, "exit\n", 5);
-			restore_terminal(&ms);
-			exit(EXIT_SUCCESS);
-		}
+		ctrl_d_cmd(line, &ms);
 		if (line[0] == '\n' || line[0] == '\0')
 		{
 			free(line);

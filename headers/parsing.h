@@ -34,7 +34,7 @@
 typedef struct s_data
 {
 	struct s_env	*env;
-	struct termios 	old_tio;
+	struct termios	old_tio;
 	char			**args;
 	int				start;
 	int				end;
@@ -44,7 +44,10 @@ typedef struct s_data
 	int				i;
 	int				j;
 	int				struct_count;
+	int				sig_status;
 }	t_data;
+
+t_data	g_data;
 
 /*expand_env.c*/
 char	**expand_quote_check(t_data *ms, char **str);
