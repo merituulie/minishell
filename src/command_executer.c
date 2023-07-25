@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_executer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:20:43 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 12:41:48 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/21 10:22:47 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static char	*access_path(char **path, char *cmd)
 
 static char	*find_path(char *cmd, t_node **head)
 {
-	char *path;
-	char **split_path;
+	char	*path;
+	char	**split_path;
 
 	path = get_value(head, "PATH")->value;
 	split_path = ft_split(path, ':');
@@ -51,7 +51,7 @@ int	ft_execve(t_command *command, t_env **env)
 {
 	char	*path;
 	char	**vars;
- 
+
 	path = find_path(command->command, (*env)->vars);
 	if (!path)
 		return (-1);

@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/20 16:07:46 by emeinert         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = minishell
 LIBFT_PATH = ./libft
 
@@ -27,7 +15,7 @@ COMMON_SRC =	pipe
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error 
+			syntax_error
 
 COMMAND_SRC = init_command \
 			utils_command \
@@ -36,6 +24,13 @@ COMMAND_SRC = init_command \
 PARSER_SRC = expand_env \
 			parser_utils \
 			concatenate \
+
+BUILTIN_SRC = export \
+			echo \
+			cd \
+			heredoc \
+			pwd \
+			exit \
 
 H_FILES = hashmap \
 		minishell \
@@ -55,6 +50,8 @@ LEXER_PRE = $(addprefix ./src/lexer/, $(LEXER_SRC))
 LEXER_SUFF = $(addsuffix .c, $(LEXER_PRE))
 PARSER_PRE = $(addprefix ./src/parser/, $(PARSER_SRC))
 PARSER_SUFF = $(addsuffix .c, $(PARSER_PRE))
+BUILTIN_PRE = $(addprefix ./src/builtins/, $(BUILTIN_SRC))
+BUILTIN_SUFF = $(addsuffix .c, $(BUILTIN_PRE))
 HPRE = $(addprefix ./headers/, $(H_FILES))
 HSUFF = $(addsuffix .h, $(HPRE))
 
@@ -64,7 +61,8 @@ all: $(NAME)
 $(NAME):
 	make -C $(LIBFT_PATH)
 	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
-	$(COMMAND_SUFF) $(PARSER_SUFF) ./src/command_handler.c ./src/command_executer.c main.c \
+	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
+	 ./src/command_executer.c main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/20 17:52:30 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:10:31 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static void	ft_dup2(int infile_fd, int outfile_fd)
 {
 	if (infile_fd != -2 && dup2(infile_fd, 0) < 0)
-		ft_putstr_fd("infile_fd:  Dup 2 error!", 2);
+		ft_putstr_fd("infile_fd:  Dup 2 error!\n", 2);
 	if (outfile_fd != -2 && dup2(outfile_fd, 1) < 0)
-		ft_putstr_fd("Dup 2 error!", 2);
+		ft_putstr_fd("outfile_fd: Dup 2 error!\n", 2);
 }
 
 void	close_files(int *pipe_fds, int fd_count)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < fd_count)
 	{
@@ -32,7 +32,8 @@ void	close_files(int *pipe_fds, int fd_count)
 	}
 }
 
-static void	execute_child(t_command *current, int command_count, t_env **env, int *pipe_fds)
+static void	execute_child(t_command *current, int command_count, \
+			t_env **env, int *pipe_fds)
 {
 	if (current->id == 0)
 		ft_dup2(-2, pipe_fds[current->id * 2 + 1]);
@@ -43,7 +44,7 @@ static void	execute_child(t_command *current, int command_count, t_env **env, in
 		ft_dup2(pipe_fds[current->id * 2 - 2], pipe_fds[current->id * 2 + 1]);
 	}
 	close_files(pipe_fds, command_count * 2 - 2);
-	execute_command(current, env); 
+	execute_command(current, env);
 	// close_files(pipe_fds, command_count * 2 - 2);
 	exit(0);
 }
@@ -60,7 +61,8 @@ void	wait_children(int *pids, int count)
 	}
 }
 
-int	handle_pipe(t_command *commands, t_env **env, int command_count, int *pipe_fds)
+int	handle_pipe(t_command *commands, t_env **env, \
+			int command_count, int *pipe_fds)
 {
 	commands->pid = fork();
 	if (commands->pid < 0)
