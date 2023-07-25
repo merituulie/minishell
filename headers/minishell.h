@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 14:24:03 by yoonslee         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/25 14:45:30 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -42,7 +43,14 @@ typedef struct s_env
 	struct s_node	**vars;
 }	t_env;
 
+typedef struct s_info
+{
+	int	exit_code;
+}	t_info;
+
 typedef struct s_data	t_data;
+
+t_info	g_info;
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
