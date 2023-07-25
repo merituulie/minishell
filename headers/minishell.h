@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 11:05:27 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:41:32 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,14 @@ typedef struct s_env
 	struct s_node	**vars;
 }	t_env;
 
+typedef struct s_info
+{
+	int	exit_code;
+}	t_info;
+
 typedef struct s_data	t_data;
+
+t_info	g_info;
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
