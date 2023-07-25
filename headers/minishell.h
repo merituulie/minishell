@@ -45,11 +45,11 @@ typedef struct s_env
 typedef struct s_info
 {
 	int	exit_code;
-	int	sig_status;
 }	t_info;
 
-t_info	g_info;
 typedef struct s_data	t_data;
+
+t_info	g_info;
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
