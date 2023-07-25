@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/21 13:22:13 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:41:26 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 // 		if (cmd[i].outfile_name)
 // 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
 // 	}
-// }	
+// }
 
 // static void	print_full_command(t_command *cmd)
 // {

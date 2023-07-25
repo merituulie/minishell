@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 09:25:45 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:41:32 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,14 @@ typedef struct s_env
 	struct s_node	**vars;
 }	t_env;
 
-typedef struct s_data	t_data;
+typedef struct s_info
+{
+	int	exit_code;
+	int	sig_status;
+}	t_info;
 
+t_info	g_info;
+typedef struct s_data	t_data;
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
@@ -74,6 +80,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
+void    	ft_exit(t_command *command);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
