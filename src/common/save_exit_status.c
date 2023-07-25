@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 15:07:37 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 07:44:18 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	reset_error_code(t_env **env)
 	}
 }
 
-
 void	error_code(int number, t_env **env)
 {
 	t_node	*temp;
@@ -52,4 +51,16 @@ void	error_code(int number, t_env **env)
 		temp = get_value(&temp, "?");
 		temp->value = nbr;
 	}
+}
+
+void	error_msg(char *str, t_command *command, t_env **env)
+{
+	char	*msg;
+
+	msg = ft_strjoin(BORING "PinkShell: " BORING, command->command);
+	if (!msg)
+		printf("malloc_error\n");
+	msg = ft_strjoin(msg, str);
+	ft_putstr_fd(msg, 2);
+	error_code(127, env);
 }

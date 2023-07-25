@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 15:28:33 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 07:27:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	syntax_error(char *str, t_env **env)
 	int	i;
 
 	i = -1;
-	printf("str is %s\n", str);
 	while (str[++i])
 	{
 		if ((str[0] == '|' && check_if_nothing(str, i)) || \
