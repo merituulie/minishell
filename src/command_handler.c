@@ -28,10 +28,7 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "unset") == 0)
 		ft_unset(command->input, *env);
 	else if (ft_strncmp_all(command->command, "exit") == 0)
-	{
 		ft_exit(command);
-		return ;
-	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
 		ft_heredoc(command);
 	else
