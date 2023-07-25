@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 09:25:45 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:15:57 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,14 @@ typedef struct s_env
 	struct s_node	**vars;
 }	t_env;
 
+typedef struct s_info
+{
+	int	exit_code;
+}	g_info;
+
 typedef struct s_data	t_data;
+
+g_info	info;
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
