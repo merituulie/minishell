@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 12:28:44 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 07:18:31 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,24 @@ char	*expand_var(t_data *ms, char *str, int start)
 
 	ms->start = start;
 	ms->end = start + 1;
-	if (!ft_isalnum(str[ms->end]))
+	if (!ft_isalnum(str[ms->end])) //
 	{
-		printf("here\n");
 		ms->out = ft_calloc(0, sizeof(char));
+		if (!(ms->out))
+			//PROTECT
 		return (ms->out);
 	}
 	while (ft_isalnum(str[ms->end]))
 			ms->end++;
 	var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
-		printf(" malloc fail!\n");
-	realloc_var(ms, str, var, ft_strlen(str));
+		//PROTECT
+	realloc_var(ms, str, var, ft_strlen(str)); // returns what if failed?
 	free(var);
 	free(str);
+	ms->out = ft_strdup();
+	if (!(ms->out))
+		return (NULL);
 	return (ms->out);
 }
 
@@ -48,7 +52,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 
 	i = -1;
 	var_size--;
-	search = ft_calloc(var_size, sizeof(char));
+	search = ft_calloc(var_size, sizeof(char)); // protect
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -69,10 +73,10 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 
 	new = find_env(ms, var, ft_strlen(var));
 	if (!new)
-		size = ft_strlen(str) - ft_strlen(var);
+		size = ft_strlen(str) - ft_strlen(var); // what case is this?
 	else
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
-	ms->out = ft_calloc(size, sizeof(char));
+	ms->out = ft_calloc(size, sizeof(char)); //PROTECT
 	ms->out = ft_memcpy(ms->out, str, ms->start);
 	leftover = ms->start;
 	if (new)
@@ -85,7 +89,7 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 	i = -1;
 	while ((leftover + (++i)) < size)
 		ms->out[leftover + i] = str[ms->end + i];
-	ms->out[leftover + i] = '\0';
+	ms->out[leftover + i] = '\0'; // is needed? already calloced
 	ms->end = leftover;
 }
 
@@ -103,7 +107,7 @@ char	**expand_quote_check(t_data *ms, char **str)
 	while (str[++(ms->i)])
 	{
 		ms->j = -1;
-		quotes_init(ms);
+		// quotes_init(ms);
 		while (str[ms->i][++(ms->j)])
 		{
 			if (str[ms->i][ms->j] == 34 && !ms->s_quotes && !ms->d_quotes)
@@ -116,7 +120,8 @@ char	**expand_quote_check(t_data *ms, char **str)
 				ms->s_quotes = 0;
 			else if (str[ms->i][ms->j] == '$' && !ms->s_quotes)
 			{
-				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
+				str[ms->i] = expand_var(ms, str[ms->i], ms->j); // this segfaults if expand_var returns NULL or 0
+				// needs to be protected because expand_var is allocating memory!
 				free(ms->out);
 				ms->j = ms->end - 1;
 			}
