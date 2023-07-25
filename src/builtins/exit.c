@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:53:15 by emmameinert       #+#    #+#             */
-/*   Updated: 2023/07/24 14:51:31 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:45:48 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_exit(t_command *command)
 	flag = amount_check(splitted);
 	free_char_array(splitted);
 	if (flag)
-		exit(1);
+		return ;
 	else
 	{
 		printf("exit\n");

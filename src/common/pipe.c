@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 12:10:31 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:33:15 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static void	execute_child(t_command *current, int command_count, \
 	}
 	close_files(pipe_fds, command_count * 2 - 2);
 	execute_command(current, env);
-	// close_files(pipe_fds, command_count * 2 - 2);
-	exit(0);
 }
 
 void	wait_children(int *pids, int count)
