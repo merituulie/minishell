@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 13:55:31 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:24:03 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "parsing.h"
 # include "lexer.h"
 # include "hashmap.h"
+# include "../tests/includes/tests.h"
 
 typedef struct s_command
 {

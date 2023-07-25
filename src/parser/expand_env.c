@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 14:10:17 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:22:12 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,25 @@ char	*expand_var(t_data *ms, char *str, int start)
 
 	ms->start = start;
 	ms->end = start + 1;
-	if (!ft_isalnum(str[ms->end]))
+	if (!ft_isalnum(str[ms->end])) //
 	{
 		ms->out = ft_calloc(0, sizeof(char));
 		if (!ms->out)
 			printf("allocation fail!\n");
+		// if (!(ms->out))
+			//PROTECT
 		return (ms->out);
 	}
 	while (ft_isalnum(str[ms->end]))
 			ms->end++;
 	var = ft_substr(str, ms->start, ms->end - ms->start);
-	if (!var)
-		printf(" malloc fail!\n");
+	// if (!var)
+		//PROTECT
 	realloc_var(ms, str, var, ft_strlen(str));
 	free(var);
 	free(str);
+	if (!(ms->out))
+		return (NULL);
 	return (ms->out);
 }
 

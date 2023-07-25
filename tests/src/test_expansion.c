@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   test_expansion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 11:10:28 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/25 06:51:45 by jhusso           ###   ########.fr       */
+/*   Created: 2023/07/25 07:31:44 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/25 09:52:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include  "../includes/tests.h"
+#include "../unity_src/unity.h"
 
-char	*ft_strdup(const char *s1)
+void	test_expand_quote_check(void)
 {
-	char	*str;
-	int		len;
-	int		i;
+	t_data	data;
 
-	len = ft_strlen(s1);
-	i = 0;
-	str = malloc (sizeof(char) *(len + 1));
-	if (!str)
-		return (0);
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	char	*str1[2] ={
+	"$USER",
+	"XXX",
+	} ;
+	// char	*str2 = "\'$USER\'";
+	char	*expected1[2] = {
+	"jhusso",
+	"XXX",
+	} ;
+	// char	*expected2 = "$USER";
+
+	char **actual1 = expand_quote_check(&data, str1);
+
+	TEST_ASSERT_EQUAL_STRING_MESSAGE(expected1[0], actual1[0], "failed str1");
+
 }

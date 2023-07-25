@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 11:10:28 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/25 06:51:45 by jhusso           ###   ########.fr       */
+/*   Created: 2023/07/22 07:48:44 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/25 10:24:47 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include  "../includes/tests.h"
+#include "../unity_src/unity.h"
 
-char	*ft_strdup(const char *s1)
+void	setUp(void)
+{}
+
+void	tearDown(void)
+{}
+
+int	main(void)
 {
-	char	*str;
-	int		len;
-	int		i;
+	UNITY_BEGIN();
+	RUN_TEST(test_expand_quote_check);
 
-	len = ft_strlen(s1);
-	i = 0;
-	str = malloc (sizeof(char) *(len + 1));
-	if (!str)
-		return (0);
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	// RUN_TEST(test_lexer1); // ft_lexer
+	// RUN_TEST(test_lexer_utils1); // allocate_2d_array
+	// RUN_TEST(test_lexer_utils2); // trim_last_line
+	// RUN_TEST(test_double_redir);
+	// RUN_TEST(test_quote_index);
+
+
+	return UNITY_END();
 }

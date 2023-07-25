@@ -6,12 +6,13 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/25 13:55:15 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/25 14:23:46 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
+TEST_PATH = ./tests
 
 BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline
 
@@ -90,3 +91,8 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+run_test: $(NAME)
+	make MINISHELL="$(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(PARSER_SUFF) \
+	$(BUILTIN_SUFF) $(COMMON_SUFF) $(COMMAND_SUFF) ./src/command_handler.c \
+	./src/command_executer.c" -C $(TEST_PATH)

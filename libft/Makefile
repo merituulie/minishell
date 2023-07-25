@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/25 13:56:01 by yoonslee         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2023/07/25 14:23:03 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = libft.a
 
@@ -42,7 +43,7 @@ ft_strdup \
 ft_strlcat \
 free_array \
 ft_atoi_exit \
-ft_isdigit 
+ft_isdigit
 
 H_FILES = libft
 
