@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/24 15:47:00 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:57:27 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	**add_line_redir(char **array, size_t del_i, int del_li, size_t dlen)
 	int		i;
 
 	n_array = allocate_2d_array(array);
+	if (!n_array)
+		return (NULL);
 	i = -1;
 	if (del_li == 0)
 	{
@@ -91,7 +93,10 @@ char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len)
 		{
 			del_len = double_redir(temp[i], j);
 			temp = add_line_redir(temp, j, i, del_len);
-			trim_last_line(temp, i + 1);
+			if (!temp)
+				return (NULL);
+			if (trim_last_line(temp, i + 1) == NULL)
+				return (NULL);
 			j = del_len;
 		}
 		else
@@ -122,12 +127,14 @@ char	**parse_line(char **array)
 	{
 		j = -1;
 		array = parse_line_helper(&array, i, j, del_len);
+		if (array == NULL)
+			return (NULL);
 	}
 	return (array);
 }
 
 /// @param str user input from readline.
-char	**ft_lexer(char *str, t_env **env)
+char	**ft_lexer(char *str)
 {
 	char	*trimmed_str;
 	char	**new_str;
@@ -136,13 +143,18 @@ char	**ft_lexer(char *str, t_env **env)
 
 	trimmed_str = ft_strtrim(str, " \t");
 	len = ft_strlen(trimmed_str);
-	if (syntax_error(trimmed_str, env) == -1)
+	if (syntax_error(trimmed_str) == -1)
 		return (NULL);
 	new_str = (char **)ft_calloc(2, sizeof(char *));
 	if (!new_str)
-		return (0);
+		return (NULL);
 	new_str[0] = ft_strdup(trimmed_str);
-	free(trimmed_str);
+	if (new_str == NULL)
+		return (free(trimmed_str), NULL);
+	// free(trimmed_str);
 	parsed_line = parse_line(new_str);
+	if (!parsed_line)
+		return (NULL);
+	ft_print_array(parsed_line); //HOXHOXHOX
 	return (parsed_line);
 }

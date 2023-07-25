@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:10:28 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/25 06:51:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/25 15:15:42 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s1)
 	i = 0;
 	str = malloc (sizeof(char) *(len + 1));
 	if (!str)
-		return (0);
+		return (NULL);
 	while (s1[i] != '\0')
 	{
 		str[i] = s1[i];

@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/07 07:11:34 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/25 15:49:10 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	**allocate_2d_array(char **old_array)
 	char	**new_array;
 	size_t	arr_len;
 
+	if (!old_array)
+		return (NULL);
 	arr_len = ft_arrlen(old_array);
 	new_array = (char **)ft_calloc(arr_len + 2, sizeof(char *));
 	if (!new_array)
