@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 16:05:44 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:13:54 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(int argc, char **argv, char **envp)
 			free(line);
 			continue ;
 		}
-		cmd_line = ft_lexer(line, &ms.env);
+		cmd_line = ft_lexer(line);
 		if (cmd_line == NULL)
 		{
 			free_char_array(cmd_line);

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:51:04 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/25 14:54:56 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:14:37 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stddef.h>
 
 int		ft_atoi_exit(const char *str);
 int		ft_arrlen(char **array);

@@ -6,19 +6,19 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 13:26:39 by jhusso            #+#    #+#              #
-#    Updated: 2023/07/25 12:38:08 by jhusso           ###   ########.fr        #
+#    Updated: 2023/07/25 16:02:36 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra -Werror -lreadline
 INCLUDES = -I../headers -I../libft
 
-SRC = test_expansion \
-	test_main \
-# 	test_lexer \
-# 	test_lexer_utils1 \
-# 	test_lexer_utils2 \
+SRC = test_main \
+	test_lexer \
+	test_lexer_utils1 \
+	test_lexer_utils2 \
+	# test_expansion \
 	# test_char_checks \
 
 UNITY_SRC = unity

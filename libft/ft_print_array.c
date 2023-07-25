@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:00:03 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/03 18:09:23 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:52:15 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_print_arr(char **str)
+int	ft_print_array(char **str)
 {
 	int	i;
 
