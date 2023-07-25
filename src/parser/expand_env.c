@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 14:25:14 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:04:57 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*expand_var(t_data *ms, char *str, int start)
 
 	ms->start = start;
 	ms->end = start + 1;
+	if (str[ms->end] == '?')
+		var = ft_strdup("$?");
 	if (!ft_isalnum(str[ms->end]))
 	{
 		ms->out = ft_calloc(0, sizeof(char));
@@ -29,12 +31,14 @@ char	*expand_var(t_data *ms, char *str, int start)
 		return (ms->out);
 	}
 	while (ft_isalnum(str[ms->end]))
-			ms->end++;
-	var = ft_substr(str, ms->start, ms->end - ms->start);
+		ms->end++;
+	if (!ft_strncmp_all(var, "$?"))
+		var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
 		printf("allocation fail!\n");
 	realloc_var(ms, str, var, ft_strlen(str));
-	free(var);
+	if (!ft_strncmp_all(var, "$?"))
+		free(var);
 	free(str);
 	if (!(ms->out))
 		return (NULL);
@@ -50,8 +54,12 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	char	*search;
 
 	i = -1;
+	if (!ft_strncmp_all(var, "$?"))
+		return (get_exit_value());
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
+	if (!search)
+		printf("allocation fail!\n");
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;

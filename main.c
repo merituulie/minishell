@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 14:45:15 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:05:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,12 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		}
 		free(line);
+		// print_cmd_line(cmd_line);
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
-		// print_cmd_line(cmd_line);
 		cmd = init_cmds(&ms, cmd_line);
 		// print_command(cmd);
 		// print_full_command(cmd);
-		reset_error_code(&ms.env);
 		execute_commands(cmd, ms.struct_count, &ms.env);
 		if (ft_strncmp(cmd->command, "exit", 4) == 0)
 			flag = 0;
