@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 07:39:09 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:55:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
+void    	ft_exit(t_command *command);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \

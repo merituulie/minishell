@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/24 11:03:44 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/25 13:55:15 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,16 +38,18 @@ PARSER_SRC = expand_env \
 			parser_utils \
 			concatenate \
 
+BUILTIN_SRC = export \
+			echo \
+			cd \
+			heredoc \
+			pwd \
+			exit \
+
 H_FILES = hashmap \
 		minishell \
 		lexer \
 		parsing \
 
-BUILTIN_SRC = export \
-			echo \
-			cd \
-			heredoc \
-			pwd
 
 HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
 HASHMAP_SUFF = $(addsuffix .c, $(HASHMAP_PRE))
@@ -61,10 +63,10 @@ LEXER_PRE = $(addprefix ./src/lexer/, $(LEXER_SRC))
 LEXER_SUFF = $(addsuffix .c, $(LEXER_PRE))
 PARSER_PRE = $(addprefix ./src/parser/, $(PARSER_SRC))
 PARSER_SUFF = $(addsuffix .c, $(PARSER_PRE))
-HPRE = $(addprefix ./headers/, $(H_FILES))
-HSUFF = $(addsuffix .h, $(HPRE))
 BUILTIN_PRE = $(addprefix ./src/builtins/, $(BUILTIN_SRC))
 BUILTIN_SUFF = $(addsuffix .c, $(BUILTIN_PRE))
+HPRE = $(addprefix ./headers/, $(H_FILES))
+HSUFF = $(addsuffix .h, $(HPRE))
 
 .PHONY = all
 all: $(NAME)
