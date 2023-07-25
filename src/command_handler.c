@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 13:57:33 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:09:29 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	execute_command(t_command *command, t_env **env)
 	{
 		if (ft_execve(command, env) == -1)
 			error_msg(": command not found\n", command, env);
-		return ;
 	}
+	exit(0);
 }
 
 int	execute_commands(t_command *commands, int command_count, t_env **env)
