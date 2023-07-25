@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 09:39:13 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/25 10:07:36 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ char	*expand_var(t_data *ms, char *str, int start)
 	if (!ft_isalnum(str[ms->end])) //
 	{
 		ms->out = ft_calloc(0, sizeof(char));
-		if (!(ms->out))
+		// if (!(ms->out))
 			//PROTECT
 		return (ms->out);
 	}
 	while (ft_isalnum(str[ms->end]))
 			ms->end++;
 	var = ft_substr(str, ms->start, ms->end - ms->start);
-	if (!var)
+	// if (!var)
 		//PROTECT
 	realloc_var(ms, str, var, ft_strlen(str)); // returns what if failed?
 	free(var);
 	free(str);
-	ms->out = ft_strdup();
+	// ms->out = ft_strdup();
 	if (!(ms->out))
 		return (NULL);
 	return (ms->out);
@@ -120,7 +120,7 @@ char	**expand_quote_check(t_data *ms, char **str)
 				ms->s_quotes = 0;
 			else if (str[ms->i][ms->j] == '$' && !ms->s_quotes)
 			{
-				str[ms->i] = expand_var(ms, str[ms->i], ms->j); // this segfaults if expand_var returns NULL or 0
+				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j)); // this segfaults if expand_var returns NULL or 0
 				// needs to be protected because expand_var is allocating memory!
 				free(ms->out);
 				ms->j = ms->end - 1;

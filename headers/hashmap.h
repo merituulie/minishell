@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:14:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 07:35:00 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/25 10:08:05 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HASHMAP_H
 
 # include <stdlib.h>
+# include "../tests/includes/tests.h"
 
 typedef struct s_node
 {

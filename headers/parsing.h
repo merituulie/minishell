@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/25 06:21:22 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/25 10:07:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "../libft/libft.h"
 # include "lexer.h"
 # include "minishell.h"
+# include "../tests/includes/tests.h"
 
 typedef struct s_data
 {

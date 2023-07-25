@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/25 07:27:46 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 10:01:33 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 error value 258 needs to be returned*/
 int	syntax_error_msg(int i, char *str, t_env **env)
 {
+	(void)env;
+
 	if (i == 1)
 		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
 	if (i == 2)
@@ -28,7 +30,7 @@ int	syntax_error_msg(int i, char *str, t_env **env)
 	if (i == 5)
 		ft_putstr_fd("syntax error: quotes not ended\n", 2);
 	free(str);
-	error_code(258, env);
+	// reset_error_code(env);
 	return (-1);
 }
 
