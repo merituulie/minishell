@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 09:30:50 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/25 07:41:08 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "<<") == 0)
 		ft_heredoc(command);
 	else
-		ft_execve(command, env);
+	{
+		if (ft_execve(command, env) == -1)
+			error_msg(": command not found\n", command, env);
+		return ;
+	}
 }
 
 int	execute_commands(t_command *commands, int command_count, t_env **env)

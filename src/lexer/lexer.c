@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/24 15:29:08 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:47:00 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,6 @@ char	**ft_lexer(char *str, t_env **env)
 	len = ft_strlen(trimmed_str);
 	if (syntax_error(trimmed_str, env) == -1)
 		return (NULL);
-	printf("syntax_error return is:%d\n", syntax_error(trimmed_str, env));
-	printf("not returned yet. why?\n");
 	new_str = (char **)ft_calloc(2, sizeof(char *));
 	if (!new_str)
 		return (0);
