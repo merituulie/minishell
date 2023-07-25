@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/24 10:17:50 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/25 12:39:22 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,9 @@ ft_strjoin \
 ft_strchr \
 ft_strdup \
 ft_strlcat \
-free_array
+free_array \
+ft_atoi_exit \
+ft_isdigit
 
 H_FILES = libft
 

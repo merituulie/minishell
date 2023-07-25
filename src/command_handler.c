@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 07:41:08 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:39:13 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../headers/minishell.h"
 
@@ -27,7 +28,7 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "unset") == 0)
 		ft_unset(command->input, *env);
 	else if (ft_strncmp_all(command->command, "exit") == 0)
-		return ;
+		ft_exit(command);
 	else if (ft_strncmp_all(command->command, "<<") == 0)
 		ft_heredoc(command);
 	else

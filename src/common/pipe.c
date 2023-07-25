@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/21 10:36:02 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:47:38 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	execute_child(t_command *current, int command_count, \
 {
 	if (current->id == 0)
 		ft_dup2(-2, pipe_fds[current->id * 2 + 1]);
-	else if (current->id == command_count - 1)
+	else if (current->id == command_count - 1) 
 		ft_dup2(pipe_fds[(current->id * 2) - 2], -2);
 	else
 	{
