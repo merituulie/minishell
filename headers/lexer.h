@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/26 07:34:22 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 10:18:52 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,21 @@ typedef struct s_lexer
 	int		j;
 	int		del_len;
 	char	**arr;
+	char	**new_arr;
 }	t_lexer;
 
 
 // lexer.c
 char	**add_line(char **old_array, int del_index, int del_line_index);
-char	**add_line_redir(char **array, t_lexer l);
-char	**parse_line_helper(char ***array, t_lexer l);
-char	**parse_line(char **array, t_lexer l);
+char	**add_line_redir(char **array, t_lexer *l);
+int		check_operand(t_lexer *l);
+char	**parse_line_helper(t_lexer *l);
+char	**parse_line(t_lexer l);
 char	**ft_lexer(char *str);
 
 //lexer_utils.c
 char	**allocate_2d_array(char **old_array);
-void	trim_last_line(char **array, int line_index);
+int		trim_last_line(char **array, int line_index);
 
 //char_checks.c
 bool	is_delim(char c);
