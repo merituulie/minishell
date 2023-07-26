@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 11:52:29 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/26 15:29:31 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,34 +80,42 @@ static int	execute_builtin(t_command *command, t_env **env)
 		return (0);
 	return (1);
 }
-
-int	execute_commands(t_command *commands, int command_count, t_env **env)
+static	int	one_command(t_command *command, int command_count, t_env **env)
 {
-	int			i;
-
-	int			pids[command_count];
-	int			pipe_fds[(command_count * 2) - 2];
 	int			pid_test;
 	
 	pid_test = 0;
-	i = 0;
 	if (command_count == 1)
 	{
-		if (ft_check_command(commands))
-			execute_builtin(commands, env);
+		if (ft_check_command(command))
+			execute_builtin(command, env);
 		else
 		{
 			pid_test = fork();
 			if (pid_test == 0)
 			{
-				execute_command(commands, env);
+				execute_command(command, env);
 			}
 			waitpid(pid_test, NULL, 0);
-			return (0);
+			return (pid_test);
 		}
-		return (0);
+		return (1);
 	}
-	while (i < command_count)
+	return (0);
+}
+
+int	execute_commands(t_command *commands, int command_count, t_env **env)
+{
+	int			i;
+	int			pids[command_count];
+	int			pipe_fds[(command_count * 2) - 2];
+	int			pid_test;
+
+	i = -1;
+	pid_test = one_command(commands, command_count, env);
+	if (pid_test)
+		return (0);
+	while (++i < command_count)
 	{
 		commands->id = i;
 		if (i != command_count - 1)
@@ -117,7 +125,6 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 		}
 		pids[i] = handle_pipe(commands, env, command_count, pipe_fds);
 		commands++;
-		i++;
 	}
 	waitpid(pid_test, NULL, 0);
 	close_files(pipe_fds, command_count * 2 - 2);
