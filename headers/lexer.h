@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/25 15:28:30 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 07:34:22 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,20 @@
 
 typedef struct s_env	t_env;
 
+typedef struct s_lexer
+{
+	int		i;
+	int		j;
+	int		del_len;
+	char	**arr;
+}	t_lexer;
+
+
 // lexer.c
-char	**add_line(char **old_array, size_t del_index, int del_line_index);
-char	**add_line_redir(char **array, size_t del_index, \
-		int del_line_index, size_t del_len);
-char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len);
-char	**parse_line(char **array);
+char	**add_line(char **old_array, int del_index, int del_line_index);
+char	**add_line_redir(char **array, t_lexer l);
+char	**parse_line_helper(char ***array, t_lexer l);
+char	**parse_line(char **array, t_lexer l);
 char	**ft_lexer(char *str);
 
 //lexer_utils.c
