@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/26 14:31:32 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:37:52 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int	count_struct(char **input)
 	index = 0;
 	while (input[index])
 	{
-		printf("we enter to detect input[%i][0] %c\n", index, input[index][0]);
 		if (input[index][0] == '|')
 			struct_count++;
 		else if (input[index][0] == '>')
