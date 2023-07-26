@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 14:41:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:35:47 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,19 @@ void		fill_env(char **envp, t_env **env);
 
 /*init_command.c*/
 t_command	*init_cmds(t_data *ms, char **input);
-int			count_struct(char **input, int struct_count);
+
 /*add_command.c*/
-char		*put_to_input(char **input, int *index);
-char		*put_to_flags(char **input, int	*index);
-char		*put_to_file(char **input, int **index);
+char			*parse_input(char **input, int *index);
+char			*parse_flags(char **input, int	*index);
+void			put_to_input(t_command *cmd, int track, char *str);
+void			put_to_flags(t_command *cmd, int track, char *str);
+
 void		put_redirection(t_command *cmd, int *index, \
 			int track, char **input);
-void		put_cmd_to_struct(t_command *cmd, int index, \
+void		put_cmd_to_struct(t_command *cmd, \
 					int struct_count, char **input);
 /*utils_command.c*/
 char		*ft_strchr_null(const char *s, int c);
-void		strdup_if_not_null(t_command *cmd, int track, \
-			char *name, char *str);
 void		strdup_filename(t_command *cmd, int track, char *str);
 void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);

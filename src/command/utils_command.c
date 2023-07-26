@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/20 11:35:05 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:17:38 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,30 @@ char	*ft_strchr_null(const char *s, int c)
 	return (NULL);
 }
 
-void	strdup_if_not_null(t_command *cmd, int track, char *name, char *str)
+void	put_to_flags(t_command *cmd, int track, char *str)
 {
-	if (!ft_strncmp_all("flags", name))
+	if (str == NULL)
+		cmd[track].flags = NULL;
+	else
 	{
-		if (str == NULL)
-			cmd[track].flags = NULL;
-		else
-		{
-			cmd[track].flags = ft_strdup(str);
-			if (!cmd[track].flags)
-				printf("strdup allocation fail!\n");
-		}
-		str = NULL;
+		cmd[track].flags = ft_strdup(str);
+		if (!cmd[track].flags)
+			printf("strdup allocation fail!\n");
 	}
-	else if (!ft_strncmp_all("input", name))
+	str = NULL;
+}
+
+void	put_to_input(t_command *cmd, int track, char *str)
+{
+	if (str == NULL)
+		cmd[track].input = NULL;
+	else
 	{
-		if (str == NULL)
-			cmd[track].input = NULL;
-		else
-		{
-			cmd[track].input = ft_strdup(str);
-			if (!cmd[track].input)
-				printf("strdup allocation fail!\n");
-		}
-		str = NULL;
+		cmd[track].input = ft_strdup(str);
+		if (!cmd[track].input)
+			printf("strdup allocation fail!\n");
 	}
+	str = NULL;
 }
 
 void	strdup_filename(t_command *cmd, int track, char *str)
