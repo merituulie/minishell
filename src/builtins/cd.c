@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 09:32:40 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:15:34 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	go_dir(t_env **env, t_command *command)
 	}
 	else if (chdir(command->full_cmd[1]))
 		printf("can't change to dir");
-	printf("go_dir executed\n");
 }
 
 /*when cd function is called, OLDPWD is created in env.

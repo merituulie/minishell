@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
 /*   Updated: 2023/07/26 06:26:08 by jhusso           ###   ########.fr       */
+=======
+/*   Created: 2023/07/25 14:57:09 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/07/25 15:37:43 by yoonslee         ###   ########.fr       */
+>>>>>>> b3d2126178ccea2e2634faa2f8ffffe1038a429a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +54,7 @@ typedef struct s_info
 
 typedef struct s_data	t_data;
 
-t_info	g_info;
+t_info		g_info;
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
@@ -80,7 +85,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
-void    	ft_exit(t_command *command);
+void		ft_exit(t_command *command);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
@@ -94,9 +99,8 @@ void		wait_children(int *pids, int count);
 
 // COMMON
 void		close_files(int *pipe_fds, int command_count);
-void		error_code(int number, t_env **env);
-void		reset_error_code(t_env **env);
-void		error_msg(char *str, t_command *command, t_env **env);
+void		error_code(int number);
+void		error_msg(char *str, t_command *command);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);

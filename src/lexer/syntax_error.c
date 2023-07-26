@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/25 15:29:55 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/25 16:14:43 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	syntax_error_msg(int i, char *str)
 	if (i == 5)
 		ft_putstr_fd("syntax error: quotes not ended\n", 2);
 	free(str);
-	// reset_error_code(env);
+	error_code(258);
 	return (-1);
 }
 
