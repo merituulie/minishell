@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:17:58 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/26 14:33:53 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 14:58:51 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,12 @@ char	**not_first_line(char **n_array, t_lexer *l)
 		}
 		else
 			n_array[i] = ft_strdup(l->new_arr[i]);
-			if (!n_array[i])
-				return (NULL);
+		if (!n_array[i])
+			return (NULL);
 	}
 	return (n_array);
 }
 
-/// @brief Inner loop for parsing trough strings in array.
-/// @param array
-/// @param deli index where delimeter is found.
-/// @param del_line_index index of the line in array, where delimeter is found.
 char	**add_line(t_lexer *l)
 {
 	char	**n_array;
@@ -52,7 +48,8 @@ char	**add_line(t_lexer *l)
 	if (l->i == 0)
 	{
 		n_array[0] = ft_substr(l->new_arr[0], 0, l->j);
-		n_array[1] = ft_substr(l->new_arr[0], l->j, (ft_strlen(l->new_arr[0]) - l->j));
+		n_array[1] = ft_substr(l->new_arr[0], l->j, \
+			(ft_strlen(l->new_arr[0]) - l->j));
 	}
 	else
 	{
@@ -90,16 +87,10 @@ char	**not_first_line_redir(char **n_array, t_lexer *l)
 	return (n_array);
 }
 
-/// @brief Inner loop for parsing trough strings in array.
-/// @param array
-/// @param del_i index where delimeter is found.
-/// @param del_li index of the line in array, where delimeter is found.
-/// @param dlen delimeter len (in case of redirectors and pipe)
 char	**add_line_redir(t_lexer *l)
 {
 	char	**n_array;
 
-	// printf("INSIDE add_line_redir:\nl.i = %i\nl.j = %i\n\n", l.i, l.j);
 	n_array = allocate_2d_array(l->new_arr);
 	if (!n_array)
 		return (NULL);
@@ -123,16 +114,12 @@ char	**add_line_redir(t_lexer *l)
 /// @return if failed returns 0, if success returns 1
 int	case_operand(t_lexer *l)
 {
-		printf("ARRAY WHEN ARRIVING IN check_operand\n");
-		ft_print_array(l->new_arr);
-		l->del_len = double_redir(l->new_arr[l->i], l->j);
-		l->new_arr = add_line_redir(l);
-		if (!l->new_arr)
-			return (0);
-		if (trim_last_line(l->new_arr, l->i + 1) == 0)
-			return (0);
-		l->j = l->del_len;
-		printf("ARRAY WHEN LEAVING check_operand\n");
-		ft_print_array(l->new_arr);
-		return (1);
+	l->del_len = double_redir(l->new_arr[l->i], l->j);
+	l->new_arr = add_line_redir(l);
+	if (!l->new_arr)
+		return (0);
+	if (trim_last_line(l->new_arr, l->i + 1) == 0)
+		return (0);
+	l->j = l->del_len;
+	return (1);
 }

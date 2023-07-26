@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:00:03 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 15:52:15 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 14:53:36 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_print_array(char **str)
 	i = 0;
 	while (str[i])
 	{
-		printf("%s\n", str[i]);
+		printf("%s\t %p\n", str[i], &(str[i]));
 		i++;
 	}
 	return (0);

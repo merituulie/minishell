@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/26 13:17:56 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 15:00:37 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	**parse_line_helper(t_lexer *l)
 {
 	while (++l->j < (int)ft_strlen(l->new_arr[l->i]))
 	{
-
 		if (is_operand(l->new_arr[l->i][0]) == true)
 		{
 			if (case_operand(l) == 0)
@@ -41,8 +40,6 @@ char	**parse_line_helper(t_lexer *l)
 	return (l->new_arr);
 }
 
-/// @brief Outer loop for parsing trough strings in array.
-/// @param array 2d array, holding whole input in array[0].
 char	**parse_line(t_lexer l)
 {
 	l.i = -1;
@@ -57,7 +54,7 @@ char	**parse_line(t_lexer l)
 	return (l.new_arr);
 }
 
-void	init_lexer(t_lexer *l)
+static void	init_lexer(t_lexer *l)
 {
 	l->i = 0;
 	l->j = 0;
@@ -83,14 +80,9 @@ char	**ft_lexer(char *str)
 		return (NULL);
 	l.new_arr[0] = ft_strdup(trimmed_str);
 	if (l.new_arr == NULL)
-		return (free(trimmed_str), NULL);
+		return (NULL);
 	l.arr = parse_line(l);
 	if (!l.arr)
 		return (NULL);
-	 //HOXHOXHOX
-	printf("ARRAY BACK IN ft_lexer\n");
-	ft_print_array(l.arr);
-	printf("**********************\n");
-	printf("###\tERROR\t###\n");
 	return (l.arr);
 }
