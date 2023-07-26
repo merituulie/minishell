@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/26 11:30:36 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 11:42:39 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ char	**ft_lexer(char *str)
 	printf("ARRAY BACK IN ft_lexer\n");
 	ft_print_array(l.arr);
 	printf("**********************\n");
+	printf("###\tERROR\t###\n");
 	return (l.arr);
 }
