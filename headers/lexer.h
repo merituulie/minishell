@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/26 10:51:03 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 11:30:29 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,18 @@ typedef struct s_lexer
 	char	**new_arr;
 }	t_lexer;
 
-
 // lexer.c
-char	**not_first_line(char **n_array, t_lexer *l);
-char	**add_line(t_lexer *l);
-char	**not_first_line_redir(char **n_array, t_lexer *l);
-char	**add_line_redir(t_lexer *l);
-int		case_operand(t_lexer *l);
 char	**parse_line_helper(t_lexer *l);
 char	**parse_line(t_lexer l);
 void	init_lexer(t_lexer *l);
-char	**ft_lexer(char *str);
+char		**ft_lexer(char *str);
+
+/*add_lines_lexer.c*/
+char	**not_first_line(char **n_array, t_lexer *l);
+char		**add_line(t_lexer *l);
+char	**not_first_line_redir(char **n_array, t_lexer *l);
+char	**add_line_redir(t_lexer *l);
+int			case_operand(t_lexer *l);
 
 //lexer_utils.c
 char	**allocate_2d_array(char **old_array);

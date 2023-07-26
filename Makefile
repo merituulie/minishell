@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/25 14:23:46 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/26 11:19:25 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ COMMON_SRC =	pipe \
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error
+			syntax_error \
+			add_lines_lexer
 
 COMMAND_SRC = init_command \
 			utils_command \
