@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:17:58 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/26 11:30:17 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 14:33:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**not_first_line(char **n_array, t_lexer *l)
 {
 	int	i;
 
-	i = 1;
+	i = -1;
 	while (++i < ft_arrlen(l->new_arr))
 	{
 		if (i == l->i)
