@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/25 15:57:27 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/26 06:25:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ char	**ft_lexer(char *str)
 		return (free(trimmed_str), NULL);
 	// free(trimmed_str);
 	parsed_line = parse_line(new_str);
+	parsed_line = NULL;
 	if (!parsed_line)
 		return (NULL);
 	ft_print_array(parsed_line); //HOXHOXHOX
