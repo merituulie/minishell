@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 15:29:31 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/27 14:04:11 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../headers/minishell.h"
+#include "../../headers/minishell.h"
 
 void	execute_command(t_command *command, t_env **env)
 {
@@ -76,7 +76,7 @@ static int	execute_builtin(t_command *command, t_env **env)
 	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
 		ft_heredoc(command);
-	else 
+	else
 		return (0);
 	return (1);
 }
@@ -84,7 +84,7 @@ static int	execute_builtin(t_command *command, t_env **env)
 static	int	one_command(t_command *command, int command_count, t_env **env)
 {
 	int			pid_test;
-	
+
 	pid_test = 0;
 	if (command_count == 1)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 12:50:59 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:23:20 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
-	int		*fds;
+	int		fds[2];
 	int		pid;
 	int		id;
 }	t_command;
@@ -65,7 +65,8 @@ char		*parse_input(char **input, int *index);
 char		*parse_flags(char **input, int	*index);
 void		put_to_input(t_command *cmd, int track, char *str);
 void		put_to_flags(t_command *cmd, int track, char *str);
-void		put_redirection(t_command *cmd, int *index, \
+int			open_redir_files(t_command cmd, char *str);
+void		handle_redirection(t_command *cmd, int *index, \
 			int track, char **input);
 void		put_cmd_to_struct(t_command *cmd, \
 					int struct_count, char **input);
@@ -75,13 +76,13 @@ void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
 
 // IMPLEMENTED COMMANDS
-int			ft_echo(t_command *command);
 void		ft_env(t_env **env);
 void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command);
+int			ft_echo(t_command *command);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \

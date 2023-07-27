@@ -12,7 +12,8 @@ ENV_SRC = init_env \
 
 COMMON_SRC =	file \
 				pipe \
-				executer
+				executer \
+				redirection
 
 LEXER_SRC = lexer \
 			lexer_utils \

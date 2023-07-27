@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/26 10:23:10 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:11:57 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,19 @@ static char	*parse_redirection_input(char **input, int **index)
 	return (str);
 }
 
-void	put_redirection(t_command *cmd, int *index, int track, char **input)
+void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
 	char	*str;
 
+	str = parse_redirection_input(input, &index);
 	if (!ft_strncmp_all("<<", cmd[track].command))
-	{
-		str = parse_redirection_input(input, &index);
 		put_to_input(cmd, track, str);
-	}
 	else
 	{
-		printf("in put_redirection\n");
-		ft_print_array(input);
-		str = parse_redirection_input(input, &index);
 		strdup_filename(cmd, track, str);
+		printf("in handle_redirection\n"); //debug
+		ft_print_array(input); //debug
+		open_redir_files(cmd[track], str);
 	}
 }
 
@@ -115,7 +113,7 @@ void	put_cmd_to_struct(t_command *cmd, \
 		if (!cmd[track].command)
 			printf("strdup allocation fail!");
 		if (ft_strchr("<>", cmd[track].command[0]))
-			put_redirection(cmd, &index, track, input);
+			handle_redirection(cmd, &index, track, input);
 		else
 		{
 			if (!input[index])
