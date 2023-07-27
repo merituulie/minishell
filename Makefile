@@ -10,7 +10,8 @@ HASHMAP_SRC = add_hashmap \
 ENV_SRC = init_env \
 		env
 
-COMMON_SRC =	pipe
+COMMON_SRC =	pipe \
+				executer
 
 LEXER_SRC = lexer \
 			lexer_utils \
@@ -30,6 +31,7 @@ BUILTIN_SRC = export \
 			cd \
 			heredoc \
 			pwd \
+			execve \
 			exit \
 
 H_FILES = hashmap \
@@ -61,8 +63,7 @@ all: $(NAME)
 $(NAME):
 	make -C $(LIBFT_PATH)
 	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
-	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
-	 ./src/command_executer.c main.c \
+	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean
