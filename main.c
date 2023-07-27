@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 14:56:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/27 07:37:21 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main(int argc, char **argv, char **envp)
 	char		**cmd_line;
 	int			flag;
 	t_data		ms;
-	// t_command	*cmd;
+	t_command	*cmd;
 
 	flag = 1;
 	(void)argc;
