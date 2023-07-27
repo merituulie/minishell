@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 14:34:51 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/27 13:21:45 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "parsing.h"
 # include "lexer.h"
 # include "hashmap.h"
-# include "../tests/includes/tests.h"
 
 typedef struct s_command
 {

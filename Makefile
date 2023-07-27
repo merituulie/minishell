@@ -6,7 +6,7 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/17 16:06:56 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/26 11:19:25 by jhusso           ###   ########.fr        #
+#    Updated: 2023/07/27 13:21:25 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
-run_test: $(NAME)
-	make MINISHELL="$(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(PARSER_SUFF) \
-	$(BUILTIN_SUFF) $(COMMON_SUFF) $(COMMAND_SUFF) ./src/command_handler.c \
-	./src/command_executer.c" -C $(TEST_PATH)
+# run_test: $(NAME)
+# 	make MINISHELL="$(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(PARSER_SUFF) \
+# 	$(BUILTIN_SUFF) $(COMMON_SUFF) $(COMMAND_SUFF) ./src/command_handler.c \
+# 	./src/command_executer.c" -C $(TEST_PATH)

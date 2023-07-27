@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/26 13:18:37 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/27 13:21:48 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <errno.h>
 # include "parsing.h"
 # include "minishell.h"
-# include "../tests/includes/tests.h"
 
 typedef struct s_env	t_env;
 
