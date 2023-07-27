@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
+#    By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/22 13:16:39 by emeinert         ###   ########.fr        #
+#    Updated: 2023/07/26 16:03:15 by emmameinert      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ ft_strdup \
 ft_strlcat \
 free_array \
 ft_atoi_exit \
-ft_isdigit 
+ft_isdigit \
+ft_itoa \
 
 H_FILES = libft
 
