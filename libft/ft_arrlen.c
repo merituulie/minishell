@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:25:23 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/17 13:07:44 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:17:56 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_arrlen(char **array)
 	int	counter;
 
 	counter = 0;
-	while (*array != '\0')
+	while (*array)
 	{
 		counter++;
 		array++;

@@ -1,7 +1,7 @@
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline
+BUILD_FLAGS = -Wall -Wextra -g -lreadline
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
