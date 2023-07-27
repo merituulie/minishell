@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/25 16:07:45 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:50:00 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "unset") == 0)
 		ft_unset(command->input, *env);
 	else if (ft_strncmp_all(command->command, "exit") == 0)
+	{
 		ft_exit(command);
+		return ;
+	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
 		ft_heredoc(command);
 	else
-	{
-		if (ft_execve(command, env) == -1)
-			error_msg(": command not found\n", command);
-	}
-	// exit(0);
+		ft_execve(command, env);
 }
 
 int	execute_commands(t_command *commands, int command_count, t_env **env)
@@ -45,14 +44,13 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	int			i;
 	int			pids[command_count];
 	int			pipe_fds[(command_count * 2) - 2];
+	int			pid_test;
 
-	i = 0;
-	if (command_count == 1)
-	{
-		execute_command(commands, env);
+	i = -1;
+	pid_test = one_command(commands, command_count, env);
+	if (pid_test)
 		return (0);
-	}
-	while (i < command_count)
+	while (++i < command_count)
 	{
 		commands->id = i;
 		if (i != command_count - 1)
@@ -62,8 +60,8 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 		}
 		pids[i] = handle_pipe(commands, env, command_count, pipe_fds);
 		commands++;
-		i++;
 	}
+	waitpid(pid_test, NULL, 0);
 	close_files(pipe_fds, command_count * 2 - 2);
 	wait_children(pids, i - 1);
 	return (0);

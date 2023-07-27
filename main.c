@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 07:37:21 by jhusso           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/27 10:50:44 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
@@ -100,8 +101,6 @@ int	main(int argc, char **argv, char **envp)
 		// print_command(cmd);
 		// print_full_command(cmd);
 		execute_commands(cmd, ms.struct_count, &ms.env);
-		if (ft_strncmp(cmd->command, "exit", 4) == 0)
-			flag = 0;
 		ms.i = ms.struct_count;
 		while (ms.i >= 0)
 		{
