@@ -48,8 +48,12 @@ char	**add_line(t_lexer *l)
 	if (l->i == 0)
 	{
 		n_array[0] = ft_substr(l->new_arr[0], 0, l->j);
+		if (n_array[0] == NULL)
+			return (NULL);
 		n_array[1] = ft_substr(l->new_arr[0], l->j, \
 			(ft_strlen(l->new_arr[0]) - l->j));
+		if (n_array[1] == NULL)
+			return (NULL);
 	}
 	else
 	{
@@ -97,8 +101,12 @@ char	**add_line_redir(t_lexer *l)
 	if (l->i == 0)
 	{
 		n_array[0] = ft_substr(l->new_arr[0], l->j, l->del_len);
+		if (n_array[0] == NULL)
+			return (NULL);
 		n_array[1] = ft_substr(l->new_arr[0], l->del_len, \
 			(ft_strlen(l->new_arr[0]) - l->del_len));
+		if (n_array[0] == NULL)
+			return (NULL);
 	}
 	else
 	{
