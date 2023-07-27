@@ -14,7 +14,6 @@
 #include "../../headers/parsing.h"
 #include "../../libft/libft.h"
 
-extern t_info	g_info;
 //SIGNAL IS NOT HANDLED YET.
 //cat << DELIM case is not handled yet.
 /*here_doc with signal needs to be handled.

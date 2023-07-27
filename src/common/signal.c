@@ -13,8 +13,6 @@
 #include "../../headers/parsing.h"
 #include "../../headers/minishell.h"
 
-extern t_info	g_info;
-
 static void	handle_sig(int signo)
 {
 	if (signo == SIGINT)
