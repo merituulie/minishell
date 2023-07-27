@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 10:15:22 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:53:33 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ int	main(int argc, char **argv, char **envp)
 		// print_command(cmd);
 		// print_full_command(cmd);
 		execute_commands(cmd, ms.struct_count, &ms.env);
-		if (ft_strncmp(cmd->command, "exit", 4) == 0)
-			flag = 0;
 		ms.i = ms.struct_count;
 		while (ms.i >= 0)
 		{
