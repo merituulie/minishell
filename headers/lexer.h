@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/18 16:02:54 by meskelin         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/27 13:21:48 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,37 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdbool.h>
+# include <errno.h>
 # include "parsing.h"
+# include "minishell.h"
+
+typedef struct s_env	t_env;
+
+typedef struct s_lexer
+{
+	int		i;
+	int		j;
+	int		del_len;
+	char	**arr;
+	char	**new_arr;
+}	t_lexer;
 
 // lexer.c
-char	**add_line(char **old_array, size_t del_index, int del_line_index);
-char	**add_line_redir(char **array, size_t del_index, \
-		int del_line_index, size_t del_len);
-char	**parse_line_helper(char ***array, size_t i, size_t j, size_t del_len);
-char	**parse_line(char **array);
-char	**ft_lexer(char *str);
+// static char	**parse_line_helper(t_lexer *l);
+// static char	**parse_line(t_lexer l);
+// static void	init_lexer(t_lexer *l);
+char		**ft_lexer(char *str);
+
+/*add_lines_lexer.c*/
+// static char	**not_first_line(char **n_array, t_lexer *l);
+// static char	**not_first_line_redir(char **n_array, t_lexer *l);
+// static char	**add_line_redir(t_lexer *l);
+char		**add_line(t_lexer *l);
+int			case_operand(t_lexer *l);
 
 //lexer_utils.c
 char	**allocate_2d_array(char **old_array);
-void	trim_last_line(char **array, int line_index);
+int		trim_last_line(char **array, int line_index);
 
 //char_checks.c
 bool	is_delim(char c);
@@ -42,10 +60,10 @@ int		quote_index(char *str, int j);
 int		double_redir(char *str, int j);
 
 /*syntax_error.c*/
-void	syntax_error(char *str);
-void	syntax_error2(char *str, int i);
+int		syntax_error(char *str);
+int		syntax_error2(char *str, int i);
 int		quote_check(char *str, int i, char quote);
 int		check_if_nothing(char *str, int i);
-void	syntax_error_msg(int i, char *str);
+int		syntax_error_msg(int i, char *str);
 
 #endif
