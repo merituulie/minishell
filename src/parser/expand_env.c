@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 16:15:19 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:15:28 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ char	*expand_var(t_data *ms, char *str, int start)
 
 	ms->start = start;
 	ms->end = start + 1;
+	var = NULL;
 	if (str[ms->end] == '?')
 		var = ft_strdup("$?");
-	if (!ft_isalnum(str[ms->end]))
+	else if (!ft_isalnum(str[ms->end]))
 	{
 		ms->out = ft_calloc(0, sizeof(char));
 		if (!ms->out)
@@ -32,13 +33,12 @@ char	*expand_var(t_data *ms, char *str, int start)
 	}
 	while (ft_isalnum(str[ms->end]))
 		ms->end++;
-	if (!ft_strncmp_all(var, "$?"))
-		var = ft_substr(str, ms->start, ms->end - ms->start);
+	var = ft_substr(str, ms->start, ms->end - ms->start);
+	printf("var is %s\n", var);
 	if (!var)
 		printf("allocation fail!\n");
 	realloc_var(ms, str, var, ft_strlen(str));
-	if (!ft_strncmp_all(var, "$?"))
-		free(var);
+	free(var);
 	free(str);
 	if (!(ms->out))
 		return (NULL);

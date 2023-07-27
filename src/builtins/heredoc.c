@@ -3,15 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 09:33:14 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:26:41 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
+
+static int	find_index(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
 
 //SIGNAL IS NOT HANDLED YET.
 //cat << DELIM case is not handled yet.
@@ -22,6 +36,7 @@ int	ft_heredoc(t_command *command)
 {
 	int		fd;
 	char	*line;
+	t_data	ms;
 
 	fd = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0664);
 	if (fd == -1)
@@ -31,6 +46,8 @@ int	ft_heredoc(t_command *command)
 	{
 		if (!ft_strncmp_all(line, command->input))
 			break ;
+		if (find_index(line, '$') != -1)
+			line = expand_var(&ms, line, find_index(line, '$'));
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
 			printf("heredoc writing error\n");
 		free(line);

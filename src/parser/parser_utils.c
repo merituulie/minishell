@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:42:15 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/25 16:05:30 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:01:36 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,4 @@ void	ms_init(t_data *ms)
 	ms->start = 0;
 	ms->s_quotes = 0;
 	ms->d_quotes = 0;
-}
-
-char	*get_exit_value(void)
-{
-	char	*str;
-	int		nbr;
-
-	nbr = g_info.exit_code;
-	str = ft_itoa(nbr);
-	return (str);
 }

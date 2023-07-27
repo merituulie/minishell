@@ -6,7 +6,7 @@
 /*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 12:50:07 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/27 19:19:20 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,15 @@ int	main(int argc, char **argv, char **envp)
 		line = readline(PINK "Jose's PinkShell: " BORING);
 		if (line[0] == '\n' || line[0] == '\0')
 		{
-			// free(line);
+			free(line);
 			continue ;
 		}
 		cmd_line = ft_lexer(line);
 		if (cmd_line == NULL)
 		{
-			free_char_array(cmd_line);
+			free(line);
 			continue ;
 		}
-		// free(line);
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
 		// print_cmd_line(cmd_line);

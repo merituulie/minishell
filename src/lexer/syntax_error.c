@@ -6,7 +6,7 @@
 /*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/27 12:55:33 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/27 18:46:41 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* 1 is pipe, 2 is < or > or << or >>
 error value 258 needs to be returned*/
-int	syntax_error_msg(int i)
+int	syntax_error_msg(int i, char *str)
 {
 	if (i == 1)
 		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
@@ -27,7 +27,7 @@ int	syntax_error_msg(int i)
 		ft_putstr_fd("syntax error near unexpected token `<'\n", 2);
 	if (i == 5)
 		ft_putstr_fd("syntax error: quotes not ended\n", 2);
-	// free(str);
+	free(str);
 	error_code(258);
 	return (-1);
 }
@@ -41,7 +41,7 @@ int	quote_check(char *str, int i, char quote)
 			return (i);
 		i++;
 	}
-	return (syntax_error_msg(5));
+	return (syntax_error_msg(5, str));
 }
 
 /*if the single quotes or double quotes doesn't have a pair ending*/
@@ -82,22 +82,21 @@ int	syntax_error(char *str)
 	{
 		if ((str[0] == '|' && check_if_nothing(str, i)) || \
 			(str[i] == '|' && str[i + 1] == '|'))
-			return (syntax_error_msg(1));
+			return (syntax_error_msg(1, str));
 		else if (str[i] == '|' && check_if_nothing(str, i))
-			return (syntax_error_msg(1));
+			return (syntax_error_msg(1, str));
 		else if ((str[i] == '<' || str[i] == '>') && check_if_nothing(str, i))
-			return (syntax_error_msg(2));
+			return (syntax_error_msg(2, str));
 		else if ((str[i] == '<' && str[i + 1] == '<') && \
 									check_if_nothing(str, i + 1))
-			return (syntax_error_msg(2));
+			return (syntax_error_msg(2, str));
 		else if ((str[i] == '>' && str[i + 1] == '>') && \
 									check_if_nothing(str, i + 1))
-			return (syntax_error_msg(2));
+			return (syntax_error_msg(2, str));
 		else if ((str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>'))
-			return (syntax_error_msg(3));
+			return (syntax_error_msg(3, str));
 		else if ((str[i] == '<' && str[i + 1] == '<' && str[i + 2] == '<'))
-			return (syntax_error_msg(4));
+			return (syntax_error_msg(4, str));
 	}
 	return (syntax_error2(str, i));
 }
-

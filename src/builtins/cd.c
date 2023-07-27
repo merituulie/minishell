@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/24 09:32:40 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:35:39 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	go_dir(t_env **env, t_command *command)
 	}
 	else if (chdir(command->full_cmd[1]))
 		printf("can't change to dir");
-	printf("go_dir executed\n");
 }
 
 /*when cd function is called, OLDPWD is created in env.
@@ -44,20 +43,23 @@ void	ft_cd(t_command *command, t_env **env)
 	t_node	*temp;
 
 	temp = *(*env)->vars;
-	old_pwd = getcwd(NULL, 0);
-	printf("old_pwd is %s\n", old_pwd);
+	old_pwd = ft_strdup(getcwd(NULL, 0));
 	if (!old_pwd)
 		perror("PWD doesn't exist");
 	if (get_value((*env)->vars, "OLDPWD") == NULL)
-		set_value((*env)->vars, "OLDPWD", old_pwd);
+		set_value((*env)->vars, "OLDPWD", ft_strdup(old_pwd));
 	else
 	{
 		temp = get_value(&temp, "OLDPWD");
-		temp->value = old_pwd;
+		temp->value = ft_strdup(old_pwd);
+		if (!temp->value)
+			printf("allocation fail!\n");
 	}
 	go_dir(env, command);
 	temp = NULL;
 	temp = get_value((*env)->vars, "PWD");
 	temp->value = getcwd(NULL, 0);
+	if (!temp->value)
+		printf("allocation fail!\n");
 	free(old_pwd);
 }

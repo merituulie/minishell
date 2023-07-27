@@ -6,7 +6,7 @@
 /*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/27 13:00:39 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/27 19:05:12 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,5 @@ char	**concatenate(char **str, t_data *ms);
 void	quotes_init(t_data *ms);
 void	free_str_array(char **str);
 void	ms_init(t_data *ms);
-char	*get_exit_value(void);
 
 #endif

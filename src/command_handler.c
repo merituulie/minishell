@@ -6,10 +6,9 @@
 /*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 13:08:17 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/27 18:49:46 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../headers/minishell.h"
 
