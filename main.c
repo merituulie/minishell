@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 12:45:33 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/27 15:25:52 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,6 @@
 // 	}
 // }
 
-static void	add_shlvl(t_env **env)
-{
-	t_node *temp;
-	int shlvl;
-	
-	temp = get_value((*env)->vars, "SHLVL");
-	shlvl = ft_atoi_exit(temp->value);	
-	temp->value = ft_itoa(shlvl + 1);
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
@@ -107,8 +97,6 @@ int	main(int argc, char **argv, char **envp)
 		cmd_line = concatenate(cmd_line, &ms);
 		// print_cmd_line(cmd_line);
 		cmd = init_cmds(&ms, cmd_line);
-		if (ft_strncmp_all(cmd->command, "./minishell") == 0)
-			add_shlvl(&ms.env);
 		// print_command(cmd);
 		// print_full_command(cmd);
 		execute_commands(cmd, ms.struct_count, &ms.env);

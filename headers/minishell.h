@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 14:41:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:27:11 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void    	ft_exit(t_command *command);
+void		ft_export(char *cmd, t_env *env);
+void		ft_unset(char *cmd, t_env *env);
+
+//	SHLVL
+void		add_shlvl(t_env **env);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
@@ -95,10 +100,5 @@ void		close_files(int *pipe_fds, int command_count);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
-
-// COMMANDS
-
-void		ft_export(char *cmd, t_env *env);
-void		ft_unset(char *cmd, t_env *env);
 
 #endif

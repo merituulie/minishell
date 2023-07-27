@@ -6,21 +6,21 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 12:45:40 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/27 15:27:32 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../headers/minishell.h"
 
-static void	sub_shlvl(t_env **env)
+void	add_shlvl(t_env **env)
 {
 	t_node *temp;
 	int shlvl;
 	
 	temp = get_value((*env)->vars, "SHLVL");
 	shlvl = ft_atoi_exit(temp->value);	
-	temp->value = ft_itoa(shlvl - 1);
+	temp->value = ft_itoa(shlvl + 1);
 }
 
 void	execute_command(t_command *command, t_env **env)
@@ -40,13 +40,14 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "exit") == 0)
 	{
 		ft_exit(command);
-		sub_shlvl(env);
 		return ;
 	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
 		ft_heredoc(command);
 	else
 		ft_execve(command, env);
+	if (ft_strncmp_all(command->command, "./minishell") == 0)
+		add_shlvl(env);
 	if (ft_strncmp_all(command->command, "./minishell") != 0)
 		exit(0);
 }
@@ -82,7 +83,6 @@ static int	execute_builtin(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "exit") == 0)
 	{
 		ft_exit(command);
-		sub_shlvl(env);
 		return (1);
 	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
