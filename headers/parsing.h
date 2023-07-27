@@ -44,10 +44,7 @@ typedef struct s_data
 	int				i;
 	int				j;
 	int				struct_count;
-	int				sig_status;
 }	t_data;
-
-t_data	g_data;
 
 /*expand_env.c*/
 char	**expand_quote_check(t_data *ms, char **str);

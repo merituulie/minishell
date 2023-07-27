@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+#include "../../headers/parsing.h"
 #include "../../libft/libft.h"
-extern t_data g_data;
+
+extern t_info	g_info;
 //SIGNAL IS NOT HANDLED YET.
 //cat << DELIM case is not handled yet.
 /*here_doc with signal needs to be handled.
@@ -23,14 +25,14 @@ int	ft_heredoc(t_command *command)
 	int		fd;
 	char	*line;
 
-	g_data.sig_status = 0;
+	g_info.sig_status = 0;
 	fd = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0664);
 	if (fd == -1)
 		printf("Error in heredoc file opening\n");
 	line = readline("> ");
 	while (line)
 	{
-		if (!ft_strncmp_all(line, command->input) && g_data.sig_status)
+		if (!ft_strncmp_all(line, command->input) || g_info.sig_status)
 			break ;
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
 			printf("heredoc writing error\n");

@@ -45,6 +45,7 @@ typedef struct s_env
 typedef struct s_info
 {
 	int	exit_code;
+	int	sig_status;
 }	t_info;
 
 typedef struct s_data	t_data;

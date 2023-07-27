@@ -12,20 +12,18 @@
 
 #include "../../headers/parsing.h"
 #include "../../headers/minishell.h"
-extern t_data g_data;
+
+extern t_info	g_info;
 
 static void	handle_sig(int signo)
 {
 	if (signo == SIGINT)
 	{
-		write(1, "\n", 1);
+		g_info.sig_status = 1;
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
 		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		g_data.sig_status = 1;
+		rl_replace_line("", 0);	
 	}
-	else if (signo == SIGQUIT)
-		return ;
 }
 
 void	ctrl_d_cmd(char *line, t_data *cmd)
@@ -54,6 +52,6 @@ void	set_signal_action(t_data *cmd)
 	tcsetattr(STDIN_FILENO, TCSANOW, &new_tio);
 	if (signal(SIGINT, handle_sig) == SIG_ERR)
 		printf("\nCannot catch SIGINT\n");
-	if (signal(SIGQUIT, handle_sig) == SIG_ERR)
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
 		printf("\nCannot catch SIGQUIT\n");
 }
