@@ -37,15 +37,9 @@ typedef struct s_lexer
 }	t_lexer;
 
 // lexer.c
-// static char	**parse_line_helper(t_lexer *l);
-// static char	**parse_line(t_lexer l);
-// static void	init_lexer(t_lexer *l);
 char		**ft_lexer(char *str);
 
 /*add_lines_lexer.c*/
-// static char	**not_first_line(char **n_array, t_lexer *l);
-// static char	**not_first_line_redir(char **n_array, t_lexer *l);
-// static char	**add_line_redir(t_lexer *l);
 char		**add_line(t_lexer *l);
 int			case_operand(t_lexer *l);
 
