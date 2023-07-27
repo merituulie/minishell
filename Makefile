@@ -10,7 +10,8 @@ HASHMAP_SRC = add_hashmap \
 ENV_SRC = init_env \
 		env
 
-COMMON_SRC =	pipe
+COMMON_SRC =	pipe \
+				save_exit_status
 
 LEXER_SRC = lexer \
 			lexer_utils \

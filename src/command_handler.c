@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 15:29:31 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/27 13:08:17 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	execute_command(t_command *command, t_env **env)
 		ft_heredoc(command);
 	else
 	{
-		ft_execve(command, env);
+		if (ft_execve(command, env) == -1)
+			error_msg(127, ": command not found\n", command);
 	}
 	exit(0);
 }

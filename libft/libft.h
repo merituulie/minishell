@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/24 11:44:59 by emeinert         ###   ########.fr       */
+/*   Created: 2023/07/25 14:51:04 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/07/25 16:14:37 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stddef.h>
 
 int		ft_atoi_exit(const char *str);
 int		ft_arrlen(char **array);
@@ -24,6 +25,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_free_null_str(char *str);
 void	ft_free_array(char **array);
 int		ft_isalnum(int c);
+char	*ft_itoa(int n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void	*b, int c, size_t len);
 char	**ft_split(char const *s, char c);

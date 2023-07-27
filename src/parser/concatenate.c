@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:26:44 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/20 11:08:35 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:33:19 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	delete_quotes2(char *str, int index, int size, t_data *ms)
 }
 
 /*reallocate the string and delete the first matching quotes*/
-void	delete_quotes(char *str, int index, int size, t_data *ms)
+static void	delete_quotes(char *str, int index, int size, t_data *ms)
 {
 	char	quote;
 
@@ -48,6 +48,8 @@ void	delete_quotes(char *str, int index, int size, t_data *ms)
 	}
 	ms->end = index;
 	ms->out = ft_calloc(size, sizeof(char));
+	if (!ms->out)
+		printf("allocation error");
 	delete_quotes2(str, index, size, ms);
 }
 

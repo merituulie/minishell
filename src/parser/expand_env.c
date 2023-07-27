@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/17 12:58:31 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:15:19 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,27 @@ char	*expand_var(t_data *ms, char *str, int start)
 
 	ms->start = start;
 	ms->end = start + 1;
+	if (str[ms->end] == '?')
+		var = ft_strdup("$?");
 	if (!ft_isalnum(str[ms->end]))
 	{
 		ms->out = ft_calloc(0, sizeof(char));
+		if (!ms->out)
+			printf("allocation fail!\n");
 		return (ms->out);
 	}
 	while (ft_isalnum(str[ms->end]))
-			ms->end++;
-	var = ft_substr(str, ms->start, ms->end - ms->start);
+		ms->end++;
+	if (!ft_strncmp_all(var, "$?"))
+		var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
-		printf(" malloc fail!\n");
+		printf("allocation fail!\n");
 	realloc_var(ms, str, var, ft_strlen(str));
-	free(var);
+	if (!ft_strncmp_all(var, "$?"))
+		free(var);
 	free(str);
+	if (!(ms->out))
+		return (NULL);
 	return (ms->out);
 }
 
@@ -46,8 +54,12 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	char	*search;
 
 	i = -1;
+	if (!ft_strncmp_all(var, "$?"))
+		return (get_exit_value());
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
+	if (!search)
+		printf("allocation fail!\n");
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -64,7 +76,6 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 {
 	int		leftover;
 	char	*new;
-	int		i;
 
 	new = find_env(ms, var, ft_strlen(var));
 	if (!new)
@@ -72,33 +83,26 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 	else
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
 	ms->out = ft_calloc(size, sizeof(char));
+	if (!ms->out)
+		printf("allocation error!\n");
 	ms->out = ft_memcpy(ms->out, str, ms->start);
 	leftover = ms->start;
 	if (new)
 	{
-		i = -1;
-		while (new[++i])
-			ms->out[ms->start + i] = new[i];
-		leftover = ms->start + i;
+		ms->k = -1;
+		while (new[++(ms->k)])
+			ms->out[ms->start + ms->k] = new[ms->k];
+		leftover = ms->start + ms->k;
 	}
-	i = -1;
-	while ((leftover + (++i)) < size)
-		ms->out[leftover + i] = str[ms->end + i];
-	ms->out[leftover + i] = '\0';
+	ms->k = -1;
+	while ((leftover + (++(ms->k))) < size)
+		ms->out[leftover + ms->k] = str[ms->end + ms->k];
+	ms->out[leftover + ms->k] = '\0';
 	ms->end = leftover;
 }
 
-/*check the occurence of double quotes '"'
-s_quotes is single quote, d_quote is double quote.
-s_quotes will be 1 if it happens before d_quotes but if it closes,
-it will become 0.
-expanding to env only happens if there is $ and something after, and
-if there is no single quote in front of it. it does not count if double quote
-exists or not.*/
-char	**expand_quote_check(t_data *ms, char **str)
+static char	**expand_quote_check2(t_data *ms, char **str)
 {
-	ms_init(ms);
-	ms->i = -1;
 	while (str[++(ms->i)])
 	{
 		ms->j = -1;
@@ -116,10 +120,26 @@ char	**expand_quote_check(t_data *ms, char **str)
 			else if (str[ms->i][ms->j] == '$' && !ms->s_quotes)
 			{
 				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
+				if (!str[ms->i])
+					printf("allocation fail!\n");
 				free(ms->out);
 				ms->j = ms->end - 1;
 			}
 		}
 	}
 	return (str);
+}
+
+/*check the occurence of double quotes '"'
+s_quotes is single quote, d_quote is double quote.
+s_quotes will be 1 if it happens before d_quotes but if it closes,
+it will become 0.
+expanding to env only happens if there is $ and something after, and
+if there is no single quote in front of it. it does not count if double quote
+exists or not.*/
+char	**expand_quote_check(t_data *ms, char **str)
+{
+	ms_init(ms);
+	ms->i = -1;
+	return (expand_quote_check2(ms, str));
 }

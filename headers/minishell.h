@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/25 14:41:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:10:00 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void		wait_children(int *pids, int count);
 
 // COMMON
 void		close_files(int *pipe_fds, int command_count);
+void		error_code(int number);
+void		error_msg(int code, char *str, t_command *command);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);

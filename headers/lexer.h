@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:46:20 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/18 16:02:54 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:53:34 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int		quote_index(char *str, int j);
 int		double_redir(char *str, int j);
 
 /*syntax_error.c*/
-void	syntax_error(char *str);
-void	syntax_error2(char *str, int i);
+int		syntax_error(char *str);
+int		syntax_error2(char *str, int i);
 int		quote_check(char *str, int i, char quote);
 int		check_if_nothing(char *str, int i);
-void	syntax_error_msg(int i, char *str);
+int		syntax_error_msg(int i);
 
 #endif

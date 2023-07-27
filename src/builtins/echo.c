@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/24 09:29:52 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:10:57 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@
 int	ft_echo(t_command *command)
 {
 	int	new_line;
-	int	i;
 
 	new_line = 0;
-	i = 0;
 	if (command->flags)
 	{
 		if (ft_strncmp_all(command->flags, "-n") == 0)
@@ -39,5 +37,6 @@ int	ft_echo(t_command *command)
 	ft_putstr_fd(command->input, 2);
 	if (new_line == 0)
 		ft_putchar_fd('\n', 2);
+	g_info.exit_code = 0;
 	return (0);
 }

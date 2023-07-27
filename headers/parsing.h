@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/19 11:13:16 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:00:39 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <term.h> //tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <errno.h>
 # include "../libft/libft.h"
 # include "lexer.h"
 # include "minishell.h"
@@ -42,6 +43,7 @@ typedef struct s_data
 	char			*out;
 	int				i;
 	int				j;
+	int				k;
 	int				struct_count;
 }	t_data;
 
@@ -58,5 +60,6 @@ char	**concatenate(char **str, t_data *ms);
 void	quotes_init(t_data *ms);
 void	free_str_array(char **str);
 void	ms_init(t_data *ms);
+char	*get_exit_value(void);
 
 #endif

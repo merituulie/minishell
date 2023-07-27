@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
+#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/22 13:16:39 by emeinert         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2023/07/25 14:23:03 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = libft.a
 
@@ -18,6 +19,7 @@ ft_calloc \
 ft_free_null_str \
 ft_free_array \
 ft_isalnum \
+ft_itoa \
 ft_memcpy  \
 ft_memset \
 ft_print_array \
@@ -41,7 +43,7 @@ ft_strdup \
 ft_strlcat \
 free_array \
 ft_atoi_exit \
-ft_isdigit 
+ft_isdigit
 
 H_FILES = libft
 
