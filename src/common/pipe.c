@@ -20,18 +20,6 @@ static void	ft_dup2(int infile_fd, int outfile_fd)
 		ft_putstr_fd("outfile_fd: Dup 2 error!\n", 2);
 }
 
-void	close_files(int *pipe_fds, int fd_count)
-{
-	int	i;
-
-	i = 0;
-	while (i < fd_count)
-	{
-		close(pipe_fds[i]);
-		i++;
-	}
-}
-
 static void	execute_child(t_command *current, int command_count, \
 			t_env **env, int *pipe_fds)
 {

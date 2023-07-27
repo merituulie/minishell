@@ -80,6 +80,7 @@ static int	execute_builtin(t_command *command, t_env **env)
 		return (0);
 	return (1);
 }
+
 static	int	one_command(t_command *command, int command_count, t_env **env)
 {
 	int			pid_test;

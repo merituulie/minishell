@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 10:35:47 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:50:59 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # include "parsing.h"
 # include "lexer.h"
 # include "hashmap.h"
+
+enum OPEN_TYPE
+{
+	READ = 1,
+	WRITE_TRUNC = 2,
+	WRITE_APPEND = 3
+};
 
 typedef struct s_command
 {
@@ -52,20 +59,16 @@ t_info	g_info;
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
 
-/*init_command.c*/
+// COMMAND
 t_command	*init_cmds(t_data *ms, char **input);
-
-/*add_command.c*/
-char			*parse_input(char **input, int *index);
-char			*parse_flags(char **input, int	*index);
-void			put_to_input(t_command *cmd, int track, char *str);
-void			put_to_flags(t_command *cmd, int track, char *str);
-
+char		*parse_input(char **input, int *index);
+char		*parse_flags(char **input, int	*index);
+void		put_to_input(t_command *cmd, int track, char *str);
+void		put_to_flags(t_command *cmd, int track, char *str);
 void		put_redirection(t_command *cmd, int *index, \
 			int track, char **input);
 void		put_cmd_to_struct(t_command *cmd, \
 					int struct_count, char **input);
-/*utils_command.c*/
 char		*ft_strchr_null(const char *s, int c);
 void		strdup_filename(t_command *cmd, int track, char *str);
 void		put_fullcmd(t_command *cmd, int i, int track);
@@ -78,7 +81,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
-void    	ft_exit(t_command *command);
+void		ft_exit(t_command *command);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
@@ -92,6 +95,8 @@ void		wait_children(int *pids, int count);
 
 // COMMON
 void		close_files(int *pipe_fds, int command_count);
+int			open_file(char *filename, int flags);
+int			close_file(int fd);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
