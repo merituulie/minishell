@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 15:27:32 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/28 10:45:36 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	add_shlvl(t_env **env)
 	temp->value = ft_itoa(shlvl + 1);
 }
 
-void	execute_command(t_command *command, t_env **env)
+void	execute_command(t_command *command, t_env **env, int fork)
 {
 	if (ft_strncmp_all(command->command, "env") == 0)
 		ft_env(env);
@@ -38,17 +38,17 @@ void	execute_command(t_command *command, t_env **env)
 	else if (ft_strncmp_all(command->command, "unset") == 0)
 		ft_unset(command->input, *env);
 	else if (ft_strncmp_all(command->command, "exit") == 0)
-	{
 		ft_exit(command);
-		return ;
-	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
 		ft_heredoc(command);
 	else
 		ft_execve(command, env);
 	if (ft_strncmp_all(command->command, "./minishell") == 0)
+	{
 		add_shlvl(env);
-	if (ft_strncmp_all(command->command, "./minishell") != 0)
+		return ;
+	}
+	if (fork)
 		exit(0);
 }
 
@@ -66,32 +66,7 @@ static int	dont_fork_cmd(t_command *command)
 		return (0);
 }
 
-static int	execute_builtin(t_command *command, t_env **env)
-{
-	if (ft_strncmp_all(command->command, "env") == 0)
-		ft_env(env);
-	else if (ft_strncmp_all(command->command, "echo") == 0)
-		ft_echo(command);
-	else if (ft_strncmp_all(command->command, "cd") == 0)
-		ft_cd(command, env);
-	else if (ft_strncmp_all(command->command, "pwd") == 0)
-		ft_pwd(*env);
-	else if (ft_strncmp_all(command->command, "export") == 0)
-		ft_export(command->input, *env);
-	else if (ft_strncmp_all(command->command, "unset") == 0)
-		ft_unset(command->input, *env);
-	else if (ft_strncmp_all(command->command, "exit") == 0)
-	{
-		ft_exit(command);
-		return (1);
-	}
-	else if (ft_strncmp_all(command->command, "<<") == 0)
-		ft_heredoc(command);
-	else 
-		return (0);
-	return (1);
-}
-static	int	one_command(t_command *command, int command_count, t_env **env)
+static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 {
 	int			pid_test;
 	
@@ -99,12 +74,12 @@ static	int	one_command(t_command *command, int command_count, t_env **env)
 	if (command_count == 1)
 	{
 		if (dont_fork_cmd(command))
-			execute_builtin(command, env);
+			execute_command(command, env, 0);
 		else
 		{
 			pid_test = fork();
 			if (pid_test == 0)
-				execute_command(command, env);
+				execute_command(command, env, 1);
 			waitpid(pid_test, NULL, 0);
 			return (1);
 		}
@@ -120,7 +95,7 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	int			pipe_fds[(command_count * 2) - 2];
 
 	i = -1;
-	if (one_command(commands, command_count, env))
+	if (exec_one_command(commands, command_count, env))
 		return (0);
 	while (++i < command_count)
 	{

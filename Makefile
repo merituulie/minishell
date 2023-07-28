@@ -32,6 +32,7 @@ BUILTIN_SRC = export \
 			heredoc \
 			pwd \
 			exit \
+			execve \
 
 H_FILES = hashmap \
 		minishell \
@@ -63,7 +64,7 @@ $(NAME):
 	make -C $(LIBFT_PATH)
 	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
 	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
-	 ./src/command_executer.c main.c \
+	main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

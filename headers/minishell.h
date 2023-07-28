@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 15:27:11 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/28 10:40:15 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		add_shlvl(t_env **env);
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
 					t_env **env);
-void		execute_command(t_command *command, t_env **env);
+void		execute_command(t_command *command, t_env **env, int fork);
 
 // PIPING
 int			handle_pipe(t_command *commands, t_env **env, int command_count, \
