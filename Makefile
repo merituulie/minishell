@@ -64,7 +64,7 @@ $(NAME):
 	cc -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
 	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
 	 ./src/command_executer.c main.c \
-	-L $(LIBFT_PATH) -lft -o $(NAME) -lreadline
+	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean
 clean:
