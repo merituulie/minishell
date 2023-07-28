@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 12:41:54 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:06:57 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 int			ft_echo(t_command *command);
 void		ft_env(t_env **env);
 void		ft_cd(t_command *command, t_env **env);
-int			ft_heredoc(t_command *command);
+int			ft_heredoc(t_command *command, t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command);

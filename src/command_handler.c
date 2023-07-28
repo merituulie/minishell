@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 13:00:14 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:06:49 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	execute_command(t_command *command, t_env **env)
 		return ;
 	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
-		ft_heredoc(command);
+		ft_heredoc(command, env);
 	else
 	{
 		if (ft_execve(command, env) == -1)
@@ -76,7 +76,7 @@ static int	execute_builtin(t_command *command, t_env **env)
 		return (1);
 	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
-		ft_heredoc(command);
+		ft_heredoc(command, env);
 	else
 		return (0);
 	return (1);

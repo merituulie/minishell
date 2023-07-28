@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 13:02:06 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:14:58 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	execute_child(t_command *current, int command_count, \
 {
 	if (current->id == 0)
 		ft_dup2(-2, pipe_fds[current->id * 2 + 1]);
-	else if (current->id == command_count - 1) 
+	else if (current->id == command_count - 1)
 		ft_dup2(pipe_fds[(current->id * 2) - 2], -2);
 	else
 	{
