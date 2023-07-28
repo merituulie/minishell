@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 15:06:57 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:38:19 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,17 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command, t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
-void		ft_exit(t_command *command);
+void    	ft_exit(t_command *command);
+void		ft_export(char *cmd, t_env *env);
+void		ft_unset(char *cmd, t_env *env);
+
+//	SHLVL
+void		add_shlvl(t_env **env);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
 					t_env **env);
-void		execute_command(t_command *command, t_env **env);
+void		execute_command(t_command *command, t_env **env, int fork);
 
 // PIPING
 int			handle_pipe(t_command *commands, t_env **env, int command_count, \
@@ -102,11 +107,6 @@ char		*get_exit_value(void);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
-
-// COMMANDS
-
-void		ft_export(char *cmd, t_env *env);
-void		ft_unset(char *cmd, t_env *env);
 
 // SIGNALS:
 void		set_signal_action(t_data *ms);

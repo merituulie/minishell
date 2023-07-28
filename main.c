@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 14:53:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:37:07 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "headers/lexer.h"
 #include "headers/minishell.h"
 #include "libft/libft.h"
+#include <termios.h>
 
 // static void	print_cmd_line(char **str)
 // {
@@ -68,18 +69,17 @@ int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
 	char		**cmd_line;
-	int 		flag;
 	t_data		ms;
 	t_command	*cmd;
 
-	flag = 1;
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
+	add_shlvl(&ms.env);
 	set_signal_action(&ms);	
-	while (flag)
+	while (42)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
 		ctrl_d_cmd(line, &ms);
