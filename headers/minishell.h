@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 12:03:11 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:09:28 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ enum e_redirect
 	OUTPUT_TRUNC = 1,
 	OUTPUT_APPEND = 2,
 	INPUT = 3
-}
+};
 
 typedef struct s_command
 {
@@ -55,6 +55,7 @@ typedef struct s_info
 	int	exit_code;
 	int	sig_status;
 	int	*fds;
+	int	fd_count;
 }	t_info;
 
 typedef struct s_data	t_data;
@@ -97,8 +98,13 @@ void		execute_command(t_command *command, t_env **env);
 int			handle_pipe(t_command *commands, t_env **env, int command_count);
 void		wait_children(int *pids, int count);
 
+// REDIRECTIONS
+void		redirect_io(int infile_fd, int outfile_fd);
+void		redirect_files(t_command *current);
+void		ft_dup2(int infile_fd, int outfile_fd);
+
 // COMMON
-void		close_files(int *pipe_fds, int command_count);
+void		close_files(int *pipe_fds, int fd_count);
 int			open_file(char *filename, int flags);
 int			close_file(int fd);
 

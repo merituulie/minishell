@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 14:04:11 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:06:31 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 		commands++;
 	}
 	waitpid(pid_test, NULL, 0);
-	close_files(g_info.fds, command_count * 2 - 2);
+	close_files(g_info.fds, g_info.fd_count);
 	wait_children(pids, i - 1);
 	return (0);
 }

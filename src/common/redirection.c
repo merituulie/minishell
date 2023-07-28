@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/28 12:10:23 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:22:20 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,32 @@ void	ft_dup2(int infile_fd, int outfile_fd)
 
 void	redirect_io(int infile_fd, int outfile_fd)
 {
-	ft_dup(infile_fd, outfile_fd);
+	ft_dup2(infile_fd, outfile_fd);
 }
 
-void	redirect_files(t_command *current, int infile_fd, int outfile_fd)
+void	redirect_files(t_command *current)
 {
 	int	fd;
 
 	fd = -2;
+	printf("should_open_files?\n");
 	if (current->token == INPUT)
 	{
-		close_files(g_info.fds);
 		fd = open_file(current->infile_name, O_RDONLY);
-		ft_dup2(fd, -2);
+		g_info.fds[current->id * 2] = fd;
+		ft_dup2(g_info.fds[current->id * 2], -2);
 	}
 	else if (current->token == OUTPUT_TRUNC)
 	{
-		close_files(g_info.fds);
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
-		ft_dup2(-2, fd);
+		g_info.fds[current->id * 2 + 1] = fd;
+		ft_dup2(-2, g_info.fds[current->id * 2 + 1]);
 	}
 	else if (current->token == OUTPUT_APPEND)
 	{
-		close_files(g_info.fds);
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
-		ft_dup2(-2, fd);
+		g_info.fds[current->id * 2 + 1] = fd;
+		ft_dup2(-2, g_info.fds[current->id * 2 + 1]);
 	}
 }
 

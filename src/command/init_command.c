@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/28 11:41:37 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:09:00 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,24 @@ static int	count_struct(char **input)
 // 	return (struct_count);
 // }
 
+static void	init_fds(int fd_count, char **input)
+{
+	int	index;
+
+	index = 0;
+	fd_count = fd_count * 2 - 2;
+	while (input[index])
+	{
+		if (ft_strchr_null("<>", input[index][0]))
+			fd_count++;
+		index++;
+	}
+	g_info.fd_count = fd_count;
+	g_info.fds = ft_calloc(g_info.fd_count, sizeof(* g_info.fds));
+	if (!g_info.fds)
+		printf("memory allocation failed\n");
+}
+
 t_command	*init_cmds(t_data *ms, char **input)
 {
 	t_command	*cmd;
@@ -75,6 +93,7 @@ t_command	*init_cmds(t_data *ms, char **input)
 	ms->struct_count = 0;
 	track = 0;
 	ms->struct_count = count_struct(input);
+	init_fds(ms->struct_count, input);
 	printf("struct count is: %i\n", ms->struct_count);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)
