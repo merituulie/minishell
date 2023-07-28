@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 10:55:26 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/28 11:01:24 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	main(int argc, char **argv, char **envp)
 	char		**cmd_line;
 	t_data		ms;
 	t_command	*cmd;
-	struct termios	term;
 
 	(void)argc;
 	(void)argv;
@@ -79,11 +78,6 @@ int	main(int argc, char **argv, char **envp)
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
 	add_shlvl(&ms.env);
-	if (tcgetattr(STDIN_FILENO, &term) < 0)
-    {
-		perror("tcgetattr");
-        return 1;
-	}
 	set_signal_action(&ms);	
 	while (42)
 	{
