@@ -91,7 +91,7 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	if (ft_strchr("<>", input[(*index)][0]))
 	{
 		str = parse_redirection_filename(input, temp);
-		open_redir_files(cmd, track, str, input[(*index)]);
+		parse_redirection(cmd, track, str, input[(*index)]);
 		(*index) += 2;
 	}
 }

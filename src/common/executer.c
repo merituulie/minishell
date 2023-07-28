@@ -109,7 +109,6 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 {
 	int			i;
 	int			pids[command_count];
-	int			pipe_fds[(command_count * 2) - 2];
 	int			pid_test;
 
 	i = -1;
@@ -119,16 +118,16 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	while (++i < command_count)
 	{
 		commands->id = i;
-		if (i != command_count - 1)
+		if (i != command_count - 1 && commands->token == NONE)
 		{
-			if (pipe(&pipe_fds[i * 2]) < 0)
+			if (pipe(&g_info.fds[i * 2]) < 0)
 				ft_putstr_fd("Piping error!", 2);
 		}
-		pids[i] = handle_pipe(commands, env, command_count, pipe_fds);
+		pids[i] = handle_pipe(commands, env, command_count);
 		commands++;
 	}
 	waitpid(pid_test, NULL, 0);
-	close_files(pipe_fds, command_count * 2 - 2);
+	close_files(g_info.fds, command_count * 2 - 2);
 	wait_children(pids, i - 1);
 	return (0);
 }

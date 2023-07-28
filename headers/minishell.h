@@ -23,6 +23,14 @@
 # include "lexer.h"
 # include "hashmap.h"
 
+enum REDIRECT
+{
+	NONE = 0,
+	OUTPUT_TRUNC = 1,
+	OUTPUT_APPEND = 2,
+	INPUT = 3
+}
+
 typedef struct s_command
 {
 	char	*command;
@@ -31,6 +39,7 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
+	int		token;
 	int		in_heredoc;
 	int		fds[2];
 	int		pid;
@@ -46,6 +55,7 @@ typedef struct s_info
 {
 	int	exit_code;
 	int	sig_status;
+	int	*fds;
 }	t_info;
 
 typedef struct s_data	t_data;
@@ -61,7 +71,7 @@ char		*parse_input(char **input, int *index);
 char		*parse_flags(char **input, int	*index);
 void		put_to_input(t_command *cmd, int track, char *str);
 void		put_to_flags(t_command *cmd, int track, char *str);
-int			open_redir_files(t_command *cmd, int track, char *str, char *input);
+int			parse_redirection(t_command *cmd, int track, char *str, char *input);
 void		handle_redirection(t_command *cmd, int *index, int track, \
 			char **input);
 void		put_cmds_to_struct(t_command *cmd, char **input);

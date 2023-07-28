@@ -14,7 +14,45 @@
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
 
-int	open_redir_files(t_command *cmd, int track, char *str, char *input)
+void	ft_dup2(int infile_fd, int outfile_fd)
+{
+	if (infile_fd != -2 && dup2(infile_fd, 0) < 0)
+		ft_putstr_fd("infile_fd:  Dup 2 error!\n", 2);
+	if (outfile_fd != -2 && dup2(outfile_fd, 1) < 0)
+		ft_putstr_fd("outfile_fd: Dup 2 error!\n", 2);
+}
+
+void	redirect_io(int infile_fd, int outfile_fd)
+{
+	ft_dup(infile_fd, outfile_fd);
+}
+
+void	redirect_files(t_command *current, int command_count, int infile_fd, int outfile_fd)
+{
+	int	fd;
+
+	fd = -2;
+	if (current->token == INPUT)
+	{
+		close_files(g_info.fds);
+		fd = open_file(current->infile_name, O_RDONLY);
+		ft_dup2(fd, -2);
+	}
+	else if (current->token == OUTPUT_TRUNC)
+	{
+		close_files(g_info.fds);
+		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
+		ft_dup2(-2, fd);
+	}
+	else if (current->token == OUTPUT_APPEND)
+	{
+		close_files(g_info.fds);
+		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
+		ft_dup2(-2, fd);
+	}
+}
+
+int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 {
 	printf("open_redir: str is %s\n", str);
 	printf("open_redir: input is %s\n", input);
@@ -23,27 +61,21 @@ int	open_redir_files(t_command *cmd, int track, char *str, char *input)
 		cmd[track].infile_name = ft_strdup(str);
 		if (!cmd[track].infile_name)
 			printf("strdup allocation fail!\n");
-		close_file(0);
-		cmd[track].fds[0] = open_file(cmd[track].infile_name, O_RDONLY);
-		dup2(cmd[track].fds[0], 0);
+		cmd[track].token = INPUT;
 	}
 	else if (!ft_strncmp_all(">", input))
 	{
 		cmd[track].outfile_name = ft_strdup(str);
 		if (!cmd[track].outfile_name)
 			printf("strdup allocation fail!\n");
-		close_file(1);
-		cmd[track].fds[1] = open_file(cmd[track].outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
-		dup2(cmd[track].fds[1], 1);
+		cmd[track].token = OUTPUT_TRUNC;
 	}
 	else if (!ft_strncmp_all(">>", input))
 	{
 		cmd[track].outfile_name = ft_strdup(str);
 		if (!cmd[track].outfile_name)
 			printf("strdup allocation fail!\n");
-		close_file(1);
-		cmd[track].fds[1] = open_file(cmd[track].outfile_name, O_CREAT | O_WRONLY | O_APPEND);
-		dup2(cmd[track].fds[1], 1);
+		cmd[track].token = OUTPUT_APPEND;
 	}
 	return (0);
 }
