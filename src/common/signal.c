@@ -42,7 +42,7 @@ void	restore_terminal(t_data *cmd)
 
 void	set_signal_action(t_data *cmd)
 {
-	struct termios new_tio;
+	struct	termios new_tio;
 
 	tcgetattr(STDIN_FILENO, &(cmd->old_tio));
 	new_tio = cmd->old_tio;
