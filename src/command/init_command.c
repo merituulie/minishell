@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/28 10:28:49 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:41:37 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ t_command	*init_cmds(t_data *ms, char **input)
 	ms->struct_count = count_struct(input);
 	printf("struct count is: %i\n", ms->struct_count);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
-	put_cmd_to_struct(cmd, ms->struct_count, input);
+	if (!cmd)
+		printf("memory allocation error\n");
+	put_cmds_to_struct(cmd, input);
 	full_cmd(cmd, ms->struct_count, track);
 	free_str_array(input);
 	return (cmd);

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 10:52:20 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:03:11 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
@@ -21,13 +22,6 @@
 # include "parsing.h"
 # include "lexer.h"
 # include "hashmap.h"
-
-enum OPEN_TYPE
-{
-	READ = 1,
-	WRITE_TRUNC = 2,
-	WRITE_APPEND = 3
-};
 
 typedef struct s_command
 {
@@ -37,6 +31,7 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
+	int		in_heredoc;
 	int		fds[2];
 	int		pid;
 	int		id;
@@ -50,6 +45,7 @@ typedef struct s_env
 typedef struct s_info
 {
 	int	exit_code;
+	int	sig_status;
 }	t_info;
 
 typedef struct s_data	t_data;
@@ -68,8 +64,7 @@ void		put_to_flags(t_command *cmd, int track, char *str);
 int			open_redir_files(t_command *cmd, int track, char *str, char *input);
 void		handle_redirection(t_command *cmd, int *index, int track, \
 			char **input);
-void		put_cmd_to_struct(t_command *cmd, \
-					int struct_count, char **input);
+void		put_cmds_to_struct(t_command *cmd, char **input);
 char		*ft_strchr_null(const char *s, int c);
 void		strdup_filename(t_command *cmd, int track, char *str);
 void		put_fullcmd(t_command *cmd, int i, int track);
@@ -107,4 +102,9 @@ char		*env_to_string(t_env **env);
 void		ft_export(char *cmd, t_env *env);
 void		ft_unset(char *cmd, t_env *env);
 
+// SIGNALS:
+void		set_signal_action(t_data *ms);
+void		restore_terminal(t_data *ms);
+void		ctrl_d_cmd(char *line, t_data *ms);
+void		heredoc_signal(int signo);
 #endif

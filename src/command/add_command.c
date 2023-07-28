@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/28 10:57:00 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:54:09 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,17 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 
 	temp = *index;
 	temp++;
-	str = parse_redirection_filename(input, temp);
-	// strdup_filename(cmd, track, str);
-	printf("in handle_redirection\n"); //debug
-	// ft_print_array(input); //debug
-	open_redir_files(cmd, track, str, input[(* index)]);
-	(*index)++;
-	(*index)++;
+	cmd[track].fds[0] = 0;
+	cmd[track].fds[1] = 1;
+	if (ft_strchr("<>", input[(*index)][0]))
+	{
+		str = parse_redirection_filename(input, temp);
+		open_redir_files(cmd, track, str, input[(*index)]);
+		(*index) += 2;
+	}
 }
 
-void	put_cmd_to_struct(t_command *cmd, \
-					int struct_count, char **input)
+void	put_cmds_to_struct(t_command *cmd, char **input)
 {
 	int		index;
 	int		track;
@@ -104,29 +104,26 @@ void	put_cmd_to_struct(t_command *cmd, \
 
 	index = 0;
 	track = 0;
-	printf("struct count: %i\n", struct_count);
 	while (input[index])
 	{
-		if (ft_strchr("<>", input[index][0]))
-			handle_redirection(cmd, &index, track, input);
-		printf("index after handle_redir is %i\n", index);
+		handle_redirection(cmd, &index, track, input);
 		if (!input[index])
-				break ;
+			break ;
 		if (ft_strchr("|", input[index][0]))
+		{
+			index++;
 			track++;
-		printf("track is %i\n", track);
-		printf("index is %i\n", index);
+		}
 		cmd[track].command = ft_strdup(input[index++]);
 		if (!cmd[track].command)
 			printf("strdup allocation fail!");
 		if (!input[index])
-				break ;
+			break ;
 		str = parse_flags(input, &index);
 		put_to_flags(cmd, track, str);
 		if (!input[index])
 			break ;
 		str = parse_input(input, &index);
 		put_to_input(cmd, track, str);
-		printf("index is %i\n", index);
 	}
 }

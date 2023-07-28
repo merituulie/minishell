@@ -13,7 +13,8 @@ ENV_SRC = init_env \
 COMMON_SRC =	file \
 				pipe \
 				executer \
-				redirection
+				redirection \
+				signal
 
 LEXER_SRC = lexer \
 			lexer_utils \
@@ -65,7 +66,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	cc -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
 	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
