@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+#include "../../headers/parsing.h"
 #include "../../libft/libft.h"
 
 static int	find_index(char *str, char c)
@@ -38,13 +39,14 @@ int	ft_heredoc(t_command *command)
 	char	*line;
 	t_data	ms;
 
+	g_info.sig_status = 0;
 	fd = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0664);
 	if (fd == -1)
 		printf("Error in heredoc file opening\n");
 	line = readline("> ");
 	while (line)
 	{
-		if (!ft_strncmp_all(line, command->input))
+		if (!ft_strncmp_all(line, command->input) || g_info.sig_status)
 			break ;
 		if (find_index(line, '$') != -1)
 			line = expand_var(&ms, line, find_index(line, '$'));
