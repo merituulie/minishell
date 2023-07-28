@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/28 08:56:11 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:12:20 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int	ft_echo(t_command *command)
 	ft_putstr_fd(command->input, 2);
 	if (new_line == 0)
 		ft_putchar_fd('\n', 2);
-	g_info.exit_code = 0;
 	return (0);
 }

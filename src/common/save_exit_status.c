@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/28 08:46:12 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:40:33 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	error_code(int number)
 {
 	g_info.exit_code = number;
-	// printf("g_info.exit_code is %d\n", g_info.exit_code);
+	printf("g_info.exit_code is %d\n", g_info.exit_code);
 }
 
 char	*get_exit_value(void)
@@ -26,6 +26,7 @@ char	*get_exit_value(void)
 
 	nbr = g_info.exit_code;
 	str = ft_itoa(nbr);
+	g_info.exit_code = 0;
 	return (str);
 }
 

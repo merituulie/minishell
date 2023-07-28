@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 15:31:53 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/28 13:02:06 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,14 @@ static void	execute_child(t_command *current, int command_count, \
 void	wait_children(int *pids, int count)
 {
 	int	i;
+	int status;
 
 	i = 0;
 	while (i <= count)
 	{
-		waitpid(pids[i], NULL, 0);
+		waitpid(pids[i], &status, 0);
+		if (WEXITSTATUS(status))
+			g_info.exit_code = WEXITSTATUS(status);
 		i++;
 	}
 }

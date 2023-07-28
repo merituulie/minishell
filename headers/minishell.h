@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 08:55:47 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:41:54 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 # include "../libft/libft.h"
 # include "parsing.h"
 # include "lexer.h"
@@ -81,7 +82,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
-void    	ft_exit(t_command *command);
+void		ft_exit(t_command *command);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
@@ -111,5 +112,5 @@ void		ft_unset(char *cmd, t_env *env);
 void		set_signal_action(t_data *ms);
 void		restore_terminal(t_data *ms);
 void		ctrl_d_cmd(char *line, t_data *ms);
-void	heredoc_signal(int signo);
+void		heredoc_signal(int signo);
 #endif

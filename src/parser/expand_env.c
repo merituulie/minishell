@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 19:15:28 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/28 13:40:23 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@ char	*expand_var(t_data *ms, char *str, int start)
 	if (str[ms->end] == '?')
 		var = ft_strdup("$?");
 	else if (!ft_isalnum(str[ms->end]))
-	{
-		ms->out = ft_calloc(0, sizeof(char));
-		if (!ms->out)
-			printf("allocation fail!\n");
-		return (ms->out);
-	}
+		return ("");
 	while (ft_isalnum(str[ms->end]))
 		ms->end++;
-	var = ft_substr(str, ms->start, ms->end - ms->start);
-	printf("var is %s\n", var);
+	if (var)
+		ms->end++;
+	else
+		var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
 		printf("allocation fail!\n");
 	realloc_var(ms, str, var, ft_strlen(str));

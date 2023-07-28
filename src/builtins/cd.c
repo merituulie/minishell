@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/27 19:35:39 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/28 13:50:35 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static void	go_dir(t_env **env, t_command *command)
 	if (command->input == NULL)
 	{
 		temp = get_value((*env)->vars, "HOME");
-		if (chdir(temp->value))
-			printf("can't find home/error");
+		if (!temp)
+			error_msg(1, "HOME not set\n", command);
+		else if (chdir(temp->value))
+			error_msg(1, "can't move to HOME directory\n", command);
 	}
 	else if (chdir(command->full_cmd[1]))
-		printf("can't change to dir");
+		error_msg(1, "No such file or directory\n", command);
 }
 
 /*when cd function is called, OLDPWD is created in env.
@@ -47,7 +49,7 @@ void	ft_cd(t_command *command, t_env **env)
 	if (!old_pwd)
 		perror("PWD doesn't exist");
 	if (get_value((*env)->vars, "OLDPWD") == NULL)
-		set_value((*env)->vars, "OLDPWD", ft_strdup(old_pwd));
+		set_value((*env)->vars, "OLDPWD", old_pwd);
 	else
 	{
 		temp = get_value(&temp, "OLDPWD");

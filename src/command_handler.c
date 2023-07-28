@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 08:56:41 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:00:14 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	execute_command(t_command *command, t_env **env)
 	{
 		if (ft_execve(command, env) == -1)
 			error_msg(127, ": command not found\n", command);
+		exit(127);
 	}
-	exit(0);
+	exit (0);
 }
 
 static int	ft_check_command(t_command *command)
@@ -80,9 +81,11 @@ static int	execute_builtin(t_command *command, t_env **env)
 		return (0);
 	return (1);
 }
+
 static	int	one_command(t_command *command, int command_count, t_env **env)
 {
 	int			pid_test;
+	int			status;
 
 	pid_test = 0;
 	if (command_count == 1)
@@ -96,7 +99,8 @@ static	int	one_command(t_command *command, int command_count, t_env **env)
 			{
 				execute_command(command, env);
 			}
-			waitpid(pid_test, NULL, 0);
+			waitpid(pid_test, &status, 0);
+			g_info.exit_code = WEXITSTATUS(status);
 			return (pid_test);
 		}
 		return (1);
