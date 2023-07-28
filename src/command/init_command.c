@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/28 15:09:00 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:27:15 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,22 @@ static void	init_fds(int fd_count, char **input)
 {
 	int	index;
 
-	index = 0;
 	fd_count = fd_count * 2 - 2;
+	g_info.pipe_count = fd_count;
+	g_info.pipe_fds = ft_calloc(g_info.pipe_count, sizeof(* g_info.pipe_fds));
+	if (!g_info.pipe_fds)
+		printf("memory allocation failed\n");
+	index = 0;
+	fd_count = 0;
 	while (input[index])
 	{
 		if (ft_strchr_null("<>", input[index][0]))
 			fd_count++;
 		index++;
 	}
-	g_info.fd_count = fd_count;
-	g_info.fds = ft_calloc(g_info.fd_count, sizeof(* g_info.fds));
-	if (!g_info.fds)
+	g_info.redir_count = fd_count;
+	g_info.redir_fds = ft_calloc(g_info.redir_count, sizeof(* g_info.redir_fds));
+	if (!g_info.redir_fds)
 		printf("memory allocation failed\n");
 }
 

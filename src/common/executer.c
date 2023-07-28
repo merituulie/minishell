@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 15:06:31 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:29:20 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,16 +118,16 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	while (++i < command_count)
 	{
 		commands->id = i;
-		if (i != command_count - 1 && commands->token == NONE)
+		if (i != command_count - 1)
 		{
-			if (pipe(&g_info.fds[i * 2]) < 0)
+			if (pipe(&g_info.pipe_fds[i * 2]) < 0)
 				ft_putstr_fd("Piping error!", 2);
 		}
 		pids[i] = handle_pipe(commands, env, command_count);
 		commands++;
 	}
 	waitpid(pid_test, NULL, 0);
-	close_files(g_info.fds, g_info.fd_count);
+	close_files(g_info.pipe_fds, g_info.pipe_count);
 	wait_children(pids, i - 1);
 	return (0);
 }

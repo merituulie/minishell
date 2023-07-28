@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 15:09:28 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:23:54 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ typedef struct s_info
 {
 	int	exit_code;
 	int	sig_status;
-	int	*fds;
-	int	fd_count;
+	int	*pipe_fds;
+	int	pipe_count;
+	int	*redir_fds;
+	int	redir_count;
 }	t_info;
 
 typedef struct s_data	t_data;
