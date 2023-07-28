@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/24 09:29:52 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 08:55:16 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	ft_echo(t_command *command)
 			new_line = 1;
 		else
 		{
-			ft_putstr_fd(command->flags, 2);
-			ft_putchar_fd(' ', 2);
+			ft_putstr_fd(command->flags, 1);
+			ft_putchar_fd(' ', 1);
 		}
 	}
-	ft_putstr_fd(command->input, 2);
+	ft_putstr_fd(command->input, 1);
 	if (new_line == 0)
-		ft_putchar_fd('\n', 2);
+		ft_putchar_fd('\n', 1);
 	return (0);
 }

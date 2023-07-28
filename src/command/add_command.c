@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/27 14:11:57 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:57:00 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,19 @@ char	*parse_flags(char **input, int	*index)
 		return (NULL);
 }
 
-static char	*parse_redirection_input(char **input, int **index)
+static char	*parse_redirection_filename(char **input, int index)
 {
 	int		str_len;
 	int		cur_index;
 	char	*str;
 
 	str_len = 0;
-	cur_index = **index;
+	cur_index = index;
 	printf("parse_redirection_input cur_index %d\n", cur_index);
-	if (ft_strchr_null("<|>", input[**index][0]))
+	if (ft_strchr_null("<|>", input[index][0]))
 		return (NULL);
-	str_len += ft_strlen(input[**index]);
-	(**index)++;
+	str_len += ft_strlen(input[index]);
+	(index)++;
 	str = ft_calloc((str_len + 1), sizeof(char));
 	if (!str)
 		printf("memory allocation fail\n");
@@ -82,17 +82,17 @@ static char	*parse_redirection_input(char **input, int **index)
 void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
 	char	*str;
+	int 	temp;
 
-	str = parse_redirection_input(input, &index);
-	if (!ft_strncmp_all("<<", cmd[track].command))
-		put_to_input(cmd, track, str);
-	else
-	{
-		strdup_filename(cmd, track, str);
-		printf("in handle_redirection\n"); //debug
-		ft_print_array(input); //debug
-		open_redir_files(cmd[track], str);
-	}
+	temp = *index;
+	temp++;
+	str = parse_redirection_filename(input, temp);
+	// strdup_filename(cmd, track, str);
+	printf("in handle_redirection\n"); //debug
+	// ft_print_array(input); //debug
+	open_redir_files(cmd, track, str, input[(* index)]);
+	(*index)++;
+	(*index)++;
 }
 
 void	put_cmd_to_struct(t_command *cmd, \
@@ -103,27 +103,30 @@ void	put_cmd_to_struct(t_command *cmd, \
 	char	*str;
 
 	index = 0;
-	track = -1;
+	track = 0;
 	printf("struct count: %i\n", struct_count);
-	while (++track < struct_count)
+	while (input[index])
 	{
+		if (ft_strchr("<>", input[index][0]))
+			handle_redirection(cmd, &index, track, input);
+		printf("index after handle_redir is %i\n", index);
+		if (!input[index])
+				break ;
 		if (ft_strchr("|", input[index][0]))
-			index++;
+			track++;
+		printf("track is %i\n", track);
+		printf("index is %i\n", index);
 		cmd[track].command = ft_strdup(input[index++]);
 		if (!cmd[track].command)
 			printf("strdup allocation fail!");
-		if (ft_strchr("<>", cmd[track].command[0]))
-			handle_redirection(cmd, &index, track, input);
-		else
-		{
-			if (!input[index])
+		if (!input[index])
 				break ;
-			str = parse_flags(input, &index);
-			put_to_flags(cmd, track, str);
-			if (!input[index])
-				break ;
-			str = parse_input(input, &index);
-			put_to_input(cmd, track, str);
-		}
+		str = parse_flags(input, &index);
+		put_to_flags(cmd, track, str);
+		if (!input[index])
+			break ;
+		str = parse_input(input, &index);
+		put_to_input(cmd, track, str);
+		printf("index is %i\n", index);
 	}
 }

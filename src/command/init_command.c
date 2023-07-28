@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/26 14:37:52 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:28:49 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
 
-static int	is_heredoc_has_command(char **input, int index)
-{
-	if (input[index][1] == '<')
-	{
-		if ((index > 0 && input[index - 1][0] && input[index - 1][0] != '|') \
-		|| (input[index + 2][0] && input[index + 2][0] != '|'))
-			return (1);
-	}
-	return (0);
-}
+// static int	is_heredoc_has_command(char **input, int index)
+// {
+// 	if (input[index][1] == '<')
+// 	{
+// 		if ((index > 0 && input[index - 1][0] && input[index - 1][0] != '|') \
+// 		|| (input[index + 2][0] && input[index + 2][0] != '|'))
+// 			return (1);
+// 	}
+// 	return (0);
+// }
 
 static int	count_struct(char **input)
 {
@@ -36,14 +36,6 @@ static int	count_struct(char **input)
 	{
 		if (input[index][0] == '|')
 			struct_count++;
-		else if (input[index][0] == '>')
-			struct_count++;
-		else if (input[index][0] == '<')
-		{
-			struct_count++;
-			if (is_heredoc_has_command(input, index))
-				struct_count++;
-		}
 		index++;
 	}
 	struct_count++;
