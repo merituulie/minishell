@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 10:40:15 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/28 10:54:37 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
@@ -30,6 +31,7 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
+	int		in_heredoc;
 	int		*fds;
 	int		pid;
 	int		id;
@@ -43,6 +45,7 @@ typedef struct s_env
 typedef struct s_info
 {
 	int	exit_code;
+	int	sig_status;
 }	t_info;
 
 typedef struct s_data	t_data;
@@ -101,4 +104,9 @@ void		close_files(int *pipe_fds, int command_count);
 // TO STRINGS
 char		*env_to_string(t_env **env);
 
+// SIGNALS:
+void		set_signal_action(t_data *ms);
+void		restore_terminal(t_data *ms);
+void		ctrl_d_cmd(char *line, t_data *ms);
+void	heredoc_signal(int signo);
 #endif

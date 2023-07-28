@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 15:25:52 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/28 10:55:26 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	cmd = NULL;
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
 	add_shlvl(&ms.env);
@@ -83,9 +84,11 @@ int	main(int argc, char **argv, char **envp)
 		perror("tcgetattr");
         return 1;
 	}
+	set_signal_action(&ms);	
 	while (42)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
+		ctrl_d_cmd(line, &ms);
 		if (line[0] == '\n' || line[0] == '\0')
 		{
 			free(line);
@@ -114,5 +117,6 @@ int	main(int argc, char **argv, char **envp)
 		if (cmd)
 			free(cmd);
 	}
+	restore_terminal(&ms);
 	return (0);
 }
