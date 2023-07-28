@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 18:49:46 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/28 08:56:41 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ static int	execute_builtin(t_command *command, t_env **env)
 	}
 	else if (ft_strncmp_all(command->command, "<<") == 0)
 		ft_heredoc(command);
-	else 
+	else
 		return (0);
 	return (1);
 }
 static	int	one_command(t_command *command, int command_count, t_env **env)
 {
 	int			pid_test;
-	
+
 	pid_test = 0;
 	if (command_count == 1)
 	{
