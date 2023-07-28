@@ -18,7 +18,8 @@ COMMON_SRC =	file \
 LEXER_SRC = lexer \
 			lexer_utils \
 			char_checks \
-			syntax_error
+			syntax_error \
+			add_lines_lexer
 
 COMMAND_SRC = init_command \
 			utils_command \
