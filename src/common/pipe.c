@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/26 15:31:53 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/28 10:40:37 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	execute_child(t_command *current, int command_count, \
 		ft_dup2(pipe_fds[current->id * 2 - 2], pipe_fds[current->id * 2 + 1]);
 	}
 	close_files(pipe_fds, command_count * 2 - 2);
-	execute_command(current, env);
+	execute_command(current, env, 1);
 }
 
 void	wait_children(int *pids, int count)
