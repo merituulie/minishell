@@ -27,7 +27,7 @@ void	redirect_io(int infile_fd, int outfile_fd)
 	ft_dup(infile_fd, outfile_fd);
 }
 
-void	redirect_files(t_command *current, int command_count, int infile_fd, int outfile_fd)
+void	redirect_files(t_command *current, int infile_fd, int outfile_fd)
 {
 	int	fd;
 

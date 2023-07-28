@@ -86,8 +86,7 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 
 	temp = *index;
 	temp++;
-	cmd[track].fds[0] = 0;
-	cmd[track].fds[1] = 1;
+	cmd[track].token = NONE;
 	if (ft_strchr("<>", input[(*index)][0]))
 	{
 		str = parse_redirection_filename(input, temp);

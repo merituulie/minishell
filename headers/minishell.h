@@ -23,7 +23,7 @@
 # include "lexer.h"
 # include "hashmap.h"
 
-enum REDIRECT
+enum e_redirect
 {
 	NONE = 0,
 	OUTPUT_TRUNC = 1,
@@ -41,7 +41,6 @@ typedef struct s_command
 	char	*outfile_name;
 	int		token;
 	int		in_heredoc;
-	int		fds[2];
 	int		pid;
 	int		id;
 }	t_command;
@@ -95,8 +94,7 @@ int			execute_commands(t_command *commands, int command_count, \
 void		execute_command(t_command *command, t_env **env);
 
 // PIPING
-int			handle_pipe(t_command *commands, t_env **env, int command_count, \
-				int *pipe_fds);
+int			handle_pipe(t_command *commands, t_env **env, int command_count);
 void		wait_children(int *pids, int count);
 
 // COMMON

@@ -62,9 +62,6 @@ int	handle_pipe(t_command *commands, t_env **env, \
 			execute_child(commands, command_count, env);
 		return (commands->pid);
 	}
-	else
-	{
-		execute_child(commands, command_count, env);
-		return (-2);
-	}
+	execute_child(commands, command_count, env);
+	return (-2);
 }
