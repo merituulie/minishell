@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 16:23:54 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/29 12:53:51 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
+	int		redir_fd_index;
 	int		token;
 	int		in_heredoc;
 	int		pid;
@@ -109,6 +110,7 @@ void		ft_dup2(int infile_fd, int outfile_fd);
 void		close_files(int *pipe_fds, int fd_count);
 int			open_file(char *filename, int flags);
 int			close_file(int fd);
+void		open_redirection_file(t_command *current);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);

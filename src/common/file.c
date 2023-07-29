@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 14:05:16 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/29 13:11:41 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,19 @@ void	close_files(int *pipe_fds, int fd_count)
 		close_file(pipe_fds[i]);
 		i++;
 	}
+}
+void	open_redirection_file(t_command *current)
+{
+	static int	index;
+	int			fd;
+
+	fd = -2;
+	if (current->token == INPUT)
+		fd = open_file(current->infile_name, O_RDONLY);
+	else if (current->token == OUTPUT_TRUNC)
+		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
+	else if (current->token == OUTPUT_APPEND)
+		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
+	current->redir_fd_index = index;
+	g_info.redir_fds[index++] = fd;
 }

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/28 16:44:17 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/29 13:11:30 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,11 @@ void	redirect_io(int infile_fd, int outfile_fd)
 
 void	redirect_files(t_command *current)
 {
-	static int	index;
-	int			fd;
-
-	fd = -2;
 	if (current->token == INPUT)
-	{
-		fd = open_file(current->infile_name, O_RDONLY);
-		g_info.redir_fds[index++] = fd;
-		ft_dup2(g_info.redir_fds[index], -2);
-	}
-	else if (current->token == OUTPUT_TRUNC)
-	{
-		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
-		g_info.redir_fds[index++] = fd;
-		ft_dup2(-2, g_info.redir_fds[index]);
-	}
-	else if (current->token == OUTPUT_APPEND)
-	{
-		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
-		g_info.redir_fds[index++] = fd;
-		ft_dup2(-2, g_info.redir_fds[index]);
-	}
+		ft_dup2(g_info.redir_fds[current->redir_fd_index], -2);
+	else if (current->token == OUTPUT_APPEND \
+	|| current->token == OUTPUT_TRUNC)
+		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index]);
 }
 
 int	parse_redirection(t_command *cmd, int track, char *str, char *input)

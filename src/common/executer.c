@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 16:29:20 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/29 13:44:51 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,11 @@ static	int	one_command(t_command *command, int command_count, t_env **env)
 {
 	int			pid_test;
 
+	printf("test for one command, command_count %i\n", command_count);
 	pid_test = 0;
 	if (command_count == 1)
 	{
+		redirect_files(command);
 		if (ft_check_command(command))
 			execute_builtin(command, env);
 		else

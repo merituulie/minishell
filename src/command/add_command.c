@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/28 13:52:23 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/29 14:17:41 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static char	*parse_redirection_filename(char **input, int index)
 
 	str_len = 0;
 	cur_index = index;
-	printf("parse_redirection_input cur_index %d\n", cur_index);
 	if (ft_strchr_null("<|>", input[index][0]))
 		return (NULL);
 	str_len += ft_strlen(input[index]);
@@ -81,16 +80,23 @@ static char	*parse_redirection_filename(char **input, int index)
 
 void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
-	char	*str;
-	int 	temp;
+	char		*str;
+	int			temp;
 
+	str = NULL;
 	temp = *index;
 	temp++;
 	cmd[track].token = NONE;
-	if (ft_strchr("<>", input[(*index)][0]))
+	while (ft_strchr("<>", input[(*index)][0]))
 	{
+		// if (str)
+		// {
+		// 	close_file(g_info.redir_fds[cmd->redir_fd_index]);
+		// 	index++;
+		// }
 		str = parse_redirection_filename(input, temp);
 		parse_redirection(cmd, track, str, input[(*index)]);
+		open_redirection_file(&cmd[track]);
 		(*index) += 2;
 	}
 }
