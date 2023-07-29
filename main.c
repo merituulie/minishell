@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 11:01:24 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/29 10:14:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int argc, char **argv, char **envp)
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
 	add_shlvl(&ms.env);
-	set_signal_action(&ms);	
+	set_signal_action(&ms);
 	while (42)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
@@ -88,6 +88,8 @@ int	main(int argc, char **argv, char **envp)
 			free(line);
 			continue ;
 		}
+		else
+			add_history(line);
 		cmd_line = ft_lexer(line);
 		free(line);
 		cmd_line = expand_quote_check(&ms, cmd_line);
