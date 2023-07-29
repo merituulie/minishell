@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 10:45:36 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/28 15:56:42 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../headers/minishell.h"
 
 void	add_shlvl(t_env **env)
 {
-	t_node *temp;
-	int shlvl;
-	
+	t_node	*temp;
+	int		shlvl;
+
 	temp = get_value((*env)->vars, "SHLVL");
-	shlvl = ft_atoi_exit(temp->value);	
+	shlvl = ft_atoi_exit(temp->value);
 	temp->value = ft_itoa(shlvl + 1);
 }
 
@@ -40,9 +39,13 @@ void	execute_command(t_command *command, t_env **env, int fork)
 	else if (ft_strncmp_all(command->command, "exit") == 0)
 		ft_exit(command);
 	else if (ft_strncmp_all(command->command, "<<") == 0)
-		ft_heredoc(command);
+		ft_heredoc(command, env);
 	else
-		ft_execve(command, env);
+	{
+		if (ft_execve(command, env) == -1)
+			error_msg(127, ": command not found\n", command);
+		exit(127);
+	}
 	if (ft_strncmp_all(command->command, "./minishell") == 0)
 	{
 		add_shlvl(env);
@@ -69,7 +72,8 @@ static int	dont_fork_cmd(t_command *command)
 static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 {
 	int			pid_test;
-	
+	int			status;
+
 	pid_test = 0;
 	if (command_count == 1)
 	{
@@ -79,9 +83,12 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 		{
 			pid_test = fork();
 			if (pid_test == 0)
+			{
 				execute_command(command, env, 1);
-			waitpid(pid_test, NULL, 0);
-			return (1);
+			}
+			waitpid(pid_test, &status, 0);
+			g_info.exit_code = WEXITSTATUS(status);
+			return (pid_test);
 		}
 		return (1);
 	}

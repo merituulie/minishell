@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/28 11:04:00 by yoonslee          #+#    #+#              #
+#    Updated: 2023/07/28 11:07:46 by yoonslee         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
 LIBFT_PATH = ./libft
 
@@ -8,9 +20,10 @@ HASHMAP_SRC = add_hashmap \
 				utils_hashmap \
 
 ENV_SRC = init_env \
-		env
+			env
 
 COMMON_SRC =	pipe \
+				save_exit_status \
 				signal
 
 LEXER_SRC = lexer \

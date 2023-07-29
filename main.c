@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/29 10:14:59 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/29 12:57:15 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,11 @@ int	main(int argc, char **argv, char **envp)
 		else
 			add_history(line);
 		cmd_line = ft_lexer(line);
-		free(line);
+		if (cmd_line == NULL)
+		{
+			free(line);
+			continue ;
+		}
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
 		// print_cmd_line(cmd_line);
