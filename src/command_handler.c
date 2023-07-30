@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 15:56:42 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/30 10:02:23 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,48 @@ void	add_shlvl(t_env **env)
 	temp->value = ft_itoa(shlvl + 1);
 }
 
+int	execute_builtin(t_command **command, t_env ***env)
+{
+	if (ft_strncmp_all((*command)->command, "env") == 0)
+		ft_env((*env));
+	else if (ft_strncmp_all((*command)->command, "echo") == 0)
+		ft_echo((*command));
+	else if (ft_strncmp_all((*command)->command, "cd") == 0)
+		ft_cd((*command), (*env));
+	else if (ft_strncmp_all((*command)->command, "pwd") == 0)
+		ft_pwd(**env);
+	else if (ft_strncmp_all((*command)->command, "export") == 0)
+		ft_export((*command)->input, **env);
+	else if (ft_strncmp_all((*command)->command, "unset") == 0)
+		ft_unset((*command)->input, **env);
+	else if (ft_strncmp_all((*command)->command, "exit") == 0)
+		ft_exit((*command));
+	else if (ft_strncmp_all((*command)->command, "<<") == 0)
+		ft_heredoc((*command), (*env));
+	else
+		return (0);
+	return (1);
+}
+
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	if (ft_strncmp_all(command->command, "env") == 0)
-		ft_env(env);
-	else if (ft_strncmp_all(command->command, "echo") == 0)
-		ft_echo(command);
-	else if (ft_strncmp_all(command->command, "cd") == 0)
-		ft_cd(command, env);
-	else if (ft_strncmp_all(command->command, "pwd") == 0)
-		ft_pwd(*env);
-	else if (ft_strncmp_all(command->command, "export") == 0)
-		ft_export(command->input, *env);
-	else if (ft_strncmp_all(command->command, "unset") == 0)
-		ft_unset(command->input, *env);
-	else if (ft_strncmp_all(command->command, "exit") == 0)
-		ft_exit(command);
-	else if (ft_strncmp_all(command->command, "<<") == 0)
-		ft_heredoc(command, env);
-	else
+	if (execute_builtin(&command, &env))
 	{
-		if (ft_execve(command, env) == -1)
-			error_msg(127, ": command not found\n", command);
-		exit(127);
+		if (!fork)
+			return ;
 	}
-	if (ft_strncmp_all(command->command, "./minishell") == 0)
+	else if (ft_strncmp_all(command->command, "./minishell") == 0)
 	{
 		add_shlvl(env);
 		return ;
+	}
+	else
+	{
+		if (ft_execve(command, env) == -1)
+		{
+			error_msg(127, ": command not found\n", command);
+			exit(127);
+		}
 	}
 	if (fork)
 		exit(0);
@@ -83,12 +97,10 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 		{
 			pid_test = fork();
 			if (pid_test == 0)
-			{
 				execute_command(command, env, 1);
-			}
 			waitpid(pid_test, &status, 0);
 			g_info.exit_code = WEXITSTATUS(status);
-			return (pid_test);
+			return (1);
 		}
 		return (1);
 	}

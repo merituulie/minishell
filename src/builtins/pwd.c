@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:08:29 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/24 09:33:37 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/30 08:40:09 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_pwd(t_env *env)
 		return (1);
 	}
 	correct_node = get_value(env->vars, "PWD");
-	ft_putstr_fd(correct_node->value, 2);
-	ft_putchar_fd('\n', 2);
+	ft_putstr_fd(correct_node->value, 1);
+	ft_putchar_fd('\n', 1);
 	return (0);
 }

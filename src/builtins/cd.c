@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/28 14:35:21 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/30 08:45:15 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,4 @@ void	ft_cd(t_command *command, t_env **env)
 	temp->value = getcwd(NULL, 0);
 	if (!temp->value)
 		printf("allocation fail!\n");
-	free(old_pwd);
 }
