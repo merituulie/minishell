@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/29 12:57:15 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/07/30 10:27:04 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
-		// print_cmd_line(cmd_line);
 		cmd = init_cmds(&ms, cmd_line);
-		// print_command(cmd);
-		// print_full_command(cmd);
 		execute_commands(cmd, ms.struct_count, &ms.env);
 		ms.i = ms.struct_count;
 		while (ms.i >= 0)
