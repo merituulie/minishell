@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/30 12:33:37 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/30 13:50:44 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	main(int argc, char **argv, char **envp)
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
 		cmd = init_cmds(&ms, cmd_line);
-		print_command(cmd);
+		// print_command(cmd);
 		// print_full_command(cmd);
 		execute_commands(cmd, ms.struct_count, &ms.env);
 		ms.i = ms.struct_count;

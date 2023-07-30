@@ -6,7 +6,7 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 11:04:00 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/30 12:32:21 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/07/30 12:58:13 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ ENV_SRC = init_env \
 
 COMMON_SRC =	file \
 				pipe \
-				executer \
 				redirection \
 				save_exit_status \
 				signal
@@ -50,7 +49,6 @@ BUILTIN_SRC = export \
 			pwd \
 			execve \
 			exit \
-			execve \
 
 H_FILES = hashmap \
 		minishell \

@@ -3,17 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-<<<<<<< HEAD
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/07/26 10:21:47 by rmakinen         ###   ########.fr        #
-=======
-#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/30 09:01:32 by jhusso           ###   ########.fr        #
->>>>>>> fb3df867e9c62376efe02f65e689733506e38162
+#    Updated: 2023/07/30 12:57:25 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +40,8 @@ ft_strdup \
 ft_strlcat \
 free_array \
 ft_atoi_exit \
-<<<<<<< HEAD
-ft_isdigit
-=======
 ft_isdigit \
 ft_strchr_index
->>>>>>> fb3df867e9c62376efe02f65e689733506e38162
 
 H_FILES = libft
 
