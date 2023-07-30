@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:53:15 by emmameinert       #+#    #+#             */
-/*   Updated: 2023/07/30 14:58:25 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/30 15:01:19 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static	void	num_arg_check(char **input)
 {
 	if (ft_is_number(input))
 	{
-		printf("input: %s", input[1]);
 		g_info.exit_code = ft_atoi_exit(input[1]);
 		if (g_info.exit_code < 0)
 		{
