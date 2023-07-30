@@ -76,7 +76,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	cc -L  ~/.brew/opt/readline/lib -I  ~/.brew/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
 	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
 	main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
