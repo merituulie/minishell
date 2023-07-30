@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/28 15:51:49 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/30 09:01:32 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ ft_strdup \
 ft_strlcat \
 free_array \
 ft_atoi_exit \
-ft_isdigit
+ft_isdigit \
+ft_strchr_index
 
 H_FILES = libft
 
