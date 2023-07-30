@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 16:20:43 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/27 14:04:27 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/30 12:41:01 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*access_path(char **path, char *cmd)
 	return (NULL);
 }
 
-static char	*find_path(char *cmd, t_node **head)
+static char	*find_cmd_path(char *cmd, t_node **head)
 {
 	char	*path;
 	char	**split_path;
@@ -52,7 +52,7 @@ int	ft_execve(t_command *command, t_env **env)
 	char	*path;
 	char	**vars;
 
-	path = find_path(command->command, (*env)->vars);
+	path = find_cmd_path(command->command, (*env)->vars);
 	if (!path)
 		return (-1);
 	vars = ft_split(env_to_string(env), '\n');

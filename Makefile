@@ -1,19 +1,32 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/28 11:04:00 by yoonslee          #+#    #+#              #
+#    Updated: 2023/07/30 12:32:21 by rmakinen         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline
+BUILD_FLAGS = -Wall -Wextra -g -lreadline
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
 				utils_hashmap \
 
 ENV_SRC = init_env \
-		env
+			env
 
 COMMON_SRC =	file \
 				pipe \
 				executer \
 				redirection \
+				save_exit_status \
 				signal
 
 LEXER_SRC = lexer \
@@ -37,6 +50,7 @@ BUILTIN_SRC = export \
 			pwd \
 			execve \
 			exit \
+			execve \
 
 H_FILES = hashmap \
 		minishell \
@@ -66,8 +80,9 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
-	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) main.c \
+	cc -L  ~/.brew/opt/readline/lib -I  ~/.brew/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
+	main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

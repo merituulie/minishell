@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/29 13:11:36 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/30 12:38:35 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,20 @@ static void	execute_child(t_command *current, int command_count, \
 	close_files(g_info.pipe_fds, g_info.pipe_count);
 	if (current->token != NONE)
 		redirect_files(current);
-	execute_command(current, env);
+	execute_command(current, env, 1);
 }
 
 void	wait_children(int *pids, int count)
 {
 	int	i;
+	int status;
 
 	i = 0;
 	while (i <= count)
 	{
-		if (pids[i] != -2)
-			waitpid(pids[i], NULL, 0);
+		waitpid(pids[i], &status, 0);
+		if (WEXITSTATUS(status))
+			g_info.exit_code = WEXITSTATUS(status);
 		i++;
 	}
 }

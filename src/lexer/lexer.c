@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 14:49:55 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/26 15:00:37 by jhusso           ###   ########.fr       */
+/*   Created: 2023/07/30 10:28:08 by jhusso            #+#    #+#             */
+/*   Updated: 2023/07/30 10:28:11 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,20 @@ static void	init_lexer(t_lexer *l)
 char	**ft_lexer(char *str)
 {
 	char	*trimmed_str;
-	int		len;
 	t_lexer	l;
 
 	init_lexer(&l);
 	trimmed_str = ft_strtrim(str, " \t");
-	len = ft_strlen(trimmed_str);
 	if (syntax_error(trimmed_str) == -1)
+	{
+		free(trimmed_str);
 		return (NULL);
+	}
 	l.new_arr = (char **)ft_calloc(2, sizeof(char *));
 	if (!l.new_arr)
 		return (NULL);
 	l.new_arr[0] = ft_strdup(trimmed_str);
+	free(trimmed_str);
 	if (l.new_arr == NULL)
 		return (NULL);
 	l.arr = parse_line(l);

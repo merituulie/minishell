@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/29 14:17:41 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/29 19:27:37 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,18 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	temp = *index;
 	temp++;
 	cmd[track].token = NONE;
-	while (ft_strchr("<>", input[(*index)][0]))
+	if (ft_strchr_null("<>", input[(*index)][0]))
 	{
-		// if (str)
+		// if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
 		// {
 		// 	close_file(g_info.redir_fds[cmd->redir_fd_index]);
-		// 	index++;
+		// }
+		// if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
+		// {
+		// 	close_file(g_info.redir_fds[cmd->redir_fd_index]);
 		// }
 		str = parse_redirection_filename(input, temp);
+		printf("string is: %s\n", str);
 		parse_redirection(cmd, track, str, input[(*index)]);
 		open_redirection_file(&cmd[track]);
 		(*index) += 2;

@@ -6,12 +6,12 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/29 13:44:51 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/30 12:23:08 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../../headers/minishell.h"
+#include "../headers/minishell.h"
 
 void	execute_command(t_command *command, t_env **env)
 {
@@ -80,16 +80,13 @@ static int	execute_builtin(t_command *command, t_env **env)
 		return (0);
 	return (1);
 }
-
 static	int	one_command(t_command *command, int command_count, t_env **env)
 {
 	int			pid_test;
 
-	printf("test for one command, command_count %i\n", command_count);
 	pid_test = 0;
 	if (command_count == 1)
 	{
-		redirect_files(command);
 		if (ft_check_command(command))
 			execute_builtin(command, env);
 		else
@@ -111,6 +108,7 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 {
 	int			i;
 	int			pids[command_count];
+	int			pipe_fds[(command_count * 2) - 2];
 	int			pid_test;
 
 	i = -1;
@@ -122,14 +120,14 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 		commands->id = i;
 		if (i != command_count - 1)
 		{
-			if (pipe(&g_info.pipe_fds[i * 2]) < 0)
+			if (pipe(&pipe_fds[i * 2]) < 0)
 				ft_putstr_fd("Piping error!", 2);
 		}
-		pids[i] = handle_pipe(commands, env, command_count);
+		pids[i] = handle_pipe(commands, env, command_count, pipe_fds);
 		commands++;
 	}
 	waitpid(pid_test, NULL, 0);
-	close_files(g_info.pipe_fds, g_info.pipe_count);
+	close_files(pipe_fds, command_count * 2 - 2);
 	wait_children(pids, i - 1);
 	return (0);
 }

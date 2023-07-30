@@ -2,7 +2,7 @@
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
 
-static char	*find_key(char *cmd)
+static char	*find_key_in_str(char *cmd)
 {
 	char	*key;
 	int		i;
@@ -29,7 +29,7 @@ static char	*find_key(char *cmd)
 	return (key);
 }
 
-static char	*find_value(char *cmd)
+static char	*find_value_in_str(char *cmd)
 {
 	int		i;
 	int		j;
@@ -62,10 +62,10 @@ void	ft_export(char *cmd, t_env *env)
 	char		*new_value;
 
 	temp = *env->vars;
-	new_key = find_key(cmd);
+	new_key = find_key_in_str(cmd);
 	if (!new_key)
 		return (ft_putstr_fd("input error\n", 2));
-	new_value = find_value(cmd);
+	new_value = find_value_in_str(cmd);
 	if (!new_value)
 		return (ft_putstr_fd("input error\n", 2));
 	if (!get_value(&temp, new_key))

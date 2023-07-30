@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/28 16:27:15 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:29:50 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,31 +41,6 @@ static int	count_struct(char **input)
 	struct_count++;
 	return (struct_count);
 }
-
-// int	count_struct(char **input, int struct_count)
-// {
-// 	int	index;
-
-// 	index = 0;
-// 	while (input[index])
-// 	{
-// 		if ((ft_strchr_null("<|>", input[index][0])) || index == 0)
-// 		{
-// 			if (ft_strchr_null("<", input[index][0]) && \
-// 								(index + 2) < ft_arrlen(input))
-// 			{
-// 				if (input[index + 2][0] && !ft_strchr_null("<|>", \
-// 									input[index + 2][0]))
-// 					struct_count++;
-// 			}
-// 			struct_count++;
-// 			index++;
-// 		}
-// 		else
-// 			index++;
-// 	}
-// 	return (struct_count);
-// }
 
 static void	init_fds(int fd_count, char **input)
 {

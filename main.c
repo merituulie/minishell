@@ -5,15 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 10:45:43 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/30 12:33:37 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
 #include "headers/minishell.h"
 #include "libft/libft.h"
+#include <termios.h>
 
 // static void	print_cmd_line(char **str)
 // {
@@ -68,18 +70,17 @@ int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
 	char		**cmd_line;
-	int 		flag;
 	t_data		ms;
 	t_command	*cmd;
 
-	flag = 1;
 	(void)argc;
 	(void)argv;
 	cmd = NULL;
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
-	set_signal_action(&ms);	
-	while (flag)
+	add_shlvl(&ms.env);
+	set_signal_action(&ms);
+	while (42)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
 		ctrl_d_cmd(line, &ms);
@@ -88,11 +89,16 @@ int	main(int argc, char **argv, char **envp)
 			free(line);
 			continue ;
 		}
+		else
+			add_history(line);
 		cmd_line = ft_lexer(line);
-		free(line);
+		if (cmd_line == NULL)
+		{
+			free(line);
+			continue ;
+		}
 		cmd_line = expand_quote_check(&ms, cmd_line);
 		cmd_line = concatenate(cmd_line, &ms);
-		// print_cmd_line(cmd_line);
 		cmd = init_cmds(&ms, cmd_line);
 		print_command(cmd);
 		// print_full_command(cmd);

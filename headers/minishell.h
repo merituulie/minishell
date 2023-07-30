@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/29 12:53:51 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/30 12:39:19 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -18,6 +19,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 # include "../libft/libft.h"
 # include "parsing.h"
 # include "lexer.h"
@@ -63,7 +65,7 @@ typedef struct s_info
 
 typedef struct s_data	t_data;
 
-t_info	g_info;
+t_info		g_info;
 
 // INITIALIZING
 void		fill_env(char **envp, t_env **env);
@@ -84,18 +86,23 @@ void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
 
 // IMPLEMENTED COMMANDS
+void		ft_echo(t_command *command);
 void		ft_env(t_env **env);
 void		ft_cd(t_command *command, t_env **env);
-int			ft_heredoc(t_command *command);
+int			ft_heredoc(t_command *command, t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command);
-int			ft_echo(t_command *command);
+void		ft_export(char *cmd, t_env *env);
+void		ft_unset(char *cmd, t_env *env);
+
+//	SHLVL
+void		add_shlvl(t_env **env);
 
 // COMMAND HANDLER
 int			execute_commands(t_command *commands, int command_count, \
 					t_env **env);
-void		execute_command(t_command *command, t_env **env);
+void		execute_command(t_command *command, t_env **env, int fork);
 
 // PIPING
 int			handle_pipe(t_command *commands, t_env **env, int command_count);
@@ -111,18 +118,17 @@ void		close_files(int *pipe_fds, int fd_count);
 int			open_file(char *filename, int flags);
 int			close_file(int fd);
 void		open_redirection_file(t_command *current);
+void		error_code(int number);
+void		error_msg(int code, char *str, t_command *command);
+char		*get_exit_value(void);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
-
-// COMMANDS
-
-void		ft_export(char *cmd, t_env *env);
-void		ft_unset(char *cmd, t_env *env);
 
 // SIGNALS:
 void		set_signal_action(t_data *ms);
 void		restore_terminal(t_data *ms);
 void		ctrl_d_cmd(char *line, t_data *ms);
+void		heredoc_signal(int signo);
 void		heredoc_signal(int signo);
 #endif
