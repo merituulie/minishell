@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/26 10:19:52 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/30 10:19:58 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ int	trim_last_line(char **array, int line_index)
 	{
 		new_last_line = ft_strtrim(array[line_index], " \t\n");
 		if (!new_last_line)
-			return (free(array[line_index]), 0);
+		{
+			free(array[line_index]);
+			return (0);
+		}
+		free(array[line_index]);
 		array[line_index] = new_last_line;
 	}
 	return (1);
