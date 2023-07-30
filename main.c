@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/30 11:04:57 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/30 13:08:52 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,22 @@
 // 	}
 // }
 
+/* Might be logical to have as its own file in parser dir*/
 t_command	*ft_parser(t_data *ms, char **cmd_line)
 {
 	t_command	*temp;
 
 	cmd_line = expand_quote_check(ms, cmd_line);
+	if (cmd_line == NULL)
+		exit (-1);
 	cmd_line = concatenate(cmd_line, ms);
+	if (cmd_line == NULL)
+		exit (-1);
 	temp = init_cmds(ms, cmd_line);
 	return (temp);
 }
 
-int	minishell(t_data *ms)
+void	minishell(t_data *ms)
 {
 	char		*line;
 	char		**cmd_line;
@@ -87,16 +92,16 @@ int	minishell(t_data *ms)
 		ctrl_d_cmd(line, ms);
 		if (line[0] == '\n' || line[0] == '\0')
 		{
-			free(line);
+			free (line);
 			continue ;
 		}
 		else
 			add_history(line);
 		cmd_line = ft_lexer(line);
-		if (cmd_line == NULL)
+		if (cmd_line == NULL) //this would be an allocation failed in lexer
 		{
-			free(line);
-			continue ;
+			free (line);
+			exit (-1);
 		}
 		cmd = ft_parser(ms, cmd_line);
 		execute_commands(cmd, ms->struct_count, &ms->env);
@@ -115,6 +120,15 @@ int	main(int argc, char **argv, char **envp)
 	set_signal_action(&ms);
 	minishell(&ms);
 	// freeings
+	restore_terminal(&ms);
+	return (0);
+}
+/*
+- needs to be freed:
+	ms struct
+	env
+	something from shlvl?
+*/
 		// ms.i = ms.struct_count;
 		// while (ms.i >= 0)
 		// {
@@ -128,7 +142,3 @@ int	main(int argc, char **argv, char **envp)
 		// }
 		// if (cmd)
 		// 	free(cmd);
-	// }
-	restore_terminal(&ms);
-	return (0);
-}
