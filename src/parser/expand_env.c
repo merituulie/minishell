@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/28 14:48:04 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/30 13:11:44 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*expand_var(t_data *ms, char *str, int start)
 	else
 		var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
-		printf("allocation fail!\n");
+		return (NULL);
 	realloc_var(ms, str, var, ft_strlen(str));
 	free(var);
 	free(str);
@@ -56,7 +56,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
 	if (!search)
-		printf("allocation fail!\n");
+		return (NULL); // printf("allocation fail!\n");
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -81,7 +81,7 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
 	ms->out = ft_calloc(size, sizeof(char));
 	if (!ms->out)
-		printf("allocation error!\n");
+		return ;
 	ms->out = ft_memcpy(ms->out, str, ms->start);
 	leftover = ms->start;
 	if (new)
@@ -103,7 +103,6 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 	while (str[++(ms->i)])
 	{
 		ms->j = -1;
-		quotes_init(ms);
 		while (str[ms->i][++(ms->j)])
 		{
 			if (str[ms->i][ms->j] == 34 && !ms->s_quotes && !ms->d_quotes)
@@ -118,7 +117,7 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 			{
 				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
 				if (!str[ms->i])
-					printf("allocation fail!\n");
+					return(NULL);
 				free(ms->out);
 				ms->j = ms->end - 1;
 			}
@@ -134,9 +133,22 @@ it will become 0.
 expanding to env only happens if there is $ and something after, and
 if there is no single quote in front of it. it does not count if double quote
 exists or not.*/
+
 char	**expand_quote_check(t_data *ms, char **str)
 {
+	char	**res;
+
 	ms_init(ms);
 	ms->i = -1;
-	return (expand_quote_check2(ms, str));
+	res = expand_quote_check2(ms, str);
+	if (res == NULL)
+		return (NULL);
+	return (res);
 }
+
+// char	**expand_quote_check(t_data *ms, char **str)
+// {
+// 	ms_init(ms);
+// 	ms->i = -1;
+// 	return (expand_quote_check2(ms, str));
+// }

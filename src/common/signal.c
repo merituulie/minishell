@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:25:34 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/24 14:25:37 by vvu              ###   ########.fr       */
+/*   Updated: 2023/07/31 06:38:36 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	handle_sig(int signo)
 		g_info.sig_status = 1;
 		ioctl(STDIN_FILENO, TIOCSTI, "\n");
 		rl_on_new_line();
-		rl_replace_line("", 0);	
+		rl_replace_line("", 0);
 	}
 }
 

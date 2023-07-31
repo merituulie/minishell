@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/21 14:01:13 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:19:22 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	put_redirection(t_command *cmd, int *index, int track, char **input)
 		str = put_to_file(input, &index);
 		strdup_filename(cmd, track, str);
 	}
+	free(str);
 }
 
 void	put_cmd_to_struct(t_command *cmd, int index, \
@@ -118,4 +119,5 @@ void	put_cmd_to_struct(t_command *cmd, int index, \
 			strdup_if_not_null(cmd, track, "input", str);
 		}
 	}
+	free (str);
 }
