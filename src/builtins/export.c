@@ -65,6 +65,7 @@ static void	change_node(t_node *temp, char *key, char *value)
 		temp->value = value;
 	}
 }
+
 static	void	export_loop(char **loop, t_node *temp)
 {
 	int 		i;
