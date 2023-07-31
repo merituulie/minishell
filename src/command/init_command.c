@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/31 13:24:58 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:12:58 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ static int	is_heredoc_has_command(char **input, int index, int *struct_count)
 {
 	if (input[index][0] == '<' && input[index][1] && input[index][1] == '<')
 	{
-		(*struct_count)++;
-		if ((index > 0 && input[index - 1][0] && input[index - 1][0] != '|') \
-		|| (input[index + 2][0] && input[index + 2][0] != '|'))
+		if ((index > 0 && input[index - 1][0] && input[index - 1][0] != '|')
+			|| (input[index + 1][0] && input[index + 2] && input[index + 2][0] != '|'))
 			(*struct_count)++;
 		return (1);
 	}
