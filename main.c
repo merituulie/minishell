@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 11:51:55 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/31 14:37:07 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,50 +81,7 @@ t_command	*ft_parser(t_data *ms, char **cmd_line)
 	if (cmd_line == NULL)
 		exit (-1);
 	temp = init_cmds(ms, cmd_line);
-	// print_command(temp);
 	return (temp);
-}
-
-static void	free_cmd_struct(t_command *command, int cmd_count)
-{
-	int	i;
-
-	i = 0;
-	while (i < cmd_count)
-	{
-		if (command[i].command)
-			free (command[i].command);
-		if (command[i].flags)
-			free (command[i].flags);
-		if (command[i].input)
-			free (command[i].input);
-		if (command[i].full_cmd)
-			free_char_array(command[i].full_cmd);
-		if (command[i].infile_name)
-			free (command[i].infile_name);
-		if (command[i].outfile_name)
-			free (command[i].outfile_name);
-		if (command[i].fds)
-			free (command[i].fds);
-	i++;
-	}
-	free (command);
-}
-
-static void	free_in_main(t_data *data)
-{
-	int	i;
-
-	i = data->struct_count;
-	while (data->i >= 0)
-	{
-		if (data[i].out)
-			free(data[i].out);
-		if (data[i].args)
-			free_char_array(data[i].args);
-		data->i--;
-	}
-	free(data);
 }
 
 void	minishell(t_data *ms)
@@ -145,18 +102,13 @@ void	minishell(t_data *ms)
 		else
 			add_history(line);
 		cmd_line = ft_lexer(line);
+		free(line);
 		if (cmd_line == NULL)
-		{
-			free (line);
 			exit (-1);
-		}
-		free (line);
 		cmd = ft_parser(ms, cmd_line);
 		execute_commands(cmd, ms->struct_count, &ms->env);
-		free_cmd_struct(cmd, ms->struct_count);
-		free_char_array(cmd_line);
+		free_in_minishell(cmd, ms->struct_count, cmd_line);
 	}
-	// rl_clear_history();
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -174,11 +126,3 @@ int	main(int argc, char **argv, char **envp)
 	free_in_main(&ms);
 	return (0);
 }
-
-
-/*
-- needs to be freed:
-	t_data struct
-	env
-	something from shlvl?
-*/

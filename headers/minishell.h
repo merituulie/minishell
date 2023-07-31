@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 10:07:16 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/31 14:40:17 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "parsing.h"
 # include "lexer.h"
 # include "hashmap.h"
+# include <termios.h>
 
 typedef struct s_command
 {
@@ -113,4 +114,10 @@ void		set_signal_action(t_data *ms);
 void		restore_terminal(t_data *ms);
 void		ctrl_d_cmd(char *line, t_data *ms);
 void		heredoc_signal(int signo);
+
+// FREE
+void		free_cmd_struct(t_command *command, int cmd_count);
+void		free_in_main(t_data *data);
+void		free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line);
+
 #endif
