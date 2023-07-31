@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 13:14:39 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:49:33 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 // 	{
 // 		if (cmd[i].command)
 // 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+// 		if (cmd[i].full_cmd[0])
+// 			printf("cmd[%d].full_cmd[0] is %s$\n", i, cmd[i].full_cmd[0]);
+// 		if (cmd[i].full_cmd[1])
+// 			printf("cmd[%d].full_cmd[1] is %s$\n", i, cmd[i].full_cmd[1]);
 // 		if (cmd[i].flags)
 // 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
 // 		if (cmd[i].input)
@@ -65,55 +69,61 @@
 // 	}
 // }
 
-int	main(int argc, char **argv, char **envp)
+/* Might be logical to have as its own file in parser dir*/
+t_command	*ft_parser(t_data *ms, char **cmd_line)
+{
+	t_command	*temp;
+
+	cmd_line = expand_quote_check(ms, cmd_line);
+	if (cmd_line == NULL)
+		exit (-1);
+	cmd_line = concatenate(cmd_line, ms);
+	if (cmd_line == NULL)
+		exit (-1);
+	temp = init_cmds(ms, cmd_line);
+	return (temp);
+}
+
+void	minishell(t_data *ms)
 {
 	char		*line;
 	char		**cmd_line;
-	t_data		ms;
 	t_command	*cmd;
 
-	(void)argc;
-	(void)argv;
-	cmd = NULL;
-	ms.env = NULL;
-	fill_env(envp, &ms.env);
-	add_shlvl(&ms.env);
-	set_signal_action(&ms);
 	while (42)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
-		ctrl_d_cmd(line, &ms);
+		ctrl_d_cmd(line, ms);
 		if (line[0] == '\n' || line[0] == '\0')
 		{
-			free(line);
+			free (line);
 			continue ;
 		}
 		else
 			add_history(line);
 		cmd_line = ft_lexer(line);
+		free(line);
+		cmd_line = NULL;
 		if (cmd_line == NULL)
-		{
-			free(line);
 			continue ;
-		}
-		cmd_line = expand_quote_check(&ms, cmd_line);
-		cmd_line = concatenate(cmd_line, &ms);
-		cmd = init_cmds(&ms, cmd_line);
-		execute_commands(cmd, ms.struct_count, &ms.env);
-		ms.i = ms.struct_count;
-		while (ms.i >= 0)
-		{
-			if (cmd[ms.i].command)
-				free(cmd[ms.i].command);
-			if (cmd[ms.i].flags)
-				free(cmd[ms.i].flags);
-			if (cmd[ms.i].input)
-				free(cmd[ms.i].input);
-			ms.i--;
-		}
-		if (cmd)
-			free(cmd);
+		cmd = ft_parser(ms, cmd_line);
+		execute_commands(cmd, ms->struct_count, &ms->env);
+		free_in_minishell(cmd, ms->struct_count, cmd_line);
 	}
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_data	ms;
+
+	(void)argc;
+	(void)argv;
+	ms.env = NULL;
+	fill_env(envp, &ms.env);
+	add_shlvl(&ms.env);
+	set_signal_action(&ms);
+	minishell(&ms);
 	restore_terminal(&ms);
+	free_in_main(&ms);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/21 14:01:21 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:40:16 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ t_command	*init_cmds(t_data *ms, char **input)
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	put_cmd_to_struct(cmd, index, ms->struct_count, input);
 	full_cmd(cmd, ms->struct_count, track);
-	free_str_array(input);
 	return (cmd);
 }
