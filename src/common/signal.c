@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 14:25:34 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/31 13:30:06 by meskelin         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/31 15:40:22 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/parsing.h"
 #include "../../headers/minishell.h"
@@ -20,7 +21,7 @@ static void	handle_sig(int signo)
 		g_info.sig_status = 1;
 		ioctl(STDIN_FILENO, TIOCSTI, "\n");
 		rl_on_new_line();
-		rl_replace_line("", 0);	
+		rl_replace_line("", 0);
 	}
 }
 

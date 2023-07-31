@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/31 15:24:24 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:40:40 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,5 @@ t_command	*init_cmds(t_data *ms, char **input)
 		printf("memory allocation error\n");
 	put_cmds_to_struct(cmd, input);
 	full_cmd(cmd, ms->struct_count, track);
-	free_str_array(input);
 	return (cmd);
 }
