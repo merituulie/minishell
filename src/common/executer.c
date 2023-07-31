@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 15:36:15 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:34:05 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,15 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 	int			status;
 
 	pid_test = 0;
-	printf("here!\n");
 	if (command_count == 1)
 	{
 		if (dont_fork_cmd(command))
+		{
+			redirect_files(command);
+			close_files(g_info.redir_fds, g_info.redir_count);
 			execute_command(command, env, 0);
+			return (1);
+		}
 		else
 		{
 			pid_test = fork();

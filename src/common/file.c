@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/30 13:34:48 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:33:40 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	close_files(int *pipe_fds, int fd_count)
 }
 void	open_redirection_file(t_command *current)
 {
-	static int	index;
 	int			fd;
 
 	fd = -2;
@@ -52,6 +51,6 @@ void	open_redirection_file(t_command *current)
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
 	else if (current->token == OUTPUT_APPEND)
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
-	current->redir_fd_index = index;
-	g_info.redir_fds[index++] = fd;
+	current->redir_fd_index = g_info.redir_index_count;
+	g_info.redir_fds[g_info.redir_index_count++] = fd;
 }

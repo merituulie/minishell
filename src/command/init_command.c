@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/31 15:40:40 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:29:05 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int count_redirs(char **input, int *struct_count)
 
 static void	init_fds_count_redirs(int *struct_count, char **input)
 {
+	g_info.redir_index_count = 0;
 	g_info.pipe_count = (*struct_count) * 2 - 2;
 	g_info.pipe_fds = ft_calloc(g_info.pipe_count, sizeof(*g_info.pipe_fds));
 	if (!g_info.pipe_fds)
