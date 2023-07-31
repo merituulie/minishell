@@ -6,14 +6,14 @@
 #    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 11:04:00 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/31 12:40:40 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/31 13:34:10 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -g -lreadline
+BUILD_FLAGS = -Wall -Wextra -g -lreadline #-Werror
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -26,7 +26,8 @@ COMMON_SRC =	file \
 				pipe \
 				redirection \
 				save_exit_status \
-				signal
+				signal \
+				executer
 
 LEXER_SRC = lexer \
 			lexer_utils \
@@ -78,9 +79,8 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc -L  ~/.brew/opt/readline/lib -I  ~/.brew/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
-	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) ./src/command_handler.c \
-	main.c \
+	cc -L /usr/include/readline/readline.h -I /usr/include/readline $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

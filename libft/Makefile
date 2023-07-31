@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
+#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/30 12:57:25 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/07/31 12:44:47 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRC = $(addsuffix .c, $(SRC_FILES))
 OBJ = $(addsuffix .o, $(SRC_FILES))
 HS = $(addsuffix .h, $(H_FILES))
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra #-Werror
 
 all: $(NAME)
 
