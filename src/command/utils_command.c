@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/28 10:48:20 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/31 07:44:02 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,6 @@ void	put_to_input(t_command *cmd, int track, char *str)
 	}
 	str = NULL;
 }
-
-// void	strdup_filename(t_command *cmd, int track, char *str)
-// {
-// 	if (cmd[track].command[0] == '<')
-// 	{
-// 		cmd[track].infile_name = ft_strdup(str);
-// 		if (!cmd[track].infile_name)
-// 			printf("strdup allocation fail!\n");
-// 		str = NULL;
-// 	}
-// 	else if (cmd[track].command[0] == '>')
-// 	{
-// 		cmd[track].outfile_name = ft_strdup(str);
-// 		if (!cmd[track].outfile_name)
-// 			printf("strdup allocation fail!\n");
-// 		str = NULL;
-// 	}
-// }
 
 void	put_fullcmd(t_command *cmd, int i, int track)
 {

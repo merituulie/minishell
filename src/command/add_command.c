@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/29 19:27:37 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:37:14 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,27 +81,29 @@ static char	*parse_redirection_filename(char **input, int index)
 void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
 	char		*str;
-	int			temp;
 
 	str = NULL;
-	temp = *index;
-	temp++;
 	cmd[track].token = NONE;
-	if (ft_strchr_null("<>", input[(*index)][0]))
+	while (ft_strchr_null("<>", input[(*index)][0]))
 	{
-		// if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
-		// {
-		// 	close_file(g_info.redir_fds[cmd->redir_fd_index]);
-		// }
-		// if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
-		// {
-		// 	close_file(g_info.redir_fds[cmd->redir_fd_index]);
-		// }
-		str = parse_redirection_filename(input, temp);
-		printf("string is: %s\n", str);
+		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
+		{
+			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+		}
+		if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
+		{
+			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+		}
+		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
 		open_redirection_file(&cmd[track]);
-		(*index) += 2;
+		if (!input[(*index + 2)])
+		{
+			(*index) += 2;
+			break ;
+		}
+		else
+			(*index) += 2;
 	}
 }
 
@@ -116,8 +118,10 @@ void	put_cmds_to_struct(t_command *cmd, char **input)
 	while (input[index])
 	{
 		handle_redirection(cmd, &index, track, input);
-		if (!input[index])
+		if (!input[index] || !input[index + 1])
+		{
 			break ;
+		}
 		if (ft_strchr("|", input[index][0]))
 		{
 			index++;
