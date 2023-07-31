@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:53:15 by emmameinert       #+#    #+#             */
-/*   Updated: 2023/07/30 15:01:19 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/31 13:34:04 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static	void	num_arg_check(char **input)
 	else
 	{
 		printf("exit\n");
-		printf("minishell: exit: %s: numeric argument required\n", input[1]);
+		printf("minishell: exit: %s: numeric argument required\n", input[1]); //stderr
 		g_info.exit_code = 255;
 		exit(g_info.exit_code);
 	}

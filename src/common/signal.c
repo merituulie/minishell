@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:25:34 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/24 14:25:37 by vvu              ###   ########.fr       */
+/*   Updated: 2023/07/31 13:30:50 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ctrl_d_cmd(char *line, t_data *cmd)
 {
 	if (line == NULL)
 	{
-		ft_putstr_fd(PINK "Jose's PinkShell:", 0);
+		ft_putstr_fd(PINK "Jose's PinkShell: ", 0);
 		write(1, "exit\n", 5);
 		restore_terminal(cmd);
 		exit(EXIT_SUCCESS);

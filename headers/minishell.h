@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/30 08:37:11 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/31 16:43:28 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ void		error_msg(int code, char *str, t_command *command);
 char		*get_exit_value(void);
 
 // TO STRINGS
-char		*env_to_string(t_env **env);
+char	*env_to_string(t_env **env);
+void	print_export_env(t_env **env);
 
 // SIGNALS:
 void		set_signal_action(t_data *ms);

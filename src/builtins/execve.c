@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:20:43 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/30 09:07:39 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/31 15:44:07 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

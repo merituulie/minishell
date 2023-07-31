@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 11:04:00 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/31 12:00:38 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/31 16:45:14 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ BUILTIN_SRC = export \
 			pwd \
 			exit \
 			execve \
+			unset \
 
 H_FILES = hashmap \
 		minishell \
