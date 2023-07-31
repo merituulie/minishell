@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/30 12:39:19 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:24:33 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void		handle_redirection(t_command *cmd, int *index, int track, \
 			char **input);
 void		put_cmds_to_struct(t_command *cmd, char **input);
 char		*ft_strchr_null(const char *s, int c);
-void		strdup_filename(t_command *cmd, int track, char *str);
 void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
 

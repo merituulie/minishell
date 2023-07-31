@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/31 10:37:14 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:24:25 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,12 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 
 	str = NULL;
 	cmd[track].token = NONE;
-	while (ft_strchr_null("<>", input[(*index)][0]))
+	while (ft_strchr_null("<>", input[(*index)][0]) && !ft_strchr_null("<", input[(*index)][1]))
 	{
 		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
-		{
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
-		}
 		if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
-		{
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
-		}
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
 		open_redirection_file(&cmd[track]);
@@ -107,36 +103,70 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	}
 }
 
+static void	parse_command(t_command *cmd, int track, int *index, char **input)
+{
+	char *str;
+
+	cmd[track].command = ft_strdup(input[(*index)++]);
+	if (!cmd[track].command)
+		printf("strdup allocation fail!");
+	if (!input[(*index)])
+		return ;
+	str = parse_flags(input, &(*index));
+	put_to_flags(cmd, track, str);
+	if (!input[(*index)])
+		return ;
+	str = parse_input(input, index);
+	put_to_input(cmd, track, str);
+}
+
+static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
+{
+	int org_index;
+
+	org_index = 0;
+	if (!ft_strncmp_all("<<", input[(*index)]))
+	{
+		org_index = (*index);
+		if ((*index) > 0 && input[(*index) - 1][0] && input[(*index) - 1][0] != '|')
+		{
+			parse_command(cmd, (*track), index, input);
+			while ((*index) >= 0 && ft_strchr("<|>", input[(*index)][0]))
+				(*index)--;
+			(*track)++;
+			return (org_index);
+		}
+		if (input[(*index) + 1][0] && input[(*index) + 2] && input[(*index) + 2][0] != '|')
+		{
+			cmd[(*track)].command = ft_strdup(input[(*index++)]);
+			cmd[(*track)].input = ft_strdup(input[(*index++)]);
+			track++;
+		}
+	}
+	return (0);
+}
+
 void	put_cmds_to_struct(t_command *cmd, char **input)
 {
 	int		index;
+	int		org_index;
 	int		track;
-	char	*str;
 
 	index = 0;
 	track = 0;
 	while (input[index])
 	{
+		org_index = handle_heredoc(cmd, &index, &track, input);
+		if (org_index)
+			index = org_index;
 		handle_redirection(cmd, &index, track, input);
 		if (!input[index] || !input[index + 1])
-		{
 			break ;
-		}
 		if (ft_strchr("|", input[index][0]))
 		{
 			index++;
 			track++;
 		}
-		cmd[track].command = ft_strdup(input[index++]);
-		if (!cmd[track].command)
-			printf("strdup allocation fail!");
-		if (!input[index])
-			break ;
-		str = parse_flags(input, &index);
-		put_to_flags(cmd, track, str);
-		if (!input[index])
-			break ;
-		str = parse_input(input, &index);
-		put_to_input(cmd, track, str);
+		parse_command(cmd, track, &index, input);
 	}
 }

@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 11:04:00 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/31 13:34:10 by meskelin         ###   ########.fr        #
+#    Updated: 2023/07/31 14:54:40 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline #-Werror
+BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -79,7 +79,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT_PATH)
-	cc -L /usr/include/readline/readline.h -I /usr/include/readline $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
+	cc -L  ~/.brew/opt/readline/lib -I  ~/.brew/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
 	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
