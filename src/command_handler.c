@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 11:54:17 by jhusso           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/31 14:24:48 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../headers/minishell.h"
 
@@ -19,6 +20,7 @@ void	add_shlvl(t_env **env)
 
 	temp = get_value((*env)->vars, "SHLVL");
 	shlvl = ft_atoi_exit(temp->value);
+	free(temp->value);
 	temp->value = ft_itoa(shlvl + 1);
 }
 

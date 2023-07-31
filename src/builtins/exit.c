@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:53:15 by emmameinert       #+#    #+#             */
-/*   Updated: 2023/07/27 15:27:04 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/07/30 15:01:19 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,38 @@ static int	ft_is_number(char **input)
 	int	i;
 
 	i = 0;
-	while (input[0][i] != '\0')
+	if (ft_strlen(input[1]) == 1 && !ft_isdigit(input[1][0]))
+		return (0);
+	if(input[1][0] == '-' || input[1][0] == '+')
+			i++;
+	while (input[1][i] != ' ' && input[1][i] != '\0')
 	{
-		if (!ft_isdigit(input[0][i]))
+		if (!ft_isdigit(input[1][i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-static	int	num_arg_check(char **input, int exit_code)
+static	void	num_arg_check(char **input)
 {
 	if (ft_is_number(input))
 	{
-		exit_code = ft_atoi_exit(input[0]);
-		if (exit_code < 0)
-			exit_code = exit_code * (-1);
-		if (exit_code > 255 || exit_code < 0)
-			exit_code = exit_code - 256;
-		return (exit_code);
+		g_info.exit_code = ft_atoi_exit(input[1]);
+		if (g_info.exit_code < 0)
+		{
+			g_info.exit_code = g_info.exit_code * (-1);
+			g_info.exit_code = 256 - g_info.exit_code;
+		}
+		if (g_info.exit_code > 255)
+			g_info.exit_code = g_info.exit_code - 256;
 	}
 	else
 	{
 		printf("exit\n");
-		printf("minishell: exit: %s: numeric argument required\n", input[0]);
-		exit_code = 255;
-		exit(exit_code);
-		return (exit_code);
+		printf("minishell: exit: %s: numeric argument required\n", input[1]);
+		g_info.exit_code = 255;
+		exit(g_info.exit_code);
 	}
 }
 
@@ -52,11 +57,11 @@ static int	amount_check(char **command)
 	int	count;
 
 	count = 0;
-	while (command[count])
+	while (command[1][count])
 	{
 		count++;
 	}
-	if (count > 1)
+	if (count > 2)
 	{
 		printf("exit\n");
 		printf("minishell: exit: too many arguments\n");
@@ -68,25 +73,20 @@ static int	amount_check(char **command)
 void	ft_exit(t_command *command)
 {
 	int		flag;
-	int		exit_code;
-	char	**splitted;
 
-	exit_code = 0;
 	flag = 0;
-	if (!command->input)
+	if (!command->input && !command->flags)
 	{
 		ft_putstr_fd("exit\n", 1);
 		exit(0);
 	}
-	splitted = ft_split(command->input, ' ');
-	exit_code = num_arg_check(splitted, 0);
-	flag = amount_check(splitted);
-	free_char_array(splitted);
+	num_arg_check(command->full_cmd);
+	flag = amount_check(command->full_cmd);
 	if (flag)
 		return ;
 	else
 	{
 		printf("exit\n");
-		exit(exit_code);
+		exit(g_info.exit_code);
 	}
 }
