@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/31 15:24:25 by rmakinen         ###   ########.fr       */
-=======
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/31 10:19:22 by jhusso           ###   ########.fr       */
->>>>>>> e48cad4938b1b9c816d89b7a185e803357786185
+/*   Updated: 2023/07/31 17:20:31 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +144,6 @@ static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 			track++;
 		}
 	}
-<<<<<<< HEAD
 	return (0);
 }
 
@@ -178,7 +170,4 @@ void	put_cmds_to_struct(t_command *cmd, char **input)
 		}
 		parse_command(cmd, track, &index, input);
 	}
-=======
-	free (str);
->>>>>>> e48cad4938b1b9c816d89b7a185e803357786185
 }

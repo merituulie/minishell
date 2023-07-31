@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/31 15:24:31 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:19:57 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	put_to_flags(t_command *cmd, int track, char *str)
 		if (!cmd[track].flags)
 			printf("strdup allocation fail!\n");
 	}
-	str = NULL;
 }
 
 void	put_to_input(t_command *cmd, int track, char *str)
@@ -51,7 +50,6 @@ void	put_to_input(t_command *cmd, int track, char *str)
 		if (!cmd[track].input)
 			printf("strdup allocation fail!\n");
 	}
-	str = NULL;
 }
 
 void	put_fullcmd(t_command *cmd, int i, int track)
