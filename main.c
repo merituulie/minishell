@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/30 13:08:52 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/31 11:24:25 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 // 	{
 // 		if (cmd[i].command)
 // 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+// 		if (cmd[i].full_cmd[0])
+// 			printf("cmd[%d].full_cmd[0] is %s$\n", i, cmd[i].full_cmd[0]);
+// 		if (cmd[i].full_cmd[1])
+// 			printf("cmd[%d].full_cmd[1] is %s$\n", i, cmd[i].full_cmd[1]);
 // 		if (cmd[i].flags)
 // 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
 // 		if (cmd[i].input)
@@ -77,7 +81,50 @@ t_command	*ft_parser(t_data *ms, char **cmd_line)
 	if (cmd_line == NULL)
 		exit (-1);
 	temp = init_cmds(ms, cmd_line);
+	// print_command(temp);
 	return (temp);
+}
+
+static void	free_cmd_struct(t_command *command, int cmd_count)
+{
+	int	i;
+
+	i = 0;
+	while (i < cmd_count)
+	{
+		if (command[i].command)
+			free (command[i].command);
+		if (command[i].flags)
+			free (command[i].flags);
+		if (command[i].input)
+			free (command[i].input);
+		if (command[i].full_cmd)
+			free_char_array(command[i].full_cmd);
+		if (command[i].infile_name)
+			free (command[i].infile_name);
+		if (command[i].outfile_name)
+			free (command[i].outfile_name);
+		if (command[i].fds)
+			free (command[i].fds);
+	i++;
+	}
+	free (command);
+}
+
+static void	free_in_main(t_data *data)
+{
+	int	i;
+
+	i = data->struct_count;
+	while (data->i >= 0)
+	{
+		if (data[i].out)
+			free(data[i].out);
+		if (data[i].args)
+			free_char_array(data[i].args);
+		data->i--;
+	}
+	free(data);
 }
 
 void	minishell(t_data *ms)
@@ -98,14 +145,18 @@ void	minishell(t_data *ms)
 		else
 			add_history(line);
 		cmd_line = ft_lexer(line);
-		if (cmd_line == NULL) //this would be an allocation failed in lexer
+		if (cmd_line == NULL)
 		{
 			free (line);
 			exit (-1);
 		}
+		free (line);
 		cmd = ft_parser(ms, cmd_line);
 		execute_commands(cmd, ms->struct_count, &ms->env);
+		free_cmd_struct(cmd, ms->struct_count);
+		free_char_array(cmd_line);
 	}
+	// rl_clear_history();
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -119,26 +170,15 @@ int	main(int argc, char **argv, char **envp)
 	add_shlvl(&ms.env);
 	set_signal_action(&ms);
 	minishell(&ms);
-	// freeings
 	restore_terminal(&ms);
+	free_in_main(&ms);
 	return (0);
 }
+
+
 /*
 - needs to be freed:
-	ms struct
+	t_data struct
 	env
 	something from shlvl?
 */
-		// ms.i = ms.struct_count;
-		// while (ms.i >= 0)
-		// {
-		// 	if (cmd[ms.i].command)
-		// 		free(cmd[ms.i].command);
-		// 	if (cmd[ms.i].flags)
-		// 		free(cmd[ms.i].flags);
-		// 	if (cmd[ms.i].input)
-		// 		free(cmd[ms.i].input);
-		// 	ms.i--;
-		// }
-		// if (cmd)
-		// 	free(cmd);
