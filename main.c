@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 14:48:28 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/31 17:23:10 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	minishell(t_data *ms)
 			add_history(line);
 		cmd_line = ft_lexer(line);
 		free(line);
-		cmd_line = NULL;
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
