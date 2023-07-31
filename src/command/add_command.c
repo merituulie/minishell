@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/21 14:01:13 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:37:14 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
 
-char	*put_to_input(char **input, int *index)
+char	*parse_input(char **input, int *index)
 {
 	int		str_len;
 	int		cur_index;
@@ -33,7 +33,9 @@ char	*put_to_input(char **input, int *index)
 		(*index)++;
 		space_count++;
 	}
-	str = malloc(sizeof(char) * (str_len + space_count + 1));
+	str = ft_calloc((str_len + space_count + 1), sizeof(char));
+	if (!str)
+		printf("memory allocation error\n");
 	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
 	while (++cur_index < *index)
 	{
@@ -43,7 +45,7 @@ char	*put_to_input(char **input, int *index)
 	return (str);
 }
 
-char	*put_to_flags(char **input, int	*index)
+char	*parse_flags(char **input, int	*index)
 {
 	int	cur_index;
 
@@ -57,65 +59,84 @@ char	*put_to_flags(char **input, int	*index)
 		return (NULL);
 }
 
-char	*put_to_file(char **input, int **index)
+static char	*parse_redirection_filename(char **input, int index)
 {
 	int		str_len;
 	int		cur_index;
 	char	*str;
 
 	str_len = 0;
-	cur_index = **index;
-	if (ft_strchr_null("<|>", input[**index][0]))
+	cur_index = index;
+	if (ft_strchr_null("<|>", input[index][0]))
 		return (NULL);
-	str_len += ft_strlen(input[**index]);
-	(**index)++;
-	str = malloc(sizeof(char) * (str_len + 1));
+	str_len += ft_strlen(input[index]);
+	(index)++;
+	str = ft_calloc((str_len + 1), sizeof(char));
+	if (!str)
+		printf("memory allocation fail\n");
 	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
 	return (str);
 }
 
-void	put_redirection(t_command *cmd, int *index, int track, char **input)
+void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
-	char	*str;
+	char		*str;
 
-	if (!ft_strncmp_all("<<", cmd[track].command))
+	str = NULL;
+	cmd[track].token = NONE;
+	while (ft_strchr_null("<>", input[(*index)][0]))
 	{
-		str = put_to_file(input, &index);
-		strdup_if_not_null(cmd, track, "input", str);
-	}
-	else
-	{
-		str = put_to_file(input, &index);
-		strdup_filename(cmd, track, str);
+		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
+		{
+			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+		}
+		if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
+		{
+			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+		}
+		str = parse_redirection_filename(input, (*index + 1));
+		parse_redirection(cmd, track, str, input[(*index)]);
+		open_redirection_file(&cmd[track]);
+		if (!input[(*index + 2)])
+		{
+			(*index) += 2;
+			break ;
+		}
+		else
+			(*index) += 2;
 	}
 }
 
-void	put_cmd_to_struct(t_command *cmd, int index, \
-					int struct_count, char **input)
+void	put_cmds_to_struct(t_command *cmd, char **input)
 {
+	int		index;
 	int		track;
 	char	*str;
 
-	track = -1;
-	while (++track < struct_count)
+	index = 0;
+	track = 0;
+	while (input[index])
 	{
+		handle_redirection(cmd, &index, track, input);
+		if (!input[index] || !input[index + 1])
+		{
+			break ;
+		}
 		if (ft_strchr("|", input[index][0]))
+		{
 			index++;
+			track++;
+		}
 		cmd[track].command = ft_strdup(input[index++]);
 		if (!cmd[track].command)
 			printf("strdup allocation fail!");
-		if (ft_strchr("<>", cmd[track].command[0]))
-			put_redirection(cmd, &index, track, input);
-		else
-		{
-			if (input[index] == NULL)
-				return ;
-			str = put_to_flags(input, &index);
-			strdup_if_not_null(cmd, track, "flags", str);
-			if (input[index] == NULL)
-				return ;
-			str = put_to_input(input, &index);
-			strdup_if_not_null(cmd, track, "input", str);
-		}
+		if (!input[index])
+			break ;
+		str = parse_flags(input, &index);
+		put_to_flags(cmd, track, str);
+		if (!input[index])
+			break ;
+		str = parse_input(input, &index);
+		put_to_input(cmd, track, str);
 	}
 }

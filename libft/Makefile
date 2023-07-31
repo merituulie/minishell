@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
+#    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/30 09:01:32 by jhusso           ###   ########.fr        #
+#    Updated: 2023/07/30 12:57:25 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,6 @@ ft_strncmp \
 ft_substr \
 ft_strncmp_all \
 ft_strtrim \
-ft_substr \
-ft_memcpy  \
-ft_print_array \
 ft_strjoin \
 ft_strchr \
 ft_strdup \

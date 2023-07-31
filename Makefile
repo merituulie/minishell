@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 11:04:00 by yoonslee          #+#    #+#              #
-#    Updated: 2023/07/31 12:00:38 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/07/31 12:40:40 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ HASHMAP_SRC = add_hashmap \
 ENV_SRC = init_env \
 			env
 
-COMMON_SRC =	pipe \
+COMMON_SRC =	file \
+				pipe \
+				redirection \
 				save_exit_status \
 				signal
 
@@ -45,8 +47,8 @@ BUILTIN_SRC = export \
 			cd \
 			heredoc \
 			pwd \
-			exit \
 			execve \
+			exit \
 
 H_FILES = hashmap \
 		minishell \
