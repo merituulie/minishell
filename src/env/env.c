@@ -3,15 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/21 10:48:56 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:44:34 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
+
+void	print_export_env(t_env **env)
+{
+	char	**export;
+
+	export = ft_split(env_to_string(env), '\n');
+	while (export)
+	{
+		if (*export[0] != '\0')
+		{
+			ft_putstr_fd("declare -x ", 1);
+			ft_putstr_fd(*export, 1);
+			ft_putchar_fd('\n', 1);
+		}
+		export++;
+	}
+	ft_free_array(export);
+}
 
 static void	copy_keyvalue(char **output, t_node *node)
 {

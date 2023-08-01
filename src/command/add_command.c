@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 08:03:58 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:43:47 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,12 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(cmd, track, str);
+	free(str);	
 	if (!input[(*index)])
 		return ;
 	str = parse_input(input, index);
 	put_to_input(cmd, track, str);
+	free(str);
 }
 
 static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
