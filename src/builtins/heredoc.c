@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 16:24:28 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:19:32 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,12 +148,13 @@ int	ft_heredoc(t_command *command, int track, t_env **env, char *delim)
 	}
 	free(line);
 	close(fd);
-	if (!ft_strncmp_all(command[track].infile_name, "heredoc.txt"))
-	{
-		command[track].token = INPUT;
-		command[track].redir_fd_index = g_info.redir_index_count;
-		g_info.redir_fds[g_info.redir_index_count++] = fd;
-		printf("adding to the index count in strncmp\n");
-	}
+	//took the next thing out because it caused the heredoc to exit too early
+	// if (!ft_strncmp_all(command[track].infile_name, "heredoc.txt"))
+	// {
+	// 	command[track].token = INPUT;
+	// 	command[track].redir_fd_index = g_info.redir_index_count;
+	// 	g_info.redir_fds[g_info.redir_index_count++] = fd;
+	// 	printf("adding to the index count in strncmp\n");
+	// }
 	return (fd);
 }

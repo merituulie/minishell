@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 17:32:54 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:10:17 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	*parse_flags(char **input, int	*index)
 	{
 		(*index)++;
 		return (ft_strdup(input[cur_index]));
-		return (ft_strdup(input[cur_index]));
 	}
 	else
 		return (NULL);
@@ -114,7 +113,7 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	{
 		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
-		if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
+		else if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
@@ -196,9 +195,10 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 {
 	char	*str;
 
+	// printf("index in parsing: %d\n", *index);
 	cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
-		printf("strdup allocation fail!");
+		printf("strdup allocation fail 1!");
 	if (!input[(*index)])
 		return ;
 	str = parse_flags(input, &(*index));
@@ -209,7 +209,9 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		return ;
 	str = parse_input(input, index);
 	put_to_input(&cmd, track, str);
-	print_command(cmd);
+	// printf("index in parsing: %d\n", *index);
+	// printf("cmd[%d].input = %s\n", track, cmd[track].input);
+	// print_command(cmd);
 	if (str)
 		free(str);	
 }
@@ -224,6 +226,7 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 	track = 0;
 	while (input[index])
 	{
+		// printf("input[index]: %s\n", input[index]);
 		if (handle_heredoc(cmd, &index, &track, input))
 		{
 			ft_heredoc(cmd, track, &ms->env, input[index - 1]);
@@ -231,6 +234,8 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 		}
 		// if (org_index)
 		// 	index = org_index;
+		if (!input[index])
+			break ;
 		handle_redirection(cmd, &index, track, input);
 		if (!input[index])
 			break ;
@@ -239,7 +244,8 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			index++;
 			track++;
 		}
-		print_command(cmd);
 		parse_command(cmd, track, &index, input);
+		// print_command(cmd);
+		// printf("index: %d\n", index);
 	}
 }

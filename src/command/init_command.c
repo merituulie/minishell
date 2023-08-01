@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/01 17:33:15 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:54:19 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_command	*init_cmds(t_data *ms, char **input)
 	if (!cmd)
 		printf("memory allocation error\n");
 	put_cmds_to_struct(cmd, input, ms);
-	print_command(cmd);
+	// print_command(cmd);
 	full_cmd(cmd, ms->struct_count, track);
 	return (cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 17:33:39 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:58:27 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	put_to_flags(t_command **cmd, int track, char *str)
 	else
 	{
 		(*cmd)[track].flags = ft_strdup(str);
-		printf("cmd->flags: %s\n", (*cmd)[track].flags);
+		// printf("cmd->flags: %s\n", (*cmd)[track].flags);
 		if (!(*cmd)[track].flags)
-			printf("strdup allocation fail!\n");
+			printf("strdup allocation fail 2!\n");
 	}
 }
 
@@ -48,9 +48,9 @@ void	put_to_input(t_command **cmd, int track, char *str)
 	else
 	{
 		(*cmd)[track].input = ft_strdup(str);
-		printf("cmd->input: %s\n", (*cmd)[track].input);
+		// printf("cmd->input: %s\n", (*cmd)[track].input);
 		if (!(*cmd)[track].input)
-			printf("strdup allocation fail!\n");
+			printf("strdup allocation fail 3!\n");
 	}
 }
 
