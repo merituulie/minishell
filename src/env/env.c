@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 16:43:46 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:44:34 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	print_export_env(t_env **env)
 {
-	char **export;
+	char	**export;
 
 	export = ft_split(env_to_string(env), '\n');
 	while (export)

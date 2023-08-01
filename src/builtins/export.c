@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
+/*   Updated: 2023/08/01 11:51:55 by emeinert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
@@ -58,7 +69,7 @@ static char	*find_value_in_str(char *cmd)
 static void	change_node(t_node *temp, char *key, char *value)
 {
 	if (!get_value(&temp, key))
-			set_value(&temp, key, value);
+		set_value(&temp, key, value);
 	else
 	{
 		temp = get_value(&temp, key);
@@ -68,10 +79,10 @@ static void	change_node(t_node *temp, char *key, char *value)
 
 static	void	export_loop(char **loop, t_node *temp)
 {
-	int 		i;
-	char		*new_key;
-	char		*new_value;
-	char 		*temp_char;
+	int		i;
+	char	*new_key;
+	char	*new_value;
+	char	*temp_char;
 
 	i = 0;
 	while (loop[i])
@@ -95,18 +106,18 @@ static	void	export_loop(char **loop, t_node *temp)
 	}
 }
 
-void	ft_export(char *cmd, t_env *env)
+void	ft_export(char *input, t_env *env)
 {
-	t_node		*temp;
-	char 		**loop;
+	t_node	*temp;
+	char	**loop;
 
 	temp = *env->vars;
-	if (!cmd)
+	if (!input)
 	{
 		print_export_env(&env);
 		return ;
 	}
-	loop = ft_split(cmd, ' ');
+	loop = ft_split(input, ' ');
 	export_loop(loop, temp);
 	ft_free_array(loop);
 }

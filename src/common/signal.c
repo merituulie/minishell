@@ -6,10 +6,9 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 10:54:04 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:44:55 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/parsing.h"
 #include "../../headers/minishell.h"

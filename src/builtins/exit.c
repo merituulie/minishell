@@ -5,25 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 10:56:08 by emeinert         ###   ########.fr       */
+/*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
+/*   Updated: 2023/08/01 11:53:33 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #include "../../headers/minishell.h"
 
@@ -60,8 +45,10 @@ static	void	num_arg_check(char **input)
 	}
 	else
 	{
-		printf("exit\n");
-		printf("minishell: exit: %s: numeric argument required\n", input[1]); //stderr
+		ft_putstr_fd("exit\n", 1);
+		ft_putstr_fd("minishell: exit: ", 2);
+		ft_putstr_fd(input[1], 2);
+		ft_putstr_fd("numeric argument required\n", 2);
 		g_info.exit_code = 255;
 		exit(g_info.exit_code);
 	}
