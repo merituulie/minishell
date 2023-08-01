@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/31 17:19:57 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:40:20 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,28 @@ char	*ft_strchr_null(const char *s, int c)
 	return (NULL);
 }
 
-void	put_to_flags(t_command *cmd, int track, char *str)
+void	put_to_flags(t_command **cmd, int track, char *str)
 {
 	if (str == NULL)
-		cmd[track].flags = NULL;
+		(*cmd)[track].flags = NULL;
 	else
 	{
-		cmd[track].flags = ft_strdup(str);
-		if (!cmd[track].flags)
+		(*cmd)[track].flags = ft_strdup(str);
+		printf("cmd->flags: %s\n", (*cmd)[track].flags);
+		if (!(*cmd)[track].flags)
 			printf("strdup allocation fail!\n");
 	}
 }
 
-void	put_to_input(t_command *cmd, int track, char *str)
+void	put_to_input(t_command **cmd, int track, char *str)
 {
 	if (str == NULL)
-		cmd[track].input = NULL;
+		(*cmd)[track].input = NULL;
 	else
 	{
-		cmd[track].input = ft_strdup(str);
-		if (!cmd[track].input)
+		(*cmd)[track].input = ft_strdup(str);
+		printf("cmd->input: %s\n", (*cmd)[track].input);
+		if (!(*cmd)[track].input)
 			printf("strdup allocation fail!\n");
 	}
 }

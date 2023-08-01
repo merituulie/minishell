@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 10:19:58 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:52:17 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,22 +129,6 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	free(str);
 }
 
-static void	parse_command(t_command *cmd, int track, int *index, char **input)
-{
-	char	*str;
-
-	cmd[track].command = ft_strdup(input[(*index)++]);
-	if (!cmd[track].command)
-		printf("strdup allocation fail!");
-	if (!input[(*index)])
-		return ;
-	str = parse_flags(input, &(*index));
-	put_to_flags(cmd, track, str);
-	if (!input[(*index)])
-		return ;
-	str = parse_input(input, index);
-	put_to_input(cmd, track, str);
-}
 
 // static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 // {
@@ -182,41 +166,63 @@ static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 	int	is_heredoc;
 
 	is_heredoc = 0;
+	printf("not triggered1\n");
 	if (!ft_strncmp_all("<<", input[(*index)]))
 	{
-		// if (echo hello rosa << here)
-		// 	--> parse echo into cmd, have heredoc.txt as the input
-		// 	exec heredoc and when creating the file add it to redir.fds return 1
-		// 	to run hededoc
-		// 	index + 2;
 		if ((*index) > 0 && input[(*index) - 1][0] \
 		&& input[(*index) - 1][0] != '|')
 		{
-			while ((*index) >= 0 && ft_strchr("<|>", input[(*index)][0]))
-				(*index)--;
+			printf("triggered1??\n");
 			cmd[(*track)].infile_name = "heredoc.txt";
+			(*index) += 2;
 			return(1);
 		}
-		// if (<< here echo hello rosa)
-		// 	--> skip << here, return 1 to run heredoc
-		// 	-->parse echo into cmd,
-		// 	index + 2
-		if (input[(*index) + 1][0] && input[(*index) + 2] \
+		else if (input[(*index) + 1][0] && input[(*index) + 2] \
 		&& input[(*index) + 2][0] != '|')
 		{
-			(*index) += 2;
+			printf("triggered2??\n");
 			cmd[(*track)].infile_name = "heredoc.txt";
+			(*index) += 2;
+			printf("index after infile_add %i\n", (*index));
 			return(1);
 		}
+		else if (input[(*index) + 1] && input[(*index) + 1][0] != '|')
+		{
+			printf("we should trigger this input[%i][%s]\n", (*index + 1), input[*index + 1]);
+			(*index) += 2;
+			return (1);
+		}
 	}
-
+	printf("not triggered2\n");
 	return (0);
 }
 
-void	put_cmds_to_struct(t_command *cmd, char **input)
+static void	parse_command(t_command *cmd, int track, int *index, char **input)
+{
+	char	*str;
+
+	cmd[track].command = ft_strdup(input[(*index)++]);
+	printf("index after command %i [%s]\n", (*index), input[(*index)]);
+	if (!cmd[track].command)
+		printf("strdup allocation fail!");
+	if (!input[(*index)])
+		return ;
+	str = parse_flags(input, &(*index));
+	put_to_flags(&cmd, track, str);
+	printf("str after flags %s\n", str);
+	if (!input[(*index)])
+		return ;
+	str = parse_input(input, index);
+	put_to_input(&cmd, track, str);
+	printf("str after input %s\n", str);
+	printf("cmd->input after input %s, %s\n", cmd[track].input, cmd->input);
+	print_command(cmd);
+}
+
+void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 {
 	int		index;
-	int		org_index;
+	//int		org_index;
 	int		track;
 
 	index = 0;
@@ -225,9 +231,8 @@ void	put_cmds_to_struct(t_command *cmd, char **input)
 	{
 		if (handle_heredoc(cmd, &index, &track, input))
 		{
-			//if we return 1, we know we have a heredoc, we go to execute
-			and we add the heredoc to the
-			ft_heredoc();
+			ft_heredoc(cmd, track, &ms->env, input[index - 1]);
+			printf("completed heredoc index is now:%i [%s] \n", index, input[index]);
 		}
 		// if (org_index)
 		// 	index = org_index;

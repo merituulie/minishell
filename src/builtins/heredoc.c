@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 08:05:38 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:50:06 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,22 @@ static int	find_index(char *str, char c)
 /*here_doc with signal needs to be handled.
 also how to wait for the cat command for example.
 file is deleted with unlink function.*/
-int	ft_heredoc(t_command *command, t_env **env)
+int	ft_heredoc(t_command *command, int track, t_env **env, char *delim)
 {
 	int		fd;
 	char	*line;
 	t_data	ms;
 
 	g_info.sig_status = 0;
+	printf("GOT TO HEREDOCCCC\n");
+	printf("command->infilename is : %s\n", command[track].infile_name);
 	fd = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0664);
 	if (fd == -1)
 		printf("Error in heredoc file opening\n");
 	line = readline("> ");
 	while (line)
 	{
-		if (!ft_strncmp_all(line, command->input) || g_info.sig_status)
+		if (!ft_strncmp_all(line, delim) || g_info.sig_status)
 			break ;
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
@@ -146,5 +148,12 @@ int	ft_heredoc(t_command *command, t_env **env)
 	}
 	free(line);
 	close(fd);
+	if (!ft_strncmp_all(command[track].infile_name, "heredoc.txt"))
+	{
+		command[track].token = INPUT;
+		command[track].redir_fd_index = g_info.redir_index_count;
+		g_info.redir_fds[g_info.redir_index_count++] = fd;
+		printf("adding to the index count in strncmp\n");
+	}
 	return (fd);
 }

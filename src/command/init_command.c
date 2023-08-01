@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/01 10:03:32 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:27:37 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ static void	print_command(t_command *cmd)
 	}
 }
 
-static int	is_heredoc_has_command(char **input, int index, int *struct_count)
-{
-	if (input[index][0] == '<' && input[index][1] && input[index][1] == '<')
-	{
-		if ((index > 0 && input[index - 1][0] && input[index - 1][0] != '|')
-			|| (input[index + 1][0] && input[index + 2] \
-			&& input[index + 2][0] != '|'))
-			(*struct_count)++;
-		return (1);
-	}
-	return (0);
-}
+// static int	is_heredoc_has_command(char **input, int index, int *struct_count)
+// {
+// 	if (input[index][0] == '<' && input[index][1] && input[index][1] == '<')
+// 	{
+// 		if ((index > 0 && input[index - 1][0] && input[index - 1][0] != '|')
+// 			|| (input[index + 1][0] && input[index + 2] \
+// 			&& input[index + 2][0] != '|'))
+// 			(*struct_count)++;
+// 		return (1);
+// 	}
+// 	return (0);
+// }
 
 static int	count_struct(char **input)
 {
@@ -68,7 +68,7 @@ static int	count_struct(char **input)
 	return (struct_count);
 }
 
-static int	count_redirs(char **input, int *struct_count)
+static int	count_redirs(char **input) //, int *struct_count)
 {
 	int	redir_count;
 	int	index;
@@ -79,11 +79,11 @@ static int	count_redirs(char **input, int *struct_count)
 	{
 		if (ft_strchr_null("<>", input[index][0]))
 		{
-			if (is_heredoc_has_command(input, index, struct_count))
-			{
-				index++;
-				continue ;
-			}
+			// if (is_heredoc_has_command(input, index, struct_count))
+			// {
+			// 	index++;
+			// 	continue ;
+			// }
 			redir_count++;
 		}
 		index++;
@@ -98,7 +98,7 @@ static void	init_fds_count_redirs(int *struct_count, char **input)
 	g_info.pipe_fds = ft_calloc(g_info.pipe_count, sizeof(*g_info.pipe_fds));
 	if (!g_info.pipe_fds)
 		printf("memory allocation failed\n");
-	g_info.redir_count = count_redirs(input, struct_count);
+	g_info.redir_count = count_redirs(input); //, struct_count);
 	g_info.redir_fds = ft_calloc(g_info.redir_count, \
 	sizeof(*g_info.redir_fds));
 	if (!g_info.redir_fds)
@@ -117,7 +117,7 @@ t_command	*init_cmds(t_data *ms, char **input)
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)
 		printf("memory allocation error\n");
-	put_cmds_to_struct(cmd, input);
+	put_cmds_to_struct(cmd, input, ms);
 	print_command(cmd);
 	full_cmd(cmd, ms->struct_count, track);
 	return (cmd);

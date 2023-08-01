@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 18:28:41 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/08/01 15:47:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void		fill_env(char **envp, t_env **env);
 t_command	*init_cmds(t_data *ms, char **input);
 char		*parse_input(char **input, int *index);
 char		*parse_flags(char **input, int	*index);
-void		put_to_input(t_command *cmd, int track, char *str);
-void		put_to_flags(t_command *cmd, int track, char *str);
+void		put_to_input(t_command **cmd, int track, char *str);
+void		put_to_flags(t_command **cmd, int track, char *str);
 int			parse_redirection(t_command *cmd, int track, char *str, char *input);
 void		handle_redirection(t_command *cmd, int *index, int track, \
 			char **input);
-void		put_cmds_to_struct(t_command *cmd, char **input);
+void		put_cmds_to_struct(t_command *cmd, char **input, t_data *ms);
 char		*ft_strchr_null(const char *s, int c);
 void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
@@ -90,7 +90,7 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 void		ft_echo(t_command *command);
 void		ft_env(t_env **env);
 void		ft_cd(t_command *command, t_env **env);
-int			ft_heredoc(t_command *command, t_env **env);
+int			ft_heredoc(t_command *command, int track, t_env **env, char *delim);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command);
