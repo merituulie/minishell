@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 08:08:17 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 10:17:05 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,13 @@ t_command	*ft_parser(t_data *ms, char **cmd_line)
 
 	cmd_line = expand_quote_check(ms, cmd_line);
 	if (cmd_line == NULL)
-		exit (-1);
+		return (NULL);
 	cmd_line = concatenate(cmd_line, ms);
 	if (cmd_line == NULL)
-		exit (-1);
+		return (NULL);
 	temp = init_cmds(ms, cmd_line);
+	if (temp == NULL)
+		return (NULL);
 	return (temp);
 }
 
@@ -107,6 +109,8 @@ void	minishell(t_data *ms)
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
+		if (cmd == NULL)
+			continue ;
 		execute_commands(cmd, ms->struct_count, &ms->env);
 		free_in_minishell(cmd, ms->struct_count, cmd_line);
 	}
