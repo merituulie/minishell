@@ -5,10 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 18:45:22 by emeinert         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/01 10:54:16 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
@@ -76,11 +79,13 @@ t_command	*ft_parser(t_data *ms, char **cmd_line)
 
 	cmd_line = expand_quote_check(ms, cmd_line);
 	if (cmd_line == NULL)
-		exit (-1);
+		return (NULL);
 	cmd_line = concatenate(cmd_line, ms);
 	if (cmd_line == NULL)
-		exit (-1);
+		return (NULL);
 	temp = init_cmds(ms, cmd_line);
+	if (temp == NULL)
+		return (NULL);
 	return (temp);
 }
 
@@ -106,6 +111,8 @@ void	minishell(t_data *ms)
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
+		if (cmd == NULL)
+			continue ;
 		execute_commands(cmd, ms->struct_count, &ms->env);
 		free_in_minishell(cmd, ms->struct_count, cmd_line);
 	}

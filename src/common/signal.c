@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 14:25:34 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/31 16:49:23 by emeinert         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/01 10:54:04 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/parsing.h"
 #include "../../headers/minishell.h"
@@ -42,7 +43,7 @@ void	restore_terminal(t_data *cmd)
 
 void	set_signal_action(t_data *cmd)
 {
-	struct	termios new_tio;
+	struct termios	new_tio;
 
 	tcgetattr(STDIN_FILENO, &(cmd->old_tio));
 	new_tio = cmd->old_tio;

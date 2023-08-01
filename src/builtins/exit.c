@@ -5,10 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 12:53:15 by emmameinert       #+#    #+#             */
-/*   Updated: 2023/07/31 13:34:04 by emeinert         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/01 10:56:08 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #include "../../headers/minishell.h"
 
@@ -19,7 +34,7 @@ static int	ft_is_number(char **input)
 	i = 0;
 	if (ft_strlen(input[1]) == 1 && !ft_isdigit(input[1][0]))
 		return (0);
-	if(input[1][0] == '-' || input[1][0] == '+')
+	if (input[1][0] == '-' || input[1][0] == '+')
 			i++;
 	while (input[1][i] != ' ' && input[1][i] != '\0')
 	{
