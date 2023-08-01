@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:07:09 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/01 13:07:13 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/01 13:44:18 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static char	*find_cmd_path(char *cmd, t_node **head)
 	char	*path;
 	char	**split_path;
 
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
 	path = get_value(head, "PATH")->value;
 	split_path = ft_split(path, ':');
 	if (split_path)

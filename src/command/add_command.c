@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 16:28:37 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/01 17:32:54 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
@@ -52,7 +51,7 @@ char	*parse_input(char **input, int *index)
 	if (ft_strchr_null("<|>", input[*index][0]))
 		return (NULL);
 	while ((*index) < ft_arrlen(input) && \
-	!ft_strchr_null("<|>", input[*index][0]))
+			!ft_strchr_null("<|>", input[*index][0]))
 	{
 		str_len += ft_strlen(input[*index]);
 		(*index)++;
@@ -78,7 +77,8 @@ char	*parse_flags(char **input, int	*index)
 	if (input[*index][0] == '-')
 	{
 		(*index)++;
-		return (input[cur_index]);
+		return (ft_strdup(input[cur_index]));
+		return (ft_strdup(input[cur_index]));
 	}
 	else
 		return (NULL);
@@ -203,13 +203,15 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(&cmd, track, str);
-	free(str);
+	if (str)
+		free(str);	
 	if (!input[(*index)])
 		return ;
 	str = parse_input(input, index);
 	put_to_input(&cmd, track, str);
 	print_command(cmd);
-	free(str);
+	if (str)
+		free(str);	
 }
 
 void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)

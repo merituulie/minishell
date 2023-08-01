@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 11:44:34 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:32:01 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,16 @@ char	*env_to_string(t_env **env)
 	return (output);
 }
 
-void	ft_env(t_env **env)
+void	ft_env(t_env **env, t_command *command)
 {
+	if (command->input || command->flags)
+	{
+		ft_putstr_fd(command->command, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(command->full_cmd[1], 2);
+		ft_putstr_fd(": no such file or directory\n", 2);
+		g_info.exit_code = 127;
+		return ;
+	}
 	ft_putstr_fd(env_to_string(env), 1);
 }

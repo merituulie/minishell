@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 16:12:21 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:31:15 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	add_shlvl(t_env **env)
 int	execute_builtin(t_command **command, t_env ***env)
 {
 	if (ft_strncmp_all((*command)->command, "env") == 0)
-		ft_env((*env));
+		ft_env((*env), (*command));
 	else if (ft_strncmp_all((*command)->command, "echo") == 0)
 		ft_echo((*command));
 	else if (ft_strncmp_all((*command)->command, "cd") == 0)
@@ -107,6 +107,7 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 				redirect_files(command);
 				close_files(g_info.redir_fds, g_info.redir_count);
 				execute_command(command, env, 1);
+				exit(0);
 			}
 			waitpid(pid_test, &status, 0);
 			g_info.exit_code = WEXITSTATUS(status);
