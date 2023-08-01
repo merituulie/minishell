@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 07:50:33 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:24:53 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ char	*expand_var(t_data *ms, char *str, int start)
 	var = NULL;
 	if (str[ms->end] == '?')
 		var = ft_strdup("$?");
-	else if (!ft_isalnum(str[ms->end]))
+	else if (str[ms->end] != ' ' && !ft_isalnum(str[ms->end]))
 		return ("");
+	else if (str[ms->end] == ' ')
+	{
+		ms->out = ft_strdup(str);
+		free(str);
+		return (ms->out);
+	}
 	while (ft_isalnum(str[ms->end]))
 		ms->end++;
 	if (var)
@@ -37,8 +43,6 @@ char	*expand_var(t_data *ms, char *str, int start)
 	realloc_var(ms, str, var, ft_strlen(str));
 	free(var);
 	free(str);
-	if (!(ms->out))
-		return (NULL);
 	return (ms->out);
 }
 
@@ -51,6 +55,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	char	*search;
 
 	i = -1;
+	printf("find_env : var is %s\n", var);
 	if (!ft_strncmp_all(var, "$?"))
 		return (get_exit_value());
 	var_size--;
@@ -61,10 +66,11 @@ char	*find_env(t_data *ms, char *var, int var_size)
 		search[i] = var[1 + i];
 	i = 0;
 	node = get_value((ms->env)->vars, search);
+	free(search);
 	if (!(node))
 		return (NULL);
-	free(search);
-	return (node->value);
+	search = ft_strdup(node->value);
+	return (search);
 }
 
 /*takes back the expanded result from '$something'
@@ -90,12 +96,9 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 		while (new[++(ms->k)])
 			ms->out[ms->start + ms->k] = new[ms->k];
 		leftover = ms->start + ms->k;
+		free(new);
 	}
-	ms->k = -1;
-	while ((leftover + (++(ms->k))) < size)
-		ms->out[leftover + ms->k] = str[ms->end + ms->k];
-	ms->out[leftover + ms->k] = '\0';
-	ms->end = leftover;
+	realloc_var2(ms, leftover, size, str);
 }
 
 static char	**expand_quote_check2(t_data *ms, char **str)
@@ -113,7 +116,8 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 				ms->s_quotes = 1;
 			else if (str[ms->i][ms->j] == 39 && ms->s_quotes)
 				ms->s_quotes = 0;
-			else if (str[ms->i][ms->j] == '$' && !ms->s_quotes)
+			else if (str[ms->i][ms->j] == '$' && str[ms->i][ms->j + 1] \
+													&& !ms->s_quotes)
 			{
 				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
 				if (!str[ms->i])

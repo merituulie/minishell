@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/27 19:05:12 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/08/01 14:42:48 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ char	**concatenate(char **str, t_data *ms);
 void	quotes_init(t_data *ms);
 void	free_str_array(char **str);
 void	ms_init(t_data *ms);
+void	realloc_var2(t_data *ms, int leftover, int size, char *str);
 
 #endif

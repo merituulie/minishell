@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:42:15 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/27 19:01:36 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/08/01 16:24:27 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,15 @@ void	ms_init(t_data *ms)
 	ms->start = 0;
 	ms->s_quotes = 0;
 	ms->d_quotes = 0;
+}
+
+void	realloc_var2(t_data *ms, int leftover, int size, char *str)
+{
+	ms->k = -1;
+	while ((leftover + (++(ms->k))) < size)
+		ms->out[leftover + ms->k] = str[ms->end + ms->k];
+	ms->out[leftover + ms->k] = '\0';
+	ms->end = leftover;
+	if (!(ms->out))
+		ms->out = NULL;
 }

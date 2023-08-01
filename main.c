@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:46 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/01 16:16:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
-	add_shlvl(&ms.env);
+	// add_shlvl(&ms.env);
 	set_signal_action(&ms);
 	minishell(&ms);
 	restore_terminal(&ms);

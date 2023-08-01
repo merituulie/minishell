@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:16 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/01 16:19:18 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*parse_flags(char **input, int	*index)
 	if (input[*index][0] == '-')
 	{
 		(*index)++;
-		return (input[cur_index]);
+		return (ft_strdup(input[cur_index]));
 	}
 	else
 		return (NULL);
