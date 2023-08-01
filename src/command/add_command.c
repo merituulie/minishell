@@ -6,9 +6,10 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 16:19:18 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:32:34 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #include "../../headers/minishell.h"
@@ -54,6 +55,7 @@ char	*parse_flags(char **input, int	*index)
 	if (input[*index][0] == '-')
 	{
 		(*index)++;
+		return (ft_strdup(input[cur_index]));
 		return (ft_strdup(input[cur_index]));
 	}
 	else
@@ -117,12 +119,14 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(cmd, track, str);
-	free(str);
+	if (str)
+		free(str);	
 	if (!input[(*index)])
 		return ;
 	str = parse_input(input, index);
 	put_to_input(cmd, track, str);
-	free(str);
+	if (str)
+		free(str);	
 }
 
 static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
