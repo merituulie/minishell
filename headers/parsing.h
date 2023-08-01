@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 16:41:20 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:52:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,9 @@ void	free_str_array(char **str);
 void	ms_init(t_data *ms);
 void	realloc_var2(t_data *ms, int leftover, int size, char *str);
 char	*expand_var_init(t_data *ms, char *str, int start);
+
+/*parser_special.c*/
+char	*special_expand(t_data *ms, char *str);
+void	free_case(t_data *ms);
 
 #endif
