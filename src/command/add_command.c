@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 13:34:30 by emeinert         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/01 16:33:57 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
@@ -28,7 +27,7 @@ char	*parse_input(char **input, int *index)
 	if (ft_strchr_null("<|>", input[*index][0]))
 		return (NULL);
 	while ((*index) < ft_arrlen(input) && \
-	!ft_strchr_null("<|>", input[*index][0]))
+			!ft_strchr_null("<|>", input[*index][0]))
 	{
 		str_len += ft_strlen(input[*index]);
 		(*index)++;
@@ -54,6 +53,7 @@ char	*parse_flags(char **input, int	*index)
 	if (input[*index][0] == '-')
 	{
 		(*index)++;
+		return (ft_strdup(input[cur_index]));
 		return (ft_strdup(input[cur_index]));
 	}
 	else

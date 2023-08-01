@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:46 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/01 17:13:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	minishell(t_data *ms)
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
-		// print_command(cmd);
 		if (cmd == NULL)
 			continue ;
 		execute_commands(cmd, ms->struct_count, &ms->env);
