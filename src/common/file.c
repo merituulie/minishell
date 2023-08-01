@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 18:33:40 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/08/01 07:57:44 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	open_file(char *filename, int flags)
 {
-	int fd;
+	int	fd;
 
 	fd = open(filename, flags, S_IRWXU);
 	if (fd < 0)
@@ -22,7 +22,7 @@ int	open_file(char *filename, int flags)
 	return (fd);
 }
 
-int close_file(int fd)
+int	close_file(int fd)
 {
 	if (close(fd) != 0)
 		ft_putstr_fd("Error when closing a file.\n", 2);
@@ -40,6 +40,7 @@ void	close_files(int *pipe_fds, int fd_count)
 		i++;
 	}
 }
+
 void	open_redirection_file(t_command *current)
 {
 	int			fd;

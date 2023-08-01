@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:49:28 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/31 15:39:43 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/01 07:44:35 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	minishell(t_data *ms)
 			add_history(line);
 		cmd_line = ft_lexer(line);
 		free(line);
-		cmd_line = NULL;
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/31 18:27:00 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/08/01 08:03:58 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 
 	str = NULL;
 	cmd[track].token = NONE;
-	while (ft_strchr_null("<>", input[(*index)][0]) && !ft_strchr_null("<", input[(*index)][1]))
+	while (ft_strchr_null("<>", input[(*index)][0]) \
+	&& !ft_strchr_null("<", input[(*index)][1]))
 	{
 		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
@@ -106,7 +107,7 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 
 static void	parse_command(t_command *cmd, int track, int *index, char **input)
 {
-	char *str;
+	char	*str;
 
 	cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
@@ -123,13 +124,14 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 
 static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 {
-	int org_index;
+	int	org_index;
 
 	org_index = 0;
 	if (!ft_strncmp_all("<<", input[(*index)]))
 	{
 		org_index = (*index);
-		if ((*index) > 0 && input[(*index) - 1][0] && input[(*index) - 1][0] != '|')
+		if ((*index) > 0 && input[(*index) - 1][0] \
+		&& input[(*index) - 1][0] != '|')
 		{
 			parse_command(cmd, (*track), index, input);
 			while ((*index) >= 0 && ft_strchr("<|>", input[(*index)][0]))
@@ -137,7 +139,8 @@ static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 			(*track)++;
 			return (org_index);
 		}
-		if (input[(*index) + 1][0] && input[(*index) + 2] && input[(*index) + 2][0] != '|')
+		if (input[(*index) + 1][0] && input[(*index) + 2] \
+		&& input[(*index) + 2][0] != '|')
 		{
 			cmd[(*track)].command = ft_strdup(input[(*index++)]);
 			cmd[(*track)].input = ft_strdup(input[(*index++)]);
@@ -161,7 +164,7 @@ void	put_cmds_to_struct(t_command *cmd, char **input)
 		if (org_index)
 			index = org_index;
 		handle_redirection(cmd, &index, track, input);
-		if (!input[index] || !input[index + 1])
+		if (!input[index])
 			break ;
 		if (ft_strchr("|", input[index][0]))
 		{
