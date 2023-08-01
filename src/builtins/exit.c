@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:53:15 by emmameinert       #+#    #+#             */
-/*   Updated: 2023/07/30 15:01:19 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/08/01 08:06:15 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_is_number(char **input)
 	i = 0;
 	if (ft_strlen(input[1]) == 1 && !ft_isdigit(input[1][0]))
 		return (0);
-	if(input[1][0] == '-' || input[1][0] == '+')
+	if (input[1][0] == '-' || input[1][0] == '+')
 			i++;
 	while (input[1][i] != ' ' && input[1][i] != '\0')
 	{

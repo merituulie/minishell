@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/28 15:35:11 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/01 08:05:38 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 {
 	int		leftover;
 	char	*new;
-	int 	size;
+	int	size;
 
 	size = ft_strlen(str);
 	new = find_env_here(var, ft_strlen(var), env);
@@ -148,4 +148,3 @@ int	ft_heredoc(t_command *command, t_env **env)
 	close(fd);
 	return (fd);
 }
-

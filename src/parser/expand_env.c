@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/30 13:11:44 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/01 07:50:33 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
 	if (!search)
-		return (NULL); // printf("allocation fail!\n");
+		printf("allocation fail!\n");
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -117,7 +117,7 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 			{
 				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
 				if (!str[ms->i])
-					return(NULL);
+					return (NULL);
 				free(ms->out);
 				ms->j = ms->end - 1;
 			}

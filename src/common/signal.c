@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 14:25:34 by vvu               #+#    #+#             */
-/*   Updated: 2023/07/31 06:38:36 by jhusso           ###   ########.fr       */
+/*   Created: 2023/08/01 07:52:43 by rmakinen          #+#    #+#             */
+/*   Updated: 2023/08/01 07:56:36 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	restore_terminal(t_data *cmd)
 
 void	set_signal_action(t_data *cmd)
 {
-	struct	termios new_tio;
+	struct termios	new_tio;
 
 	tcgetattr(STDIN_FILENO, &(cmd->old_tio));
 	new_tio = cmd->old_tio;

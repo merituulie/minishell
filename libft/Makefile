@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
+#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/30 09:01:32 by jhusso           ###   ########.fr        #
+#    Updated: 2023/07/31 12:44:47 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,6 @@ ft_strncmp \
 ft_substr \
 ft_strncmp_all \
 ft_strtrim \
-ft_substr \
-ft_memcpy  \
-ft_print_array \
 ft_strjoin \
 ft_strchr \
 ft_strdup \
@@ -54,7 +51,7 @@ SRC = $(addsuffix .c, $(SRC_FILES))
 OBJ = $(addsuffix .o, $(SRC_FILES))
 HS = $(addsuffix .h, $(H_FILES))
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra #-Werror
 
 all: $(NAME)
 
