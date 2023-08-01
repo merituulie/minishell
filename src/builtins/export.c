@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
+/*   Updated: 2023/08/01 11:51:55 by emeinert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
@@ -55,35 +66,58 @@ static char	*find_value_in_str(char *cmd)
 	return (value);
 }
 
-void	ft_export(char *cmd, t_env *env)
+static void	change_node(t_node *temp, char *key, char *value)
 {
-	t_node		*temp;
-	char		*new_key;
-	char		*new_value;
-
-	temp = *env->vars;
-	new_key = find_key_in_str(cmd);
-	if (!new_key)
-		return (ft_putstr_fd("input error\n", 2));
-	new_value = find_value_in_str(cmd);
-	if (!new_value)
-		return (ft_putstr_fd("input error\n", 2));
-	if (!get_value(&temp, new_key))
-		set_value(&temp, new_key, new_value);
+	if (!get_value(&temp, key))
+		set_value(&temp, key, value);
 	else
 	{
-		temp = get_value(&temp, new_key);
-		temp->value = new_value;
+		temp = get_value(&temp, key);
+		temp->value = value;
 	}
 }
 
-void	ft_unset(char *cmd, t_env *env)
+static	void	export_loop(char **loop, t_node *temp)
+{
+	int		i;
+	char	*new_key;
+	char	*new_value;
+	char	*temp_char;
+
+	i = 0;
+	while (loop[i])
+	{
+		temp_char = find_key_in_str(loop[i]);
+		new_key = ft_strdup(temp_char);
+		if (!new_key)
+		{
+			ft_putstr_fd("minishell: export: '", 2);
+			ft_putstr_fd(loop[i], 2);
+			return (ft_putstr_fd("': not a valid identifier\n", 2));
+		}
+		free(temp_char);
+		temp_char = find_value_in_str(loop[i]);
+		new_value = ft_strdup(temp_char);
+		if (!new_value)
+			return (ft_putstr_fd("input error\n", 2));
+		free(temp_char);
+		change_node(temp, new_key, new_value);
+		i++;
+	}
+}
+
+void	ft_export(char *input, t_env *env)
 {
 	t_node	*temp;
+	char	**loop;
 
 	temp = *env->vars;
-	if (!get_value(&temp, cmd))
+	if (!input)
+	{
+		print_export_env(&env);
 		return ;
-	else
-		delete_value(&temp, cmd);
+	}
+	loop = ft_split(input, ' ');
+	export_loop(loop, temp);
+	ft_free_array(loop);
 }
