@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:16 by jhusso           ###   ########.fr       */
+/*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/01 13:34:30 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*parse_flags(char **input, int	*index)
 	if (input[*index][0] == '-')
 	{
 		(*index)++;
-		return (input[cur_index]);
+		return (ft_strdup(input[cur_index]));
 	}
 	else
 		return (NULL);
@@ -117,12 +117,14 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(cmd, track, str);
-	free(str);
+	if (str)
+		free(str);	
 	if (!input[(*index)])
 		return ;
 	str = parse_input(input, index);
 	put_to_input(cmd, track, str);
-	free(str);
+	if (str)
+		free(str);	
 }
 
 static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
