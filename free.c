@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:36:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/31 14:40:52 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/07/31 17:23:38 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 			free (command[i].infile_name);
 		if (command[i].outfile_name)
 			free (command[i].outfile_name);
-		if (command[i].fds)
-			free (command[i].fds);
-	i++;
+		i++;
 	}
 	free (command);
 }

@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_handler.c                                  :+:      :+:    :+:   */
+/*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/31 14:24:48 by jhusso           ###   ########.fr       */
+/*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/01 07:59:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../headers/minishell.h"
+#include "../../headers/minishell.h"
 
 void	add_shlvl(t_env **env)
 {
@@ -20,7 +19,6 @@ void	add_shlvl(t_env **env)
 
 	temp = get_value((*env)->vars, "SHLVL");
 	shlvl = ft_atoi_exit(temp->value);
-	free(temp->value);
 	temp->value = ft_itoa(shlvl + 1);
 }
 
@@ -94,12 +92,21 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 	if (command_count == 1)
 	{
 		if (dont_fork_cmd(command))
+		{
+			redirect_files(command);
+			close_files(g_info.redir_fds, g_info.redir_count);
 			execute_command(command, env, 0);
+			return (1);
+		}
 		else
 		{
 			pid_test = fork();
 			if (pid_test == 0)
+			{
+				redirect_files(command);
+				close_files(g_info.redir_fds, g_info.redir_count);
 				execute_command(command, env, 1);
+			}
 			waitpid(pid_test, &status, 0);
 			g_info.exit_code = WEXITSTATUS(status);
 			return (1);
@@ -113,23 +120,25 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 {
 	int			i;
 	int			pids[command_count];
-	int			pipe_fds[(command_count * 2) - 2];
 
 	i = -1;
 	if (exec_one_command(commands, command_count, env))
+	{
+		close_files(g_info.redir_fds, g_info.redir_count);
 		return (0);
+	}
 	while (++i < command_count)
 	{
 		commands->id = i;
 		if (i != command_count - 1)
 		{
-			if (pipe(&pipe_fds[i * 2]) < 0)
+			if (pipe(&g_info.pipe_fds[i * 2]) < 0)
 				ft_putstr_fd("Piping error!", 2);
 		}
-		pids[i] = handle_pipe(commands, env, command_count, pipe_fds);
+		pids[i] = handle_pipe(commands, env, command_count);
 		commands++;
 	}
-	close_files(pipe_fds, command_count * 2 - 2);
+	close_files(g_info.pipe_fds, g_info.pipe_count);
 	wait_children(pids, i - 1);
 	return (0);
 }
