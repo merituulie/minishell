@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 07:59:45 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 10:50:24 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	add_shlvl(t_env **env)
 
 	temp = get_value((*env)->vars, "SHLVL");
 	shlvl = ft_atoi_exit(temp->value);
+	free(temp->value);
 	temp->value = ft_itoa(shlvl + 1);
 }
 
