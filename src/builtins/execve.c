@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 10:55:16 by emeinert         ###   ########.fr       */
+/*   Created: 2023/08/01 13:07:09 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/01 13:07:13 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../headers/minishell.h"
 

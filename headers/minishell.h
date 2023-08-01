@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 11:15:23 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:34:59 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
-void		ft_env(t_env **env);
+void		ft_env(t_env **env, t_command *command);
 void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command, t_env **env);
 int			ft_execve(t_command *command, t_env **env);
