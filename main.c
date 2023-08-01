@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 16:16:46 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:13:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	minishell(t_data *ms)
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
-		// print_command(cmd);
 		if (cmd == NULL)
 			continue ;
 		execute_commands(cmd, ms->struct_count, &ms->env);
@@ -128,7 +127,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	ms.env = NULL;
 	fill_env(envp, &ms.env);
-	// add_shlvl(&ms.env);
+	add_shlvl(&ms.env);
 	set_signal_action(&ms);
 	minishell(&ms);
 	restore_terminal(&ms);

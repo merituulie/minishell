@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 16:24:53 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:44:40 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ char	*expand_var(t_data *ms, char *str, int start)
 {
 	char	*var;
 
-	ms->start = start;
-	ms->end = start + 1;
-	var = NULL;
+	var = expand_var_init(ms, str, start);
 	if (str[ms->end] == '?')
 		var = ft_strdup("$?");
 	else if (str[ms->end] != ' ' && !ft_isalnum(str[ms->end]))
@@ -55,7 +53,6 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	char	*search;
 
 	i = -1;
-	printf("find_env : var is %s\n", var);
 	if (!ft_strncmp_all(var, "$?"))
 		return (get_exit_value());
 	var_size--;

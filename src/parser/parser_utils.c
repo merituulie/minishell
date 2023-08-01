@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:42:15 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 16:24:27 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:40:59 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,12 @@ void	realloc_var2(t_data *ms, int leftover, int size, char *str)
 	ms->end = leftover;
 	if (!(ms->out))
 		ms->out = NULL;
+}
+
+char	*expand_var_init(t_data *ms, char *str, int start)
+{
+	ms->start = start;
+	ms->end = start + 1;
+	str = NULL;
+	return (str);
 }
