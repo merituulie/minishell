@@ -6,13 +6,9 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:46 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/01 13:40:08 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-
-
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"

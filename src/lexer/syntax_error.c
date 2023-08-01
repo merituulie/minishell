@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/27 18:46:41 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/08/01 14:00:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	syntax_error(char *str)
 		else if ((str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>'))
 			return (syntax_error_msg(3, str));
 		else if ((str[i] == '<' && str[i + 1] == '<' && str[i + 2] == '<'))
+			return (syntax_error_msg(4, str));
+		else if (str[i] == '>' && str[i + 1] == '<')
 			return (syntax_error_msg(4, str));
 	}
 	return (syntax_error2(str, i));
