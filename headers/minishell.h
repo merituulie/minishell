@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 14:54:35 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 15:47:45 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/01 16:12:49 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #ifndef MINISHELL_H
@@ -124,7 +125,8 @@ void		error_msg(int code, char *str, t_command *command);
 char		*get_exit_value(void);
 
 // TO STRINGS
-char		*env_to_string(t_env **env);
+char	*env_to_string(t_env **env);
+void	print_export_env(t_env **env);
 
 // SIGNALS:
 void		set_signal_action(t_data *ms);

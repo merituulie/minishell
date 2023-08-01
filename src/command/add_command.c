@@ -6,9 +6,10 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 15:52:17 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:28:37 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
@@ -27,9 +28,9 @@ static void	print_command(t_command *cmd)
 			printf("cmd[%d].full_cmd[0] is %s$\n", i, cmd[i].full_cmd[0]);
 		if (cmd[i].full_cmd[1])
 			printf("cmd[%d].full_cmd[1] is %s$\n", i, cmd[i].full_cmd[1]);
-		if (cmd[i].flags)
+		// if (cmd[i].flags)
 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-		if (cmd[i].input)
+		// if (cmd[i].input)
 			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
 		if (cmd[i].infile_name)
 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
@@ -166,13 +167,11 @@ static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 	int	is_heredoc;
 
 	is_heredoc = 0;
-	printf("not triggered1\n");
 	if (!ft_strncmp_all("<<", input[(*index)]))
 	{
 		if ((*index) > 0 && input[(*index) - 1][0] \
 		&& input[(*index) - 1][0] != '|')
 		{
-			printf("triggered1??\n");
 			cmd[(*track)].infile_name = "heredoc.txt";
 			(*index) += 2;
 			return(1);
@@ -180,20 +179,16 @@ static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 		else if (input[(*index) + 1][0] && input[(*index) + 2] \
 		&& input[(*index) + 2][0] != '|')
 		{
-			printf("triggered2??\n");
 			cmd[(*track)].infile_name = "heredoc.txt";
 			(*index) += 2;
-			printf("index after infile_add %i\n", (*index));
 			return(1);
 		}
 		else if (input[(*index) + 1] && input[(*index) + 1][0] != '|')
 		{
-			printf("we should trigger this input[%i][%s]\n", (*index + 1), input[*index + 1]);
 			(*index) += 2;
 			return (1);
 		}
 	}
-	printf("not triggered2\n");
 	return (0);
 }
 
@@ -202,21 +197,19 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	char	*str;
 
 	cmd[track].command = ft_strdup(input[(*index)++]);
-	printf("index after command %i [%s]\n", (*index), input[(*index)]);
 	if (!cmd[track].command)
 		printf("strdup allocation fail!");
 	if (!input[(*index)])
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(&cmd, track, str);
-	printf("str after flags %s\n", str);
+	free(str);
 	if (!input[(*index)])
 		return ;
 	str = parse_input(input, index);
 	put_to_input(&cmd, track, str);
-	printf("str after input %s\n", str);
-	printf("cmd->input after input %s, %s\n", cmd[track].input, cmd->input);
 	print_command(cmd);
+	free(str);
 }
 
 void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
@@ -244,6 +237,7 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			index++;
 			track++;
 		}
+		print_command(cmd);
 		parse_command(cmd, track, &index, input);
 	}
 }

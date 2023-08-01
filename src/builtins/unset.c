@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_array.c                                       :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: emeinert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/25 14:56:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 11:28:18 by emeinert         ###   ########.fr       */
+/*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
+/*   Updated: 2023/07/31 16:44:57 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/minishell.h"
+#include "../../libft/libft.h"
 
-void	free_char_array(char **str)
+void	ft_unset(char *cmd, t_env *env)
 {
-	int		i;
+	t_node	*temp;
 
-	i = 0;
-	if (!str)
+	temp = *env->vars;
+	if (!get_value(&temp, cmd))
 		return ;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
+	else
+		delete_value(&temp, cmd);
 }
