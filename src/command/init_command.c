@@ -6,13 +6,37 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/01 08:02:19 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 10:03:32 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
+
+static void	print_command(t_command *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd[++i].command)
+	{
+		if (cmd[i].command)
+			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+		if (cmd[i].full_cmd[0])
+			printf("cmd[%d].full_cmd[0] is %s$\n", i, cmd[i].full_cmd[0]);
+		if (cmd[i].full_cmd[1])
+			printf("cmd[%d].full_cmd[1] is %s$\n", i, cmd[i].full_cmd[1]);
+		if (cmd[i].flags)
+			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+		if (cmd[i].input)
+			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
+		if (cmd[i].infile_name)
+			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+		if (cmd[i].outfile_name)
+			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+	}
+}
 
 static int	is_heredoc_has_command(char **input, int index, int *struct_count)
 {
@@ -94,6 +118,7 @@ t_command	*init_cmds(t_data *ms, char **input)
 	if (!cmd)
 		printf("memory allocation error\n");
 	put_cmds_to_struct(cmd, input);
+	print_command(cmd);
 	full_cmd(cmd, ms->struct_count, track);
 	return (cmd);
 }

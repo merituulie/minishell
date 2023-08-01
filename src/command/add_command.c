@@ -6,13 +6,37 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:48:42 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 08:03:58 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/01 10:19:58 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
+
+static void	print_command(t_command *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd[++i].command)
+	{
+		if (cmd[i].command)
+			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+		if (cmd[i].full_cmd[0])
+			printf("cmd[%d].full_cmd[0] is %s$\n", i, cmd[i].full_cmd[0]);
+		if (cmd[i].full_cmd[1])
+			printf("cmd[%d].full_cmd[1] is %s$\n", i, cmd[i].full_cmd[1]);
+		if (cmd[i].flags)
+			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+		if (cmd[i].input)
+			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
+		if (cmd[i].infile_name)
+			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+		if (cmd[i].outfile_name)
+			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+	}
+}
 
 char	*parse_input(char **input, int *index)
 {
@@ -122,31 +146,70 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	put_to_input(cmd, track, str);
 }
 
+// static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
+// {
+// 	int	org_index;
+
+// 	org_index = 0;
+// 	if (!ft_strncmp_all("<<", input[(*index)]))
+// 	{
+// 		org_index = (*index);
+// 		if ((*index) > 0 && input[(*index) - 1][0] \
+// 		&& input[(*index) - 1][0] != '|')
+// 		{
+// 			parse_command(cmd, (*track), index, input);
+			// while ((*index) >= 0 && ft_strchr("<|>", input[(*index)][0]))
+			// 	(*index)--;
+// 			(*track)++;
+// 			printf("here in handle heredoc\n");
+// 			return (org_index);
+// 		}
+// 		if (input[(*index) + 1][0] && input[(*index) + 2] \
+// 		&& input[(*index) + 2][0] != '|')
+// 		{
+// 			cmd[(*track)].command = ft_strdup(input[(*index++)]);
+// 			cmd[(*track)].input = ft_strdup(input[(*index++)]);
+// 			print_command(cmd);
+// 			track++;
+// 		}
+// 	}
+// 	return (0);
+// }
+
+
 static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 {
-	int	org_index;
+	int	is_heredoc;
 
-	org_index = 0;
+	is_heredoc = 0;
 	if (!ft_strncmp_all("<<", input[(*index)]))
 	{
-		org_index = (*index);
+		// if (echo hello rosa << here)
+		// 	--> parse echo into cmd, have heredoc.txt as the input
+		// 	exec heredoc and when creating the file add it to redir.fds return 1
+		// 	to run hededoc
+		// 	index + 2;
 		if ((*index) > 0 && input[(*index) - 1][0] \
 		&& input[(*index) - 1][0] != '|')
 		{
-			parse_command(cmd, (*track), index, input);
 			while ((*index) >= 0 && ft_strchr("<|>", input[(*index)][0]))
 				(*index)--;
-			(*track)++;
-			return (org_index);
+			cmd[(*track)].infile_name = "heredoc.txt";
+			return(1);
 		}
+		// if (<< here echo hello rosa)
+		// 	--> skip << here, return 1 to run heredoc
+		// 	-->parse echo into cmd,
+		// 	index + 2
 		if (input[(*index) + 1][0] && input[(*index) + 2] \
 		&& input[(*index) + 2][0] != '|')
 		{
-			cmd[(*track)].command = ft_strdup(input[(*index++)]);
-			cmd[(*track)].input = ft_strdup(input[(*index++)]);
-			track++;
+			(*index) += 2;
+			cmd[(*track)].infile_name = "heredoc.txt";
+			return(1);
 		}
 	}
+
 	return (0);
 }
 
@@ -160,9 +223,14 @@ void	put_cmds_to_struct(t_command *cmd, char **input)
 	track = 0;
 	while (input[index])
 	{
-		org_index = handle_heredoc(cmd, &index, &track, input);
-		if (org_index)
-			index = org_index;
+		if (handle_heredoc(cmd, &index, &track, input))
+		{
+			//if we return 1, we know we have a heredoc, we go to execute
+			and we add the heredoc to the
+			ft_heredoc();
+		}
+		// if (org_index)
+		// 	index = org_index;
 		handle_redirection(cmd, &index, track, input);
 		if (!input[index])
 			break ;
