@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 10:54:16 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:00:46 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 
@@ -47,7 +48,7 @@
 // 		if (cmd[i].flags)
 // 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
 // 		if (cmd[i].input)
-// 			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
+// 			printf("cmd[%d].input is %s$\t%p\n", i, cmd[i].input, &(*cmd[i].input));
 // 		if (cmd[i].infile_name)
 // 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
 // 		if (cmd[i].outfile_name)
@@ -111,6 +112,7 @@ void	minishell(t_data *ms)
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
+		// print_command(cmd);
 		if (cmd == NULL)
 			continue ;
 		execute_commands(cmd, ms->struct_count, &ms->env);
