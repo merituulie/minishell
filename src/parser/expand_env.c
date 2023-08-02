@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 18:55:35 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:46:52 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*expand_var(t_data *ms, char *str, int start)
 	if (!var)
 		return (NULL);
 	realloc_var(ms, str, var, ft_strlen(str));
+	free(str);
 	return (ms->out);
 }
 
@@ -77,26 +78,27 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 	char	*new;
 
 	new = find_env(ms, var, ft_strlen(var));
-	if (!new)
-		size = ft_strlen(str) - ft_strlen(var);
+	size = count_size(str, var, new);
+	if (size == 0)
+		ms->out = NULL;
 	else
-		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
-	ms->out = ft_calloc(size, sizeof(char));
-	if (!ms->out)
-		return ;
-	ms->out = ft_memcpy(ms->out, str, ms->start);
-	leftover = ms->start;
-	if (new)
 	{
-		ms->k = -1;
-		while (new[++(ms->k)])
-			ms->out[ms->start + ms->k] = new[ms->k];
-		leftover = ms->start + ms->k;
-		free(new);
+		ms->out = ft_calloc(size, sizeof(char));
+		if (!ms->out)
+			return ;
+		ms->out = ft_memcpy(ms->out, str, ms->start);
+		leftover = ms->start;
+		if (new)
+		{
+			ms->k = -1;
+			while (new[++(ms->k)])
+				ms->out[ms->start + ms->k] = new[ms->k];
+			leftover = ms->start + ms->k;
+			free(new);
+		}
+		realloc_var2(ms, leftover, size, str);
 	}
-	realloc_var2(ms, leftover, size, str);
 	free(var);
-	free(str);
 }
 
 static char	**expand_quote_check2(t_data *ms, char **str)
