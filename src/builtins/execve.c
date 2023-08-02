@@ -44,7 +44,6 @@ static char	*find_cmd_path(char *cmd, t_node *temp)
 		return (cmd);
 	path = temp->value;
 	split_path = ft_split(path, ':');
-	printf("split_path is %s\n", split_path[0]);
 	if (split_path)
 		path = access_path(split_path, cmd);
 	free_char_array(split_path);
