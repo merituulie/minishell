@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 13:45:14 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:55:18 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 
 	str = NULL;
 	while (ft_strchr_null("<>", input[(*index)][0]) \
-	&& !ft_strncmp_all("<<", input[(*index)]))
+	&& ft_strncmp_all("<<", input[(*index)]))
 	{
 		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);

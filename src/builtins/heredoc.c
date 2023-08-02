@@ -6,18 +6,13 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 13:44:20 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:21:01 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/parsing.h"
 #include "../../libft/libft.h"
-
-	// unlink it at the end of the whole execution. save fd into command struct so we could use it. don't know how to do it now.
-	//I'm confused with piping.
-	// if (unlink("heredoc.txt") != 0)
-	// 	printf("heredoc deleting error\n");
 
 static char	*find_env_here(char *var, int var_size, t_env **env)
 {

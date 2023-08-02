@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/02 13:41:04 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:20:32 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	count_struct(char **input)
 	return (struct_count);
 }
 
-static int	count_redirs(char **input) //, int *struct_count)
+static int	count_redirs(char **input)
 {
 	int	redir_count;
 	int	index;
@@ -41,9 +41,7 @@ static int	count_redirs(char **input) //, int *struct_count)
 	while (input[index])
 	{
 		if (ft_strchr_null("<>", input[index][0]))
-		{
 			redir_count++;
-		}
 		index++;
 	}
 	return (redir_count);
@@ -56,7 +54,7 @@ static void	init_fds_count_redirs(int *struct_count, char **input)
 	g_info.pipe_fds = ft_calloc(g_info.pipe_count, sizeof(*g_info.pipe_fds));
 	if (!g_info.pipe_fds)
 		printf("memory allocation failed\n");
-	g_info.redir_count = count_redirs(input); //, struct_count);
+	g_info.redir_count = count_redirs(input);
 	g_info.redir_fds = ft_calloc(g_info.redir_count, \
 	sizeof(*g_info.redir_fds));
 	if (!g_info.redir_fds)
