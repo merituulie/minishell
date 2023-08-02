@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 16:31:49 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:43:20 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command, t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
-void		ft_exit(t_command *command);
+void		ft_exit(t_command *command, int fork);
 void		ft_export(char *cmd, t_env *env);
 void		ft_unset(char *cmd, t_env *env);
 
@@ -104,6 +104,7 @@ void		add_shlvl(t_env **env);
 int			execute_commands(t_command *commands, int command_count, \
 					t_env **env);
 void		execute_command(t_command *command, t_env **env, int fork);
+int			execute_builtin(t_command **command, t_env ***env, int fork);
 
 // PIPING
 int			handle_pipe(t_command *commands, t_env **env, int command_count);

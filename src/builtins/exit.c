@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/01 11:54:59 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:57:23 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	ft_is_number(char **input)
 	return (1);
 }
 
-static	void	num_arg_check(char **input)
+static	void	num_arg_check(char **input, int fork)
 {
 	if (ft_is_number(input))
 	{
@@ -45,16 +45,17 @@ static	void	num_arg_check(char **input)
 	}
 	else
 	{
-		ft_putstr_fd("exit\n", 1);
+		g_info.exit_code = 255;
+		if (!fork)
+			ft_putstr_fd("exit\n", 1);
 		ft_putstr_fd("minishell: exit: ", 2);
 		ft_putstr_fd(input[1], 2);
-		ft_putstr_fd("numeric argument required\n", 2);
-		g_info.exit_code = 255;
+		ft_putstr_fd(": numeric argument required\n", 2);
 		exit(g_info.exit_code);
 	}
 }
 
-static int	amount_check(char **command)
+static int	amount_check(char **command, int fork)
 {
 	int	count;
 
@@ -65,30 +66,34 @@ static int	amount_check(char **command)
 	}
 	if (count > 2)
 	{
-		printf("exit\n");
+		if (!fork)
+			printf("exit\n");
 		printf("minishell: exit: too many arguments\n");
+		g_info.exit_code = 1;
+		exit(g_info.exit_code);
 		return (1);
 	}
 	return (0);
 }
 
-void	ft_exit(t_command *command)
+void	ft_exit(t_command *command, int fork)
 {
 	int		flag;
-
 	flag = 0;
 	if (!command->input && !command->flags)
 	{
-		ft_putstr_fd("exit\n", 1);
+		if (!fork)
+			ft_putstr_fd("exit\n", 1);
 		exit(0);
 	}
-	num_arg_check(command->full_cmd);
-	flag = amount_check(command->full_cmd);
+	num_arg_check(command->full_cmd, fork);
+	flag = amount_check(command->full_cmd, fork);
 	if (flag)
 		return ;
 	else
 	{
-		printf("exit\n");
+		if (!fork)
+			printf("exit\n");
 		exit(g_info.exit_code);
 	}
 }
