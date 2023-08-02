@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 14:36:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/02 13:58:15 by yoonslee         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/02 15:19:31 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 17:49:39 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:34:08 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_execve(t_command *command, t_env **env)
 {
 	char	*path;
 	char	**vars;
-	t_node	*temp;
+	t_node *temp;
 
 	temp = get_value((*env)->vars, "PATH");
 	if (temp == NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hashmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:23:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 15:11:45 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:42:14 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 t_node	*get_value(t_node **head, char *key)
 {
 	t_node	*temp;
+
 	temp = *head;
 	while (temp)
 	{

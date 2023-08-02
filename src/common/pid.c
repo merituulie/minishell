@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   pid.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 11:00:30 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 17:59:16 by meskelin         ###   ########.fr       */
+/*   Created: 2023/08/02 18:19:09 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/02 18:22:54 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/minishell.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	*allocate_pids(int pid_count)
 {
-	void	*ptr;
-	size_t	amount;
+	int	*pids;
 
-	if (count == 0 || size == 0)
-		return (ft_calloc(1, 1));
-	amount = count * size;
-	if (amount % size != 0 || amount % count != 0)
-		return (NULL);
-	ptr = (void *)malloc(sizeof(*ptr) * amount);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, amount);
-	return (ptr);
+	pids = ft_calloc(pid_count, sizeof(*pids));
+	if (!pids)
+		printf("Memory allocation error!");
+	return (pids);
 }

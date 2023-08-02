@@ -6,7 +6,7 @@
 #    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/07/31 12:44:47 by meskelin         ###   ########.fr        #
+#    Updated: 2023/08/02 18:03:52 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ ft_strlcat \
 free_array \
 ft_atoi_exit \
 ft_isdigit \
-ft_strchr_index
+ft_strchr_index \
+ft_strchr_null
 
 H_FILES = libft
 

@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 15:27:59 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:21:55 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-
-void	add_shlvl(t_env **env)
-{
-	t_node	*temp;
-	int		shlvl;
-
-	temp = get_value((*env)->vars, "SHLVL");
-	shlvl = ft_atoi_exit(temp->value);
-	free(temp->value);
-	temp->value = ft_itoa(shlvl + 1);
-}
 
 int	execute_builtin(t_command **command, t_env ***env, int fork)
 {
@@ -39,8 +28,6 @@ int	execute_builtin(t_command **command, t_env ***env, int fork)
 		ft_unset((*command)->input, **env);
 	else if (ft_strncmp_all((*command)->command, "exit") == 0)
 		ft_exit((*command), fork);
-	else if (ft_strncmp_all((*command)->command, "<<") == 0)
-		ft_heredoc((*command), (*env));
 	else
 		return (0);
 	return (1);
@@ -48,13 +35,15 @@ int	execute_builtin(t_command **command, t_env ***env, int fork)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	int exec;
+	int	exec;
+
 	if (execute_builtin(&command, &env, fork))
 	{
 		if (!fork)
 			return ;
 	}
-	else if (ft_strncmp_all(command->command, "./minishell") == 0)
+	else if (command->command
+		&& ft_strncmp_all(command->command, "./minishell") == 0)
 	{
 		add_shlvl(env);
 		return ;
@@ -65,7 +54,7 @@ void	execute_command(t_command *command, t_env **env, int fork)
 		if (exec == -1)
 			error_msg(127, ": command not found\n", command);
 		else if (exec == -2)
-			error_msg(127, ": no such file or directory\n", command);	
+			error_msg(127, ": no such file or directory\n", command);
 		exit(127);
 	}
 	if (fork)
@@ -91,15 +80,12 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 	int			pid_test;
 	int			status;
 
-	pid_test = 0;
 	if (command_count == 1)
 	{
 		if (dont_fork_cmd(command))
 		{
 			redirect_files(command);
-			close_files(g_info.redir_fds, g_info.redir_count);
 			execute_command(command, env, 0);
-			return (1);
 		}
 		else
 		{
@@ -107,12 +93,10 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 			if (pid_test == 0)
 			{
 				redirect_files(command);
-				close_files(g_info.redir_fds, g_info.redir_count);
 				execute_command(command, env, 1);
 			}
 			waitpid(pid_test, &status, 0);
 			g_info.exit_code = WEXITSTATUS(status);
-			return (1);
 		}
 		return (1);
 	}
@@ -121,16 +105,17 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 
 int	execute_commands(t_command *commands, int command_count, t_env **env)
 {
-	int			i;
-	int			pids[command_count];
+	int	i;
+	int	*pids;
 
-	i = -1;
 	if (exec_one_command(commands, command_count, env))
 	{
 		close_files(g_info.redir_fds, g_info.redir_count);
 		return (0);
 	}
-	while (++i < command_count)
+	i = -1;
+	pids = allocate_pids(command_count);
+	while (command_count != 1 && ++i < command_count)
 	{
 		commands->id = i;
 		if (i != command_count - 1)
