@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 13:07:09 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/02 14:54:58 by yoonslee         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/02 15:34:29 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 
@@ -34,14 +35,14 @@ static char	*access_path(char **path, char *cmd)
 	return (NULL);
 }
 
-static char	*find_cmd_path(char *cmd, t_node **head)
+static char	*find_cmd_path(char *cmd, t_node *temp)
 {
 	char	*path;
 	char	**split_path;
 
 	if (access(cmd, X_OK) == 0)
-		return (cmd);
-	path = get_value(head, "PATH")->value;
+		return (NULL);
+	path = temp->value;
 	split_path = ft_split(path, ':');
 	if (split_path)
 		path = access_path(split_path, cmd);
@@ -53,9 +54,13 @@ int	ft_execve(t_command *command, t_env **env)
 {
 	char	*path;
 	char	**vars;
-
-	path = find_cmd_path(command->command, (*env)->vars);
-	if (!path)
+	t_node *temp;
+	
+	temp = get_value((*env)->vars, "PATH");
+	if (temp == NULL)
+		return (-2);
+	path = find_cmd_path(command->command, temp);
+	if (path == NULL)
 		return (-1);
 	vars = ft_split(env_to_string(env), '\n');
 	if (execve(path, command->full_cmd, vars) < 0)
