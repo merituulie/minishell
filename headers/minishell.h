@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 14:01:03 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:01:15 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ void		error_msg(int code, char *str, t_command *command);
 char		*get_exit_value(void);
 
 // TO STRINGS
-char	*env_to_string(t_env **env);
-void	print_export_env(t_env **env);
+char		*env_to_string(t_env **env);
+void		print_export_env(t_env **env);
 
 // SIGNALS:
 void		set_signal_action(t_data *ms);
