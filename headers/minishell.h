@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 17:31:02 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:24:08 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 void		ft_echo(t_command *command);
 void		ft_env(t_env **env, t_command *command);
 void		ft_cd(t_command *command, t_env **env);
-int			ft_heredoc(t_command *command, int track, t_env **env, char *delim);
+int			ft_heredoc(t_command *command, t_env **env, char *delim);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command);

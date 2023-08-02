@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 17:31:15 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:45:01 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,11 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 	int			pid_test;
 	int			status;
 
-	pid_test = 0;
 	if (command_count == 1)
 	{
 		if (dont_fork_cmd(command))
 		{
 			redirect_files(command);
-			close_files(g_info.redir_fds, g_info.redir_count);
 			execute_command(command, env, 0);
 			return (1);
 		}
@@ -105,9 +103,7 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 			if (pid_test == 0)
 			{
 				redirect_files(command);
-				close_files(g_info.redir_fds, g_info.redir_count);
 				execute_command(command, env, 1);
-				exit(0);
 			}
 			waitpid(pid_test, &status, 0);
 			g_info.exit_code = WEXITSTATUS(status);
@@ -129,7 +125,7 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 		close_files(g_info.redir_fds, g_info.redir_count);
 		return (0);
 	}
-	while (++i < command_count)
+	while (command_count != 1 && ++i < command_count)
 	{
 		commands->id = i;
 		if (i != command_count - 1)

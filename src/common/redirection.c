@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/01 17:59:15 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:46:30 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_dup2(int infile_fd, int outfile_fd)
 void	redirect_io(int infile_fd, int outfile_fd)
 {
 	ft_dup2(infile_fd, outfile_fd);
+	close_files(g_info.pipe_fds, g_info.pipe_count);
 }
 
 void	redirect_files(t_command *current)
@@ -34,6 +35,7 @@ void	redirect_files(t_command *current)
 	else if (current->token == OUTPUT_APPEND \
 	|| current->token == OUTPUT_TRUNC)
 		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index]);
+	// close_files(g_info.redir_fds, g_info.redir_count);
 }
 
 int	parse_redirection(t_command *cmd, int track, char *str, char *input)

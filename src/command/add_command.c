@@ -3,40 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 18:10:17 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:44:41 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
-
-static void	print_command(t_command *cmd)
-{
-	int	i;
-
-	i = -1;
-	while (cmd[++i].command)
-	{
-		if (cmd[i].command)
-			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-		if (cmd[i].full_cmd[0])
-			printf("cmd[%d].full_cmd[0] is %s$\n", i, cmd[i].full_cmd[0]);
-		if (cmd[i].full_cmd[1])
-			printf("cmd[%d].full_cmd[1] is %s$\n", i, cmd[i].full_cmd[1]);
-		// if (cmd[i].flags)
-			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-		// if (cmd[i].input)
-			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
-		if (cmd[i].infile_name)
-			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-		if (cmd[i].outfile_name)
-			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-	}
-}
 
 char	*parse_input(char **input, int *index)
 {
@@ -129,39 +105,16 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	free(str);
 }
 
+static int	check_for_cat_grep(char *str)
+{
+	if (!ft_strncmp_all("cat", str) || !ft_strncmp_all("grep", str))
+	{
+		return (1);
+	}
+	return (0);
+}
 
-// static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
-// {
-// 	int	org_index;
-
-// 	org_index = 0;
-// 	if (!ft_strncmp_all("<<", input[(*index)]))
-// 	{
-// 		org_index = (*index);
-// 		if ((*index) > 0 && input[(*index) - 1][0] \
-// 		&& input[(*index) - 1][0] != '|')
-// 		{
-// 			parse_command(cmd, (*track), index, input);
-			// while ((*index) >= 0 && ft_strchr("<|>", input[(*index)][0]))
-			// 	(*index)--;
-// 			(*track)++;
-// 			printf("here in handle heredoc\n");
-// 			return (org_index);
-// 		}
-// 		if (input[(*index) + 1][0] && input[(*index) + 2] \
-// 		&& input[(*index) + 2][0] != '|')
-// 		{
-// 			cmd[(*track)].command = ft_strdup(input[(*index++)]);
-// 			cmd[(*track)].input = ft_strdup(input[(*index++)]);
-// 			print_command(cmd);
-// 			track++;
-// 		}
-// 	}
-// 	return (0);
-// }
-
-
-static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
+static int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 {
 	int	is_heredoc;
 
@@ -171,22 +124,17 @@ static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
 		if ((*index) > 0 && input[(*index) - 1][0] \
 		&& input[(*index) - 1][0] != '|')
 		{
-			cmd[(*track)].infile_name = "heredoc.txt";
-			(*index) += 2;
-			return(1);
+			if (check_for_cat_grep(input[(*index) - 1]))
+				cmd[track].infile_name = ft_strdup("heredoc.txt");
 		}
 		else if (input[(*index) + 1][0] && input[(*index) + 2] \
 		&& input[(*index) + 2][0] != '|')
 		{
-			cmd[(*track)].infile_name = "heredoc.txt";
-			(*index) += 2;
-			return(1);
+			if (check_for_cat_grep(input[(*index) + 2]))
+				cmd[track].infile_name = "heredoc.txt";
 		}
-		else if (input[(*index) + 1] && input[(*index) + 1][0] != '|')
-		{
-			(*index) += 2;
-			return (1);
-		}
+		(*index) += 2;
+		return (1);
 	}
 	return (0);
 }
@@ -195,7 +143,6 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 {
 	char	*str;
 
-	// printf("index in parsing: %d\n", *index);
 	cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
 		printf("strdup allocation fail 1!");
@@ -204,36 +151,26 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	str = parse_flags(input, &(*index));
 	put_to_flags(&cmd, track, str);
 	if (str)
-		free(str);	
+		free(str);
 	if (!input[(*index)])
 		return ;
 	str = parse_input(input, index);
 	put_to_input(&cmd, track, str);
-	// printf("index in parsing: %d\n", *index);
-	// printf("cmd[%d].input = %s\n", track, cmd[track].input);
-	// print_command(cmd);
 	if (str)
-		free(str);	
+		free(str);
 }
 
 void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 {
 	int		index;
-	//int		org_index;
 	int		track;
 
 	index = 0;
 	track = 0;
 	while (input[index])
 	{
-		// printf("input[index]: %s\n", input[index]);
-		if (handle_heredoc(cmd, &index, &track, input))
-		{
-			ft_heredoc(cmd, track, &ms->env, input[index - 1]);
-			printf("completed heredoc index is now:%i [%s] \n", index, input[index]);
-		}
-		// if (org_index)
-		// 	index = org_index;
+		if (handle_heredoc(cmd, &index, track, input))
+			ft_heredoc(&cmd[track], &ms->env, input[index - 1]);
 		if (!input[index])
 			break ;
 		handle_redirection(cmd, &index, track, input);
@@ -245,7 +182,5 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			track++;
 		}
 		parse_command(cmd, track, &index, input);
-		// print_command(cmd);
-		// printf("index: %d\n", index);
 	}
 }

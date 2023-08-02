@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 18:19:32 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:44:25 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 {
 	int		leftover;
 	char	*new;
-	int	size;
+	int		size;
 
 	size = ft_strlen(str);
 	new = find_env_here(var, ft_strlen(var), env);
@@ -121,18 +121,22 @@ static int	find_index(char *str, char c)
 /*here_doc with signal needs to be handled.
 also how to wait for the cat command for example.
 file is deleted with unlink function.*/
-int	ft_heredoc(t_command *command, int track, t_env **env, char *delim)
+int	ft_heredoc(t_command *command, t_env **env, char *delim)
 {
 	int		fd;
 	char	*line;
 	t_data	ms;
 
 	g_info.sig_status = 0;
-	printf("GOT TO HEREDOCCCC\n");
-	printf("command->infilename is : %s\n", command[track].infile_name);
 	fd = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0664);
 	if (fd == -1)
 		printf("Error in heredoc file opening\n");
+	if (command->infile_name && !ft_strncmp_all(command->infile_name, "heredoc.txt"))
+	{
+		command->token = INPUT;
+		command->redir_fd_index = g_info.redir_index_count;
+		g_info.redir_fds[g_info.redir_index_count++] = fd;
+	}
 	line = readline("> ");
 	while (line)
 	{
@@ -146,15 +150,5 @@ int	ft_heredoc(t_command *command, int track, t_env **env, char *delim)
 		line = NULL;
 		line = readline("> ");
 	}
-	free(line);
-	close(fd);
-	//took the next thing out because it caused the heredoc to exit too early
-	// if (!ft_strncmp_all(command[track].infile_name, "heredoc.txt"))
-	// {
-	// 	command[track].token = INPUT;
-	// 	command[track].redir_fd_index = g_info.redir_index_count;
-	// 	g_info.redir_fds[g_info.redir_index_count++] = fd;
-	// 	printf("adding to the index count in strncmp\n");
-	// }
-	return (fd);
+	return (-1);
 }

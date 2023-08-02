@@ -3,53 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/01 17:54:19 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 10:48:31 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
-
-static void	print_command(t_command *cmd)
-{
-	int	i;
-
-	i = -1;
-	while (cmd[++i].command)
-	{
-		if (cmd[i].command)
-			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-		if (cmd[i].full_cmd[0])
-			printf("cmd[%d].full_cmd[0] is %s$\n", i, cmd[i].full_cmd[0]);
-		if (cmd[i].full_cmd[1])
-			printf("cmd[%d].full_cmd[1] is %s$\n", i, cmd[i].full_cmd[1]);
-		if (cmd[i].flags)
-			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-		if (cmd[i].input)
-			printf("cmd[%d].input is %s$\n", i, cmd[i].input);
-		if (cmd[i].infile_name)
-			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-		if (cmd[i].outfile_name)
-			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-	}
-}
-
-// static int	is_heredoc_has_command(char **input, int index, int *struct_count)
-// {
-// 	if (input[index][0] == '<' && input[index][1] && input[index][1] == '<')
-// 	{
-// 		if ((index > 0 && input[index - 1][0] && input[index - 1][0] != '|')
-// 			|| (input[index + 1][0] && input[index + 2] \
-// 			&& input[index + 2][0] != '|'))
-// 			(*struct_count)++;
-// 		return (1);
-// 	}
-// 	return (0);
-// }
 
 static int	count_struct(char **input)
 {
@@ -79,11 +42,6 @@ static int	count_redirs(char **input) //, int *struct_count)
 	{
 		if (ft_strchr_null("<>", input[index][0]))
 		{
-			// if (is_heredoc_has_command(input, index, struct_count))
-			// {
-			// 	index++;
-			// 	continue ;
-			// }
 			redir_count++;
 		}
 		index++;
@@ -118,7 +76,6 @@ t_command	*init_cmds(t_data *ms, char **input)
 	if (!cmd)
 		printf("memory allocation error\n");
 	put_cmds_to_struct(cmd, input, ms);
-	// print_command(cmd);
 	full_cmd(cmd, ms->struct_count, track);
 	return (cmd);
 }
