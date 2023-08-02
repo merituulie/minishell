@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 10:28:08 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/01 10:16:33 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 08:13:18 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**ft_lexer(char *str)
 
 	init_lexer(&l);
 	trimmed_str = ft_strtrim(str, " \t");
-	if (syntax_error(trimmed_str) == -1)
+	if (syntax_error(trimmed_str) == -1) // WTFFFF
 		return (NULL);
 	l.new_arr = (char **)ft_calloc(2, sizeof(char *));
 	if (!l.new_arr)
