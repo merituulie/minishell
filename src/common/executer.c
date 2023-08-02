@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 13:35:09 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:54:53 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	add_shlvl(t_env **env)
 	temp->value = ft_itoa(shlvl + 1);
 }
 
-int	execute_builtin(t_command **command, t_env ***env)
+int	execute_builtin(t_command **command, t_env ***env, int fork)
 {
 	if (ft_strncmp_all((*command)->command, "env") == 0)
 		ft_env((*env), (*command));
@@ -38,7 +38,7 @@ int	execute_builtin(t_command **command, t_env ***env)
 	else if (ft_strncmp_all((*command)->command, "unset") == 0)
 		ft_unset((*command)->input, **env);
 	else if (ft_strncmp_all((*command)->command, "exit") == 0)
-		ft_exit((*command));
+		ft_exit((*command), fork);
 	else if (ft_strncmp_all((*command)->command, "<<") == 0)
 		ft_heredoc((*command), (*env));
 	else
@@ -48,7 +48,7 @@ int	execute_builtin(t_command **command, t_env ***env)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	if (execute_builtin(&command, &env))
+	if (execute_builtin(&command, &env, fork))
 	{
 		if (!fork)
 			return ;
@@ -107,7 +107,7 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 				redirect_files(command);
 				close_files(g_info.redir_fds, g_info.redir_count);
 				execute_command(command, env, 1);
-				exit(0);
+				// exit(0); // who needs this? ths exits our subshells
 			}
 			waitpid(pid_test, &status, 0);
 			g_info.exit_code = WEXITSTATUS(status);
