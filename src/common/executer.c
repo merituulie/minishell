@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 11:54:53 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:27:59 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	execute_builtin(t_command **command, t_env ***env, int fork)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
+	int exec;
 	if (execute_builtin(&command, &env, fork))
 	{
 		if (!fork)
@@ -60,11 +61,12 @@ void	execute_command(t_command *command, t_env **env, int fork)
 	}
 	else
 	{
-		if (ft_execve(command, env) == -1)
-		{
+		exec = ft_execve(command, env);
+		if (exec == -1)
 			error_msg(127, ": command not found\n", command);
-			exit(127);
-		}
+		else if (exec == -2)
+			error_msg(127, ": no such file or directory\n", command);	
+		exit(127);
 	}
 	if (fork)
 		exit(0);
@@ -107,7 +109,6 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 				redirect_files(command);
 				close_files(g_info.redir_fds, g_info.redir_count);
 				execute_command(command, env, 1);
-				// exit(0); // who needs this? ths exits our subshells
 			}
 			waitpid(pid_test, &status, 0);
 			g_info.exit_code = WEXITSTATUS(status);

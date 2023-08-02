@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/01 15:11:04 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:02:29 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,36 +31,33 @@ static	int	check_unset_input(char *input)
 	return (0);
 }
 
-static	void	unset_loop(char **loop, t_node *temp)
+static	void	unset_loop(char **input, t_node *temp)
 {
 	int i;
 	i = 0;
-	while (loop[i])
+	while (input[i])
 	{
-		if (check_unset_input(loop[i]) == 1)
+		if (check_unset_input(input[i]) == 1)
 		{
 			ft_putstr_fd("minishell: unset: '", 2);
-			ft_putstr_fd(loop[i], 2);
+			ft_putstr_fd(input[i], 2);
 			return (ft_putstr_fd("': not a valid identifier\n", 2));
 		}
-		if (!get_value(&temp, loop[i]))
+		if (!get_value(&temp, input[i]))
 			i++;
 		else
 		{
-			delete_value(&temp, loop[i]);
+			delete_value(&temp, input[i]);
 			i++;
 		}
 	}
 }
-void	ft_unset(char *input, t_env *env)
+void	ft_unset(char **input, t_env *env)
 {
 	t_node	*temp;
-	char	**loop;
 
 	temp = *env->vars;
-	if (!input)
+	if (!input || !*input)
 		return ;
-	loop = ft_split(input, ' ');
-	unset_loop(loop, temp);
-	ft_free_array(loop);
+	unset_loop(input, temp);
 }
