@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/30 10:19:58 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 11:21:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,29 @@ int	trim_last_line(char **array, int line_index)
 		array[line_index] = new_last_line;
 	}
 	return (1);
+}
+
+int	check_if_nothing(char *str, int i)
+{
+	i++;
+	while (str[i] && is_delim(str[i]) == true)
+	{
+		i++;
+	}
+	if (!str[i])
+		return (1);
+	return (0);
+}
+
+/* If finds pair for quote, returns i, otherwise prints error message */
+int	quote_check(char *str, int i, char quote)
+{
+	i++;
+	while (str[i])
+	{
+		if (str[i] == quote)
+			return (i);
+		i++;
+	}
+	return (syntax_error_msg(5, str));
 }
