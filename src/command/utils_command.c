@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 13:17:13 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:46:09 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,13 @@ void	put_to_flags(t_command *cmd, int track, char *str)
 	}
 }
 
-void	put_to_input(t_command *cmd, int track, char *str)
-{
-	if (str == NULL)
-		cmd[track].input = NULL;
-	else
-	{
-		cmd[track].input = ft_strdup(str);
-		if (!cmd[track].input)
-			printf("strdup allocation fail!\n");
-	}
-}
-
 void	put_fullcmd(t_command *cmd, int i, int track)
 {
 	cmd[i].full_cmd[0] = ft_strdup(cmd[track].command);
 	if (!cmd[i].full_cmd[0])
 		printf("strdup fail!\n");
 	if (!cmd[track].flags && cmd[track].input)
-	{
-		cmd[i].full_cmd[1] = ft_strdup(cmd[track].input);
-		if (!cmd[i].full_cmd[1])
-			printf("strdup fail!\n");
-	}
+		put_fullcmd_input(cmd, i, track, 1);
 	else if (cmd[track].flags && !cmd[track].input)
 	{
 		cmd[i].full_cmd[1] = ft_strdup(cmd[track].flags);
@@ -74,9 +58,7 @@ void	put_fullcmd(t_command *cmd, int i, int track)
 		cmd[i].full_cmd[1] = ft_strdup(cmd[track].flags);
 		if (!cmd[i].full_cmd[1])
 			printf("strdup fail!\n");
-		cmd[i].full_cmd[2] = ft_strdup(cmd[track].input);
-		if (!cmd[i].full_cmd[2])
-			printf("strdup fail!\n");
+		put_fullcmd_input(cmd, i, track, 2);
 	}
 }
 
@@ -94,11 +76,14 @@ void	full_cmd(t_command *cmd, int struct_count, int track)
 			break ;
 		if (!cmd[track].flags && !cmd[track].input)
 			cmd[i].full_cmd = ft_calloc(2, sizeof (char *));
-		else if ((!cmd[track].flags && cmd[track].input) || \
-				(cmd[track].flags && !cmd[track].input))
+		else if (cmd[track].flags && !cmd[track].input)
 			cmd[i].full_cmd = ft_calloc(3, sizeof (char *));
+		else if (!cmd[track].flags && cmd[track].input)
+			cmd[i].full_cmd = ft_calloc(ft_arrlen(cmd[track].input) + 2, \
+			sizeof (char *));
 		else
-			cmd[i].full_cmd = ft_calloc(4, sizeof (char *));
+			cmd[i].full_cmd = ft_calloc(ft_arrlen(cmd[track].input) + 3, \
+			sizeof (char *));
 		if (!cmd[i].full_cmd)
 			printf("calloc fail!\n");
 		put_fullcmd(cmd, i, track);
