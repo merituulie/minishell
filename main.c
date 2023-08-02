@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 15:57:56 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:21:41 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@
 // 	}
 // }
 
-
-/* Might be logical to have as its own file in parser dir*/
 t_command	*ft_parser(t_data *ms, char **cmd_line)
 {
 	t_command	*temp;
