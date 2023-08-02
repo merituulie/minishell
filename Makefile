@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/01 15:48:22 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/08/01 18:53:12 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline
+BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -44,6 +44,7 @@ COMMAND_SRC = init_command \
 PARSER_SRC = expand_env \
 			parser_utils \
 			concatenate \
+			parser_special
 
 BUILTIN_SRC = export \
 			echo \
