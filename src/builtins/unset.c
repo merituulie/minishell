@@ -1,19 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/02 18:33:06 by emeinert         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
 
-static	int	check_unset_input(char *input)
+
+int	check_unset_export_input(char *input)
 {
 	int i;
 	
@@ -22,7 +11,7 @@ static	int	check_unset_input(char *input)
 		return (1);
 	while (input[i] != '\0')
 	{
-		if(input[i] == '=' || input[i] == 47 || input[i] == 92)
+		if(input[i] == '=')
 			return (1);
 		i++;
 	}
@@ -37,7 +26,7 @@ static	void	unset_loop(char **input, t_node *temp)
 	i = 0;
 	while (input[i])
 	{
-		if (check_unset_input(input[i]) == 1)
+		if (check_unset_export_input(input[i]) == 1)
 		{
 			ft_putstr_fd("minishell: unset: '", 2);
 			ft_putstr_fd(input[i], 2);

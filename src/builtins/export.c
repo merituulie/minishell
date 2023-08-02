@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/02 15:02:22 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:12:52 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ static	void	export_loop(char **input, t_node *temp)
 	{
 		temp_char = find_key_in_str(input[i]);
 		new_key = ft_strdup(temp_char);
-		if (!new_key)
+		if (!new_key || check_unset_export_input(new_key))
 		{
 			ft_putstr_fd("minishell: export: '", 2);
 			ft_putstr_fd(input[i], 2);
-			return (ft_putstr_fd("': not a valid identifier\n", 2));
+			ft_putstr_fd("': not a valid identifier\n", 2);
 		}
 		free(temp_char);
 		temp_char = find_value_in_str(input[i]);
