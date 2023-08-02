@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 08:12:10 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 09:44:41 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	check_if_nothing(char *str, int i)
 		return (1);
 	return (0);
 }
+
 static int	check_pipe_syntax(char *str, int i)
 {
 	if ((str[0] == '|' && check_if_nothing(str, i)) || \
@@ -84,7 +85,7 @@ static int	check_redir_syntax(char *str, int i)
 {
 	if ((str[i] == '<' || str[i] == '>') && check_if_nothing(str, i))
 		return (syntax_error_msg(2, str));
-	else if ((str[i] == '<' && str[i + 1] == '<') && \
+	if ((str[i] == '<' && str[i + 1] == '<') && \
 								check_if_nothing(str, i + 1))
 		return (syntax_error_msg(2, str));
 	else if ((str[i] == '>' && str[i + 1] == '>') && \
