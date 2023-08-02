@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 11:22:31 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 13:54:10 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	check_pipe_syntax(char *str, int i)
 	if (str[0] == '|')
 		return (syntax_error_msg(1, str));
 	else if (str[i] == '|' && str[i + 1] == '|')
+		return (syntax_error_msg(1, str));
+	else if (str[i] == '|' && check_if_nothing(str, i))
 		return (syntax_error_msg(1, str));
 	return (0);
 }
