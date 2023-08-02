@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 15:57:56 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:25:06 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	minishell(t_data *ms)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (line[0] == '\n' || line[0] == '\0')
+		if (line == '\n' || line[0] == '\0')
 		{
 			free (line);
 			continue ;

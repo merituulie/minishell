@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 14:45:46 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:27:53 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,17 @@ int	count_size(char *str, char *var, char *new)
 	else
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
 	return (size);
+}
+
+int	only_newline(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != '\n')
+			return (0);
+	}
+	return (1);
 }
