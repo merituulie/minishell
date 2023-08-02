@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 19:05:03 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:45:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,15 @@ void	free_case(t_data *ms)
 {
 	if (ms->out)
 		free(ms->out);
+}
+
+int	count_size(char *str, char *var, char *new)
+{
+	int	size;
+
+	if (!new)
+		size = ft_strlen(str) - ft_strlen(var);
+	else
+		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
+	return (size);
 }
