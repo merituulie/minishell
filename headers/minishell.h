@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 16:09:20 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:41:38 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # include "lexer.h"
 # include "hashmap.h"
 # include <termios.h>
+
+# ifndef HEREDOC
+#  define HEREDOC "heredoc.txt"
+# endif
 
 enum e_redirect
 {

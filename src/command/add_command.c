@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 16:26:12 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:42:54 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ static int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 		&& input[(*index) + 2][0] != '|')
 			cmd_index = (*index) + 2;
 		if (check_for_cat_grep(input[cmd_index]))
-			cmd[track].infile_name = ft_strdup("heredoc.txt");
+			cmd[track].infile_name = ft_strdup(HEREDOC);
 		(*index) += 2;
 		return (1);
 	}
