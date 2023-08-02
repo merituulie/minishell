@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/02 11:46:30 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:38:26 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ void	redirect_io(int infile_fd, int outfile_fd)
 
 void	redirect_files(t_command *current)
 {
+	printf("current token: %i\n", current->token);
 	if (current->token == INPUT)
 		ft_dup2(g_info.redir_fds[current->redir_fd_index], -2);
 	else if (current->token == OUTPUT_APPEND \
 	|| current->token == OUTPUT_TRUNC)
 		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index]);
-	// close_files(g_info.redir_fds, g_info.redir_count);
+	close_files(g_info.redir_fds, g_info.redir_count);
 }
 
 int	parse_redirection(t_command *cmd, int track, char *str, char *input)

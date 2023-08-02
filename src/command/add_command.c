@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 11:44:41 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:45:14 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,8 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	char		*str;
 
 	str = NULL;
-	cmd[track].token = NONE;
 	while (ft_strchr_null("<>", input[(*index)][0]) \
-	&& !ft_strchr_null("<", input[(*index)][1]))
+	&& !ft_strncmp_all("<<", input[(*index)]))
 	{
 		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
@@ -108,31 +107,25 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 static int	check_for_cat_grep(char *str)
 {
 	if (!ft_strncmp_all("cat", str) || !ft_strncmp_all("grep", str))
-	{
 		return (1);
-	}
 	return (0);
 }
 
 static int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 {
-	int	is_heredoc;
+	int	cmd_index;
 
-	is_heredoc = 0;
+	cmd_index = 0;
 	if (!ft_strncmp_all("<<", input[(*index)]))
 	{
 		if ((*index) > 0 && input[(*index) - 1][0] \
 		&& input[(*index) - 1][0] != '|')
-		{
-			if (check_for_cat_grep(input[(*index) - 1]))
-				cmd[track].infile_name = ft_strdup("heredoc.txt");
-		}
+			cmd_index = (*index) - 1;
 		else if (input[(*index) + 1][0] && input[(*index) + 2] \
 		&& input[(*index) + 2][0] != '|')
-		{
-			if (check_for_cat_grep(input[(*index) + 2]))
-				cmd[track].infile_name = "heredoc.txt";
-		}
+			cmd_index = (*index) + 2;
+		if (check_for_cat_grep(input[cmd_index]))
+			cmd[track].infile_name = ft_strdup("heredoc.txt");
 		(*index) += 2;
 		return (1);
 	}

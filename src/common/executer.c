@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 11:45:01 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:35:47 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	execute_builtin(t_command **command, t_env ***env)
 		ft_unset((*command)->input, **env);
 	else if (ft_strncmp_all((*command)->command, "exit") == 0)
 		ft_exit((*command));
-	// else if (ft_strncmp_all((*command)->command, "<<") == 0)
-	// 	ft_heredoc((*command), (*env));
 	else
 		return (0);
 	return (1);
@@ -48,12 +46,10 @@ int	execute_builtin(t_command **command, t_env ***env)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	if (execute_builtin(&command, &env))
-	{
-		if (!fork)
+	if (execute_builtin(&command, &env) && !fork)
 			return ;
-	}
-	else if (ft_strncmp_all(command->command, "./minishell") == 0)
+	else if (command->command &&
+			ft_strncmp_all(command->command, "./minishell") == 0)
 	{
 		add_shlvl(env);
 		return ;
