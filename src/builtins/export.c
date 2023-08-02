@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/02 13:10:24 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:02:22 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	change_node(t_node *temp, char *key, char *value)
 	}
 }
 
-static	void	export_loop(char **loop, t_node *temp)
+static	void	export_loop(char **input, t_node *temp)
 {
 	int		i;
 	char	*new_key;
@@ -85,18 +85,18 @@ static	void	export_loop(char **loop, t_node *temp)
 	char	*temp_char;
 
 	i = 0;
-	while (loop[i])
+	while (input[i])
 	{
-		temp_char = find_key_in_str(loop[i]);
+		temp_char = find_key_in_str(input[i]);
 		new_key = ft_strdup(temp_char);
 		if (!new_key)
 		{
 			ft_putstr_fd("minishell: export: '", 2);
-			ft_putstr_fd(loop[i], 2);
+			ft_putstr_fd(input[i], 2);
 			return (ft_putstr_fd("': not a valid identifier\n", 2));
 		}
 		free(temp_char);
-		temp_char = find_value_in_str(loop[i]);
+		temp_char = find_value_in_str(input[i]);
 		new_value = ft_strdup(temp_char);
 		if (!new_value)
 			return (ft_putstr_fd("input error\n", 2));
@@ -106,18 +106,15 @@ static	void	export_loop(char **loop, t_node *temp)
 	}
 }
 
-void	ft_export(char *input, t_env *env)
+void	ft_export(char **input, t_env *env)
 {
 	t_node	*temp;
-	char	**loop;
 
 	temp = *env->vars;
-	if (!input)
+	if (!input || !*input)
 	{
 		print_export_env(&env);
 		return ;
 	}
-	loop = ft_split(input, ' ');
-	export_loop(loop, temp);
-	ft_free_array(loop);
+	export_loop(input, temp);
 }

@@ -6,9 +6,10 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 15:25:44 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:09:20 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 
@@ -96,8 +97,8 @@ int			ft_heredoc(t_command *command, t_env **env, char *delim);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command, int fork);
-void		ft_export(char *cmd, t_env *env);
-void		ft_unset(char *cmd, t_env *env);
+void		ft_export(char **input, t_env *env);
+void		ft_unset(char **input, t_env *env);
 
 //	SHLVL
 void		add_shlvl(t_env **env);

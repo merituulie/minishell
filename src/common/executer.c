@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 15:26:48 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:09:56 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	execute_builtin(t_command **command, t_env ***env, int fork)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
+	int exec;
 	if (execute_builtin(&command, &env, fork))
 	{
 		if (!fork)
@@ -59,11 +60,12 @@ void	execute_command(t_command *command, t_env **env, int fork)
 	}
 	else
 	{
-		if (ft_execve(command, env) == -1)
-		{
+		exec = ft_execve(command, env);
+		if (exec == -1)
 			error_msg(127, ": command not found\n", command);
-			exit(127);
-		}
+		else if (exec == -2)
+			error_msg(127, ": no such file or directory\n", command);
+		exit(127);
 	}
 	if (fork)
 		exit(0);

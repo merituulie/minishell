@@ -6,9 +6,10 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 15:28:06 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:09:50 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
@@ -141,14 +142,14 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	str = NULL;
 	cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
-		printf("strdup allocation fail 1!");
-	if (!input[(*index)])
+		printf("strdup allocation fail!");
+	if (!input[(*index)] || ft_strncmp_all(input[(*index)],  "|") == 0)
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(&cmd, track, str);
 	if (str)
 		free(str);
-	if (!input[(*index)])
+	if (!input[(*index)] || ft_strncmp_all(input[(*index)],  "|") == 0)
 		return ;
 	if (!ft_strncmp_all(cmd[track].command, "echo"))
 		str = parse_input(input, index);
