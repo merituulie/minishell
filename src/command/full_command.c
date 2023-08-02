@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_command.c                                    :+:      :+:    :+:   */
+/*   full_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 13:31:26 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 12:46:09 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/02 18:02:40 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/02 18:07:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,17 @@
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
 
-/*returns null if nothing matches. If matches, return something*/
-char	*ft_strchr_null(const char *s, int c)
+void	put_fullcmd_input(t_command	*cmd, int i, int track, int index)
 {
-	if (c == '\0')
-		return (NULL);
-	while (*s)
-	{
-		if (*s == (char) c)
-			return ((char *)s);
-		s++;
-	}
-	return (NULL);
-}
+	int	j;
 
-void	put_to_flags(t_command *cmd, int track, char *str)
-{
-	if (str == NULL)
-		cmd[track].flags = NULL;
-	else
+	j = 0;
+	while (cmd[track].input[j])
 	{
-		cmd[track].flags = ft_strdup(str);
-		if (!cmd[track].flags)
-			printf("strdup allocation fail!\n");
+		cmd[i].full_cmd[j + index] = ft_strdup(cmd[track].input[j]);
+		if (!cmd[i].full_cmd[j + index])
+			printf("strdup fail!\n");
+		j++;
 	}
 }
 
@@ -66,12 +54,12 @@ void	full_cmd(t_command *cmd, int struct_count, int track)
 {
 	int	i;
 
+	if (struct_count == 1 && cmd->command == NULL)
+		return ;
 	track = -1;
 	i = 0;
 	while (++track < struct_count)
 	{
-		if (ft_strchr("<>", cmd[track].command[0]))
-			track++;
 		if (track >= struct_count)
 			break ;
 		if (!cmd[track].flags && !cmd[track].input)

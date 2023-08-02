@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp_all.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:29:38 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 15:17:25 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 17:29:18 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_strncmp_all(const char *s1, const char *s2)
 	size_t			index;
 	size_t			len;
 
+	if (s1 == NULL || s2 == NULL)
+		return (-1);
 	index = 0;
 	len = ft_strlen(s1);
 	if (len == 0)

@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 13:56:04 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:42:34 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/parsing.h"
 #include "../../libft/libft.h"
-
-	// unlink it at the end of the whole execution. save fd into command struct so we could use it. don't know how to do it now.
-	//I'm confused with piping.
-	// if (unlink("heredoc.txt") != 0)
-	// 	printf("heredoc deleting error\n");
 
 static char	*find_env_here(char *var, int var_size, t_env **env)
 {
@@ -39,7 +34,6 @@ static char	*find_env_here(char *var, int var_size, t_env **env)
 	if (!(node))
 		return (NULL);
 	free(search);
-	printf("return value is %s\n", node->value);
 	return (node->value);
 }
 
@@ -47,7 +41,7 @@ static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 {
 	int		leftover;
 	char	*new;
-	int	size;
+	int		size;
 
 	size = ft_strlen(str);
 	new = find_env_here(var, ft_strlen(var), env);
@@ -94,7 +88,6 @@ static char	*expand_var_here(t_data *ms, char *str, int start, t_env **env)
 	if (!var)
 		printf("allocation fail!\n");
 	realloc_var_here(ms, str, var, env);
-	printf("ms->out is %s\n", ms->out);
 	free(var);
 	free(str);
 	if (!(ms->out))
@@ -121,20 +114,20 @@ static int	find_index(char *str, char c)
 /*here_doc with signal needs to be handled.
 also how to wait for the cat command for example.
 file is deleted with unlink function.*/
-int	ft_heredoc(t_command *command, t_env **env)
+int	ft_heredoc(t_command *command, t_env **env, char *delim)
 {
 	int		fd;
 	char	*line;
 	t_data	ms;
 
 	g_info.sig_status = 0;
-	fd = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0664);
+	fd = open(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd == -1)
 		printf("Error in heredoc file opening\n");
 	line = readline("> ");
 	while (line)
 	{
-		if (!ft_strncmp_all(line, command->input) || g_info.sig_status)
+		if (!ft_strncmp_all(line, delim) || g_info.sig_status)
 			break ;
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
@@ -144,7 +137,13 @@ int	ft_heredoc(t_command *command, t_env **env)
 		line = NULL;
 		line = readline("> ");
 	}
-	free(line);
 	close(fd);
-	return (fd);
+	fd = open(HEREDOC, O_RDONLY);
+	if (command->infile_name && !ft_strncmp_all(command->infile_name, HEREDOC))
+	{
+		command->token = INPUT;
+		command->redir_fd_index = g_info.redir_index_count;
+		g_info.redir_fds[g_info.redir_index_count++] = fd;
+	}
+	return (-1);
 }
