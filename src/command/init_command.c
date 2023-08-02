@@ -6,11 +6,9 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/02 17:29:07 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:49:48 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"

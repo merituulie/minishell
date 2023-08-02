@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
+#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/02 15:18:51 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/08/02 18:22:37 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ COMMON_SRC =	file \
 				redirection \
 				save_exit_status \
 				signal \
+				pid \
+				shlvl \
 				executer
 
 LEXER_SRC = lexer \
@@ -38,9 +40,11 @@ LEXER_SRC = lexer \
 			add_lines_lexer
 
 COMMAND_SRC = init_command \
-			utils_command \
 			add_command \
 			input_command \
+			full_command \
+			flags_command \
+			heredoc_command
 
 PARSER_SRC = expand_env \
 			parser_utils \

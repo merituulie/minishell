@@ -3,17 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   input_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 16:10:33 by rmakinen         ###   ########.fr       */
+/*   Created: 2023/08/02 18:08:21 by                   #+#    #+#             */
+/*   Updated: 2023/08/02 18:23:12 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
+
+char	*add_input_part(int str_len, int space_count,
+		char **input, int cur_index)
+{
+	char	*str;
+
+	str = ft_calloc((str_len + space_count + 1), sizeof(char));
+	if (!str)
+		printf("memory allocation error\n");
+	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
+	return (str);
+}
+
+char	*parse_input(char **input, int *index)
+{
+	int		str_len;
+	int		cur_index;
+	int		space_count;
+	char	*str;
+
+	space_count = -1;
+	str_len = 0;
+	cur_index = *index;
+	if (ft_strchr_null("<|>", input[*index][0]))
+		return (NULL);
+	while ((*index) < ft_arrlen(input)
+		&& !ft_strchr_null("<|>", input[*index][0]))
+	{
+		str_len += ft_strlen(input[(*index)++]);
+		space_count++;
+	}
+	str = add_input_part(str_len, space_count, input, cur_index);
+	while (++cur_index < *index)
+	{
+		ft_strlcat(str, " ", str_len + space_count + 1);
+		ft_strlcat(str, input[cur_index], str_len + space_count + 1);
+	}
+	return (str);
+}
 
 char	**copy_input(char **input, int *index)
 {
@@ -83,18 +121,4 @@ void	put_to_input(t_command *cmd, int track, char *str, char **not_echo)
 	}
 	else
 		put_to_input2(cmd, track, not_echo);
-}
-
-void	put_fullcmd_input(t_command	*cmd, int i, int track, int index)
-{
-	int	j;
-
-	j = 0;
-	while (cmd[track].input[j])
-	{
-		cmd[i].full_cmd[j + index] = ft_strdup(cmd[track].input[j]);
-		if (!cmd[i].full_cmd[j + index])
-			printf("strdup fail!\n");
-		j++;
-	}
 }

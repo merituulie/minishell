@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 16:12:17 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:21:55 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-
-void	add_shlvl(t_env **env)
-{
-	t_node	*temp;
-	int		shlvl;
-
-	temp = get_value((*env)->vars, "SHLVL");
-	shlvl = ft_atoi_exit(temp->value);
-	free(temp->value);
-	temp->value = ft_itoa(shlvl + 1);
-}
 
 int	execute_builtin(t_command **command, t_env ***env, int fork)
 {
@@ -46,14 +35,15 @@ int	execute_builtin(t_command **command, t_env ***env, int fork)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	int exec;
+	int	exec;
+
 	if (execute_builtin(&command, &env, fork))
 	{
 		if (!fork)
 			return ;
 	}
-	else if (command->command &&
-			ft_strncmp_all(command->command, "./minishell") == 0)
+	else if (command->command
+		&& ft_strncmp_all(command->command, "./minishell") == 0)
 	{
 		add_shlvl(env);
 		return ;
@@ -96,7 +86,6 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 		{
 			redirect_files(command);
 			execute_command(command, env, 0);
-			return (1);
 		}
 		else
 		{
@@ -108,7 +97,6 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 			}
 			waitpid(pid_test, &status, 0);
 			g_info.exit_code = WEXITSTATUS(status);
-			return (1);
 		}
 		return (1);
 	}
@@ -117,15 +105,16 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 
 int	execute_commands(t_command *commands, int command_count, t_env **env)
 {
-	int			i;
-	int			pids[command_count];
+	int	i;
+	int	*pids;
 
-	i = -1;
 	if (exec_one_command(commands, command_count, env))
 	{
 		close_files(g_info.redir_fds, g_info.redir_count);
 		return (0);
 	}
+	i = -1;
+	pids = allocate_pids(command_count);
 	while (command_count != 1 && ++i < command_count)
 	{
 		commands->id = i;
