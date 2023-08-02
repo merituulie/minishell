@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/02 15:02:29 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:33:06 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	int	check_unset_input(char *input)
 		return (1);
 	while (input[i] != '\0')
 	{
-		if(input[i] == '=')
+		if(input[i] == '=' || input[i] == 47 || input[i] == 92)
 			return (1);
 		i++;
 	}
