@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 17:21:41 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 18:33:18 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
@@ -109,7 +110,7 @@ void	minishell(t_data *ms)
 	{
 		line = readline(PINK "Jose's PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (line[0] == '\n' || line[0] == '\0')
+		if (space_newline(line) || line[0] == '\0' || line[0] == '\n')
 		{
 			free (line);
 			continue ;

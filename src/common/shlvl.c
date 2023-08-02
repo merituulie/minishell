@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   shlvl.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 11:00:30 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 17:59:16 by meskelin         ###   ########.fr       */
+/*   Created: 2023/08/02 17:48:12 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/02 17:48:32 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/minishell.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	add_shlvl(t_env **env)
 {
-	void	*ptr;
-	size_t	amount;
+	t_node	*temp;
+	int		shlvl;
 
-	if (count == 0 || size == 0)
-		return (ft_calloc(1, 1));
-	amount = count * size;
-	if (amount % size != 0 || amount % count != 0)
-		return (NULL);
-	ptr = (void *)malloc(sizeof(*ptr) * amount);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, amount);
-	return (ptr);
+	temp = get_value((*env)->vars, "SHLVL");
+	shlvl = ft_atoi_exit(temp->value);
+	free(temp->value);
+	temp->value = ft_itoa(shlvl + 1);
 }

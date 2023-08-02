@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 14:45:58 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:36:23 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ char	*expand_var_init(t_data *ms, char *str, int start);
 char	*special_expand(t_data *ms, char *str);
 void	free_case(t_data *ms);
 int		count_size(char *str, char *var, char *new);
+int		space_newline(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_hashmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:16:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 10:44:28 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 17:42:22 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,3 @@ t_node	**set_value(t_node **head, char *key, char *value)
 	}
 	return (head);
 }
-

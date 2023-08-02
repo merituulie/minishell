@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/31 18:35:53 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/08/02 15:00:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	redirect_files(t_command *current)
 	else if (current->token == OUTPUT_APPEND \
 	|| current->token == OUTPUT_TRUNC)
 		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index]);
+	close_files(g_info.redir_fds, g_info.redir_count);
 }
 
 int	parse_redirection(t_command *cmd, int track, char *str, char *input)
@@ -42,21 +43,21 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 	{
 		cmd[track].infile_name = ft_strdup(str);
 		if (!cmd[track].infile_name)
-			printf("strdup allocation fail!\n");
+			printf("strdup allocation fail 4!\n");
 		cmd[track].token = INPUT;
 	}
 	else if (!ft_strncmp_all(">", input))
 	{
 		cmd[track].outfile_name = ft_strdup(str);
 		if (!cmd[track].outfile_name)
-			printf("strdup allocation fail!\n");
+			printf("strdup allocation fail 5 !\n");
 		cmd[track].token = OUTPUT_TRUNC;
 	}
 	else if (!ft_strncmp_all(">>", input))
 	{
 		cmd[track].outfile_name = ft_strdup(str);
 		if (!cmd[track].outfile_name)
-			printf("strdup allocation fail!\n");
+			printf("strdup allocation fail 6!\n");
 		cmd[track].token = OUTPUT_APPEND;
 	}
 	return (0);
