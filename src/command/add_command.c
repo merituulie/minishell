@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 18:11:49 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:33:41 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
 		printf("strdup allocation fail!");
-	if (!input[(*index)] || ft_strncmp_all(input[(*index)], "|") == 0)
+	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(&cmd, track, str);

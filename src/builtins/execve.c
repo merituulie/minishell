@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 16:11:19 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:34:08 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*find_cmd_path(char *cmd, t_node *temp)
 	char	**split_path;
 
 	if (access(cmd, X_OK) == 0)
-		return (NULL);
+		return (cmd);
 	path = temp->value;
 	split_path = ft_split(path, ':');
 	if (split_path)
@@ -60,7 +60,7 @@ int	ft_execve(t_command *command, t_env **env)
 	if (temp == NULL)
 		return (-2);
 	path = find_cmd_path(command->command, temp);
-	if (path == NULL)
+	if (path == NULL || !ft_strncmp_all(path, ".."))
 		return (-1);
 	vars = ft_split(env_to_string(env), '\n');
 	if (execve(path, command->full_cmd, vars) < 0)
