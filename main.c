@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 13:40:08 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 06:13:51 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	minishell(t_data *ms)
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
-		// print_command(cmd);
 		if (cmd == NULL)
 			continue ;
 		execute_commands(cmd, ms->struct_count, &ms->env);

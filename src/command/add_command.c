@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:16 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/01 16:33:57 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
@@ -28,7 +27,7 @@ char	*parse_input(char **input, int *index)
 	if (ft_strchr_null("<|>", input[*index][0]))
 		return (NULL);
 	while ((*index) < ft_arrlen(input) && \
-	!ft_strchr_null("<|>", input[*index][0]))
+			!ft_strchr_null("<|>", input[*index][0]))
 	{
 		str_len += ft_strlen(input[*index]);
 		(*index)++;
@@ -54,7 +53,8 @@ char	*parse_flags(char **input, int	*index)
 	if (input[*index][0] == '-')
 	{
 		(*index)++;
-		return (input[cur_index]);
+		return (ft_strdup(input[cur_index]));
+		return (ft_strdup(input[cur_index]));
 	}
 	else
 		return (NULL);
@@ -117,12 +117,14 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(cmd, track, str);
-	free(str);
+	if (str)
+		free(str);	
 	if (!input[(*index)])
 		return ;
 	str = parse_input(input, index);
 	put_to_input(cmd, track, str);
-	free(str);
+	if (str)
+		free(str);	
 }
 
 static int	handle_heredoc(t_command *cmd, int *index, int *track, char **input)
