@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 16:10:20 by rmakinen         ###   ########.fr       */
+/*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
+/*   Updated: 2023/08/02 17:29:07 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ t_command	*init_cmds(t_data *ms, char **input)
 	ms->struct_count = 0;
 	track = 0;
 	ms->struct_count = count_struct(input);
+	if (!ft_strncmp_all(input[0], ""))
+	{
+		ft_putstr_fd("Pinkshell: command not found\n", 2);
+		g_info.exit_code = 127;
+		return (NULL);
+	}
 	init_fds_count_redirs(&ms->struct_count, input);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)

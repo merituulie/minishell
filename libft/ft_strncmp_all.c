@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp_all.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:29:38 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 09:25:20 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:29:18 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ int	ft_strncmp_all(const char *s1, const char *s2)
 		return (-1);
 	index = 0;
 	len = ft_strlen(s1);
+	if (len == 0)
+		return (0);
 	ptr1 = (unsigned char *)s1;
 	ptr2 = (unsigned char *)s2;
 	if (ptr1 == ptr2)
 		return (0);
-	if (ft_strlen(s2) != len)
+	if (ft_strlen(s2) != len || !s1)
 		return (1);
 	while ((ptr1[index] != '\0' || ptr2[index] != '\0') && index < len)
 	{
