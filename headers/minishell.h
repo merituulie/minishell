@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/01 16:31:49 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:14:11 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_command
 {
 	char	*command;
 	char	*flags;
-	char	*input;
+	char	**input;
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
@@ -76,15 +76,18 @@ void		fill_env(char **envp, t_env **env);
 t_command	*init_cmds(t_data *ms, char **input);
 char		*parse_input(char **input, int *index);
 char		*parse_flags(char **input, int	*index);
-void		put_to_input(t_command *cmd, int track, char *str);
+void		put_to_input(t_command *cmd, int track, char *str, char **not_echo);
 void		put_to_flags(t_command *cmd, int track, char *str);
-int			parse_redirection(t_command *cmd, int track, char *str, char *input);
+int			parse_redirection(t_command *cmd, int track, char *str, \
+			char *input);
 void		handle_redirection(t_command *cmd, int *index, int track, \
 			char **input);
 void		put_cmds_to_struct(t_command *cmd, char **input);
 char		*ft_strchr_null(const char *s, int c);
 void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
+void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
+char		**copy_input(char **input, int *index);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
