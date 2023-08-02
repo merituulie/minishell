@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:07:09 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/02 11:55:09 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:04:39 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	ft_execve(t_command *command, t_env **env)
 	char	*path;
 	char	**vars;
 
-	ft_print_array(command->full_cmd);
 	path = find_cmd_path(command->command, (*env)->vars);
 	if (!path)
 		return (-1);

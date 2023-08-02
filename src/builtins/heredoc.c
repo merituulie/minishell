@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 11:44:25 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:04:12 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,15 +128,9 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	t_data	ms;
 
 	g_info.sig_status = 0;
-	fd = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0664);
+	fd = open("heredoc.txt", O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd == -1)
 		printf("Error in heredoc file opening\n");
-	if (command->infile_name && !ft_strncmp_all(command->infile_name, "heredoc.txt"))
-	{
-		command->token = INPUT;
-		command->redir_fd_index = g_info.redir_index_count;
-		g_info.redir_fds[g_info.redir_index_count++] = fd;
-	}
 	line = readline("> ");
 	while (line)
 	{
@@ -149,6 +143,14 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 		free(line);
 		line = NULL;
 		line = readline("> ");
+	}
+	close(fd);
+	fd = open("heredoc.txt", O_RDONLY);
+	if (command->infile_name && !ft_strncmp_all(command->infile_name, "heredoc.txt"))
+	{
+		command->token = INPUT;
+		command->redir_fd_index = g_info.redir_index_count;
+		g_info.redir_fds[g_info.redir_index_count++] = fd;
 	}
 	return (-1);
 }
