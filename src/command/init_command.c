@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/02 15:26:01 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 16:01:02 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ t_command	*init_cmds(t_data *ms, char **input)
 		g_info.exit_code = 127;
 		return (NULL);
 	}
-	printf("struct count %i\n", ms->struct_count);
 	init_fds_count_redirs(&ms->struct_count, input);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)
