@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 15:09:38 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:26:48 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	add_shlvl(t_env **env)
 	temp->value = ft_itoa(shlvl + 1);
 }
 
-int	execute_builtin(t_command **command, t_env ***env)
+int	execute_builtin(t_command **command, t_env ***env, int fork)
 {
 	if (ft_strncmp_all((*command)->command, "env") == 0)
 		ft_env((*env), (*command));
@@ -34,11 +34,11 @@ int	execute_builtin(t_command **command, t_env ***env)
 	else if (ft_strncmp_all((*command)->command, "pwd") == 0)
 		ft_pwd(**env);
 	else if (ft_strncmp_all((*command)->command, "export") == 0)
-		ft_export((*command)->input, **env);
+		ft_export(*(*command)->input, **env);
 	else if (ft_strncmp_all((*command)->command, "unset") == 0)
-		ft_unset((*command)->input, **env);
+		ft_unset(*(*command)->input, **env);
 	else if (ft_strncmp_all((*command)->command, "exit") == 0)
-		ft_exit((*command));
+		ft_exit((*command), fork);
 	else
 		return (0);
 	return (1);
@@ -46,7 +46,7 @@ int	execute_builtin(t_command **command, t_env ***env)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	if (execute_builtin(&command, &env))
+	if (execute_builtin(&command, &env, fork))
 	{
 		if (!fork)
 			return ;

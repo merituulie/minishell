@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 14:36:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/02 11:29:39 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/02 15:19:31 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
@@ -27,7 +28,7 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 		if (command[i].flags)
 			free (command[i].flags);
 		if (command[i].input)
-			free(command[i].input);
+			free_char_array(command[i].input);
 		if (command[i].full_cmd)
 			free_char_array(command[i].full_cmd);
 		if (command[i].infile_name)

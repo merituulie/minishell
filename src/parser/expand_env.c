@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 08:15:57 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:21:42 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ char	*expand_var(t_data *ms, char *str, int start)
 
 	var = expand_var_init(ms, str, start);
 	if (str[ms->end] == '?')
+	{
 		var = ft_strdup("$?");
+		ms->end++;
+	}
 	else if (str[ms->end] != ' ' && !ft_isalnum(str[ms->end]))
-		return ("");
+		return (special_expand(ms, str));
 	else if (str[ms->end] == ' ')
 	{
 		ms->out = ft_strdup(str);
@@ -32,15 +35,11 @@ char	*expand_var(t_data *ms, char *str, int start)
 	}
 	while (ft_isalnum(str[ms->end]))
 		ms->end++;
-	if (var)
-		ms->end++;
-	else
+	if (!var)
 		var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
 		return (NULL);
 	realloc_var(ms, str, var, ft_strlen(str));
-	free(var);
-	free(str);
 	return (ms->out);
 }
 
@@ -96,6 +95,8 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 		free(new);
 	}
 	realloc_var2(ms, leftover, size, str);
+	free(var);
+	free(str);
 }
 
 static char	**expand_quote_check2(t_data *ms, char **str)
@@ -119,7 +120,7 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
 				if (!str[ms->i])
 					return (NULL);
-				free(ms->out);
+				free_case(ms);
 				ms->j = ms->end - 1;
 			}
 		}

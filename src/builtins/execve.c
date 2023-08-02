@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:07:09 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/02 13:37:08 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:14:44 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_execve(t_command *command, t_env **env)
 		return (-1);
 	vars = ft_split(env_to_string(env), '\n');
 	if (execve(path, command->full_cmd, vars) < 0)
-		ft_putstr_fd("Error with execve call!", 2);
+		ft_putstr_fd("Error with execve call!\n", 2);
 	free_char_array(vars);
 	return (0);
 }

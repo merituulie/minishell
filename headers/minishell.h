@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 11:24:08 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:25:44 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_command
 {
 	char	*command;
 	char	*flags;
-	char	*input;
+	char	**input;
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
@@ -75,17 +75,18 @@ void		fill_env(char **envp, t_env **env);
 
 // COMMAND
 t_command	*init_cmds(t_data *ms, char **input);
-char		*parse_input(char **input, int *index);
-char		*parse_flags(char **input, int	*index);
-void		put_to_input(t_command **cmd, int track, char *str);
+void		put_to_input(t_command *cmd, int track, char *str, char **not_echo);
 void		put_to_flags(t_command **cmd, int track, char *str);
-int			parse_redirection(t_command *cmd, int track, char *str, char *input);
+int			parse_redirection(t_command *cmd, int track, char *str, \
+			char *input);
 void		handle_redirection(t_command *cmd, int *index, int track, \
 			char **input);
 void		put_cmds_to_struct(t_command *cmd, char **input, t_data *ms);
 char		*ft_strchr_null(const char *s, int c);
 void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
+void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
+char		**copy_input(char **input, int *index);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
@@ -94,7 +95,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command, t_env **env, char *delim);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
-void		ft_exit(t_command *command);
+void		ft_exit(t_command *command, int fork);
 void		ft_export(char *cmd, t_env *env);
 void		ft_unset(char *cmd, t_env *env);
 
@@ -105,6 +106,7 @@ void		add_shlvl(t_env **env);
 int			execute_commands(t_command *commands, int command_count, \
 					t_env **env);
 void		execute_command(t_command *command, t_env **env, int fork);
+int			execute_builtin(t_command **command, t_env ***env, int fork);
 
 // PIPING
 int			handle_pipe(t_command *commands, t_env **env, int command_count);
@@ -125,8 +127,8 @@ void		error_msg(int code, char *str, t_command *command);
 char		*get_exit_value(void);
 
 // TO STRINGS
-char	*env_to_string(t_env **env);
-void	print_export_env(t_env **env);
+char		*env_to_string(t_env **env);
+void		print_export_env(t_env **env);
 
 // SIGNALS:
 void		set_signal_action(t_data *ms);

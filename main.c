@@ -6,13 +6,9 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 05:55:39 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:21:57 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-
-
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
@@ -32,30 +28,7 @@
 // 	}
 // }
 
-// static void	print_command(t_command *cmd)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (cmd[++i].command)
-// 	{
-// 		if (cmd[i].command)
-// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-// 		if (cmd[i].full_cmd[0])
-// 			printf("cmd[%d].full_cmd[0] is %s$\n", i, cmd[i].full_cmd[0]);
-// 		if (cmd[i].full_cmd[1])
-// 			printf("cmd[%d].full_cmd[1] is %s$\n", i, cmd[i].full_cmd[1]);
-// 		if (cmd[i].flags)
-// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-// 		if (cmd[i].input)
-// 			printf("cmd[%d].input is %s$\t%p\n", i, cmd[i].input, &(*cmd[i].input));
-// 		if (cmd[i].infile_name)
-// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-// 		if (cmd[i].outfile_name)
-// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-// 	}
-// }
-
+// //printf("cmd[%d].input is %s$\t%p\n", i, cmd[i].input, &(*cmd[i].input));
 // static void	print_full_command(t_command *cmd)
 // {
 // 	int	i;
@@ -72,6 +45,44 @@
 // 		}
 // 	}
 // }
+
+// static void	print_command(t_command *cmd)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = -1;
+// 	while (cmd[++i].command)
+// 	{
+// 		if (cmd[i].command)
+// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+// 		if (cmd[i].full_cmd)
+// 		{
+// 			j = 0;
+// 			while (cmd[i].full_cmd[j])
+// 			{
+// 				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+// 				j++;
+// 			}
+// 		}
+// 		if (cmd[i].flags)
+// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+// 		if (cmd[i].input)
+// 		{
+// 			j = 0;
+// 			while (cmd[i].input[j])
+// 			{
+// 				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
+// 				j++;
+// 			}
+// 		}
+// 		if (cmd[i].infile_name)
+// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+// 		if (cmd[i].outfile_name)
+// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+// 	}
+// }
+
 
 /* Might be logical to have as its own file in parser dir*/
 t_command	*ft_parser(t_data *ms, char **cmd_line)

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 13:55:18 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:28:06 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,10 @@ static int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 static void	parse_command(t_command *cmd, int track, int *index, char **input)
 {
 	char	*str;
+	char	**not_echo;
 
+	not_echo = NULL;
+	str = NULL;
 	cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
 		printf("strdup allocation fail 1!");
@@ -147,10 +150,15 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		free(str);
 	if (!input[(*index)])
 		return ;
-	str = parse_input(input, index);
-	put_to_input(&cmd, track, str);
+	if (!ft_strncmp_all(cmd[track].command, "echo"))
+		str = parse_input(input, index);
+	else
+		not_echo = copy_input(input, index);
+	put_to_input(cmd, track, str, not_echo);
 	if (str)
 		free(str);
+	if (not_echo)
+		free_char_array(not_echo);
 }
 
 void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)

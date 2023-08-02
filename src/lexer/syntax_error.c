@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/07/27 18:46:41 by yoonseonlee      ###   ########.fr       */
+/*   Updated: 2023/08/02 13:54:10 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,8 @@ int	syntax_error_msg(int i, char *str)
 	return (-1);
 }
 
-int	quote_check(char *str, int i, char quote)
-{
-	i++;
-	while (str[i])
-	{
-		if (str[i] == quote)
-			return (i);
-		i++;
-	}
-	return (syntax_error_msg(5, str));
-}
-
-/*if the single quotes or double quotes doesn't have a pair ending*/
+/*if the single quotes or double quotes doesn't have a pair ending
+if succee return 0 */
 int	syntax_error2(char *str, int i)
 {
 	i = -1;
@@ -60,13 +49,33 @@ int	syntax_error2(char *str, int i)
 	return (0);
 }
 
-int	check_if_nothing(char *str, int i)
+static int	check_pipe_syntax(char *str, int i)
 {
-	i++;
-	while (str[i] && is_delim(str[i]) == true)
-		i++;
-	if (!str[i])
-		return (1);
+	if (str[0] == '|')
+		return (syntax_error_msg(1, str));
+	else if (str[i] == '|' && str[i + 1] == '|')
+		return (syntax_error_msg(1, str));
+	else if (str[i] == '|' && check_if_nothing(str, i))
+		return (syntax_error_msg(1, str));
+	return (0);
+}
+
+static int	check_redir_syntax(char *str, int i)
+{
+	if ((str[i] == '<' || str[i] == '>') && check_if_nothing(str, i))
+		return (syntax_error_msg(2, str));
+	if ((str[i] == '<' && str[i + 1] == '<') && \
+								check_if_nothing(str, i + 1))
+		return (syntax_error_msg(2, str));
+	else if ((str[i] == '>' && str[i + 1] == '>') && \
+								check_if_nothing(str, i + 1))
+		return (syntax_error_msg(2, str));
+	else if ((str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>'))
+		return (syntax_error_msg(3, str));
+	else if ((str[i] == '<' && str[i + 1] == '<' && str[i + 2] == '<'))
+		return (syntax_error_msg(4, str));
+	else if (str[i] == '>' && str[i + 1] == '<')
+		return (syntax_error_msg(4, str));
 	return (0);
 }
 
@@ -80,23 +89,12 @@ int	syntax_error(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if ((str[0] == '|' && check_if_nothing(str, i)) || \
-			(str[i] == '|' && str[i + 1] == '|'))
-			return (syntax_error_msg(1, str));
-		else if (str[i] == '|' && check_if_nothing(str, i))
-			return (syntax_error_msg(1, str));
-		else if ((str[i] == '<' || str[i] == '>') && check_if_nothing(str, i))
-			return (syntax_error_msg(2, str));
-		else if ((str[i] == '<' && str[i + 1] == '<') && \
-									check_if_nothing(str, i + 1))
-			return (syntax_error_msg(2, str));
-		else if ((str[i] == '>' && str[i + 1] == '>') && \
-									check_if_nothing(str, i + 1))
-			return (syntax_error_msg(2, str));
-		else if ((str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>'))
-			return (syntax_error_msg(3, str));
-		else if ((str[i] == '<' && str[i + 1] == '<' && str[i + 2] == '<'))
-			return (syntax_error_msg(4, str));
+		if (str[i] == '|')
+		{
+			return (check_pipe_syntax(str, i));
+		}
+		if (str[i] == '>' || str[i] == '<')
+			return (check_redir_syntax(str, i));
 	}
 	return (syntax_error2(str, i));
 }

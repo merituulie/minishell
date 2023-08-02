@@ -6,7 +6,7 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/02 11:43:27 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/08/02 15:18:51 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,12 @@ LEXER_SRC = lexer \
 COMMAND_SRC = init_command \
 			utils_command \
 			add_command \
+			input_command \
 
 PARSER_SRC = expand_env \
 			parser_utils \
 			concatenate \
+			parser_special
 
 BUILTIN_SRC = export \
 			echo \
