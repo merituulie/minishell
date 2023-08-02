@@ -6,9 +6,10 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 17:25:06 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:28:29 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
@@ -83,8 +84,6 @@
 // 	}
 // }
 
-
-/* Might be logical to have as its own file in parser dir*/
 t_command	*ft_parser(t_data *ms, char **cmd_line)
 {
 	t_command	*temp;
