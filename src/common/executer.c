@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 14:20:05 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:44:06 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ int	execute_builtin(t_command **command, t_env ***env)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	if (execute_builtin(&command, &env) && !fork)
+	if (execute_builtin(&command, &env))
+	{
+		if (!fork)
 			return ;
+	}
 	else if (command->command &&
 			ft_strncmp_all(command->command, "./minishell") == 0)
 	{
