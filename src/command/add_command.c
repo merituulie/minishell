@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 13:50:42 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:25:58 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,9 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	not_echo = NULL;
 	str = NULL;
 	cmd[track].command = ft_strdup(input[(*index)++]);
+	printf("cmd[%i].command: %s\n", track, cmd[track].command);
 	if (!cmd[track].command)
-		printf("strdup allocation fail!");
+		printf("strdup allocation fail!\n");
 	if (!input[(*index)])
 		return ;
 	str = parse_flags(input, &(*index));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/02 10:46:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:26:01 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,13 @@ t_command	*init_cmds(t_data *ms, char **input)
 	ms->struct_count = 0;
 	track = 0;
 	ms->struct_count = count_struct(input);
+	if (!ft_strncmp_all(input[0], ""))
+	{
+		ft_putstr_fd("Pinkshell: command not found\n", 2);
+		g_info.exit_code = 127;
+		return (NULL);
+	}
+	printf("struct count %i\n", ms->struct_count);
 	init_fds_count_redirs(&ms->struct_count, input);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)
