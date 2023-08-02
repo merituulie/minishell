@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/02 10:22:42 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:21:59 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	check_if_nothing(char *str, int i)
 {
 	i++;
 	while (str[i] && is_delim(str[i]) == true)
+	{
 		i++;
+	}
 	if (!str[i])
 		return (1);
 	return (0);

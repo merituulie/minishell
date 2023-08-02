@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 10:25:44 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:54:10 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ int	syntax_error2(char *str, int i)
 
 static int	check_pipe_syntax(char *str, int i)
 {
-	if ((str[0] == '|' && check_if_nothing(str, i)) || \
-		(str[i] == '|' && str[i + 1] == '|'))
+	if (str[0] == '|')
+		return (syntax_error_msg(1, str));
+	else if (str[i] == '|' && str[i + 1] == '|')
 		return (syntax_error_msg(1, str));
 	else if (str[i] == '|' && check_if_nothing(str, i))
 		return (syntax_error_msg(1, str));
@@ -89,7 +90,9 @@ int	syntax_error(char *str)
 	while (str[++i])
 	{
 		if (str[i] == '|')
+		{
 			return (check_pipe_syntax(str, i));
+		}
 		if (str[i] == '>' || str[i] == '<')
 			return (check_redir_syntax(str, i));
 	}
