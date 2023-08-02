@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 09:44:41 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 10:25:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@ int	syntax_error_msg(int i, char *str)
 	error_code(258);
 	return (-1);
 }
-/* If finds pair for quote, returns i, otherwise prints error message */
-int	quote_check(char *str, int i, char quote)
-{
-	i++;
-	while (str[i])
-	{
-		if (str[i] == quote)
-			return (i);
-		i++;
-	}
-	return (syntax_error_msg(5, str));
-}
 
 /*if the single quotes or double quotes doesn't have a pair ending
 if succee return 0 */
@@ -58,16 +46,6 @@ int	syntax_error2(char *str, int i)
 				return (i);
 		}
 	}
-	return (0);
-}
-
-int	check_if_nothing(char *str, int i)
-{
-	i++;
-	while (str[i] && is_delim(str[i]) == true)
-		i++;
-	if (!str[i])
-		return (1);
 	return (0);
 }
 
@@ -110,9 +88,10 @@ int	syntax_error(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		check_pipe_syntax(str, i);
-		check_redir_syntax(str, i);
+		if (str[i] == '|')
+			return (check_pipe_syntax(str, i));
+		if (str[i] == '>' || str[i] == '<')
+			return (check_redir_syntax(str, i));
 	}
-	syntax_error2(str, i);
-	return (0);
+	return (syntax_error2(str, i));
 }
