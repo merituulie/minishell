@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 16:40:50 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:49:39 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static char	*find_cmd_path(char *cmd, t_node *temp)
 		return (cmd);
 	path = temp->value;
 	split_path = ft_split(path, ':');
+	printf("split_path is %s\n", split_path[0]);
 	if (split_path)
 		path = access_path(split_path, cmd);
 	free_char_array(split_path);
@@ -54,13 +55,13 @@ int	ft_execve(t_command *command, t_env **env)
 {
 	char	*path;
 	char	**vars;
-	t_node *temp;
+	t_node	*temp;
 
 	temp = get_value((*env)->vars, "PATH");
 	if (temp == NULL)
 		return (-2);
 	path = find_cmd_path(command->command, temp);
-	if (path == NULL)
+	if (path == NULL || !ft_strncmp_all(path, ".."))
 		return (-1);
 	vars = ft_split(env_to_string(env), '\n');
 	if (execve(path, command->full_cmd, vars) < 0)

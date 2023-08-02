@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 17:21:16 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/02 17:43:08 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,15 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	not_echo = NULL;
 	str = NULL;
 	cmd[track].command = ft_strdup(input[(*index)++]);
-	printf("cmd[%i].command: %s\n", track, cmd[track].command);
 	if (!cmd[track].command)
 		printf("strdup allocation fail!");
-	if (!input[(*index)])
+	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
 	str = parse_flags(input, &(*index));
 	put_to_flags(cmd, track, str);
 	if (str)
 		free(str);
-	if (!input[(*index)] || ft_strncmp_all(input[(*index)],  "|") == 0)
+	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
 	if (!ft_strncmp_all(cmd[track].command, "echo"))
 		str = parse_input(input, index);
