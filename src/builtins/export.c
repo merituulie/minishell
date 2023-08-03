@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/02 15:02:22 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:00:34 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,18 @@ static char	*find_key_in_str(char *cmd)
 
 	flag = 0;
 	i = 0;
-	if (cmd[0] >= 48 && cmd[0] <= 57)
+	if (!ft_isalpha(cmd[0]) && cmd[i] != '_')
 		return (NULL);
 	while (cmd[i] != '\0' && cmd[i] != '=')
 	{
 		i++;
+		if (!ft_isalnum(cmd[i]) && cmd[i] != '_' && cmd[i] != '=' && cmd[i])
+			return (NULL);
 		if (cmd[i] == '=')
 			flag = 1;
 	}
 	if (!flag)
-		return (NULL);
+		return (cmd);
 	key = ft_calloc(i, sizeof(char));
 	if (!key)
 		return (NULL);
@@ -68,6 +70,8 @@ static char	*find_value_in_str(char *cmd)
 
 static void	change_node(t_node *temp, char *key, char *value)
 {
+	if (!value)
+		return (ft_putstr_fd("malloc error\n", 2));
 	if (!get_value(&temp, key))
 		set_value(&temp, key, value);
 	else
@@ -84,25 +88,25 @@ static	void	export_loop(char **input, t_node *temp)
 	char	*new_value;
 	char	*temp_char;
 
-	i = 0;
-	while (input[i])
+	i = -1;
+	while (input[++i])
 	{
 		temp_char = find_key_in_str(input[i]);
-		new_key = ft_strdup(temp_char);
-		if (!new_key)
+		if (!temp_char)
 		{
 			ft_putstr_fd("minishell: export: '", 2);
 			ft_putstr_fd(input[i], 2);
-			return (ft_putstr_fd("': not a valid identifier\n", 2));
+			ft_putstr_fd("': not a valid identifier\n", 2);
 		}
-		free(temp_char);
-		temp_char = find_value_in_str(input[i]);
-		new_value = ft_strdup(temp_char);
-		if (!new_value)
-			return (ft_putstr_fd("input error\n", 2));
-		free(temp_char);
-		change_node(temp, new_key, new_value);
-		i++;
+		else if (ft_strncmp_all(temp_char, input[i]))
+		{
+			new_key = ft_strdup(temp_char);
+			free(temp_char);
+			temp_char = find_value_in_str(input[i]);
+			new_value = ft_strdup(temp_char);
+			change_node(temp, new_key, new_value);
+			free(temp_char);
+		}
 	}
 }
 
