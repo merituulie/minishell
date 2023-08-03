@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 10:30:26 by                   #+#    #+#             */
-/*   Updated: 2023/08/03 10:30:42 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 12:44:29 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	cmd_is_dir(t_command *command, t_env **env)
 	t_node	*temp;
 
 	temp = check_value((*env)->vars, command->command);
-	if (temp && command->command[0] == '/')
+	if (temp && command->command && command->command[0] == '/')
 	{
 		error_msg(126, ": is a directory\n", command);
 		exit(126);
@@ -72,9 +72,11 @@ int	ft_execve(t_command *command, t_env **env)
 
 	cmd_is_dir(command, env);
 	temp = get_value((*env)->vars, "PATH");
-	if (temp == NULL || command->command[0] == '/')
+	if (temp == NULL || (command->command
+		&& command->command[0] == '/'))
 		return (-2);
 	path = find_cmd_path(command->command, temp);
+	printf("path: %s\n\n", temp->value);
 	if (path == NULL || !ft_strncmp_all(path, ".."))
 		return (-1);
 	vars = ft_split(env_to_string(env), '\n');

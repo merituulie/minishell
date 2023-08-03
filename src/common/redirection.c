@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/02 15:00:45 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/03 12:57:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_dup2(int infile_fd, int outfile_fd)
 void	redirect_io(int infile_fd, int outfile_fd)
 {
 	ft_dup2(infile_fd, outfile_fd);
+	close_files(g_info.pipe_fds, g_info.pipe_count);
 }
 
 void	redirect_files(t_command *current)
