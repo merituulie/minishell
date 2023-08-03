@@ -6,7 +6,7 @@
 #    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/03 09:59:51 by emeinert         ###   ########.fr        #
+#    Updated: 2023/08/03 14:43:02 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,12 @@ ft_strchr \
 ft_strdup \
 ft_strlcat \
 free_array \
-ft_atoi_exit \
+ft_atoll \
 ft_isdigit \
 ft_strchr_index \
 ft_strchr_null \
 ft_isalpha \
+ft_lltoa \
 
 H_FILES = libft
 

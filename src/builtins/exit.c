@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/03 10:36:44 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:09:55 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,45 @@
 static int	ft_is_number(char **input)
 {
 	int	i;
-
+	char *temp;
+	
 	i = 0;
 	if (ft_strlen(input[1]) == 1 && !ft_isdigit(input[1][0]))
 		return (0);
 	if (input[1][0] == '-' || input[1][0] == '+')
 			i++;
-	while (input[1][i] != ' ' && input[1][i] != '\0')
+	while (input[1][i] != '\0')
 	{
 		if (!ft_isdigit(input[1][i]))
 			return (0);
 		i++;
 	}
+	printf("i: %d\n", i);
+	temp = ft_lltoa(ft_atoll(input[1]));	
+	if (ft_strncmp_all(input[1], temp) 
+	|| (i > 20 && input[1][0] == '-' && input[1][0] == '+')
+	|| (i > 19 && input[1][0] != '-' && input[1][0] != '+'))
+	{
+		free(temp);
+		return (0);
+	}
+	free(temp);
 	return (1);
 }
+
 
 static	void	num_arg_check(char **input, int fork)
 {
 	if (ft_is_number(input))
 	{
-		g_info.exit_code = ft_atoi_exit(input[1]);
+		g_info.exit_code = ft_atoll(input[1]);
 		if (g_info.exit_code < 0)
 		{
 			g_info.exit_code = g_info.exit_code * (-1);
 			g_info.exit_code = 256 - g_info.exit_code;
 		}
 		if (g_info.exit_code > 255)
-			g_info.exit_code = g_info.exit_code - 256;
+			g_info.exit_code = g_info.exit_code % 256;
 	}
 	else
 	{
@@ -55,17 +67,16 @@ static	void	num_arg_check(char **input, int fork)
 	}
 }
 
-static int	amount_check(char **command, int fork)
+static int	amount_check(char **input, int fork)
 {
 	int	count;
 
 	count = 0;
-	while (*command)
+	while (input[count])
 	{
 		count++;
-		command++;
 	}
-	if (count > 1)
+	if (count > 2)
 	{
 		if (!fork)
 			printf("exit\n");
@@ -88,7 +99,7 @@ void	ft_exit(t_command *command, int fork)
 		exit(0);
 	}
 	num_arg_check(command->full_cmd, fork);
-	flag = amount_check(command->input, fork);
+	flag = amount_check(command->full_cmd, fork);
 	if (flag)
 		return ;
 	else

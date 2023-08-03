@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shlvl.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:48:12 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 17:48:32 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:42:06 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	add_shlvl(t_env **env)
 	int		shlvl;
 
 	temp = get_value((*env)->vars, "SHLVL");
-	shlvl = ft_atoi_exit(temp->value);
+	shlvl = (int)ft_atoll(temp->value);
 	free(temp->value);
 	temp->value = ft_itoa(shlvl + 1);
 }
