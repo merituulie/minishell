@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/03 15:27:02 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/03 16:47:05 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	clear_failed_redir(t_command *cmd)
 		cmd->token = NONE;
 }
 
-void	handle_redirection(t_command *cmd, int *index, int track, char **input)
+int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
 	char	*str;
 
@@ -115,6 +115,7 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 		{
 			print_command(cmd);
 			clear_failed_redir(&cmd[track]);
+			return (-1);
 		}
 		if (!input[(*index + 2)])
 		{
@@ -125,6 +126,7 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 			(*index) += 2;
 	}
 	free(str);
+	return (0);
 }
 
 static void	parse_command(t_command *cmd, int track, int *index, char **input)
@@ -169,7 +171,12 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			ft_heredoc(&cmd[track], &ms->env, input[index - 1]);
 		if (!input[index])
 			break ;
-		handle_redirection(cmd, &index, track, input);
+		printf("track before handle %i\n", )
+		if (handle_redirection(cmd, &index, track, input) == -1)
+		{
+			printf("HEREEEE*****\n");
+			// continue ;
+		}
 		if (!input[index])
 			break ;
 		if (ft_strchr("|", input[index][0]))

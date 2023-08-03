@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 15:34:11 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/03 16:48:39 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	close_files(int *pipe_fds, int fd_count)
 	i = 0;
 	while (i < fd_count)
 	{
-		if (pipe_fds[i])
+		if (pipe_fds[i])  // if fd == 0
 			close_file(pipe_fds[i]);
 		i++;
 	}

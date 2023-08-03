@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:21:26 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 14:54:33 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/03 16:37:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char		*parse_flags(char **input, int	*index);
 char		*parse_input(char **input, int *index);
 int			parse_redirection(t_command *cmd, int track, char *str, \
 			char *input);
-void		handle_redirection(t_command *cmd, int *index, int track, \
+int			handle_redirection(t_command *cmd, int *index, int track, \
 			char **input);
 void		put_cmds_to_struct(t_command *cmd, char **input, t_data *ms);
 char		*ft_strchr_null(const char *s, int c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   full_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:02:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 18:07:36 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:31:41 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,33 @@ void	put_fullcmd_input(t_command	*cmd, int i, int track, int index)
 	{
 		cmd[i].full_cmd[j + index] = ft_strdup(cmd[track].input[j]);
 		if (!cmd[i].full_cmd[j + index])
-			printf("strdup fail!\n");
+			printf("strdup fail1!\n");
 		j++;
 	}
 }
 
 void	put_fullcmd(t_command *cmd, int i, int track)
 {
+	printf("cmd[track].command: %s\n", cmd[track].command);
+	if (cmd[track].command == NULL)
+		return ;
 	cmd[i].full_cmd[0] = ft_strdup(cmd[track].command);
+	printf("cmd[i].full_cmd[0]: %s\n", cmd[i].full_cmd[0]);
 	if (!cmd[i].full_cmd[0])
-		printf("strdup fail!\n");
+		printf("strdup fail2!\n");
 	if (!cmd[track].flags && cmd[track].input)
 		put_fullcmd_input(cmd, i, track, 1);
 	else if (cmd[track].flags && !cmd[track].input)
 	{
 		cmd[i].full_cmd[1] = ft_strdup(cmd[track].flags);
 		if (!cmd[i].full_cmd[1])
-			printf("strdup fail!\n");
+			printf("strdup fail3!\n");
 	}
 	else if (cmd[track].flags && cmd[track].input)
 	{
 		cmd[i].full_cmd[1] = ft_strdup(cmd[track].flags);
 		if (!cmd[i].full_cmd[1])
-			printf("strdup fail!\n");
+			printf("strdup fail4!\n");
 		put_fullcmd_input(cmd, i, track, 2);
 	}
 }
