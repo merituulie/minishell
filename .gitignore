@@ -5,3 +5,4 @@
 *.dSYM/*
 *.a
 libft/libft.a
+minishell
