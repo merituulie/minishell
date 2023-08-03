@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 18:03:43 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:28:43 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void	free_char_array(char **str);
 int		ft_isdigit(char c);
 int		ft_strchr_index(const char *s, int c);
 char	*ft_strchr_null(const char *s, int c);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif

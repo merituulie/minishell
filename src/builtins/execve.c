@@ -6,10 +6,9 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 10:30:26 by                   #+#    #+#             */
-/*   Updated: 2023/08/03 12:44:29 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:04:57 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 
@@ -64,6 +63,22 @@ static void	cmd_is_dir(t_command *command, t_env **env)
 		return ;
 }
 
+int	execute_ft_execve(t_command *command, t_env **env)
+{
+	int	exec;
+
+	exec = ft_execve(command, env);
+	if (exec < 0)
+	{
+		if (exec == -1)
+			error_msg(127, ": command not found\n", command);
+		else if (exec == -2)
+			error_msg(127, ": no such file or directory\n", command);
+		exit(127);
+	}
+	exit(0);
+}
+
 int	ft_execve(t_command *command, t_env **env)
 {
 	char	*path;
@@ -73,10 +88,9 @@ int	ft_execve(t_command *command, t_env **env)
 	cmd_is_dir(command, env);
 	temp = get_value((*env)->vars, "PATH");
 	if (temp == NULL || (command->command
-		&& command->command[0] == '/'))
+			&& command->command[0] == '/'))
 		return (-2);
 	path = find_cmd_path(command->command, temp);
-	printf("path: %s\n\n", temp->value);
 	if (path == NULL || !ft_strncmp_all(path, ".."))
 		return (-1);
 	vars = ft_split(env_to_string(env), '\n');

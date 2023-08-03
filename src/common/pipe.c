@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 11:38:39 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:01:08 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	execute_child(t_command *current, int command_count, \
 	else if (current->id == command_count - 1)
 		redirect_io(g_info.pipe_fds[(current->id * 2) - 2], -2);
 	else
-		redirect_io(g_info.pipe_fds[current->id * 2 - 2], \
-		g_info.pipe_fds[current->id * 2 + 1]);
+		redirect_io(g_info.pipe_fds[current->id * 2 - 2],
+			g_info.pipe_fds[current->id * 2 + 1]);
 	if (current->token != NONE)
 		redirect_files(current);
 	execute_command(current, env, 1);

@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 12:57:46 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:52:49 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	open_file(char *filename, int flags)
 
 int	close_file(int fd)
 {
-	if (close(fd) != 0)
-		printf("ERROR WHEN CLOSING A FILE->%i.\n", fd);
+	if (fd == 0 || fd == 1)
+		return (0);
+	if (close(fd) == -1)
+		ft_putstr_fd("Error when closing a file\n", 2);
 	return (0);
 }
 

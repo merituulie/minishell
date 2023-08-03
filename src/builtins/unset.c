@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/02 15:02:29 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:18:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static	int	check_unset_input(char *input)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (ft_isdigit(input[0]) == 1)
 		return (1);
