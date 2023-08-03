@@ -6,9 +6,10 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/03 10:36:34 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:40:34 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 
@@ -49,14 +50,29 @@ static char	*find_cmd_path(char *cmd, t_node *temp)
 	return (path);
 }
 
+static void	cmd_is_dir(t_command *command, t_env **env)
+{
+	t_node	*temp;
+
+	temp = check_value((*env)->vars, command->command);
+	if (temp && command->command[0] == '/')
+	{
+		error_msg(126, ": is a directory\n", command);
+		exit(126);
+	}
+	else
+		return ;
+}
+
 int	ft_execve(t_command *command, t_env **env)
 {
 	char	*path;
 	char	**vars;
 	t_node	*temp;
 
+	cmd_is_dir(command, env);
 	temp = get_value((*env)->vars, "PATH");
-	if (temp == NULL)
+	if (temp == NULL || command->command[0] == '/')
 		return (-2);
 	path = find_cmd_path(command->command, temp);
 	if (path == NULL || !ft_strncmp_all(path, ".."))
