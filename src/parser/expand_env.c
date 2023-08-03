@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 08:11:26 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/03 08:17:25 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	if (!(node))
 		return (NULL);
 	search = ft_strdup(node->value);
+	if (!search)
+		printf("allocation fail!\n");
 	return (search);
 }
 

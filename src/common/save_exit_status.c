@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 15:22:23 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/03 08:41:28 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	error_msg(int code, char *str, t_command *command)
 	char	*msg;
 	char	*temp;
 
-	if (code == 127)
+	if (code == 127 || code == 126)
 	{
 		temp = ft_strjoin("PinkShell: ", command->command);
 		if (!temp)
