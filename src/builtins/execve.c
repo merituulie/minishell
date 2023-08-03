@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 18:34:08 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:36:34 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 
@@ -54,7 +53,7 @@ int	ft_execve(t_command *command, t_env **env)
 {
 	char	*path;
 	char	**vars;
-	t_node *temp;
+	t_node	*temp;
 
 	temp = get_value((*env)->vars, "PATH");
 	if (temp == NULL)

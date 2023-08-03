@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 18:03:43 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:58:34 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ft_free_null_str(char *str);
 void	ft_free_array(char **array);
 int		ft_isalnum(int c);
 char	*ft_itoa(int n);
+int		ft_isalpha(int n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void	*b, int c, size_t len);
 char	**ft_split(char const *s, char c);

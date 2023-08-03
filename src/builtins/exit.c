@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/02 18:24:06 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:36:44 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static int	amount_check(char **command, int fork)
 void	ft_exit(t_command *command, int fork)
 {
 	int		flag;
+
 	flag = 0;
 	if (!command->input && !command->flags)
 	{

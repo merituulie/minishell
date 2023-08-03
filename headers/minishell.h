@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:21:26 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 19:07:30 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:38:27 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,6 @@ void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
 char		**copy_input(char **input, int *index);
 int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
 
-//EXPORT UNSET UTILS
-int			check_unset_export_input(char *input);
-
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
 void		ft_env(t_env **env, t_command *command);
@@ -106,7 +103,6 @@ int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command, int fork);
 void		ft_export(char **input, t_env *env);
 void		ft_unset(char **input, t_env *env);
-
 
 //	SHLVL
 void		add_shlvl(t_env **env);

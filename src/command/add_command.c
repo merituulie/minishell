@@ -6,11 +6,9 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 18:48:52 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:36:09 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
