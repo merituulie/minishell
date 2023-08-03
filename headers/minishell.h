@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:21:26 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 10:38:27 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:54:33 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void		ft_dup2(int infile_fd, int outfile_fd);
 void		close_files(int *pipe_fds, int fd_count);
 int			open_file(char *filename, int flags);
 int			close_file(int fd);
-void		open_redirection_file(t_command *current);
+int			open_redirection_file(t_command *current);
 void		error_code(int number);
 void		error_msg(int code, char *str, t_command *command);
 char		*get_exit_value(void);

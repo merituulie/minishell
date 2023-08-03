@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 15:12:28 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:34:11 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@ int	open_file(char *filename, int flags)
 
 	fd = open(filename, flags, S_IRWXU);
 	if (fd < 0)
-		ft_putstr_fd("Error in opening a file.\n", 2);
+		ft_putstr_fd("Error in opening a file\n", 2);
 	return (fd);
 }
 
 int	close_file(int fd)
 {
-	if (close(fd) != 0)
-		ft_putstr_fd("Error when closing a file.\n", 2);
+	if (fd > 0)
+	{
+		if (close(fd) != 0)
+			ft_putstr_fd("Error when closing a file\n", 2);
+	}
 	return (0);
 }
 
@@ -36,12 +39,13 @@ void	close_files(int *pipe_fds, int fd_count)
 	i = 0;
 	while (i < fd_count)
 	{
-		close_file(pipe_fds[i]);
+		if (pipe_fds[i])
+			close_file(pipe_fds[i]);
 		i++;
 	}
 }
 
-void	open_redirection_file(t_command *current)
+int	open_redirection_file(t_command *current)
 {
 	int			fd;
 
@@ -54,4 +58,5 @@ void	open_redirection_file(t_command *current)
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
 	current->redir_fd_index = g_info.redir_index_count;
 	g_info.redir_fds[g_info.redir_index_count++] = fd;
+	return (fd);
 }

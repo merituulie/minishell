@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 08:21:15 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:43:30 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	int	i;
 	int	*pids;
 
+	printf("command count: %i\n", command_count);
 	if (exec_one_command(commands, command_count, env))
 	{
 		close_files(g_info.redir_fds, g_info.redir_count);

@@ -3,16 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/03 10:36:09 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:27:02 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
+
+static void	print_command(t_command *cmd)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (cmd[++i].command)
+	{
+		if (cmd[i].command)
+			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+		if (cmd[i].full_cmd)
+		{
+			j = 0;
+			while (cmd[i].full_cmd[j])
+			{
+				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+				j++;
+			}
+		}
+		if (cmd[i].flags)
+			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+		if (cmd[i].input)
+		{
+			j = 0;
+			while (cmd[i].input[j])
+			{
+				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
+				j++;
+			}
+		}
+		if (cmd[i].infile_name)
+			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+		if (cmd[i].outfile_name)
+			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+	}
+}
 
 static char	*parse_redirection_filename(char **input, int index)
 {
@@ -33,9 +70,36 @@ static char	*parse_redirection_filename(char **input, int index)
 	return (str);
 }
 
+void	clear_failed_redir(t_command *cmd)
+{
+	int	j;
+
+	if (cmd->command)
+		cmd->command = NULL;
+	if (cmd->flags)
+		cmd->flags = NULL;
+	if (cmd->input)
+	{
+		j = 0;
+		while (cmd->input[j])
+		{
+			cmd->input[j] = NULL;
+			j++;
+		}
+	}
+	if (cmd->infile_name)
+		cmd->infile_name = NULL;
+	if (cmd->outfile_name)
+		cmd->outfile_name = NULL;
+	if (cmd->redir_fd_index)
+		cmd->redir_fd_index = 0;
+	if (cmd->token)
+		cmd->token = NONE;
+}
+
 void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
-	char		*str;
+	char	*str;
 
 	str = NULL;
 	while (ft_strchr_null("<>", input[(*index)][0]) \
@@ -47,7 +111,11 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
-		open_redirection_file(&cmd[track]);
+		if (open_redirection_file(&cmd[track]) == -1)
+		{
+			print_command(cmd);
+			clear_failed_redir(&cmd[track]);
+		}
 		if (!input[(*index + 2)])
 		{
 			(*index) += 2;
