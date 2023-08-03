@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 17:36:42 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:22:40 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ static void	handle_sig(int signo)
 
 void	ctrl_d_cmd(char *line, t_data *cmd)
 {
+	printf("okay what the heckie??\n");
+	printf("line is: %s \n", line);
 	if (line == NULL)
 	{
+		printf("is it the signals? yes?\n");
 		ft_putstr_fd(PINK "Jose's PinkShell: ", 0);
 		write(1, "exit\n", 5);
 		restore_terminal(cmd);

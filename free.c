@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 15:19:31 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:45:39 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 #include "headers/lexer.h"
 #include "headers/minishell.h"
 #include "libft/libft.h"
+
+static void	unlink_heredoc(char *filename)
+{
+	if (!ft_strncmp_all(filename, HEREDOC))
+	{
+		unlink(HEREDOC);
+	}
+	return ;
+}
 
 void	free_cmd_struct(t_command *command, int cmd_count)
 {
@@ -32,7 +41,10 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 		if (command[i].full_cmd)
 			free_char_array(command[i].full_cmd);
 		if (command[i].infile_name)
+		{
+			unlink_heredoc(command->infile_name);
 			free(command[i].infile_name);
+		}
 		if (command[i].outfile_name)
 			free(command[i].outfile_name);
 		i++;
