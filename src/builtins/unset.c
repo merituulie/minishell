@@ -6,25 +6,27 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/03 17:18:36 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:30:54 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
 
-static	int	check_unset_input(char *input)
+static int	check_unset_input(char *input)
 {
 	int	i;
 
 	i = 0;
-	if (ft_isdigit(input[0]) == 1)
+	if (!input)
+		return (1);
+	if (!ft_isalpha(input[0]) && input[0] != '_')
 		return (1);
 	while (input[i] != '\0')
 	{
-		if(input[i] == '=')
-			return (1);
 		i++;
+		if (!ft_isalnum(input[i]) && input[i] != '_' && input[i])
+			return (1);
 	}
 	if (input[0] == '\0')
 		return (1);
@@ -33,7 +35,8 @@ static	int	check_unset_input(char *input)
 
 static	void	unset_loop(char **input, t_node *temp)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (input[i])
 	{
@@ -41,7 +44,7 @@ static	void	unset_loop(char **input, t_node *temp)
 		{
 			ft_putstr_fd("minishell: unset: '", 2);
 			ft_putstr_fd(input[i], 2);
-			return (ft_putstr_fd("': not a valid identifier\n", 2));
+			ft_putstr_fd("': not a valid identifier\n", 2);
 		}
 		if (!get_value(&temp, input[i]))
 			i++;
@@ -52,6 +55,7 @@ static	void	unset_loop(char **input, t_node *temp)
 		}
 	}
 }
+
 void	ft_unset(char **input, t_env *env)
 {
 	t_node	*temp;

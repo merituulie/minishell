@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/03 17:17:23 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:32:37 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ static int	amount_check(char **command, int fork)
 	int	count;
 
 	count = 0;
-	while (command[1][count])
+	while (*command)
 	{
 		count++;
+		command++;
 	}
-	if (count > 2)
+	if (count > 1)
 	{
 		if (!fork)
 			printf("exit\n");
 		printf("minishell: exit: too many arguments\n");
 		g_info.exit_code = 1;
-		exit(g_info.exit_code);
 		return (1);
 	}
 	return (0);
@@ -88,7 +88,7 @@ void	ft_exit(t_command *command, int fork)
 		exit(0);
 	}
 	num_arg_check(command->full_cmd, fork);
-	flag = amount_check(command->full_cmd, fork);
+	flag = amount_check(command->input, fork);
 	if (flag)
 		return ;
 	else

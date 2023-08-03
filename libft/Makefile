@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/08/03 16:28:50 by meskelin         ###   ########.fr        #
+=======
+#    Updated: 2023/08/03 09:59:51 by emeinert         ###   ########.fr        #
+>>>>>>> bbc220226199f2cda11319bee9f8ce7bb42e7538
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +47,11 @@ ft_atoi_exit \
 ft_isdigit \
 ft_strchr_index \
 ft_strchr_null \
+<<<<<<< HEAD
 ft_putnbr_fd
+=======
+ft_isalpha \
+>>>>>>> bbc220226199f2cda11319bee9f8ce7bb42e7538
 
 H_FILES = libft
 
