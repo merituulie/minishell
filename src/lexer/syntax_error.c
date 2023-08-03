@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 13:54:10 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/03 07:48:02 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static int	check_redir_syntax(char *str, int i)
 		return (syntax_error_msg(4, str));
 	else if (str[i] == '>' && str[i + 1] == '<')
 		return (syntax_error_msg(4, str));
+	else if (str[i] == '<' && str[i + 1] == '>')
+		return (syntax_error_msg(2, str));
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/03 09:08:07 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:30:54 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static char	*find_env_here(char *var, int var_size, t_env **env)
 	if (!(node))
 		return (NULL);
 	free(search);
-	printf("return value is %s\n", node->value);
 	return (node->value);
 }
 
@@ -89,7 +88,6 @@ static char	*expand_var_here(t_data *ms, char *str, int start, t_env **env)
 	if (!var)
 		printf("allocation fail!\n");
 	realloc_var_here(ms, str, var, env);
-	printf("ms->out is %s\n", ms->out);
 	free(var);
 	free(str);
 	if (!(ms->out))
