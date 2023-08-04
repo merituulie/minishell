@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 16:48:39 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/04 07:13:21 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@ int	open_file(char *filename, int flags)
 
 	fd = open(filename, flags, S_IRWXU);
 	if (fd < 0)
-		ft_putstr_fd("Error in opening a file\n", 2);
+		ft_putstr_fd("Pinkshell: error when open a file\n", 2);
 	return (fd);
 }
 
 int	close_file(int fd)
 {
-	if (fd > 0)
-	{
-		if (close(fd) != 0)
-			ft_putstr_fd("Error when closing a file\n", 2);
-	}
+	if (fd == 0 || fd == 1 || fd == -1)
+		return (0);
+	if (close(fd) == -1)
+		ft_putstr_fd("Pinkshell: error when closing a file\n", 2);
 	return (0);
 }
 
@@ -39,7 +38,7 @@ void	close_files(int *pipe_fds, int fd_count)
 	i = 0;
 	while (i < fd_count)
 	{
-		if (pipe_fds[i])  // if fd == 0
+		if (pipe_fds[i])
 			close_file(pipe_fds[i]);
 		i++;
 	}
