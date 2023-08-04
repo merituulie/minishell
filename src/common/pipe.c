@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 15:10:42 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:09:26 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	wait_children(int *pids, int count)
 	while (i <= count)
 	{
 		waitpid(pids[i], &status, 0);
-		if (WEXITSTATUS(status))
-			g_info.exit_code = WEXITSTATUS(status);
+		g_info.exit_code = WEXITSTATUS(status);
 		i++;
 	}
 }
