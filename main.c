@@ -6,11 +6,9 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/04 12:57:00 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:40:34 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"

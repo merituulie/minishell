@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/04 11:13:28 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/04 13:35:02 by rmakinen          #+#    #+#             */
+/*   Updated: 2023/08/04 13:35:22 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

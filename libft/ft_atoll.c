@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:48:37 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/03 14:57:36 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:39:30 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long long	ft_atoll(const char *str)
 {
-	long	i;
-	long long result;
+	long		i;
+	long long	result;
 	long long	sign;
 
 	result = 0;
@@ -36,5 +36,5 @@ long long	ft_atoll(const char *str)
 		if (sign == -1 && result > 9223372036854775807)
 			return (0);
 	}
-	return (sign * result); //leave the long longs
+	return (sign * result);
 }

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/04 10:02:36 by jhusso           ###   ########.fr       */
+/*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
+/*   Updated: 2023/08/04 13:41:52 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -94,6 +93,7 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
 char		**copy_input(char **input, int *index);
 int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
+void		update_command_redir(int fd, t_command *command);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
