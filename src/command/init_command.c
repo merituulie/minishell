@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/04 12:57:35 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:40:17 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ t_command	*init_cmds(t_data *ms, char **input)
 		ft_putstr_fd("Memory allocation failure!\n", 2);
 	put_cmds_to_struct(cmd, input, ms);
 	full_cmd(cmd, ms->struct_count, track);
+	printf("here9\n");
 	return (cmd);
 }

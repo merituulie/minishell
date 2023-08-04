@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hashmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:23:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 17:00:57 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:36:03 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	delete_value(t_node **head, char *key)
 	{
 		if (ft_strncmp(current->key, key, ft_strlen(key)) == 0)
 		{
+			free(current->key);
+			free(current->value);
 			previous->next = current->next;
 			free(current);
 			break ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 12:57:45 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:05:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
-	str = parse_flags(input, &(*index));
+	str = ft_strdup(parse_flags(input, &(*index)));
 	put_to_flags(&cmd, track, str);
 	if (str)
 		free(str);
@@ -114,10 +114,13 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	else
 		not_echo = copy_input(input, index);
 	put_to_input(cmd, track, str, not_echo);
+	printf("here7\n");
 	if (str)
 		free(str);
+	printf("here8\n");
 	if (not_echo)
 		free_char_array(not_echo);
+	printf("here9\n");
 }
 
 void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
@@ -147,5 +150,6 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			continue ;
 		}
 		parse_command(cmd, track, &index, input);
+		printf("here7\n");
 	}
 }

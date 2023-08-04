@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by                   #+#    #+#             */
-/*   Updated: 2023/08/04 11:51:25 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:07:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**copy_input(char **input, int *index)
 	if (ft_strchr_null("<|>", input[*index][0]))
 		return (NULL);
 	while ((*index) < ft_arrlen(input) && \
-			!ft_strchr_null("<|>", input[*index][0]))
+			!ft_strchr_null("<|>", input[*index][0]) && input[*index])
 		(*index)++;
 	out = ft_calloc(((*index) - cur_index + 1), sizeof(char *));
 	if (!out)
@@ -72,10 +72,10 @@ char	**copy_input(char **input, int *index)
 	while (cur_index < (*index))
 	{
 		out[i] = ft_strdup(input[cur_index]);
+		printf("input[%d] is %s, out[%d] is %s\n", cur_index, input[cur_index], i, out[i]);
 		i++;
 		cur_index++;
 	}
-	out[i] = NULL;
 	i = -1;
 	return (out);
 }
