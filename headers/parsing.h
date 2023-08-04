@@ -34,8 +34,10 @@
 
 typedef struct s_data
 {
-	struct s_env	*env;
-	struct termios	old_tio;
+	struct s_env		*env;
+	struct termios		old_tio;
+	struct termios		new_tio;
+	struct sigaction	sa;
 	char			**args;
 	int				start;
 	int				end;
