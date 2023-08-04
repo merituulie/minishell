@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/03 10:30:54 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:44:45 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*find_env_here(char *var, int var_size, t_env **env)
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
 	if (!search)
-		printf("allocation fail!\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -51,7 +51,7 @@ static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
 	ms->out = ft_calloc(size, sizeof(char));
 	if (!ms->out)
-		printf("allocation error!\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	ms->out = ft_memcpy(ms->out, str, ms->start);
 	leftover = ms->start;
 	if (new)
@@ -86,7 +86,7 @@ static char	*expand_var_here(t_data *ms, char *str, int start, t_env **env)
 	else
 		var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
-		printf("allocation fail!\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	realloc_var_here(ms, str, var, env);
 	free(var);
 	free(str);
@@ -109,6 +109,13 @@ static int	find_index(char *str, char c)
 	return (-1);
 }
 
+static void	update_command_redir(int fd, t_command *command)
+{
+	command->token = INPUT;
+	command->redir_fd_index = g_info.redir_index_count;
+	g_info.redir_fds[g_info.redir_index_count++] = fd;
+}
+
 //SIGNAL IS NOT HANDLED YET.
 //cat << DELIM case is not handled yet.
 /*here_doc with signal needs to be handled.
@@ -121,9 +128,7 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	t_data	ms;
 
 	g_info.sig_status = 0;
-	fd = open(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (fd == -1)
-		printf("Error in heredoc file opening\n");
+	fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
 	line = readline("> ");
 	while (line)
 	{
@@ -132,19 +137,15 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
-			printf("heredoc writing error\n");
+			ft_putstr_fd("Heredoc writing error.\n", 2);
 		free(line);
 		line = NULL;
 		line = readline("> ");
 	}
 	close(fd);
-	fd = open(HEREDOC, O_RDONLY);
+	fd = open_file(HEREDOC, O_RDONLY);
 	if (command->infile_name && !ft_strncmp_all(command->infile_name, HEREDOC))
-	{
-		command->token = INPUT;
-		command->redir_fd_index = g_info.redir_index_count;
-		g_info.redir_fds[g_info.redir_index_count++] = fd;
-	}
+		update_command_redir(fd, command);
 	else
 		unlink(HEREDOC);
 	return (-1);

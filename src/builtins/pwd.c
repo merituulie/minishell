@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:08:29 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/07/31 09:53:47 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/04 11:45:33 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_pwd(t_env *env)
 
 	if (!env->vars)
 	{
-		printf("Environment error\n");
+		ft_putstr_fd("Environment error.\n", 2);
 		return (1);
 	}
 	correct_node = get_value(env->vars, "PWD");
