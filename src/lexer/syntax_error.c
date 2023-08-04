@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 16:11:28 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/04 16:15:54 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,11 @@ static int	out_redir_syntax_error(char *str, int i)
 		return (syntax_error_msg(4, str));
 	else
 	{
-		printf("in else\n");
-		while (is_delim(str[i+1]) == true)
+		while (is_delim(str[i + 1]) == true)
 			i++;
-		if (str[i] == '<')
-		{
-			printf("in if\n");
+		if (str[i + 1] == '<')
 			return (syntax_error_msg(4, str));
-		}
 	}
-	// if ((str[i] == '>' && str[i + 1] == '>') && \
-	// 							check_if_nothing(str, i + 1))
-	// 	return (syntax_error_msg(2, str));
-	// else if ((str[i] == '>' && str[i + 1] == '>' && str[i + 2] == '>'))
-	// 	return (syntax_error_msg(3, str));
-	// else if (str[i] == '>' && str[i + 1] == '<')
-	// 	return (syntax_error_msg(4, str));
 	return (0);
 }
 
