@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:00:03 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/30 12:57:43 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:35:01 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_print_array(char **str)
 	i = 0;
 	while (str[i])
 	{
-		printf("%s\t %p\n", str[i], &(str[i]));
+		ft_putstr_fd(str[i], 1);
 		i++;
 	}
 	return (0);
