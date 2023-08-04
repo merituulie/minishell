@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/04 10:03:25 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/04 12:53:15 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 		{
 			index++;
 			track++;
+			continue ;
 		}
 		parse_command(cmd, track, &index, input);
 	}
