@@ -97,7 +97,7 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 {
 	int	i;
 	int	*pids;
-	
+
 	if (exec_one_command(commands, command_count, env))
 		return (0);
 	i = -1;

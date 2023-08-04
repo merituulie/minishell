@@ -43,7 +43,7 @@ void	set_signal_action(t_data *ms)
 {
 	tcgetattr(STDIN_FILENO, &(ms->old_tio));
 	ms->new_tio = ms->old_tio;
-	ms->new_tio.c_lflag &=  ~ECHOCTL;
+	ms->new_tio.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSANOW, &(ms->new_tio));
 	ms->sa.sa_handler = &handle_sig;
 	sigemptyset(&(ms->sa.sa_mask));
