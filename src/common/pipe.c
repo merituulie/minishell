@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 17:01:08 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 09:58:38 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	wait_children(int *pids, int count)
 	while (i <= count)
 	{
 		waitpid(pids[i], &status, 0);
-		if (WEXITSTATUS(status))
-			g_info.exit_code = WEXITSTATUS(status);
+		g_info.exit_code = WEXITSTATUS(status);
 		i++;
 	}
 }
