@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/02 17:49:48 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:50:20 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ static void	init_fds_count_redirs(int *struct_count, char **input)
 	g_info.pipe_count = (*struct_count) * 2 - 2;
 	g_info.pipe_fds = ft_calloc(g_info.pipe_count, sizeof(*g_info.pipe_fds));
 	if (!g_info.pipe_fds)
-		printf("memory allocation failed\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	g_info.redir_count = count_redirs(input);
 	g_info.redir_fds = ft_calloc(g_info.redir_count, \
 	sizeof(*g_info.redir_fds));
 	if (!g_info.redir_fds)
-		printf("memory allocation failed\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 }
 
 t_command	*init_cmds(t_data *ms, char **input)
@@ -78,7 +78,7 @@ t_command	*init_cmds(t_data *ms, char **input)
 	init_fds_count_redirs(&ms->struct_count, input);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)
-		printf("memory allocation error\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	put_cmds_to_struct(cmd, input, ms);
 	full_cmd(cmd, ms->struct_count, track);
 	return (cmd);
