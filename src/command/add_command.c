@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 17:22:45 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:29:22 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,15 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
 	if (!ft_strncmp_all(cmd[track].command, "echo"))
+	{
+		printf("I'm echo and I come here\n");
 		str = parse_input(input, index);
+	}
 	else
+	{
+		printf("I'm %s and I come here\n", cmd[track].command);
 		not_echo = copy_input(input, index);
+	}
 	put_to_input(cmd, track, str, not_echo);
 	if (str)
 		free(str);
