@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/03 10:40:34 by emeinert         ###   ########.fr       */
+/*   Created: 2023/08/03 10:30:26 by                   #+#    #+#             */
+/*   Updated: 2023/08/03 17:32:23 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 
@@ -55,13 +54,29 @@ static void	cmd_is_dir(t_command *command, t_env **env)
 	t_node	*temp;
 
 	temp = check_value((*env)->vars, command->command);
-	if (temp && command->command[0] == '/')
+	if (temp && command->command && command->command[0] == '/')
 	{
 		error_msg(126, ": is a directory\n", command);
 		exit(126);
 	}
 	else
 		return ;
+}
+
+int	execute_ft_execve(t_command *command, t_env **env)
+{
+	int	exec;
+
+	exec = ft_execve(command, env);
+	if (exec < 0)
+	{
+		if (exec == -1)
+			error_msg(127, ": command not found\n", command);
+		else if (exec == -2)
+			error_msg(127, ": no such file or directory\n", command);
+		exit(127);
+	}
+	exit(0);
 }
 
 int	ft_execve(t_command *command, t_env **env)
@@ -72,7 +87,8 @@ int	ft_execve(t_command *command, t_env **env)
 
 	cmd_is_dir(command, env);
 	temp = get_value((*env)->vars, "PATH");
-	if (temp == NULL || command->command[0] == '/')
+	if (temp == NULL || (command->command
+			&& command->command[0] == '/'))
 		return (-2);
 	path = find_cmd_path(command->command, temp);
 	if (path == NULL || !ft_strncmp_all(path, ".."))

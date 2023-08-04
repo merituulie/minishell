@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
+#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/03 09:59:51 by emeinert         ###   ########.fr        #
+#    Created: 2023/08/03 16:28:50 by meskelin          #+#    #+#              #
+#    Updated: 2023/08/03 17:35:58 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ ft_atoi_exit \
 ft_isdigit \
 ft_strchr_index \
 ft_strchr_null \
+ft_putnbr_fd \
 ft_isalpha \
 
 H_FILES = libft
@@ -53,7 +54,7 @@ SRC = $(addsuffix .c, $(SRC_FILES))
 OBJ = $(addsuffix .o, $(SRC_FILES))
 HS = $(addsuffix .h, $(H_FILES))
 
-BUILD_FLAGS = -Wall -Wextra #-Werror
+BUILD_FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 

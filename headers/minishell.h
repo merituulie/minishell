@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:21:26 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 10:38:27 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:33:41 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_command
 	int		in_heredoc;
 	int		pid;
 	int		id;
+	int		fds[2];
 }	t_command;
 
 typedef struct s_env
@@ -103,6 +104,7 @@ int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command, int fork);
 void		ft_export(char **input, t_env *env);
 void		ft_unset(char **input, t_env *env);
+int			execute_ft_execve(t_command *command, t_env **env);
 
 //	SHLVL
 void		add_shlvl(t_env **env);
@@ -111,7 +113,6 @@ void		add_shlvl(t_env **env);
 int			execute_commands(t_command *commands, int command_count, \
 					t_env **env);
 void		execute_command(t_command *command, t_env **env, int fork);
-int			execute_builtin(t_command **command, t_env ***env, int fork);
 
 // PIPING
 int			handle_pipe(t_command *commands, t_env **env, int command_count);

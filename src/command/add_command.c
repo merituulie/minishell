@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/03 10:36:09 by emeinert         ###   ########.fr       */
+/*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/03 17:33:33 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

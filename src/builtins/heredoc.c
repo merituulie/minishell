@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 18:42:34 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:30:54 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,7 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 		command->redir_fd_index = g_info.redir_index_count;
 		g_info.redir_fds[g_info.redir_index_count++] = fd;
 	}
+	else
+		unlink(HEREDOC);
 	return (-1);
 }
