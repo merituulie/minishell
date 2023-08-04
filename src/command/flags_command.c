@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:06:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 18:10:09 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:47:48 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	put_to_flags(t_command **cmd, int track, char *str)
 	{
 		(*cmd)[track].flags = ft_strdup(str);
 		if (!(*cmd)[track].flags)
-			printf("strdup allocation fail 2!\n");
+			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 	}
 }
