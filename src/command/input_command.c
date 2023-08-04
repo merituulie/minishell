@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by                   #+#    #+#             */
-/*   Updated: 2023/08/02 18:23:12 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:51:25 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*add_input_part(int str_len, int space_count,
 
 	str = ft_calloc((str_len + space_count + 1), sizeof(char));
 	if (!str)
-		printf("memory allocation error\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
 	return (str);
 }
@@ -68,7 +68,7 @@ char	**copy_input(char **input, int *index)
 		(*index)++;
 	out = ft_calloc(((*index) - cur_index + 1), sizeof(char *));
 	if (!out)
-		printf("memory allocation error\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	while (cur_index < (*index))
 	{
 		out[i] = ft_strdup(input[cur_index]);
@@ -91,12 +91,12 @@ static void	put_to_input2(t_command *cmd, int track, char **not_echo)
 	len = ft_arrlen(not_echo);
 	cmd[track].input = ft_calloc(len + 1, sizeof (char *));
 	if (!cmd[track].input)
-		printf("calloc fail!\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	while (not_echo[i])
 	{
 		cmd[track].input[i] = ft_strdup(not_echo[i]);
 		if (!cmd[track].input[i])
-			printf("strdup allocation fail!\n");
+			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 		i++;
 	}
 	cmd[track].input[i] = NULL;
@@ -112,10 +112,10 @@ void	put_to_input(t_command *cmd, int track, char *str, char **not_echo)
 		{
 			cmd[track].input = ft_calloc(2, sizeof (char *));
 			if (!cmd[track].input)
-				printf("calloc fail!\n");
+				ft_putstr_fd("Memory allocation failure!\n", 2);
 			cmd[track].input[0] = ft_strdup(str);
 			if (!cmd[track].input[0])
-				printf("strdup allocation fail!\n");
+				ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 			cmd[track].input[1] = NULL;
 		}
 	}
