@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 16:11:29 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:22:45 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	else
 		not_echo = copy_input(input, index);
 	put_to_input(cmd, track, str, not_echo);
-	printf("here7\n");
 	if (str)
 		free(str);
 	printf("here8\n");
@@ -150,6 +149,5 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			continue ;
 		}
 		parse_command(cmd, track, &index, input);
-		printf("here7\n");
 	}
 }

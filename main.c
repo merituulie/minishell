@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:19:30 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 15:39:05 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:24:42 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	minishell(t_data *ms)
 		// } This is for << here and ctrl + d
 		if (cmd == NULL || !(cmd->command))
 			continue ;
-		execute_commands(cmd, ms->struct_count, &ms->env);
+		// execute_commands(cmd, ms->struct_count, &ms->env);
 		free_in_minishell(cmd, ms->struct_count, cmd_line);
 	}
 }

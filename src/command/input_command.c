@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by                   #+#    #+#             */
-/*   Updated: 2023/08/04 16:07:31 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:10:23 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ char	**copy_input(char **input, int *index)
 {
 	int		cur_index;
 	char	**out;
+	// char	**temp;
 	int		i;
 
 	i = 0;
+	// temp = NULL;
 	cur_index = *index;
 	if (ft_strchr_null("<|>", input[*index][0]))
 		return (NULL);
@@ -76,7 +78,9 @@ char	**copy_input(char **input, int *index)
 		i++;
 		cur_index++;
 	}
-	i = -1;
+	out[i] = NULL;
+	printf("out[i] is %s\n", NULL);
+	// free(out);
 	return (out);
 }
 
