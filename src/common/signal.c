@@ -24,32 +24,30 @@ static void	handle_sig(int signo)
 	}
 }
 
-void	ctrl_d_cmd(char *line, t_data *cmd)
+void	ctrl_d_cmd(char *line, t_data *ms)
 {
 	if (line == NULL)
 	{
-		ft_putstr_fd(PINK "Jose's PinkShell: ", 0);
-		write(1, "exit\n", 5);
-		restore_terminal(cmd);
+		restore_terminal(ms);
+		ft_putstr_fd(PINK "Jose's PinkShell: exit\n"BORING, 0);
 		exit(EXIT_SUCCESS);
 	}
 }
 
-void	restore_terminal(t_data *cmd)
+void	restore_terminal(t_data *ms)
 {
-	tcsetattr(STDIN_FILENO, TCSANOW, &(cmd->old_tio));
+	tcsetattr(STDIN_FILENO, TCSANOW, &(ms->old_tio));
 }
 
-void	set_signal_action(t_data *cmd)
+void	set_signal_action(t_data *ms)
 {
-	struct termios	new_tio;
-
-	tcgetattr(STDIN_FILENO, &(cmd->old_tio));
-	new_tio = cmd->old_tio;
-	new_tio.c_lflag &= (~ICANON & ~ECHOCTL);
-	tcsetattr(STDIN_FILENO, TCSANOW, &new_tio);
-	if (signal(SIGINT, handle_sig) == SIG_ERR)
-		ft_putstr_fd("\nCannot catch SIGINT\n", 2);
-	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-		ft_putstr_fd("\nCannot catch SIGQUIT\n", 2);
+	tcgetattr(STDIN_FILENO, &(ms->old_tio));
+	ms->new_tio = ms->old_tio;
+	ms->new_tio.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &(ms->new_tio));
+	ms->sa.sa_handler = &handle_sig;
+	sigemptyset(&(ms->sa.sa_mask));
+	ms->sa.sa_flags = 0;
+	sigaction(SIGINT, &(ms->sa), NULL);
+	signal(SIGQUIT, SIG_IGN);
 }
