@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 09:58:38 by meskelin         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/04 09:59:33 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 
@@ -20,8 +21,9 @@ static void	execute_child(t_command *current, int command_count, \
 	else if (current->id == command_count - 1)
 		redirect_io(g_info.pipe_fds[(current->id * 2) - 2], -2);
 	else
-		redirect_io(g_info.pipe_fds[current->id * 2 - 2],
-			g_info.pipe_fds[current->id * 2 + 1]);
+		redirect_io(g_info.pipe_fds[current->id * 2 - 2], \
+		g_info.pipe_fds[current->id * 2 + 1]);
+	close_files(g_info.pipe_fds, g_info.pipe_count);
 	if (current->token != NONE)
 		redirect_files(current);
 	execute_command(current, env, 1);
