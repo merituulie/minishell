@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 10:25:38 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/04 13:40:47 by rmakinen          #+#    #+#             */
+/*   Updated: 2023/08/04 13:41:06 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LEXER_H
 # define LEXER_H
