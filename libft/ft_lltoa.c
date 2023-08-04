@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lltoa.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/04 11:17:52 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/04 11:17:54 by yoonslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static long int	ft_intlen(long long nb)
@@ -21,7 +33,7 @@ static long int	ft_intlen(long long nb)
 char	*ft_lltoa(long long n)
 {
 	long long	len;
-	char	*str;
+	char		*str;
 	long long	nb;
 
 	nb = (long long)n;

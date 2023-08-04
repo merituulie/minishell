@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/04 11:14:14 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:37:20 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	ft_is_number(char **input)
 {
-	int	i;
-	char *temp;
-	
+	int		i;
+	char	*temp;
+
 	i = 0;
 	if (ft_strlen(input[1]) == 1 && !ft_isdigit(input[1][0]))
 		return (0);
@@ -28,10 +28,9 @@ static int	ft_is_number(char **input)
 			return (0);
 		i++;
 	}
-	printf("i: %d\n", i);
-	temp = ft_lltoa(ft_atoll(input[1]));	
-	if (ft_strncmp_all(input[1], temp) 
-	|| (i > 20 && input[1][0] == '-' && input[1][0] == '+')
+	temp = ft_lltoa(ft_atoll(input[1]));
+	if (ft_strncmp_all(input[1], temp) \
+	|| (i > 20 && input[1][0] == '-' && input[1][0] == '+') \
 	|| (i > 19 && input[1][0] != '-' && input[1][0] != '+'))
 	{
 		free(temp);
