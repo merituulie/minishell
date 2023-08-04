@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonseonlee <yoonseonlee@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 17:01:08 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 09:26:29 by yoonseonlee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ static void	execute_child(t_command *current, int command_count, \
 	else if (current->id == command_count - 1)
 		redirect_io(g_info.pipe_fds[(current->id * 2) - 2], -2);
 	else
-		redirect_io(g_info.pipe_fds[current->id * 2 - 2],
-			g_info.pipe_fds[current->id * 2 + 1]);
+		redirect_io(g_info.pipe_fds[current->id * 2 - 2], \
+		g_info.pipe_fds[current->id * 2 + 1]);
+	close_files(g_info.pipe_fds, g_info.pipe_count);
 	if (current->token != NONE)
 		redirect_files(current);
 	execute_command(current, env, 1);
@@ -36,8 +37,7 @@ void	wait_children(int *pids, int count)
 	while (i <= count)
 	{
 		waitpid(pids[i], &status, 0);
-		if (WEXITSTATUS(status))
-			g_info.exit_code = WEXITSTATUS(status);
+		g_info.exit_code = WEXITSTATUS(status);
 		i++;
 	}
 }
