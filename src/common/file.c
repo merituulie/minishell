@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 11:02:20 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/04 15:59:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	open_file(char *filename, int flags)
 
 int	close_file(int fd)
 {
+	printf("closing %i\n", fd);
 	if (fd == 0 || fd == 1 || fd == -1)
 		return (0);
 	if (close(fd) == 0)
@@ -37,8 +38,10 @@ void	close_files(int *pipe_fds, int fd_count)
 	int	i;
 
 	i = 0;
+	printf("i: %i, fd:count: %i", i, fd_count);
 	while (i < fd_count)
 	{
+		printf("how often do we loop here\n");
 		if (pipe_fds[i])
 			close_file(pipe_fds[i]);
 		i++;
