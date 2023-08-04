@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/04 10:57:05 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:53:04 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 void	ft_dup2(int infile_fd, int outfile_fd)
 {
 	if (infile_fd != -2 && dup2(infile_fd, 0) < 0)
-		ft_putstr_fd("infile_fd:  Dup 2 error!\n", 2);
+		ft_putstr_fd("Redirecting stdin:  Dup 2 error!\n", 2);
 	if (outfile_fd != -2 && dup2(outfile_fd, 1) < 0)
-		ft_putstr_fd("outfile_fd: Dup 2 error!\n", 2);
+		ft_putstr_fd("Redirecting stdout: Dup 2 error!\n", 2);
 }
 
 void	redirect_io(int infile_fd, int outfile_fd)
@@ -44,21 +44,21 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 	{
 		cmd[track].infile_name = ft_strdup(str);
 		if (!cmd[track].infile_name)
-			printf("strdup allocation fail 4!\n");
+			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 		cmd[track].token = INPUT;
 	}
 	else if (!ft_strncmp_all(">", input))
 	{
 		cmd[track].outfile_name = ft_strdup(str);
 		if (!cmd[track].outfile_name)
-			printf("strdup allocation fail 5 !\n");
+			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 		cmd[track].token = OUTPUT_TRUNC;
 	}
 	else if (!ft_strncmp_all(">>", input))
 	{
 		cmd[track].outfile_name = ft_strdup(str);
 		if (!cmd[track].outfile_name)
-			printf("strdup allocation fail 6!\n");
+			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 		cmd[track].token = OUTPUT_APPEND;
 	}
 	return (0);
