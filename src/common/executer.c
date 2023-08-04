@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 14:43:30 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/04 06:26:27 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	execute_command(t_command *command, t_env **env, int fork)
 {
 	int	exec;
 
+	printf("do we ever get here?");
 	if (execute_builtin(&command, &env, fork))
 	{
 		if (!fork)
@@ -80,6 +81,7 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 	int			pid_test;
 	int			status;
 
+	printf("through one_command\n");
 	if (command_count == 1)
 	{
 		if (dont_fork_cmd(command))

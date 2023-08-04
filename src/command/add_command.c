@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/03 16:47:05 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/04 06:02:29 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,42 @@
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
 
-static void	print_command(t_command *cmd)
-{
-	int	i;
-	int	j;
+// static void	print_command(t_command *cmd)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = -1;
-	while (cmd[++i].command)
-	{
-		if (cmd[i].command)
-			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-		if (cmd[i].full_cmd)
-		{
-			j = 0;
-			while (cmd[i].full_cmd[j])
-			{
-				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
-				j++;
-			}
-		}
-		if (cmd[i].flags)
-			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-		if (cmd[i].input)
-		{
-			j = 0;
-			while (cmd[i].input[j])
-			{
-				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
-				j++;
-			}
-		}
-		if (cmd[i].infile_name)
-			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-		if (cmd[i].outfile_name)
-			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-	}
-}
+// 	i = -1;
+// 	while (cmd[++i].command)
+// 	{
+// 		if (cmd[i].command)
+// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+// 		if (cmd[i].full_cmd)
+// 		{
+// 			j = 0;
+// 			while (cmd[i].full_cmd[j])
+// 			{
+// 				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+// 				j++;
+// 			}
+// 		}
+// 		if (cmd[i].flags)
+// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+// 		if (cmd[i].input)
+// 		{
+// 			j = 0;
+// 			while (cmd[i].input[j])
+// 			{
+// 				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
+// 				j++;
+// 			}
+// 		}
+// 		if (cmd[i].infile_name)
+// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+// 		if (cmd[i].outfile_name)
+// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+// 	}
+// }
 
 static char	*parse_redirection_filename(char **input, int index)
 {
@@ -113,7 +113,6 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 		parse_redirection(cmd, track, str, input[(*index)]);
 		if (open_redirection_file(&cmd[track]) == -1)
 		{
-			print_command(cmd);
 			clear_failed_redir(&cmd[track]);
 			return (-1);
 		}
@@ -171,11 +170,10 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			ft_heredoc(&cmd[track], &ms->env, input[index - 1]);
 		if (!input[index])
 			break ;
-		printf("track before handle %i\n", )
 		if (handle_redirection(cmd, &index, track, input) == -1)
 		{
-			printf("HEREEEE*****\n");
-			// continue ;
+			while (!ft_strchr("|", input[index][0]))
+				index++;
 		}
 		if (!input[index])
 			break ;
