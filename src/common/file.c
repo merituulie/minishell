@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 15:12:28 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:58:58 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ int	open_file(char *filename, int flags)
 
 int	close_file(int fd)
 {
-	if (close(fd) != 0)
-		ft_putstr_fd("Error when closing a file.\n", 2);
-	return (0);
+	if (fd == 0 || fd == 1)
+		return (0);
+	if (close(fd) == 0)
+		return (0);
+	ft_putstr_fd("Error when closing a file.\n", 2);
+	return (-1);
 }
 
 void	close_files(int *pipe_fds, int fd_count)

@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/02 17:36:42 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:35:52 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	handle_sig(int signo)
 		g_info.sig_status = 1;
 		ioctl(STDIN_FILENO, TIOCSTI, "\n");
 		rl_on_new_line();
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 	}
 }
 

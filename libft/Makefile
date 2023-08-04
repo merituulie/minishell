@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
+#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/03 14:43:02 by emeinert         ###   ########.fr        #
+#    Updated: 2023/08/04 11:13:21 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ ft_atoll \
 ft_isdigit \
 ft_strchr_index \
 ft_strchr_null \
+ft_putnbr_fd \
 ft_isalpha \
 ft_lltoa \
 
@@ -54,7 +55,7 @@ SRC = $(addsuffix .c, $(SRC_FILES))
 OBJ = $(addsuffix .o, $(SRC_FILES))
 HS = $(addsuffix .h, $(H_FILES))
 
-BUILD_FLAGS = -Wall -Wextra #-Werror
+BUILD_FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 

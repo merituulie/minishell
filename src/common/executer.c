@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 08:21:15 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:57:14 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-int	execute_builtin(t_command **command, t_env ***env, int fork)
+static int	execute_builtin(t_command **command, t_env ***env, int fork)
 {
 	if (ft_strncmp_all((*command)->command, "env") == 0)
 		ft_env((*env), (*command));
@@ -35,28 +35,18 @@ int	execute_builtin(t_command **command, t_env ***env, int fork)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	int	exec;
-
 	if (execute_builtin(&command, &env, fork))
 	{
 		if (!fork)
 			return ;
 	}
-	else if (command->command
-		&& ft_strncmp_all(command->command, "./minishell") == 0)
+	else if (ft_strncmp_all(command->command, "./minishell") == 0)
 	{
 		add_shlvl(env);
 		return ;
 	}
 	else
-	{
-		exec = ft_execve(command, env);
-		if (exec == -1)
-			error_msg(127, ": command not found\n", command);
-		else if (exec == -2)
-			error_msg(127, ": no such file or directory\n", command);
-		exit(127);
-	}
+		execute_ft_execve(command, env);
 	if (fork)
 		exit(0);
 }
@@ -109,10 +99,7 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	int	*pids;
 
 	if (exec_one_command(commands, command_count, env))
-	{
-		close_files(g_info.redir_fds, g_info.redir_count);
 		return (0);
-	}
 	i = -1;
 	pids = allocate_pids(command_count);
 	while (command_count != 1 && ++i < command_count)
