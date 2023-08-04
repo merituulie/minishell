@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 11:44:45 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:37:32 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,18 +109,6 @@ static int	find_index(char *str, char c)
 	return (-1);
 }
 
-static void	update_command_redir(int fd, t_command *command)
-{
-	command->token = INPUT;
-	command->redir_fd_index = g_info.redir_index_count;
-	g_info.redir_fds[g_info.redir_index_count++] = fd;
-}
-
-//SIGNAL IS NOT HANDLED YET.
-//cat << DELIM case is not handled yet.
-/*here_doc with signal needs to be handled.
-also how to wait for the cat command for example.
-file is deleted with unlink function.*/
 int	ft_heredoc(t_command *command, t_env **env, char *delim)
 {
 	int		fd;

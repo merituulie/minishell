@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_Command.c                                  :+:      :+:    :+:   */
+/*   heredoc_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:11:37 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 18:14:03 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:37:04 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+void	update_command_redir(int fd, t_command *command)
+{
+	command->token = INPUT;
+	command->redir_fd_index = g_info.redir_index_count;
+	g_info.redir_fds[g_info.redir_index_count++] = fd;
+}
 
 static int	check_for_cat_grep(char *str)
 {

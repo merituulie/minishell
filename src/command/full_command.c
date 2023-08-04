@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   full_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:02:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 11:49:24 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 12:57:26 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	put_fullcmd_input(t_command	*cmd, int i, int track, int index)
 
 void	put_fullcmd(t_command *cmd, int i, int track)
 {
+	if (cmd[track].command == NULL)
+		return ;
 	cmd[i].full_cmd[0] = ft_strdup(cmd[track].command);
 	if (!cmd[i].full_cmd[0])
 		ft_putstr_fd("Strdup memory allocation failure!\n", 2);

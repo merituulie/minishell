@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 18:21:26 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 17:33:41 by meskelin         ###   ########.fr       */
+/*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
+/*   Updated: 2023/08/04 13:41:52 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char		*parse_flags(char **input, int	*index);
 char		*parse_input(char **input, int *index);
 int			parse_redirection(t_command *cmd, int track, char *str, \
 			char *input);
-void		handle_redirection(t_command *cmd, int *index, int track, \
+int			handle_redirection(t_command *cmd, int *index, int track, \
 			char **input);
 void		put_cmds_to_struct(t_command *cmd, char **input, t_data *ms);
 char		*ft_strchr_null(const char *s, int c);
@@ -93,6 +93,7 @@ void		full_cmd(t_command *cmd, int struct_count, int track);
 void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
 char		**copy_input(char **input, int *index);
 int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
+void		update_command_redir(int fd, t_command *command);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
@@ -127,7 +128,7 @@ void		ft_dup2(int infile_fd, int outfile_fd);
 void		close_files(int *pipe_fds, int fd_count);
 int			open_file(char *filename, int flags);
 int			close_file(int fd);
-void		open_redirection_file(t_command *current);
+int			open_redirection_file(t_command *current);
 void		error_code(int number);
 void		error_msg(int code, char *str, t_command *command);
 char		*get_exit_value(void);

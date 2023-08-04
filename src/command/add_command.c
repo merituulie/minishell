@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 11:47:07 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 12:57:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,36 @@ static char	*parse_redirection_filename(char **input, int index)
 	return (str);
 }
 
-void	handle_redirection(t_command *cmd, int *index, int track, char **input)
+void	clear_failed_redir(t_command *cmd)
 {
-	char		*str;
+	int	j;
+
+	if (cmd->command)
+		cmd->command = NULL;
+	if (cmd->flags)
+		cmd->flags = NULL;
+	if (cmd->input)
+	{
+		j = 0;
+		while (cmd->input[j])
+		{
+			cmd->input[j] = NULL;
+			j++;
+		}
+	}
+	if (cmd->infile_name)
+		cmd->infile_name = NULL;
+	if (cmd->outfile_name)
+		cmd->outfile_name = NULL;
+	if (cmd->redir_fd_index)
+		cmd->redir_fd_index = 0;
+	if (cmd->token)
+		cmd->token = NONE;
+}
+
+int	handle_redirection(t_command *cmd, int *index, int track, char **input)
+{
+	char	*str;
 
 	str = NULL;
 	while (ft_strchr_null("<>", input[(*index)][0]) \
@@ -47,7 +74,11 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
-		open_redirection_file(&cmd[track]);
+		if (open_redirection_file(&cmd[track]) == -1)
+		{
+			clear_failed_redir(&cmd[track]);
+			return (-1);
+		}
 		if (!input[(*index + 2)])
 		{
 			(*index) += 2;
@@ -57,6 +88,7 @@ void	handle_redirection(t_command *cmd, int *index, int track, char **input)
 			(*index) += 2;
 	}
 	free(str);
+	return (0);
 }
 
 static void	parse_command(t_command *cmd, int track, int *index, char **input)
@@ -101,13 +133,18 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			ft_heredoc(&cmd[track], &ms->env, input[index - 1]);
 		if (!input[index])
 			break ;
-		handle_redirection(cmd, &index, track, input);
+		if (handle_redirection(cmd, &index, track, input) == -1)
+		{
+			while (input[index] && !ft_strchr("|", input[index][0]))
+				index++;
+		}
 		if (!input[index])
 			break ;
 		if (ft_strchr("|", input[index][0]))
 		{
 			index++;
 			track++;
+			continue ;
 		}
 		parse_command(cmd, track, &index, input);
 	}
