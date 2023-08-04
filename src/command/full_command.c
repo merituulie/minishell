@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:02:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 11:49:01 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:49:24 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	put_fullcmd_input(t_command	*cmd, int i, int track, int index)
 	{
 		cmd[i].full_cmd[j + index] = ft_strdup(cmd[track].input[j]);
 		if (!cmd[i].full_cmd[j + index])
-			ft_putstr_fd("strdup fail!\n");
+			ft_putstr_fd("strdup fail!\n", 2);
 		j++;
 	}
 }
