@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/03 10:35:52 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:55:02 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	set_signal_action(t_data *cmd)
 	new_tio.c_lflag &= (~ICANON & ~ECHOCTL);
 	tcsetattr(STDIN_FILENO, TCSANOW, &new_tio);
 	if (signal(SIGINT, handle_sig) == SIG_ERR)
-		printf("\nCannot catch SIGINT\n");
+		ft_putstr_fd("\nCannot catch SIGINT\n", 2);
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-		printf("\nCannot catch SIGQUIT\n");
+		ft_putstr_fd("\nCannot catch SIGQUIT\n", 2);
 }
