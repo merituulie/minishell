@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/03 08:14:39 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:48:30 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
