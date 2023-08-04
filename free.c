@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 15:19:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 15:19:22 by yoonslee         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/04 16:11:18 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,24 @@ void	free_in_main(t_data *data)
 	free(data);
 }
 
+void	close_free_fd_arrays(void)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	close_files(g_info.pipe_fds, g_info.pipe_count);
+	if (g_info.pipe_fds)
+		free(g_info.pipe_fds);
+	close_files(g_info.redir_fds, g_info.redir_count);
+	if (g_info.redir_fds)
+		free(g_info.redir_fds);
+}
+
 void	free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line)
 {
 	free_cmd_struct(cmd, cmd_count);
 	free_char_array(cmd_line);
+	close_free_fd_arrays();
 }

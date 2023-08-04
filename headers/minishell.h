@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/04 13:41:52 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:02:44 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,6 @@ void		heredoc_signal(int signo);
 void		free_cmd_struct(t_command *command, int cmd_count);
 void		free_in_main(t_data *data);
 void		free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line);
+void		close_free_fd_arrays(void);
 
 #endif
