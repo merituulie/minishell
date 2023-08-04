@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 15:22:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 15:10:42 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/04 09:59:33 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 
@@ -37,8 +38,7 @@ void	wait_children(int *pids, int count)
 	while (i <= count)
 	{
 		waitpid(pids[i], &status, 0);
-		if (WEXITSTATUS(status))
-			g_info.exit_code = WEXITSTATUS(status);
+		g_info.exit_code = WEXITSTATUS(status);
 		i++;
 	}
 }

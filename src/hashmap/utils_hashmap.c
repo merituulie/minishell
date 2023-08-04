@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hashmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:23:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/03 08:37:14 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:00:57 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_node	*get_value(t_node **head, char *key)
 	}
 	return (NULL);
 }
+
 /// @brief Checks a value from the hashmap with the value.
 /// @param head The first node on the hashmap.
 /// @param value The value to search for a node.
@@ -48,7 +49,6 @@ t_node	*check_value(t_node **head, char *value)
 	}
 	return (NULL);
 }
-
 
 static int	delete_head(t_node **head, char *key)
 {
