@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_lltoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/28 15:39:05 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/03 14:41:09 by emeinert         ###   ########.fr       */
+/*   Created: 2023/08/04 11:17:52 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/04 11:17:54 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static long int	ft_intlen(int nb)
+static long int	ft_intlen(long long nb)
 {
 	long	len;
 
@@ -30,13 +30,13 @@ static long int	ft_intlen(int nb)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char	*ft_lltoa(long long n)
 {
-	long	len;
-	char	*str;
-	long	nb;
+	long long	len;
+	char		*str;
+	long long	nb;
 
-	nb = (long)n;
+	nb = (long long)n;
 	len = ft_intlen(nb);
 	if (nb < 0)
 	{

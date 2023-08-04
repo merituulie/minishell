@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:19:09 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 18:22:54 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:51:56 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	*allocate_pids(int pid_count)
 
 	pids = ft_calloc(pid_count, sizeof(*pids));
 	if (!pids)
-		printf("Memory allocation error!");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	return (pids);
 }

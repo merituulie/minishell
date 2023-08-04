@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/04 12:53:15 by rmakinen         ###   ########.fr       */
+/*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/04 12:57:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*parse_redirection_filename(char **input, int index)
 	(index)++;
 	str = ft_calloc((str_len + 1), sizeof(char));
 	if (!str)
-		printf("memory allocation fail\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
 	return (str);
 }
@@ -100,7 +100,7 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	str = NULL;
 	cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
-		printf("strdup allocation fail!");
+		ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
 	str = parse_flags(input, &(*index));

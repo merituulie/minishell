@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_exit.c                                     :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:48:37 by emeinert          #+#    #+#             */
-/*   Updated: 2023/07/22 11:59:42 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:57:36 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi_exit(const char *str)
+#include "libft.h"
+
+long long	ft_atoll(const char *str)
 {
 	long	i;
-	long	result;
-	long	sign;
+	long long result;
+	long long	sign;
 
 	result = 0;
 	sign = 1;
@@ -29,10 +31,10 @@ int	ft_atoi_exit(const char *str)
 	{
 		result = result * 10 + (str[i] - '0');
 		i++;
-		if (sign * result > 2147483647)
-			return (0);
-		if (sign * result < -2147483648)
+		if (sign == 1 && result > 9223372036854775807)
+			return (-1);
+		if (sign == -1 && result > 9223372036854775807)
 			return (0);
 	}
-	return ((int)sign * (int)result);
+	return (sign * result); //leave the long longs
 }
