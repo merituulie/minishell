@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/03 08:46:10 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:53:58 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ void	error_msg(int code, char *str, t_command *command)
 	{
 		temp = ft_strjoin("PinkShell: ", command->command);
 		if (!temp)
-			printf("malloc_error\n");
+			ft_putstr_fd("Memory allocation failure!\n", 2);
 	}
 	else
 	{
 		temp = ft_strdup("PinkShell: ");
 		if (!temp)
-			printf("malloc_error\n");
+			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 	}
 	msg = ft_strjoin(temp, str);
 	if (!msg)
-		printf("malloc_error\n");
+		ft_putstr_fd("Memory allocation failure!\n", 2);
 	free(temp);
 	ft_putstr_fd(msg, 2);
 	free(msg);
