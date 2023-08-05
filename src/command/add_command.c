@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/05 10:37:21 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:40:55 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
 
-// static void	print_cmd_line(char **str)
-// {
-// 	int	i;
+static void	print_cmd_line(char **str)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		printf("not_echo str is %s\n", str[i]);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (str[i])
+	{
+		printf("not_echo str is %s\n", str[i]);
+		i++;
+	}
+}
 
 static char	*parse_redirection_filename(char **input, int index)
 {
@@ -114,28 +114,13 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	if (str)
 		free(str);
 	printf("here8\n");
-	// if (not_echo)
-	// {
-	// 	printf("echo should not come here\n");
-	// 	print_cmd_line(not_echo);
-	// 	free_char_array(not_echo);
-	// }
-	printf("here9\n");
-}
-
-int	check_null_index_handle_redirs(t_command *cmd, int track, \
-char **input, int *index)
-{
-	if (!input[(*index)])
-		return (-1);
-	if (handle_redirection(cmd, index, track, input) == -1)
+	if (not_echo)
 	{
-		while (input[(*index)] && !ft_strchr("|", input[(*index)][0]))
-			(*index)++;
+		printf("echo should not come here\n");
+		print_cmd_line(not_echo);
+		free_char_array(not_echo);
 	}
-	if (!input[(*index)])
-		return (-1);
-	return (0);
+	printf("here9\n");
 }
 
 int	check_null_index_handle_redirs(t_command *cmd, int track, \
