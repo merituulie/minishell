@@ -6,12 +6,31 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/02 11:21:59 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/04 17:40:21 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
+
+/* 1 is pipe, 2 is < or > or << or >>
+error value 258 needs to be returned*/
+int	syntax_error_msg(int i, char *str)
+{
+	if (i == 1)
+		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
+	if (i == 2)
+		ft_putstr_fd("syntax error near unexpected token 'newline'\n", 2);
+	if (i == 3)
+		ft_putstr_fd("syntax error near unexpected token `>'\n", 2);
+	if (i == 4)
+		ft_putstr_fd("syntax error near unexpected token `<'\n", 2);
+	if (i == 5)
+		ft_putstr_fd("syntax error: quotes not ended\n", 2);
+	free(str);
+	error_code(258);
+	return (-1);
+}
 
 char	**allocate_2d_array(char **old_array)
 {
