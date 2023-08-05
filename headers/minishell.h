@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/05 09:29:07 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:16:55 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ void		redirect_files(t_command *current);
 void		ft_dup2(int infile_fd, int outfile_fd);
 void		clear_failed_redir(t_command *cmd);
 void		update_command_redir(int fd, t_command *command);
-int			check_null_index_handle_redirs(t_command *cmd, int track, char **input, int *index);
+int			check_null_index_handle_redirs(t_command *cmd, int track, \
+			char **input, int *index);
 int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
 
 // COMMON
