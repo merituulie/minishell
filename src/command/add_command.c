@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 16:04:51 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/05 07:14:52 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,6 @@ static char	*parse_redirection_filename(char **input, int index)
 	return (str);
 }
 
-void	clear_failed_redir(t_command *cmd)
-{
-	int	j;
-
-	if (cmd->command)
-		cmd->command = NULL;
-	if (cmd->flags)
-		cmd->flags = NULL;
-	if (cmd->input)
-	{
-		j = 0;
-		while (cmd->input[j])
-		{
-			cmd->input[j] = NULL;
-			j++;
-		}
-	}
-	if (cmd->infile_name)
-		cmd->infile_name = NULL;
-	if (cmd->outfile_name)
-		cmd->outfile_name = NULL;
-	if (cmd->redir_fd_index)
-		cmd->redir_fd_index = 0;
-	if (cmd->token)
-		cmd->token = NONE;
-}
-
 int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
 	char	*str;
@@ -69,11 +42,18 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	&& ft_strncmp_all("<<", input[(*index)]))
 	{
 		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
+		{
+			free(cmd[track].infile_name);
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+		}
 		else if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
+		{
+			free(cmd[track].outfile_name);
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+		}
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
+		free(str);
 		if (open_redirection_file(&cmd[track]) == -1)
 		{
 			clear_failed_redir(&cmd[track]);
@@ -87,7 +67,6 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 		else
 			(*index) += 2;
 	}
-	free(str);
 	return (0);
 }
 
