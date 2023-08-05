@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 17:42:49 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/05 06:44:42 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ static int	check_pipe_syntax(char *str, int i)
 		return (syntax_error_msg(1, str));
 	else if (str[i] == '|' && check_if_nothing(str, i))
 		return (syntax_error_msg(1, str));
+	else
+	{
+		while (is_delim(str[i + 1]) == true)
+			i++;
+		if (str[i + 1] == '|')
+			return (syntax_error_msg(1, str));
+	}
 	return (0);
 }
 
@@ -93,6 +100,7 @@ can we use exit(258)? I don't know :/ */
 int	syntax_error(char *str)
 {
 	int	i;
+	int	ret;
 
 	i = -1;
 	while (str[++i])
@@ -100,9 +108,17 @@ int	syntax_error(char *str)
 		if (str[i] == '|')
 			return (check_pipe_syntax(str, i));
 		if (str[i] == '>')
-			return (out_redir_syntax_error(str, i));
+		{
+			ret = out_redir_syntax_error(str, i);
+			if (ret)
+				return (ret);
+		}
 		if (str[i] == '<')
-			return (in_redir_syntax_error(str, i));
+		{
+			ret = in_redir_syntax_error(str, i);
+			if (ret)
+				return (ret);
+		}
 	}
 	return (syntax_error2(str, i));
 }
