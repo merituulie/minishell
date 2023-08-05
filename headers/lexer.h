@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:40:47 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/04 13:41:06 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:26:30 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	**add_line(t_lexer *l);
 int		case_operand(t_lexer *l);
 
 //lexer_utils.c
+int		syntax_error_msg(int i, char *str);
 char	**allocate_2d_array(char **old_array);
 int		trim_last_line(char **array, int line_index);
 int		check_if_nothing(char *str, int i);
@@ -57,7 +58,5 @@ int		double_redir(char *str, int j);
 
 /*syntax_error.c*/
 int		syntax_error(char *str);
-int		syntax_error2(char *str, int i);
-int		syntax_error_msg(int i, char *str);
 
 #endif

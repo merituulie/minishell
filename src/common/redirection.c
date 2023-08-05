@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/04 11:53:04 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/05 07:59:17 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,32 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 		cmd[track].token = OUTPUT_APPEND;
 	}
 	return (0);
+}
+
+void	clear_failed_redir(t_command *cmd)
+{
+	if (cmd->command)
+	{
+		free(cmd->command);
+		cmd->command = NULL;
+	}
+	if (cmd->flags)
+		free(cmd->flags);
+		cmd->flags = NULL;
+	if (cmd->input)
+		free_char_array(cmd->input);
+	if (cmd->infile_name)
+	{
+		free(cmd->infile_name);
+		cmd->infile_name = NULL;
+	}
+	if (cmd->outfile_name)
+	{
+		free(cmd->outfile_name);
+		cmd->outfile_name = NULL;
+	}
+	if (cmd->redir_fd_index)
+		cmd->redir_fd_index = 0;
+	if (cmd->token)
+		cmd->token = NONE;
 }

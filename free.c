@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/04 16:11:18 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 09:56:12 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,6 @@ void	free_in_main(t_data *data)
 
 void	close_free_fd_arrays(void)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	close_files(g_info.pipe_fds, g_info.pipe_count);
-	if (g_info.pipe_fds)
-		free(g_info.pipe_fds);
 	close_files(g_info.redir_fds, g_info.redir_count);
 	if (g_info.redir_fds)
 		free(g_info.redir_fds);
