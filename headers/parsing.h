@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 17:36:23 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 08:00:12 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ typedef struct s_data
 	struct termios		old_tio;
 	struct termios		new_tio;
 	struct sigaction	sa;
-	char			**args;
-	int				start;
-	int				end;
-	int				s_quotes;
-	int				d_quotes;
-	char			*out;
-	int				i;
-	int				j;
-	int				k;
-	int				struct_count;
+	char				**args;
+	int					start;
+	int					end;
+	int					s_quotes;
+	int					d_quotes;
+	char				*out;
+	int					i;
+	int					j;
+	int					k;
+	int					struct_count;
 }	t_data;
 
 /*expand_env.c*/

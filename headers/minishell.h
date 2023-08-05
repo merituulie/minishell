@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/04 15:02:44 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/05 07:14:16 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,12 @@ void		put_to_input(t_command *cmd, int track, char *str, char **not_echo);
 void		put_to_flags(t_command **cmd, int track, char *str);
 char		*parse_flags(char **input, int	*index);
 char		*parse_input(char **input, int *index);
-int			parse_redirection(t_command *cmd, int track, char *str, \
-			char *input);
-int			handle_redirection(t_command *cmd, int *index, int track, \
-			char **input);
 void		put_cmds_to_struct(t_command *cmd, char **input, t_data *ms);
 char		*ft_strchr_null(const char *s, int c);
 void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
 void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
 char		**copy_input(char **input, int *index);
-int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
-void		update_command_redir(int fd, t_command *command);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
@@ -120,9 +114,16 @@ int			handle_pipe(t_command *commands, t_env **env, int command_count);
 void		wait_children(int *pids, int count);
 
 // REDIRECTIONS
+int			parse_redirection(t_command *cmd, int track, char *str, \
+			char *input);
+int			handle_redirection(t_command *cmd, int *index, int track, \
+			char **input);
 void		redirect_io(int infile_fd, int outfile_fd);
 void		redirect_files(t_command *current);
 void		ft_dup2(int infile_fd, int outfile_fd);
+void		clear_failed_redir(t_command *cmd);
+void		update_command_redir(int fd, t_command *command);
+int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
 
 // COMMON
 void		close_files(int *pipe_fds, int fd_count);
