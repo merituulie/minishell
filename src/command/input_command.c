@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by                   #+#    #+#             */
-/*   Updated: 2023/08/04 17:10:23 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:18:17 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,35 +53,31 @@ char	*parse_input(char **input, int *index)
 	return (str);
 }
 
-char	**copy_input(char **input, int *index)
+char	**copy_input(char **input, int *index, char **not_echo)
 {
 	int		cur_index;
-	char	**out;
-	// char	**temp;
 	int		i;
 
 	i = 0;
-	// temp = NULL;
 	cur_index = *index;
 	if (ft_strchr_null("<|>", input[*index][0]))
 		return (NULL);
 	while ((*index) < ft_arrlen(input) && \
 			!ft_strchr_null("<|>", input[*index][0]) && input[*index])
 		(*index)++;
-	out = ft_calloc(((*index) - cur_index + 1), sizeof(char *));
-	if (!out)
+	not_echo = ft_calloc(((*index) - cur_index + 1), sizeof(char *));
+	printf("index is %d, cur_index is %d\n", *index, cur_index);
+	if (!not_echo)
 		ft_putstr_fd("Memory allocation failure!\n", 2);
 	while (cur_index < (*index))
 	{
-		out[i] = ft_strdup(input[cur_index]);
-		printf("input[%d] is %s, out[%d] is %s\n", cur_index, input[cur_index], i, out[i]);
+		not_echo[i] = ft_strdup(input[cur_index]);
+		printf("input[%d] is %s, not_echo[%d] is %s\n", cur_index, input[cur_index], i, not_echo[i]);
 		i++;
 		cur_index++;
 	}
-	out[i] = NULL;
-	printf("out[i] is %s\n", NULL);
-	// free(out);
-	return (out);
+	not_echo[i] = NULL;
+	return (not_echo);
 }
 
 static void	put_to_input2(t_command *cmd, int track, char **not_echo)

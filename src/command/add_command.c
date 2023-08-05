@@ -6,13 +6,25 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/05 09:57:53 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:21:20 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
+
+// static void	print_cmd_line(char **str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		printf("not_echo str is %s\n", str[i]);
+// 		i++;
+// 	}
+// }
 
 static char	*parse_redirection_filename(char **input, int index)
 {
@@ -96,14 +108,18 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	else
 	{
 		printf("I'm %s and I come here\n", cmd[track].command);
-		not_echo = copy_input(input, index);
+		not_echo = copy_input(input, index, not_echo);
 	}
 	put_to_input(cmd, track, str, not_echo);
 	if (str)
 		free(str);
 	printf("here8\n");
-	if (not_echo)
-		free_char_array(not_echo);
+	// if (not_echo)
+	// {
+	// 	printf("echo should not come here\n");
+	// 	print_cmd_line(not_echo);
+	// 	free_char_array(not_echo);
+	// }
 	printf("here9\n");
 }
 
