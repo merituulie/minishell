@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/05 12:47:12 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 13:12:21 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	close_files(int *pipe_fds, int fd_count)
 	while (i < fd_count)
 	{
 		if (pipe_fds[i])
-			close_file(pipe_fds[i]);
+			// close_file(pipe_fds[i]);
 		i++;
 	}
 }
@@ -51,15 +51,15 @@ int	open_redirection_file(t_command *current)
 
 	fd = -2;
 	if (current->token == INPUT){
-		printf("open first infile");
+		printf("open first infile\n");
 		fd = open_file(current->infile_name, O_RDONLY);
 	}
 	else if (current->token == OUTPUT_TRUNC){
-		printf("open first outfile");
+		printf("open first outfile\n");
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
 	}
 	else if (current->token == OUTPUT_APPEND){
-		printf("open first outfile");
+		printf("open first append_outfile\n");
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
 	}
 	current->redir_fd_index = g_info.redir_index_count;
