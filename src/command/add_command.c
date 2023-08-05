@@ -6,25 +6,13 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/05 10:40:55 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 12:49:35 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
-
-static void	print_cmd_line(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		printf("not_echo str is %s\n", str[i]);
-		i++;
-	}
-}
 
 static char	*parse_redirection_filename(char **input, int index)
 {
@@ -55,17 +43,22 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	{
 		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
 		{
+			printf("close '<' file\n");
 			free(cmd[track].infile_name);
+			cmd[track].infile_name = NULL;
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
 		}
 		else if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
 		{
+			printf("close '>' file\n");
 			free(cmd[track].outfile_name);
+			cmd[track].outfile_name = NULL;
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
 		}
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
-		free(str);
+		if (str)
+			free(str);
 		if (open_redirection_file(&cmd[track]) == -1)
 		{
 			clear_failed_redir(&cmd[track]);
@@ -101,26 +94,10 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
 	if (!ft_strncmp_all(cmd[track].command, "echo"))
-	{
-		printf("I'm echo and I come here\n");
 		str = parse_input(input, index);
-	}
 	else
-	{
-		printf("I'm %s and I come here\n", cmd[track].command);
 		not_echo = copy_input(input, index, not_echo);
-	}
 	put_to_input(cmd, track, str, not_echo);
-	if (str)
-		free(str);
-	printf("here8\n");
-	if (not_echo)
-	{
-		printf("echo should not come here\n");
-		print_cmd_line(not_echo);
-		free_char_array(not_echo);
-	}
-	printf("here9\n");
 }
 
 int	check_null_index_handle_redirs(t_command *cmd, int track, \

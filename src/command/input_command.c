@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by                   #+#    #+#             */
-/*   Updated: 2023/08/05 10:18:17 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 11:23:33 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ char	**copy_input(char **input, int *index, char **not_echo)
 			!ft_strchr_null("<|>", input[*index][0]) && input[*index])
 		(*index)++;
 	not_echo = ft_calloc(((*index) - cur_index + 1), sizeof(char *));
-	printf("index is %d, cur_index is %d\n", *index, cur_index);
 	if (!not_echo)
 		ft_putstr_fd("Memory allocation failure!\n", 2);
 	while (cur_index < (*index))
 	{
 		not_echo[i] = ft_strdup(input[cur_index]);
-		printf("input[%d] is %s, not_echo[%d] is %s\n", cur_index, input[cur_index], i, not_echo[i]);
 		i++;
 		cur_index++;
 	}
@@ -100,6 +98,8 @@ static void	put_to_input2(t_command *cmd, int track, char **not_echo)
 		i++;
 	}
 	cmd[track].input[i] = NULL;
+	if (not_echo)
+		free_char_array(not_echo);
 }
 
 void	put_to_input(t_command *cmd, int track, char *str, char **not_echo)
@@ -118,6 +118,8 @@ void	put_to_input(t_command *cmd, int track, char *str, char **not_echo)
 				ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 			cmd[track].input[1] = NULL;
 		}
+		if (str)
+			free(str);
 	}
 	else
 		put_to_input2(cmd, track, not_echo);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 15:59:45 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/05 12:47:12 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,18 @@ int	open_redirection_file(t_command *current)
 	int			fd;
 
 	fd = -2;
-	if (current->token == INPUT)
+	if (current->token == INPUT){
+		printf("open first infile");
 		fd = open_file(current->infile_name, O_RDONLY);
-	else if (current->token == OUTPUT_TRUNC)
+	}
+	else if (current->token == OUTPUT_TRUNC){
+		printf("open first outfile");
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
-	else if (current->token == OUTPUT_APPEND)
+	}
+	else if (current->token == OUTPUT_APPEND){
+		printf("open first outfile");
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
+	}
 	current->redir_fd_index = g_info.redir_index_count;
 	g_info.redir_fds[g_info.redir_index_count++] = fd;
 	return (fd);
