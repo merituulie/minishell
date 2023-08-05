@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/05 10:21:20 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:37:21 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,36 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	printf("here9\n");
 }
 
+int	check_null_index_handle_redirs(t_command *cmd, int track, \
+char **input, int *index)
+{
+	if (!input[(*index)])
+		return (-1);
+	if (handle_redirection(cmd, index, track, input) == -1)
+	{
+		while (input[(*index)] && !ft_strchr("|", input[(*index)][0]))
+			(*index)++;
+	}
+	if (!input[(*index)])
+		return (-1);
+	return (0);
+}
+
+int	check_null_index_handle_redirs(t_command *cmd, int track, \
+char **input, int *index)
+{
+	if (!input[(*index)])
+		return (-1);
+	if (handle_redirection(cmd, index, track, input) == -1)
+	{
+		while (input[(*index)] && !ft_strchr("|", input[(*index)][0]))
+			(*index)++;
+	}
+	if (!input[(*index)])
+		return (-1);
+	return (0);
+}
+
 void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 {
 	int		index;
@@ -133,15 +163,11 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 	while (input[index])
 	{
 		if (handle_heredoc(cmd, &index, track, input))
-			ft_heredoc(&cmd[track], &ms->env, input[index - 1]);
-		if (!input[index])
-			break ;
-		if (handle_redirection(cmd, &index, track, input) == -1)
 		{
-			while (input[index] && !ft_strchr("|", input[index][0]))
-				index++;
+			ft_heredoc(&cmd[track], &ms->env, input[index - 1]);
+			continue ;
 		}
-		if (!input[index])
+		if (check_null_index_handle_redirs(cmd, track, input, &index) == -1)
 			break ;
 		if (ft_strchr("|", input[index][0]))
 		{
