@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/05 06:44:42 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/05 07:43:17 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,14 @@ static int	out_redir_syntax_error(char *str, int i)
 	else if ((str[i + 1] == '>' && str[i + 2] == '>'))
 		return (syntax_error_msg(3, str));
 	else if (str[i + 1] == '<')
-	{
 		return (syntax_error_msg(4, str));
-	}
 	else
 	{
 		while (is_delim(str[i + 1]) == true)
 			i++;
 		if (str[i + 1] == '<')
 			return (syntax_error_msg(4, str));
-		if (str[i + 1] == '>')
+		if (str[i + 1] == '>' && str[i] != '>')
 			return (syntax_error_msg(3, str));
 	}
 	return (0);
@@ -88,7 +86,7 @@ static int	in_redir_syntax_error(char *str, int i)
 			i++;
 		if (str[i + 1] == '>')
 			return (syntax_error_msg(3, str));
-		if (str[i + 1] == '<')
+		if (str[i + 1] == '<' && str[i] != '<')
 			return (syntax_error_msg(4, str));
 	}
 	return (0);
