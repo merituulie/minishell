@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:56:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/01 11:28:18 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/05 11:20:32 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ void	free_char_array(char **str)
 		return ;
 	while (str[i])
 	{
-		free(str[i]);
+		if (str[i])
+			free(str[i]);
 		i++;
 	}
-	free(str);
+	if (str)
+		free(str);
 }

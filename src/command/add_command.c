@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/05 10:04:30 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:23:24 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,24 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	while (ft_strchr_null("<>", input[(*index)][0]) \
 	&& ft_strncmp_all("<<", input[(*index)]))
 	{
-		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
+		if (!(ft_strncmp(input[(*index)], "<", 1))&& cmd[track].infile_name)
 		{
 			free(cmd[track].infile_name);
+			cmd[track].infile_name = NULL;
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+			g_info.redir_fds[cmd->redir_fd_index] = -1;
 		}
-		else if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
+		else if (!(ft_strncmp(input[(*index)], ">", 1)) && cmd[track].outfile_name)
 		{
 			free(cmd[track].outfile_name);
+			cmd[track].outfile_name = NULL;
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+			g_info.redir_fds[cmd->redir_fd_index] = -1;
 		}
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
-		free(str);
+		if (str)
+			free(str);
 		if (open_redirection_file(&cmd[track]) == -1)
 		{
 			clear_failed_redir(&cmd[track]);
@@ -82,7 +87,7 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
-	str = parse_flags(input, &(*index));
+	str = ft_strdup(parse_flags(input, &(*index)));
 	put_to_flags(&cmd, track, str);
 	if (str)
 		free(str);
@@ -91,12 +96,8 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	if (!ft_strncmp_all(cmd[track].command, "echo"))
 		str = parse_input(input, index);
 	else
-		not_echo = copy_input(input, index);
+		not_echo = copy_input(input, index, not_echo);
 	put_to_input(cmd, track, str, not_echo);
-	if (str)
-		free(str);
-	if (not_echo)
-		free_char_array(not_echo);
 }
 
 int	check_null_index_handle_redirs(t_command *cmd, int track, \

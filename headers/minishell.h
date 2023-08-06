@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/05 10:16:55 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:34:36 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char		*ft_strchr_null(const char *s, int c);
 void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
 void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
-char		**copy_input(char **input, int *index);
+char		**copy_input(char **input, int *index, char **not_echo);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
@@ -122,7 +122,7 @@ void		redirect_io(int infile_fd, int outfile_fd);
 void		redirect_files(t_command *current);
 void		ft_dup2(int infile_fd, int outfile_fd);
 void		clear_failed_redir(t_command *cmd);
-void		update_command_redir(int fd, t_command *command);
+void		update_command_redir(t_command *command);
 int			check_null_index_handle_redirs(t_command *cmd, int track, \
 			char **input, int *index);
 int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
