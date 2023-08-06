@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/06 09:32:01 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:31:44 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ void	close_free_fd_arrays(void)
 {
 	close_files(g_info.redir_fds, g_info.redir_count);
 	if (g_info.redir_fds)
+	{
 		free(g_info.redir_fds);
+		g_info.redir_fds = NULL;
+	}
 }
 
 void	free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line)
