@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/06 16:31:59 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:35:51 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,18 @@ void	redirect_io(int infile_fd, int outfile_fd)
 	close_files(g_info.pipe_fds, g_info.pipe_count);
 }
 
+/*checks if index is -2, if opening infile fails(without pipe)
+checks if g_info.redir_fds[current->redir_fd_index] is -1,
+opening infile fails(with pipe)*/
 void	redirect_files(t_command *current)
 {
-	if (current->redir_fd_index != -2)
+	if (current->redir_fd_index != -2 \
+		&& g_info.redir_fds[current->redir_fd_index] != -1)
 		ft_dup2(g_info.redir_fds[current->redir_fd_index], -2);
-	if (current->redir_fd_index2 != -2)
+	if (current->redir_fd_index2 != -2 \
+		&& g_info.redir_fds[current->redir_fd_index2] != -1)
 		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index2]);
 	close_files(g_info.redir_fds, g_info.redir_count);
-	// if ((g_info.redir_fds[current->redir_fd_index] != -2) \
-	// 	&& (g_info.redir_fds[current->redir_fd_index] != -1))
-	// {
-	// 	printf("we come to dup\n");
-	// 	ft_dup2(g_info.redir_fds[current->redir_fd_index], -2);
-	// }
-	// if (g_info.redir_fds[current->redir_fd_index2] != -2 \
-	// 		&& g_info.redir_fds[current->redir_fd_index2] != -1)
-	// 	ft_dup2(-2, g_info.redir_fds[current->redir_fd_index2]);
 }
 
 int	parse_redirection(t_command *cmd, int track, char *str, char *input)

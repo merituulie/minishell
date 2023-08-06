@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/06 16:31:49 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:36:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	close_files(int *pipe_fds, int fd_count)
 	}
 }
 
+/*redir_fd_index: for the infile only
+redir_fd_index2: for the outfile only*/
 int	open_redirection_file(t_command *current)
 {
 	int			fd;
@@ -60,6 +62,7 @@ int	open_redirection_file(t_command *current)
 		current->redir_fd_index = g_info.redir_index_count;
 	else
 		current->redir_fd_index2 = g_info.redir_index_count;
+	printf("fd is %d\n", fd);
 	g_info.redir_fds[g_info.redir_index_count++] = fd;
 	return (fd);
 }
