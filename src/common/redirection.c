@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/06 09:33:06 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:35:51 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ void	redirect_io(int infile_fd, int outfile_fd)
 	close_files(g_info.pipe_fds, g_info.pipe_count);
 }
 
+/*checks if index is -2, if opening infile fails(without pipe)
+checks if g_info.redir_fds[current->redir_fd_index] is -1,
+opening infile fails(with pipe)*/
 void	redirect_files(t_command *current)
 {
-	if (current->token == INPUT)
+	if (current->redir_fd_index != -2 \
+		&& g_info.redir_fds[current->redir_fd_index] != -1)
 		ft_dup2(g_info.redir_fds[current->redir_fd_index], -2);
-	else if (current->token == OUTPUT_APPEND \
-	|| current->token == OUTPUT_TRUNC)
-		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index]);
+	if (current->redir_fd_index2 != -2 \
+		&& g_info.redir_fds[current->redir_fd_index2] != -1)
+		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index2]);
 	close_files(g_info.redir_fds, g_info.redir_count);
 }
 
@@ -86,8 +90,8 @@ void	clear_failed_redir(t_command *cmd)
 		free(cmd->outfile_name);
 		cmd->outfile_name = NULL;
 	}
-	if (cmd->redir_fd_index)
-		cmd->redir_fd_index = 0;
+	cmd->redir_fd_index = -2;
+	cmd->redir_fd_index2 = -2;
 	if (cmd->token)
 		cmd->token = NONE;
 }

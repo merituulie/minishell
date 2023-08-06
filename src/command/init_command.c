@@ -6,13 +6,14 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/05 11:23:40 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 14:04:08 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
+
 
 static int	count_struct(char **input)
 {
@@ -79,6 +80,8 @@ t_command	*init_cmds(t_data *ms, char **input)
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)
 		ft_putstr_fd("Memory allocation failure!\n", 2);
+	cmd->redir_fd_index = -2;
+	cmd->redir_fd_index2 = -2;
 	put_cmds_to_struct(cmd, input, ms);
 	full_cmd(cmd, ms->struct_count, track);
 	return (cmd);

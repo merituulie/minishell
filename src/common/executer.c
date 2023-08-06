@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/06 09:32:09 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 15:46:15 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 	{
 		if (dont_fork_cmd(command))
 		{
-			redirect_files(command);
+			// redirect_files(command);
 			execute_command(command, env, 0);
 		}
 		else

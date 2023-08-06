@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/06 09:23:24 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 15:41:41 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,15 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 			cmd[track].infile_name = NULL;
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
 			g_info.redir_fds[cmd->redir_fd_index] = -1;
+			cmd->redir_fd_index = -2;
 		}
 		else if (!(ft_strncmp(input[(*index)], ">", 1)) && cmd[track].outfile_name)
 		{
 			free(cmd[track].outfile_name);
 			cmd[track].outfile_name = NULL;
-			close_file(g_info.redir_fds[cmd->redir_fd_index]);
-			g_info.redir_fds[cmd->redir_fd_index] = -1;
+			close_file(g_info.redir_fds[cmd->redir_fd_index2]);
+			g_info.redir_fds[cmd->redir_fd_index2] = -1;
+			cmd->redir_fd_index2 = -2;
 		}
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
