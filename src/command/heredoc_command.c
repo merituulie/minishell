@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:11:37 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 13:37:04 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:35:03 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-void	update_command_redir(int fd, t_command *command)
+void	update_command_redir(t_command *command)
 {
+	int	fd;
+
+	fd = open_file(HEREDOC, O_RDONLY);
 	command->token = INPUT;
 	command->redir_fd_index = g_info.redir_index_count;
 	g_info.redir_fds[g_info.redir_index_count++] = fd;

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/05 12:49:35 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:23:24 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	while (ft_strchr_null("<>", input[(*index)][0]) \
 	&& ft_strncmp_all("<<", input[(*index)]))
 	{
-		if (ft_strncmp(input[(*index)], "<", 1) && cmd[track].infile_name)
+		if (!(ft_strncmp(input[(*index)], "<", 1))&& cmd[track].infile_name)
 		{
-			printf("close '<' file\n");
 			free(cmd[track].infile_name);
 			cmd[track].infile_name = NULL;
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+			g_info.redir_fds[cmd->redir_fd_index] = -1;
 		}
-		else if (ft_strncmp(input[(*index)], ">", 1) && cmd[track].outfile_name)
+		else if (!(ft_strncmp(input[(*index)], ">", 1)) && cmd[track].outfile_name)
 		{
-			printf("close '>' file\n");
 			free(cmd[track].outfile_name);
 			cmd[track].outfile_name = NULL;
 			close_file(g_info.redir_fds[cmd->redir_fd_index]);
+			g_info.redir_fds[cmd->redir_fd_index] = -1;
 		}
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);

@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/05 12:45:47 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:33:06 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 		if (!cmd[track].infile_name)
 			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 		cmd[track].token = INPUT;
-		printf("parse_redir: infiile name is :%s\n", cmd[track].infile_name);
 	}
 	else if (!ft_strncmp_all(">", input))
 	{
@@ -54,7 +53,6 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 		if (!cmd[track].outfile_name)
 			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 		cmd[track].token = OUTPUT_TRUNC;
-		printf("parse_redir: outfiile name is :%s\n", cmd[track].outfile_name);
 	}
 	else if (!ft_strncmp_all(">>", input))
 	{
@@ -62,7 +60,6 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 		if (!cmd[track].outfile_name)
 			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
 		cmd[track].token = OUTPUT_APPEND;
-		printf("parse_redir: outfiile name is :%s\n", cmd[track].outfile_name);
 	}
 	return (0);
 }
