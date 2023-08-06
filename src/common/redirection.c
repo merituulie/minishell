@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/06 09:33:06 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 11:45:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ void	redirect_io(int infile_fd, int outfile_fd)
 
 void	redirect_files(t_command *current)
 {
-	if (current->token == INPUT)
+	if (current->redir_fd_index != -2)
 		ft_dup2(g_info.redir_fds[current->redir_fd_index], -2);
-	else if (current->token == OUTPUT_APPEND \
-	|| current->token == OUTPUT_TRUNC)
-		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index]);
+	if (current->redir_fd_index2 != -2)
+		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index2]);
 	close_files(g_info.redir_fds, g_info.redir_count);
 }
 

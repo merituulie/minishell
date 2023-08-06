@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/06 09:34:36 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/06 11:04:52 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_command
 	char	*infile_name;
 	char	*outfile_name;
 	int		redir_fd_index;
+	int		redir_fd_index2;
 	int		token;
 	int		in_heredoc;
 	int		pid;
