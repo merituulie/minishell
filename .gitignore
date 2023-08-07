@@ -6,3 +6,4 @@
 *.a
 libft/libft.a
 minishell
+libft/libft.h.gch
