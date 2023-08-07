@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/06 17:35:51 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:42:17 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ void	redirect_io(int infile_fd, int outfile_fd)
 }
 
 /*checks if index is -2, if opening infile fails(without pipe)
-checks if g_info.redir_fds[current->redir_fd_index] is -1,
+checks if g_info.redir_fds[current->redir_fd_index_in] is -1,
 opening infile fails(with pipe)*/
 void	redirect_files(t_command *current)
 {
-	if (current->redir_fd_index != -2 \
-		&& g_info.redir_fds[current->redir_fd_index] != -1)
-		ft_dup2(g_info.redir_fds[current->redir_fd_index], -2);
-	if (current->redir_fd_index2 != -2 \
-		&& g_info.redir_fds[current->redir_fd_index2] != -1)
-		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index2]);
+	if (current->redir_fd_index_in != -2 \
+		&& g_info.redir_fds[current->redir_fd_index_in] != -1)
+		ft_dup2(g_info.redir_fds[current->redir_fd_index_in], -2);
+	if (current->redir_fd_index_out != -2 \
+		&& g_info.redir_fds[current->redir_fd_index_out] != -1)
+		ft_dup2(-2, g_info.redir_fds[current->redir_fd_index_out]);
 	close_files(g_info.redir_fds, g_info.redir_count);
 }
 
@@ -90,8 +90,8 @@ void	clear_failed_redir(t_command *cmd)
 		free(cmd->outfile_name);
 		cmd->outfile_name = NULL;
 	}
-	cmd->redir_fd_index = -2;
-	cmd->redir_fd_index2 = -2;
+	cmd->redir_fd_index_in = -2;
+	cmd->redir_fd_index_out = -2;
 	if (cmd->token)
 		cmd->token = NONE;
 }

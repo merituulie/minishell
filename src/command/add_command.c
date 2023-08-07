@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/06 15:41:41 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:50:51 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,26 @@ static char	*parse_redirection_filename(char **input, int index)
 	return (str);
 }
 
+static char	*reset_redir_file(t_command *cmd, char **input, int *index, int track)
+{
+	if (!(ft_strncmp(input[(*index)], "<", 1)) && cmd[track].infile_name)
+	{
+		free(cmd[track].infile_name);
+		cmd[track].infile_name = NULL;
+		close_file(g_info.redir_fds[cmd->redir_fd_index_in]);
+		g_info.redir_fds[cmd->redir_fd_index_in] = -1;
+		cmd->redir_fd_index_in = -2;
+	}
+	else if (!(ft_strncmp(input[(*index)], ">", 1)) && cmd[track].outfile_name)
+	{
+		free(cmd[track].outfile_name);
+		cmd[track].outfile_name = NULL;
+		close_file(g_info.redir_fds[cmd->redir_fd_index_out]);
+		g_info.redir_fds[cmd->redir_fd_index_out] = -1;
+		cmd->redir_fd_index_out = -2;
+	}
+}
+
 int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
 	char	*str;
@@ -41,22 +61,7 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 	while (ft_strchr_null("<>", input[(*index)][0]) \
 	&& ft_strncmp_all("<<", input[(*index)]))
 	{
-		if (!(ft_strncmp(input[(*index)], "<", 1))&& cmd[track].infile_name)
-		{
-			free(cmd[track].infile_name);
-			cmd[track].infile_name = NULL;
-			close_file(g_info.redir_fds[cmd->redir_fd_index]);
-			g_info.redir_fds[cmd->redir_fd_index] = -1;
-			cmd->redir_fd_index = -2;
-		}
-		else if (!(ft_strncmp(input[(*index)], ">", 1)) && cmd[track].outfile_name)
-		{
-			free(cmd[track].outfile_name);
-			cmd[track].outfile_name = NULL;
-			close_file(g_info.redir_fds[cmd->redir_fd_index2]);
-			g_info.redir_fds[cmd->redir_fd_index2] = -1;
-			cmd->redir_fd_index2 = -2;
-		}
+		reset_redir_file(cmd, input, index, track);
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
 		if (str)
@@ -66,13 +71,9 @@ int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 			clear_failed_redir(&cmd[track]);
 			return (-1);
 		}
-		if (!input[(*index + 2)])
-		{
-			(*index) += 2;
+		(*index) += 2;
+		if (!input[*index])
 			break ;
-		}
-		else
-			(*index) += 2;
 	}
 	return (0);
 }

@@ -22,7 +22,6 @@
 # include <string.h>
 # include <stdbool.h>
 # include <errno.h>
-# include "parsing.h"
 # include "minishell.h"
 
 typedef struct s_env	t_env;

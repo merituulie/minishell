@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 10:44:29 by                   #+#    #+#             */
-/*   Updated: 2023/08/06 17:21:08 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:40:35 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,14 @@ static void	execute_child(t_command *current, int command_count, \
 			t_env **env)
 {
 	if (current->id == 0)
-	{
-		printf("first fork\n");
 		redirect_io(-2, g_info.pipe_fds[current->id * 2 + 1]);
-	}
 	else if (current->id == command_count - 1)
-	{
-		printf("last fork\n");
 		redirect_io(g_info.pipe_fds[(current->id * 2) - 2], -2);
-	}
 	else
-	{
-		printf("middle fork\n");
 		redirect_io(g_info.pipe_fds[current->id * 2 - 2], \
 		g_info.pipe_fds[current->id * 2 + 1]);
-	}
 	if (current->token != NONE)
-	{	
-		printf("file descriptor fault\n");
 		redirect_files(current);
-	}
 	execute_command(current, env, 1);
 }
 
