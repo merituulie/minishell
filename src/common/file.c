@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/07 20:42:17 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/07 21:04:31 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	open_redirection_file(t_command *current)
 		current->redir_fd_index_in = g_info.redir_index_count;
 	else
 		current->redir_fd_index_out = g_info.redir_index_count;
-	printf("fd is %d\n", fd);
 	g_info.redir_fds[g_info.redir_index_count++] = fd;
 	return (fd);
 }
