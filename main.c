@@ -121,11 +121,6 @@ void	minishell(t_data *ms)
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
-		// while (*cmd_line)
-		// {
-		// 	free(*cmd_line);
-		// 	cmd_line++;
-		// } This is for << here and ctrl + d
 		if (cmd == NULL)
 			continue ;
 		execute_commands(cmd, ms->struct_count, &ms->env);

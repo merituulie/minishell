@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/08 15:04:01 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:55:02 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 		if (command[i].command)
 			free(command[i].command);
 		if (command[i].flags)
-			free (command[i].flags);
+			free(command[i].flags);
 		if (command[i].input)
 			free_char_array(command[i].input);
 		if (command[i].full_cmd)

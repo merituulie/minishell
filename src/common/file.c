@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 15:32:59 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:32:29 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	open_file(char *filename, int flags)
 		return (-1);
 	fd = open(filename, flags, S_IRWXU);
 	if (fd < 0)
-		ft_puterror(1, "Error when opening a file.\n", NULL);
+		ft_putstr_fd("Error when opening a file.\n", 2, 1);
 	return (fd);
 }
 
