@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/06 11:04:52 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:46:38 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int			open_file(char *filename, int flags);
 int			close_file(int fd);
 int			open_redirection_file(t_command *current);
 void		error_code(int number);
-void		error_msg(int code, char *str, t_command *command);
+void		ft_puterror(int code, char *str, t_command *command);
 char		*get_exit_value(void);
 int			*allocate_pids(int pid_count);
 

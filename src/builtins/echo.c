@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 13:40:40 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:06:39 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_echo(t_command *command)
 			new_line = 1;
 		else
 		{
-			ft_putstr_fd(command->flags, 1, 1);
+			ft_putstr_fd(command->flags, 1, 0);
 			ft_putchar_fd(' ', 1);
 		}
 	}
@@ -38,7 +38,7 @@ void	ft_echo(t_command *command)
 		ft_putchar_fd('\n', 1);
 	else
 	{
-		ft_putstr_fd(command->input[0], 1, 1);
+		ft_putstr_fd(command->input[0], 1, 0);
 		if (new_line == 0)
 			ft_putchar_fd('\n', 1);
 	}

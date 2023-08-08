@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/08 13:55:12 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:42:42 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,23 @@ char	*get_exit_value(void)
 	return (str);
 }
 
-void	error_msg(int code, char *str, t_command *command)
+void	ft_puterror(int code, char *str, t_command *command)
 {
 	char	*msg;
 	char	*temp;
 
-	if (code == 127 || code == 126)
+	if ((code == 127 || code == 126) && command)
 	{
 		temp = ft_strdup(command->command);
 		if (!temp)
 			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		msg = ft_strjoin(temp, str);
+		free(temp);
 	}
-	msg = ft_strjoin(temp, str);
+	else
+		msg = ft_strdup(str);
 	if (!msg)
 		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
-	free(temp);
 	ft_putstr_fd(msg, 2, 1);
 	free(msg);
 	g_info.exit_code = code;

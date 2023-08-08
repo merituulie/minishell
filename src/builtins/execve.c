@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:35:02 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 13:41:51 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:46:38 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	cmd_is_dir(t_command *command, t_env **env)
 	temp = check_value((*env)->vars, command->command);
 	if (temp && command->command && command->command[0] == '/')
 	{
-		error_msg(126, ": is a directory\n", command);
+		ft_puterror(126, ": is a directory\n", command);
 		exit(126);
 	}
 	else
@@ -71,9 +71,9 @@ int	execute_ft_execve(t_command *command, t_env **env)
 	if (exec < 0)
 	{
 		if (exec == -1)
-			error_msg(127, ": command not found\n", command);
+			ft_puterror(127, ": command not found\n", command);
 		else if (exec == -2)
-			error_msg(127, ": no such file or directory\n", command);
+			ft_puterror(127, ": no such file or directory\n", command);
 		exit(127);
 	}
 	exit(0);

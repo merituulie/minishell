@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/08 12:28:14 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:04:01 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 static void	unlink_heredoc(char *filename)
 {
 	if (!ft_strncmp_all(filename, HEREDOC))
-	{
 		unlink(HEREDOC);
-	}
 	return ;
 }
 
