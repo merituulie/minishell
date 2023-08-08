@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/07 20:50:51 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 08:57:50 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static char	*parse_redirection_filename(char **input, int index)
 	return (str);
 }
 
-static char	*reset_redir_file(t_command *cmd, char **input, int *index, int track)
+static void	reset_redir_file(t_command *cmd, char **input,	\
+											int *index, int track)
 {
 	if (!(ft_strncmp(input[(*index)], "<", 1)) && cmd[track].infile_name)
 	{
