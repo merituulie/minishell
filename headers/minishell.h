@@ -148,6 +148,7 @@ void		ctrl_d_cmd(char *line, t_data *ms);
 void		heredoc_signal(int signo);
 
 // FREE
+void		free_and_nullify(void *to_be_freed);
 void		free_cmd_struct(t_command *command, int cmd_count);
 void		free_in_main(t_data *data);
 void		free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line);
