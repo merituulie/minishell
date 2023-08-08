@@ -29,7 +29,8 @@ COMMON_SRC =	file \
 				signal \
 				pid \
 				shlvl \
-				executer
+				executer \
+				free
 
 LEXER_SRC = lexer \
 			lexer_utils \

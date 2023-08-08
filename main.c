@@ -107,11 +107,11 @@ void	minishell(t_data *ms)
 
 	while (42)
 	{
-		line = readline(PINK "Jose's PinkShell: " BORING);
+		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
 		if (space_newline(line) || line[0] == '\0' || line[0] == '\n')
 		{
-			free (line);
+			free(line);
 			continue ;
 		}
 		else

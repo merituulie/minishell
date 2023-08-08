@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 11:22:11 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:25:46 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,6 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 		cmd[track].token = OUTPUT_APPEND;
 	}
 	return (0);
-}
-
-void	free_and_nullify(char *to_be_freed)
-{
-	free(to_be_freed);
-	to_be_freed = NULL;
 }
 
 void	clear_failed_redir(t_command *cmd)

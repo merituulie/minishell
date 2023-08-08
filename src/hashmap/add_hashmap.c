@@ -6,13 +6,12 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 21:16:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/02 17:42:22 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 11:54:21 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
-#include <stdio.h>
 
 t_node	*new_node(char *key, char *value)
 {

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/06 16:31:44 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:28:14 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/parsing.h"
-#include "headers/lexer.h"
-#include "headers/minishell.h"
-#include "libft/libft.h"
+#include "../../headers/parsing.h"
+#include "../../headers/lexer.h"
+#include "../../headers/minishell.h"
+#include "../../libft/libft.h"
 
 static void	unlink_heredoc(char *filename)
 {
@@ -22,6 +22,12 @@ static void	unlink_heredoc(char *filename)
 		unlink(HEREDOC);
 	}
 	return ;
+}
+
+void	free_and_nullify(void *to_be_freed)
+{
+	free(to_be_freed);
+	to_be_freed = NULL;
 }
 
 void	free_cmd_struct(t_command *command, int cmd_count)
@@ -71,10 +77,7 @@ void	close_free_fd_arrays(void)
 {
 	close_files(g_info.redir_fds, g_info.redir_count);
 	if (g_info.redir_fds)
-	{
-		free(g_info.redir_fds);
-		g_info.redir_fds = NULL;
-	}
+		free_and_nullify(g_info.redir_fds);
 }
 
 void	free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line)

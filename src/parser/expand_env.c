@@ -6,12 +6,14 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 11:55:47 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:35:37 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parsing.h"
 #include "../../libft/libft.h"
+#include "../../headers/hashmap.h"
+#include "../../headers/minishell.h"
+#include "../../headers/parsing.h"
 
 /*check if the word comes after '$' is expandable part
 using env variables.*/
@@ -151,10 +153,3 @@ char	**expand_quote_check(t_data *ms, char **str)
 		return (NULL);
 	return (res);
 }
-
-// char	**expand_quote_check(t_data *ms, char **str)
-// {
-// 	ms_init(ms);
-// 	ms->i = -1;
-// 	return (expand_quote_check2(ms, str));
-// }
