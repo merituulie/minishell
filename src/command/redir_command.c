@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:57:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 17:20:35 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:51:40 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void	reset_redir_file(t_command *cmd, char **input,	\
 static int	handle_redirection(t_command *cmd, int *index, int track, char **input)
 {
 	char	*str;
-	int		open_error;
 
 	str = NULL;
 	while (ft_strchr_null("<>", input[(*index)][0]) \
@@ -66,10 +65,9 @@ static int	handle_redirection(t_command *cmd, int *index, int track, char **inpu
 		parse_redirection(cmd, track, str, input[(*index)]);
 		if (str)
 			free(str);
-		open_error = open_redirection_file(&cmd[track]);
-		if (open_error < 0)
+		if (open_redirection_file(&cmd[track]) < 0)
 		{
-			clear_failed_redir(&cmd[track], open_error);
+			clear_failed_redir(&cmd[track]);
 			return (-1);
 		}
 		(*index) += 2;

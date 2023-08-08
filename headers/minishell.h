@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 14:46:38 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:49:47 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int			check_null_index_handle_redirs(t_command *cmd, int track, \
 void		redirect_io(int infile_fd, int outfile_fd);
 void		redirect_files(t_command *current);
 void		ft_dup2(int infile_fd, int outfile_fd);
-void		clear_failed_redir(t_command *cmd, int open_error);
+void		clear_failed_redir(t_command *cmd);
 void		update_command_redir(t_command *command);
 int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
 

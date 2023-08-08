@@ -22,7 +22,8 @@ HASHMAP_SRC = add_hashmap \
 ENV_SRC = init_env \
 			env
 
-COMMON_SRC =	file \
+COMMON_SRC =	file_checker \
+				file \
 				pipe \
 				redirection \
 				save_exit_status \
@@ -39,6 +40,7 @@ LEXER_SRC = lexer \
 			add_lines_lexer
 
 COMMAND_SRC = init_command \
+			redir_command \
 			add_command \
 			input_command \
 			full_command \

@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:24:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 17:38:25 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:49:07 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,5 @@ int	accessable_for_open(char *filename, int flags)
 		return accessable_for_read(filename, path, accessable);
 	else if (flags >= O_WRONLY)
 		return accessable_for_write(filename, path, accessable);
-	return (1);
-}
-
-int is_redir_accessable(t_command *command)
-{
-	if ((command->redir_fd_index_in == -3 \
-		&& g_info.redir_fds[command->redir_fd_index_in] == -3)
-		|| (command->redir_fd_index_out == -3 \
-		&& g_info.redir_fds[command->redir_fd_index_out] == -3))
-		return (0);
 	return (1);
 }
