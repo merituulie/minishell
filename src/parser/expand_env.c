@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 12:35:37 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:58:01 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
 	if (!search)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -70,7 +70,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 		return (NULL);
 	search = ft_strdup(node->value);
 	if (!search)
-		ft_putstr_fd("Strdup memory allocation failure!\n", 2);
+		ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
 	return (search);
 }
 

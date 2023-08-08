@@ -18,7 +18,7 @@ int	open_file(char *filename, int flags)
 
 	fd = open(filename, flags, S_IRWXU);
 	if (fd < 0)
-		ft_putstr_fd("Pinkshell: error when open a file\n", 2);
+		ft_putstr_fd("Error when opening a file.\n", 2, 1);
 	return (fd);
 }
 
@@ -28,7 +28,7 @@ int	close_file(int fd)
 		return (0);
 	if (close(fd) == 0)
 		return (0);
-	ft_putstr_fd("Error when closing a file.\n", 2);
+	ft_putstr_fd("Error when closing a file.\n", 2, 1);
 	return (-1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 11:36:01 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:40:30 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ void	ft_cd(t_command *command, t_env **env)
 	free(temp->value);
 	temp->value = getcwd(NULL, 0);
 	if (!temp->value)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 }

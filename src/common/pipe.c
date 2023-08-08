@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 10:44:29 by                   #+#    #+#             */
-/*   Updated: 2023/08/07 20:40:35 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:51:20 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	handle_pipe(t_command *commands, t_env **env, \
 {
 	commands->pid = fork();
 	if (commands->pid < 0)
-		ft_putstr_fd("Forking error!", 2);
+		ft_putstr_fd("Forking error!", 2, 1);
 	if (commands->pid == 0)
 		execute_child(commands, command_count, env);
 	return (commands->pid);

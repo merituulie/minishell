@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:08:29 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/04 11:45:33 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:46:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	ft_pwd(t_env *env)
 
 	if (!env->vars)
 	{
-		ft_putstr_fd("Environment error.\n", 2);
+		ft_putstr_fd("Environment error.\n", 2, 1);
 		return (1);
 	}
 	correct_node = get_value(env->vars, "PWD");
-	ft_putstr_fd(correct_node->value, 1);
+	ft_putstr_fd(correct_node->value, 1, 0);
 	ft_putchar_fd('\n', 1);
 	return (0);
 }

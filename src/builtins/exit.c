@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/04 13:34:48 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:43:46 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static	void	num_arg_check(char **input, int fork)
 	{
 		g_info.exit_code = 255;
 		if (!fork)
-			ft_putstr_fd("exit\n", 1);
-		ft_putstr_fd("minishell: exit: ", 2);
-		ft_putstr_fd(input[1], 2);
-		ft_putstr_fd(": numeric argument required\n", 2);
+			ft_putstr_fd("exit\n", 1, 0);
+		ft_putstr_fd("exit: ", 2, 1);
+		ft_putstr_fd(input[1], 2, 0);
+		ft_putstr_fd(": numeric argument required\n", 2, 0);
 		exit(g_info.exit_code);
 	}
 }
@@ -77,8 +77,8 @@ static int	amount_check(char **input, int fork)
 	if (count > 2)
 	{
 		if (!fork)
-			ft_putstr_fd("exit\n", 1);
-		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+			ft_putstr_fd("exit\n", 1, 0);
+		ft_putstr_fd("exit: too many arguments\n", 2, 1);
 		g_info.exit_code = 1;
 		return (1);
 	}
@@ -93,7 +93,7 @@ void	ft_exit(t_command *command, int fork)
 	if (!command->input && !command->flags)
 	{
 		if (!fork)
-			ft_putstr_fd("exit\n", 1);
+			ft_putstr_fd("exit\n", 1, 0);
 		exit(0);
 	}
 	num_arg_check(command->full_cmd, fork);
@@ -103,7 +103,7 @@ void	ft_exit(t_command *command, int fork)
 	else
 	{
 		if (!fork)
-			ft_putstr_fd("exit\n", 1);
+			ft_putstr_fd("exit\n", 1, 0);
 		exit(g_info.exit_code);
 	}
 }

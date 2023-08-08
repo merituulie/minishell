@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/07 21:08:43 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:49:13 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 		if (i != command_count - 1)
 		{
 			if (pipe(&g_info.pipe_fds[i * 2]) < 0)
-				ft_putstr_fd("Piping error!", 2);
+				ft_putstr_fd("Piping error!", 2, 1);
 		}
 		pids[i] = handle_pipe(commands, env, command_count);
 		commands++;

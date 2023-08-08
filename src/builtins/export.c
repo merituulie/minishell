@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/03 10:00:34 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:45:00 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	*find_value_in_str(char *cmd)
 static void	change_node(t_node *temp, char *key, char *value)
 {
 	if (!value)
-		return (ft_putstr_fd("malloc error\n", 2));
+		return (ft_putstr_fd("Memory allocation failure.\n", 2, 1));
 	if (!get_value(&temp, key))
 		set_value(&temp, key, value);
 	else
@@ -94,9 +94,9 @@ static	void	export_loop(char **input, t_node *temp)
 		temp_char = find_key_in_str(input[i]);
 		if (!temp_char)
 		{
-			ft_putstr_fd("minishell: export: '", 2);
-			ft_putstr_fd(input[i], 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
+			ft_putstr_fd("export: '", 2, 1);
+			ft_putstr_fd(input[i], 2, 0);
+			ft_putstr_fd("': not a valid identifier\n", 2, 0);
 		}
 		else if (ft_strncmp_all(temp_char, input[i]))
 		{

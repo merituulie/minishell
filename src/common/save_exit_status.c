@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 11:53:58 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:55:12 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,15 @@ void	error_msg(int code, char *str, t_command *command)
 
 	if (code == 127 || code == 126)
 	{
-		temp = ft_strjoin("PinkShell: ", command->command);
+		temp = ft_strdup(command->command);
 		if (!temp)
-			ft_putstr_fd("Memory allocation failure!\n", 2);
-	}
-	else
-	{
-		temp = ft_strdup("PinkShell: ");
-		if (!temp)
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
+			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	}
 	msg = ft_strjoin(temp, str);
 	if (!msg)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	free(temp);
-	ft_putstr_fd(msg, 2);
+	ft_putstr_fd(msg, 2, 1);
 	free(msg);
 	g_info.exit_code = code;
 }

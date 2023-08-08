@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/04 17:40:21 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/08 13:57:43 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ error value 258 needs to be returned*/
 int	syntax_error_msg(int i, char *str)
 {
 	if (i == 1)
-		ft_putstr_fd("syntax error near unexpected token '|'\n", 2);
+		ft_putstr_fd("syntax error near unexpected token '|'\n", 2, 1);
 	if (i == 2)
-		ft_putstr_fd("syntax error near unexpected token 'newline'\n", 2);
+		ft_putstr_fd("syntax error near unexpected token 'newline'\n", 2, 1);
 	if (i == 3)
-		ft_putstr_fd("syntax error near unexpected token `>'\n", 2);
+		ft_putstr_fd("syntax error near unexpected token `>'\n", 2, 1);
 	if (i == 4)
-		ft_putstr_fd("syntax error near unexpected token `<'\n", 2);
+		ft_putstr_fd("syntax error near unexpected token `<'\n", 2, 1);
 	if (i == 5)
-		ft_putstr_fd("syntax error: quotes not ended\n", 2);
+		ft_putstr_fd("syntax error: quotes not ended\n", 2, 1);
 	free(str);
 	error_code(258);
 	return (-1);

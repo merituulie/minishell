@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 08:57:50 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:47:38 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*parse_redirection_filename(char **input, int index)
 	(index)++;
 	str = ft_calloc((str_len + 1), sizeof(char));
 	if (!str)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
 	return (str);
 }
@@ -88,7 +88,7 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	str = NULL;
 	cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
-		ft_putstr_fd("Strdup memory allocation failure!\n", 2);
+		ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
 	str = ft_strdup(parse_flags(input, &(*index)));

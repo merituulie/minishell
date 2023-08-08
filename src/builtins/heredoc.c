@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/06 09:34:54 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:46:21 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*find_env_here(char *var, int var_size, t_env **env)
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
 	if (!search)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -51,7 +51,7 @@ static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
 	ms->out = ft_calloc(size, sizeof(char));
 	if (!ms->out)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	ms->out = ft_memcpy(ms->out, str, ms->start);
 	leftover = ms->start;
 	if (new)
@@ -86,7 +86,7 @@ static char	*expand_var_here(t_data *ms, char *str, int start, t_env **env)
 	else
 		var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	realloc_var_here(ms, str, var, env);
 	free(var);
 	free(str);
@@ -125,7 +125,7 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
-			ft_putstr_fd("Heredoc writing error.\n", 2);
+			ft_putstr_fd("Heredoc writing error.\n", 2, 1);
 		free(line);
 		line = NULL;
 		line = readline("> ");
