@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/07 20:42:17 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 11:22:11 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,28 +68,24 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 	return (0);
 }
 
+void	free_and_nullify(char *to_be_freed)
+{
+	free(to_be_freed);
+	to_be_freed = NULL;
+}
+
 void	clear_failed_redir(t_command *cmd)
 {
 	if (cmd->command)
-	{
-		free(cmd->command);
-		cmd->command = NULL;
-	}
+		free_and_nullify(cmd->command);
 	if (cmd->flags)
-		free(cmd->flags);
-		cmd->flags = NULL;
+		free_and_nullify(cmd->flags);
 	if (cmd->input)
 		free_char_array(cmd->input);
 	if (cmd->infile_name)
-	{
-		free(cmd->infile_name);
-		cmd->infile_name = NULL;
-	}
+		free_and_nullify(cmd->infile_name);
 	if (cmd->outfile_name)
-	{
-		free(cmd->outfile_name);
-		cmd->outfile_name = NULL;
-	}
+		free_and_nullify(cmd->outfile_name);
 	cmd->redir_fd_index_in = -2;
 	cmd->redir_fd_index_out = -2;
 	if (cmd->token)
