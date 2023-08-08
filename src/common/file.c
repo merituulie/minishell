@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 16:32:29 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:35:35 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,13 @@ int	open_file(char *filename, int flags)
 	return (fd);
 }
 
-int	close_file(int fd)
+void	close_file(int fd)
 {
 	if (fd == 0 || fd == 1 || fd == -1)
-		return (0);
+		return ;
 	if (close(fd) == 0)
-		return (0);
+		return ;
 	ft_putstr_fd("Error when closing a file.\n", 2, 1);
-	return (-1);
 }
 
 void	close_files(int *pipe_fds, int fd_count)
@@ -84,8 +83,7 @@ void	close_files(int *pipe_fds, int fd_count)
 	i = 0;
 	while (i < fd_count)
 	{
-		if (pipe_fds[i])
-			close_file(pipe_fds[i]);
+		close_file(pipe_fds[i]);
 		i++;
 	}
 }

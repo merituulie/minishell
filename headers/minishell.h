@@ -130,7 +130,7 @@ int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
 // COMMON
 void		close_files(int *pipe_fds, int fd_count);
 int			open_file(char *filename, int flags);
-int			close_file(int fd);
+void		close_file(int fd);
 int			open_redirection_file(t_command *current);
 void		error_code(int number);
 void		ft_puterror(int code, char *str, t_command *command);
