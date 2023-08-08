@@ -114,17 +114,17 @@ int			handle_pipe(t_command *commands, t_env **env, int command_count);
 void		wait_children(int *pids, int count);
 
 // REDIRECTIONS
+int			is_redir_accessable(t_command *command);
+int			accessable_for_open(char *filename, int flags);
 int			parse_redirection(t_command *cmd, int track, char *str, \
 			char *input);
-int			handle_redirection(t_command *cmd, int *index, int track, \
-			char **input);
+int			check_null_index_handle_redirs(t_command *cmd, int track, \
+			char **input, int *index);
 void		redirect_io(int infile_fd, int outfile_fd);
 void		redirect_files(t_command *current);
 void		ft_dup2(int infile_fd, int outfile_fd);
-void		clear_failed_redir(t_command *cmd);
+void		clear_failed_redir(t_command *cmd, int open_error);
 void		update_command_redir(t_command *command);
-int			check_null_index_handle_redirs(t_command *cmd, int track, \
-			char **input, int *index);
 int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
 
 // COMMON
@@ -132,9 +132,9 @@ void		close_files(int *pipe_fds, int fd_count);
 int			open_file(char *filename, int flags);
 void		close_file(int fd);
 int			open_redirection_file(t_command *current);
-void		error_code(int number);
+void		set_exit_code(int number);
 void		ft_puterror(int code, char *str, t_command *command);
-char		*get_exit_value(void);
+char		*get_exit_code(void);
 int			*allocate_pids(int pid_count);
 
 // TO STRINGS

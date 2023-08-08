@@ -6,19 +6,19 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/08 15:42:42 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:55:21 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
 
-void	error_code(int number)
+void	set_exit_code(int number)
 {
 	g_info.exit_code = number;
 }
 
-char	*get_exit_value(void)
+char	*get_exit_code(void)
 {
 	char	*str;
 	int		nbr;
@@ -48,5 +48,5 @@ void	ft_puterror(int code, char *str, t_command *command)
 		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	ft_putstr_fd(msg, 2, 1);
 	free(msg);
-	g_info.exit_code = code;
+	set_exit_code(code);
 }

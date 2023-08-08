@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:19:51 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/08 13:57:43 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:54:41 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	syntax_error_msg(int i, char *str)
 	if (i == 5)
 		ft_putstr_fd("syntax error: quotes not ended\n", 2, 1);
 	free(str);
-	error_code(258);
+	set_exit_code(258);
 	return (-1);
 }
 

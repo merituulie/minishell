@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 13:58:01 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:54:51 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 
 	i = -1;
 	if (!ft_strncmp_all(var, "$?"))
-		return (get_exit_value());
+		return (get_exit_code());
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
 	if (!search)
