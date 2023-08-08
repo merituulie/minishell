@@ -45,13 +45,12 @@ typedef struct s_command
 	char	**full_cmd;
 	char	*infile_name;
 	char	*outfile_name;
-	int		redir_fd_index;
-	int		redir_fd_index2;
+	int		redir_fd_index_in;
+	int		redir_fd_index_out;
 	int		token;
 	int		in_heredoc;
 	int		pid;
 	int		id;
-	int		fds[2];
 }	t_command;
 
 typedef struct s_env

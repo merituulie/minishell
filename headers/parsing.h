@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/06 16:32:13 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:40:11 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include <stdio.h> //printf, perror
 # include <stdlib.h> //malloc, free, exit, getenv
 # include <unistd.h> //access, fork, wait, isatty, ttyname, getcwd, execve
 # include <sys/wait.h> //waitpid, wait3, wait 4
@@ -29,8 +28,6 @@
 # include <readline/history.h>
 # include <errno.h>
 # include "../libft/libft.h"
-# include "lexer.h"
-# include "minishell.h"
 
 typedef struct s_data
 {

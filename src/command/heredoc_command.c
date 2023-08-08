@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:11:37 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/06 09:35:03 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:41:34 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	update_command_redir(t_command *command)
 
 	fd = open_file(HEREDOC, O_RDONLY);
 	command->token = INPUT;
-	command->redir_fd_index = g_info.redir_index_count;
+	command->redir_fd_index_in = g_info.redir_index_count;
 	g_info.redir_fds[g_info.redir_index_count++] = fd;
 }
 
