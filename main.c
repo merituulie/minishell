@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/10 12:51:36 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:02:59 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,10 @@ void	minishell(t_data *ms)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
 		if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
+		{
+			ft_putstr_fd("DEBUG: do we just restart?", 2, 0);
 			continue ;
+		}
 		execute_commands(cmd, ms->struct_count, &ms->env);
 		free_in_minishell(cmd, ms->struct_count, cmd_line);
 	}

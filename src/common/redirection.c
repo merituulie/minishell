@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/10 10:43:53 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:33:06 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	ft_dup2(int infile_fd, int outfile_fd)
 
 void	redirect_io(int infile_fd, int outfile_fd)
 {
-	ft_dup2(infile_fd, outfile_fd);
+	if (infile_fd != -1 && outfile_fd != -1)
+		ft_dup2(infile_fd, outfile_fd);
 	close_files(g_info.pipe_fds, g_info.pipe_count);
 }
 
@@ -92,8 +93,8 @@ void	clear_failed_redir(t_command *cmd)
 		free(cmd->outfile_name);
 		cmd->outfile_name = NULL;
 	}
-	cmd->redir_fd_index_in = 0;
-	cmd->redir_fd_index_out = 0;
+	cmd->redir_fd_index_in = -2;
+	cmd->redir_fd_index_out = -2;
 	if (cmd->token)
 		cmd->token = NONE;
 }

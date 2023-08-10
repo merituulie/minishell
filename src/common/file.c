@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/10 11:07:02 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:57:12 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ int	open_redirection_file(t_command *current)
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
 	else if (current->token == OUTPUT_APPEND)
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
-	if (current ->redir_fd_index_in == -2 && (current->token == INPUT))
+	if (current->token == INPUT)
+	{
 		current->redir_fd_index_in = g_info.redir_index_count;
+	}
 	else
 		current->redir_fd_index_out = g_info.redir_index_count;
 	g_info.redir_fds[g_info.redir_index_count++] = fd;
