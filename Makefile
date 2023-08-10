@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/03 17:35:22 by meskelin         ###   ########.fr        #
+#    Updated: 2023/08/10 08:48:59 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ all: $(NAME)
 $(NAME):
 	make -C $(LIBFT_PATH)
 	cc -L  ~/.brew/opt/readline/lib -I  ~/.brew/opt/readline/include $(BUILD_FLAGS) $(HASHMAP_SUFF) $(LEXER_SUFF) $(ENV_SUFF) $(COMMON_SUFF) \
-	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) free.c main.c \
+	$(COMMAND_SUFF) $(PARSER_SUFF) $(BUILTIN_SUFF) main.c \
 	-L $(LIBFT_PATH) -lft -o $(NAME)
 
 .PHONY: clean

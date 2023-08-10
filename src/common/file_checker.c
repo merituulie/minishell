@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   file_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:24:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 17:49:07 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:41:47 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/*if there is writing permission, accessable is 0
+if not, it returns -1*/
 static int	accessable_for_write(char *filename, char *path, int accessable)
 {
 	if (accessable != 0)
@@ -52,8 +54,8 @@ int	accessable_for_open(char *filename, int flags)
 	path = ft_strjoin("./", filename);
 	accessable = access(path, F_OK);
 	if (flags == O_RDONLY)
-		return accessable_for_read(filename, path, accessable);
+		return (accessable_for_read(filename, path, accessable));
 	else if (flags >= O_WRONLY)
-		return accessable_for_write(filename, path, accessable);
+		return (accessable_for_write(filename, path, accessable));
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/08 15:55:02 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:27:58 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 			free(command[i].command);
 		if (command[i].flags)
 			free(command[i].flags);
-		if (command[i].input)
+		if (command[i].input[0])
 			free_char_array(command[i].input);
 		if (command[i].full_cmd)
 			free_char_array(command[i].full_cmd);
@@ -52,7 +52,8 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 			free(command[i].outfile_name);
 		i++;
 	}
-	free(command);
+	if (command)
+		free(command);
 }
 
 void	free_in_main(t_data *data)

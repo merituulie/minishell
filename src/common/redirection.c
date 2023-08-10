@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 13:51:55 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:43:53 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,29 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 void	clear_failed_redir(t_command *cmd)
 {
 	if (cmd->command)
-		free_and_nullify(cmd->command);
+	{
+		free(cmd->command);
+		cmd->command = NULL;
+	}
 	if (cmd->flags)
-		free_and_nullify(cmd->flags);
+	{
+		free(cmd->flags);
+		cmd->flags = NULL;
+	}
 	if (cmd->input)
 		free_char_array(cmd->input);
 	if (cmd->infile_name)
-		free_and_nullify(cmd->infile_name);
+	{
+		free(cmd->infile_name);
+		cmd->infile_name = NULL;
+	}
 	if (cmd->outfile_name)
-		free_and_nullify(cmd->outfile_name);
-	cmd->redir_fd_index_in = -2;
-	cmd->redir_fd_index_out = -2;
+	{
+		free(cmd->outfile_name);
+		cmd->outfile_name = NULL;
+	}
+	cmd->redir_fd_index_in = 0;
+	cmd->redir_fd_index_out = 0;
 	if (cmd->token)
 		cmd->token = NONE;
 }
