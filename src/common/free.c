@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/10 10:27:58 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:50:12 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 			free(command[i].command);
 		if (command[i].flags)
 			free(command[i].flags);
-		if (command[i].input[0])
+		if (command[i].input)
 			free_char_array(command[i].input);
 		if (command[i].full_cmd)
 			free_char_array(command[i].full_cmd);
