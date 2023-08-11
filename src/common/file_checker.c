@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:24:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/11 06:34:57 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/11 06:46:10 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	accessable_for_write(char *filename, char *path, int accessable)
 	accessable = access(path, W_OK);
 	if (accessable != 0)
 	{
+		set_exit_code(1);
 		ft_putstr_fd(filename, 2, 1);
 		ft_putstr_fd(": Permission denied\n", 2, 0);
 		return (0);
