@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/10 13:57:12 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/11 06:34:03 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	open_file(char *filename, int flags)
 		return (-1);
 	fd = open(filename, flags, S_IRWXU);
 	if (fd < 0)
+	{
+		set_exit_code(1);
 		ft_putstr_fd("Error when opening a file.\n", 2, 1);
+	}
 	return (fd);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:24:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/10 10:41:47 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/11 06:34:57 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	accessable_for_write(char *filename, char *path, int accessable)
 	if (accessable != 0)
 	{
 		ft_putstr_fd(filename, 2, 1);
-		ft_putstr_fd(": Permission denied.\n", 2, 0);
+		ft_putstr_fd(": Permission denied\n", 2, 0);
 		return (0);
 	}
 	return (1);
@@ -32,15 +32,17 @@ static int	accessable_for_read(char *filename, char *path, int accessable)
 {
 	if (accessable != 0)
 	{
+		set_exit_code(1);
 		ft_putstr_fd(filename, 2, 1);
-		ft_putstr_fd(": No such file or directory.\n", 2, 0);
+		ft_putstr_fd(": No such file or directory\n", 2, 0);
 		return (0);
 	}
 	accessable = access(path, R_OK);
 	if (accessable != 0)
 	{
+		set_exit_code(1);
 		ft_putstr_fd(filename, 2, 1);
-		ft_putstr_fd(": Permission denied.\n", 2, 0);
+		ft_putstr_fd(": Permission denied\n", 2, 0);
 		return (0);
 	}
 	return (1);
