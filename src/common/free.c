@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/10 12:50:12 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/13 11:58:07 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	close_free_fd_arrays(void)
 	close_files(g_info.redir_fds, g_info.redir_count);
 	if (g_info.redir_fds)
 		free_and_nullify(g_info.redir_fds);
+	if (g_info.pipe_fds)
+		free_and_nullify(g_info.pipe_fds);
 }
 
 void	free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line)

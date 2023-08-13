@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/10 10:41:29 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/13 11:55:16 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	}
 	close_files(g_info.pipe_fds, g_info.pipe_count);
 	wait_children(pids, i - 1);
+	free(pids);
 	return (0);
 }
