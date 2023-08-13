@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/08 16:54:51 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/13 09:44:26 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	while (line)
 	{
 		if (!ft_strncmp_all(line, delim) || g_info.sig_status)
+		{
+			free(line);
 			break ;
+		}
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
@@ -131,9 +134,6 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 		line = readline("> ");
 	}
 	close(fd);
-	if (command->infile_name && !ft_strncmp_all(command->infile_name, HEREDOC))
-		update_command_redir(command);
-	else
-		unlink(HEREDOC);
+	update_command_redir(command);
 	return (-1);
 }
