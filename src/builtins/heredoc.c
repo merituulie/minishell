@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/13 07:49:31 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/13 07:56:29 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,6 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 		line = readline("> ");
 	}
 	close(fd);
-	if (command->infile_name && !ft_strncmp_all(command->infile_name, HEREDOC))
-		update_command_redir(command);
-	else
-		unlink(HEREDOC);
+	update_command_redir(command);
 	return (-1);
 }
