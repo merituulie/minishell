@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:24:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/11 06:46:10 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/13 10:23:50 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,21 @@ int	accessable_for_open(char *filename, int flags)
 	path = ft_strjoin("./", filename);
 	accessable = access(path, F_OK);
 	if (flags == O_RDONLY)
-		return (accessable_for_read(filename, path, accessable));
+	{
+		if (!accessable_for_read(filename, path, accessable))
+		{
+			free (path);
+			return (0);
+		}
+	}
 	else if (flags >= O_WRONLY)
-		return (accessable_for_write(filename, path, accessable));
+	{
+		if (!accessable_for_write(filename, path, accessable))
+		{
+			free(path);
+			return (0);
+		}
+	}
+	free(path);
 	return (1);
 }

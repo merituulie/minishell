@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/11 06:34:03 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/13 10:19:12 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	open_file(char *filename, int flags)
 {
 	int	fd;
 
+	// printf("accessable_for_open=%i\n", accessable_for_open(filename, flags));
 	if (!accessable_for_open(filename, flags))
 		return (-1);
 	fd = open(filename, flags, S_IRWXU);
