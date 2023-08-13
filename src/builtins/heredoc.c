@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/06 09:34:54 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/13 07:49:31 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	while (line)
 	{
 		if (!ft_strncmp_all(line, delim) || g_info.sig_status)
+		{
+			free(line);
 			break ;
+		}
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
