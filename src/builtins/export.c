@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/08 13:45:00 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/14 07:35:34 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ static void	change_node(t_node *temp, char *key, char *value)
 	if (!value)
 		return (ft_putstr_fd("Memory allocation failure.\n", 2, 1));
 	if (!get_value(&temp, key))
+	{
 		set_value(&temp, key, value);
+	}
 	else
 	{
 		temp = get_value(&temp, key);
+		free(key);
+		free(temp->value);
 		temp->value = value;
 	}
 }
