@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/11 06:35:45 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/14 09:25:57 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,43 @@
 // 			printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
 // 			j++;
 // 		}
+// 	}
+// }
+
+// static void	print_command(t_command *cmd)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = -1;
+// 	while (cmd[++i].command)
+// 	{
+// 		if (cmd[i].command)
+// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+// 		if (cmd[i].full_cmd)
+// 		{
+// 			j = 0;
+// 			while (cmd[i].full_cmd[j])
+// 			{
+// 				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+// 				j++;
+// 			}
+// 		}
+// 		if (cmd[i].flags)
+// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+// 		if (cmd[i].input)
+// 		{
+// 			j = 0;
+// 			while (cmd[i].input[j])
+// 			{
+// 				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
+// 				j++;
+// 			}
+// 		}
+// 		if (cmd[i].infile_name)
+// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+// 		if (cmd[i].outfile_name)
+// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
 // 	}
 // }
 
@@ -122,7 +159,10 @@ void	minishell(t_data *ms)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
 		if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
+		{
+			free_in_minishell(cmd, ms->struct_count, cmd_line);
 			continue ;
+		}
 		execute_commands(cmd, ms->struct_count, &ms->env);
 		free_in_minishell(cmd, ms->struct_count, cmd_line);
 	}
