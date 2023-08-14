@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 18:47:19 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 19:57:18 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:01:04 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ static int	process_input_line(t_data *ms, char *input_line)
 		free_in_minishell(cmd, ms->struct_count);
 		return (1);
 	}
-	// print_command(cmd);
 	execute_commands(cmd, ms->struct_count, &ms->env);
 	free_in_minishell(cmd, ms->struct_count);
 	return (0);
