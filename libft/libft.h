@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 13:34:08 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:38:18 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		*ft_strtrim(char const *s1, char *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_print_array(char **str);
 void		ft_putchar_fd(char c, int fd);
-void		ft_putstr_fd(char *s, int fd);
+void		ft_putstr_fd(char *s, int fd, int print_shellname);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strdup(const char *s1);

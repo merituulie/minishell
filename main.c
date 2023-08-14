@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/06 14:16:11 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/11 06:35:45 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ void	minishell(t_data *ms)
 
 	while (42)
 	{
-		line = readline(PINK "Jose's PinkShell: " BORING);
+		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
 		if (space_newline(line) || line[0] == '\0' || line[0] == '\n')
 		{
-			free (line);
+			free(line);
 			continue ;
 		}
 		else
@@ -121,12 +121,7 @@ void	minishell(t_data *ms)
 		if (cmd_line == NULL)
 			continue ;
 		cmd = ft_parser(ms, cmd_line);
-		// while (*cmd_line)
-		// {
-		// 	free(*cmd_line);
-		// 	cmd_line++;
-		// } This is for << here and ctrl + d
-		if (cmd == NULL)
+		if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
 			continue ;
 		execute_commands(cmd, ms->struct_count, &ms->env);
 		free_in_minishell(cmd, ms->struct_count, cmd_line);

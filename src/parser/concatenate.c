@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:26:44 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 11:55:31 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:45:44 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	delete_quotes(char *str, int index, int size, t_data *ms)
 	ms->end = index;
 	ms->out = ft_calloc(size, sizeof(char));
 	if (!ms->out)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	delete_quotes2(str, index, size, ms);
 }
 
@@ -74,7 +74,7 @@ char	**concatenate(char **str, t_data *ms)
 				free(str[i]);
 				str[i] = ft_strdup(ms->out);
 				if (!str[i])
-					ft_putstr_fd("Memory allocation failure!\n", 2);
+					ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 				free(ms->out);
 				j = ms->end - 2;
 			}

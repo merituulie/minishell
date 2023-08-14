@@ -6,12 +6,14 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 11:55:47 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:54:51 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parsing.h"
 #include "../../libft/libft.h"
+#include "../../headers/hashmap.h"
+#include "../../headers/minishell.h"
+#include "../../headers/parsing.h"
 
 /*check if the word comes after '$' is expandable part
 using env variables.*/
@@ -54,11 +56,11 @@ char	*find_env(t_data *ms, char *var, int var_size)
 
 	i = -1;
 	if (!ft_strncmp_all(var, "$?"))
-		return (get_exit_value());
+		return (get_exit_code());
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
 	if (!search)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -68,7 +70,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 		return (NULL);
 	search = ft_strdup(node->value);
 	if (!search)
-		ft_putstr_fd("Strdup memory allocation failure!\n", 2);
+		ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
 	return (search);
 }
 
@@ -151,10 +153,3 @@ char	**expand_quote_check(t_data *ms, char **str)
 		return (NULL);
 	return (res);
 }
-
-// char	**expand_quote_check(t_data *ms, char **str)
-// {
-// 	ms_init(ms);
-// 	ms->i = -1;
-// 	return (expand_quote_check2(ms, str));
-// }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:40:47 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/04 17:26:30 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/08 11:56:19 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-// Jose's PinkShell color stuffffffff
+// PinkShell color stuffffffff
 # define PINK "\x1b[38;2;255;192;203m"
 # define BORING "\x1b[0m"
 

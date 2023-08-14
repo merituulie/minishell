@@ -3,25 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/06 16:31:44 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/13 11:58:07 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/parsing.h"
-#include "headers/lexer.h"
-#include "headers/minishell.h"
-#include "libft/libft.h"
+#include "../../headers/parsing.h"
+#include "../../headers/lexer.h"
+#include "../../headers/minishell.h"
+#include "../../libft/libft.h"
 
 static void	unlink_heredoc(char *filename)
 {
 	if (!ft_strncmp_all(filename, HEREDOC))
-	{
 		unlink(HEREDOC);
-	}
 	return ;
+}
+
+void	free_and_nullify(void *to_be_freed)
+{
+	free(to_be_freed);
+	to_be_freed = NULL;
 }
 
 void	free_cmd_struct(t_command *command, int cmd_count)
@@ -34,7 +38,7 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 		if (command[i].command)
 			free(command[i].command);
 		if (command[i].flags)
-			free (command[i].flags);
+			free(command[i].flags);
 		if (command[i].input)
 			free_char_array(command[i].input);
 		if (command[i].full_cmd)
@@ -48,7 +52,8 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 			free(command[i].outfile_name);
 		i++;
 	}
-	free(command);
+	if (command)
+		free(command);
 }
 
 void	free_in_main(t_data *data)
@@ -71,10 +76,9 @@ void	close_free_fd_arrays(void)
 {
 	close_files(g_info.redir_fds, g_info.redir_count);
 	if (g_info.redir_fds)
-	{
-		free(g_info.redir_fds);
-		g_info.redir_fds = NULL;
-	}
+		free_and_nullify(g_info.redir_fds);
+	if (g_info.pipe_fds)
+		free_and_nullify(g_info.pipe_fds);
 }
 
 void	free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line)

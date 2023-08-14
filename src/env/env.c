@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/01 13:32:01 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:57:14 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	print_export_env(t_env **env)
 	{
 		if (*export[0] != '\0')
 		{
-			ft_putstr_fd("declare -x ", 1);
-			ft_putstr_fd(*export, 1);
+			ft_putstr_fd("declare -x ", 1, 0);
+			ft_putstr_fd(*export, 1, 0);
 			ft_putchar_fd('\n', 1);
 		}
 		export++;
@@ -65,12 +65,12 @@ void	ft_env(t_env **env, t_command *command)
 {
 	if (command->input || command->flags)
 	{
-		ft_putstr_fd(command->command, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(command->full_cmd[1], 2);
-		ft_putstr_fd(": no such file or directory\n", 2);
+		ft_putstr_fd(command->command, 2, 1);
+		ft_putstr_fd(": ", 2, 0);
+		ft_putstr_fd(command->full_cmd[1], 2, 0);
+		ft_putstr_fd(": no such file or directory\n", 2, 0);
 		g_info.exit_code = 127;
 		return ;
 	}
-	ft_putstr_fd(env_to_string(env), 1);
+	ft_putstr_fd(env_to_string(env), 1, 0);
 }

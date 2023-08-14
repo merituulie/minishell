@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 11:36:01 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:46:38 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ static void	go_dir(t_env **env, t_command *command)
 	{
 		temp = get_value((*env)->vars, "HOME");
 		if (!temp)
-			error_msg(1, "HOME not set\n", command);
+			ft_puterror(1, "HOME not set\n", command);
 		else if (chdir(temp->value))
-			error_msg(1, "can't move to HOME directory\n", command);
+			ft_puterror(1, "can't move to HOME directory\n", command);
 	}
 	else
 	{
 		path = get_path(command->full_cmd[1]);
 		if (chdir(path))
-			error_msg(1, "No such file or directory\n", command);
+			ft_puterror(1, "No such file or directory\n", command);
 		free(path);
 	}
 }
@@ -78,5 +78,5 @@ void	ft_cd(t_command *command, t_env **env)
 	free(temp->value);
 	temp->value = getcwd(NULL, 0);
 	if (!temp->value)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 }

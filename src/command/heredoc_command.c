@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:11:37 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/13 07:56:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/13 10:08:18 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	update_command_redir(t_command *command)
 	}
 	else
 		unlink(HEREDOC);
-
 }
 
 static int	check_for_cat_grep(char *str)

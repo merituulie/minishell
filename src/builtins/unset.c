@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/03 17:30:54 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:47:25 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static	void	unset_loop(char **input, t_node *temp)
 	{
 		if (check_unset_input(input[i]) == 1)
 		{
-			ft_putstr_fd("minishell: unset: '", 2);
-			ft_putstr_fd(input[i], 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
+			ft_putstr_fd("unset: '", 2, 1);
+			ft_putstr_fd(input[i], 2, 0);
+			ft_putstr_fd("': not a valid identifier\n", 2, 0);
 		}
 		if (!get_value(&temp, input[i]))
 			i++;

@@ -29,7 +29,7 @@ void	ctrl_d_cmd(char *line, t_data *ms)
 	if (line == NULL)
 	{
 		restore_terminal(ms);
-		ft_putstr_fd(PINK "Jose's PinkShell: exit\n"BORING, 0);
+		ft_putstr_fd("exit\n", 0, 1);
 		exit(EXIT_SUCCESS);
 	}
 }

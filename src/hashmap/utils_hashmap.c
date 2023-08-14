@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hashmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:23:05 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/04 15:36:03 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/08 11:55:15 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
-#include <stdio.h>
 
 /// @brief Get a value from the hashmap with the key.
 /// @param head The first node on the hashmap.

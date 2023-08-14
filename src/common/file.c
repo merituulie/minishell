@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:36:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/07 21:04:31 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/13 10:19:12 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,25 @@ int	open_file(char *filename, int flags)
 {
 	int	fd;
 
+	// printf("accessable_for_open=%i\n", accessable_for_open(filename, flags));
+	if (!accessable_for_open(filename, flags))
+		return (-1);
 	fd = open(filename, flags, S_IRWXU);
 	if (fd < 0)
-		ft_putstr_fd("Pinkshell: error when open a file\n", 2);
+	{
+		set_exit_code(1);
+		ft_putstr_fd("Error when opening a file.\n", 2, 1);
+	}
 	return (fd);
 }
 
-int	close_file(int fd)
+void	close_file(int fd)
 {
 	if (fd == 0 || fd == 1 || fd == -1)
-		return (0);
+		return ;
 	if (close(fd) == 0)
-		return (0);
-	ft_putstr_fd("Error when closing a file.\n", 2);
-	return (-1);
+		return ;
+	ft_putstr_fd("Error when closing a file.\n", 2, 1);
 }
 
 void	close_files(int *pipe_fds, int fd_count)
@@ -39,8 +44,7 @@ void	close_files(int *pipe_fds, int fd_count)
 	i = 0;
 	while (i < fd_count)
 	{
-		if (pipe_fds[i])
-			close_file(pipe_fds[i]);
+		close_file(pipe_fds[i]);
 		i++;
 	}
 }
@@ -58,8 +62,10 @@ int	open_redirection_file(t_command *current)
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_TRUNC);
 	else if (current->token == OUTPUT_APPEND)
 		fd = open_file(current->outfile_name, O_CREAT | O_WRONLY | O_APPEND);
-	if (current ->redir_fd_index_in == -2 && (current->token == INPUT))
+	if (current->token == INPUT)
+	{
 		current->redir_fd_index_in = g_info.redir_index_count;
+	}
 	else
 		current->redir_fd_index_out = g_info.redir_index_count;
 	g_info.redir_fds[g_info.redir_index_count++] = fd;

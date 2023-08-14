@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/06 11:04:52 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:49:47 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,27 +114,27 @@ int			handle_pipe(t_command *commands, t_env **env, int command_count);
 void		wait_children(int *pids, int count);
 
 // REDIRECTIONS
+int			is_redir_accessable(t_command *command);
+int			accessable_for_open(char *filename, int flags);
 int			parse_redirection(t_command *cmd, int track, char *str, \
 			char *input);
-int			handle_redirection(t_command *cmd, int *index, int track, \
-			char **input);
+int			check_null_index_handle_redirs(t_command *cmd, int track, \
+			char **input, int *index);
 void		redirect_io(int infile_fd, int outfile_fd);
 void		redirect_files(t_command *current);
 void		ft_dup2(int infile_fd, int outfile_fd);
 void		clear_failed_redir(t_command *cmd);
 void		update_command_redir(t_command *command);
-int			check_null_index_handle_redirs(t_command *cmd, int track, \
-			char **input, int *index);
 int			handle_heredoc(t_command *cmd, int *index, int track, char **input);
 
 // COMMON
 void		close_files(int *pipe_fds, int fd_count);
 int			open_file(char *filename, int flags);
-int			close_file(int fd);
+void		close_file(int fd);
 int			open_redirection_file(t_command *current);
-void		error_code(int number);
-void		error_msg(int code, char *str, t_command *command);
-char		*get_exit_value(void);
+void		set_exit_code(int number);
+void		ft_puterror(int code, char *str, t_command *command);
+char		*get_exit_code(void);
 int			*allocate_pids(int pid_count);
 
 // TO STRINGS
@@ -148,6 +148,7 @@ void		ctrl_d_cmd(char *line, t_data *ms);
 void		heredoc_signal(int signo);
 
 // FREE
+void		free_and_nullify(void *to_be_freed);
 void		free_cmd_struct(t_command *command, int cmd_count);
 void		free_in_main(t_data *data);
 void		free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line);

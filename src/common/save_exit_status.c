@@ -6,19 +6,19 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/04 11:53:58 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:55:21 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
 
-void	error_code(int number)
+void	set_exit_code(int number)
 {
 	g_info.exit_code = number;
 }
 
-char	*get_exit_value(void)
+char	*get_exit_code(void)
 {
 	char	*str;
 	int		nbr;
@@ -29,28 +29,24 @@ char	*get_exit_value(void)
 	return (str);
 }
 
-void	error_msg(int code, char *str, t_command *command)
+void	ft_puterror(int code, char *str, t_command *command)
 {
 	char	*msg;
 	char	*temp;
 
-	if (code == 127 || code == 126)
+	if ((code == 127 || code == 126) && command)
 	{
-		temp = ft_strjoin("PinkShell: ", command->command);
+		temp = ft_strdup(command->command);
 		if (!temp)
-			ft_putstr_fd("Memory allocation failure!\n", 2);
+			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		msg = ft_strjoin(temp, str);
+		free(temp);
 	}
 	else
-	{
-		temp = ft_strdup("PinkShell: ");
-		if (!temp)
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2);
-	}
-	msg = ft_strjoin(temp, str);
+		msg = ft_strdup(str);
 	if (!msg)
-		ft_putstr_fd("Memory allocation failure!\n", 2);
-	free(temp);
-	ft_putstr_fd(msg, 2);
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+	ft_putstr_fd(msg, 2, 1);
 	free(msg);
-	g_info.exit_code = code;
+	set_exit_code(code);
 }

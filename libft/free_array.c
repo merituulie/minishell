@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:56:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/05 11:20:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:23:06 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	free_char_array(char **str)
 	while (str[i])
 	{
 		if (str[i])
+		{
 			free(str[i]);
+			str[i] = NULL;
+		}
 		i++;
 	}
-	if (str)
-		free(str);
+	// if (str)
+	free(str);
 }
