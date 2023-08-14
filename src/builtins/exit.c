@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/08 13:43:46 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:41:48 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,14 @@ static int	ft_is_number(char **input)
 	return (1);
 }
 
-static	void	num_arg_check(char **input, int fork)
+static void	ft_exit_free(t_command *cmd, t_env *env)
+{
+	clear_hashmap(env->vars);
+	free_in_minishell(cmd, g_info.pipe_count + 1);
+}
+
+static	void	num_arg_check(char **input, int fork, \
+						t_command *cmd, t_env *env)
 {
 	if (ft_is_number(input))
 	{
@@ -61,6 +68,7 @@ static	void	num_arg_check(char **input, int fork)
 		ft_putstr_fd("exit: ", 2, 1);
 		ft_putstr_fd(input[1], 2, 0);
 		ft_putstr_fd(": numeric argument required\n", 2, 0);
+		ft_exit_free(cmd, env);
 		exit(g_info.exit_code);
 	}
 }
@@ -85,7 +93,7 @@ static int	amount_check(char **input, int fork)
 	return (0);
 }
 
-void	ft_exit(t_command *command, int fork)
+void	ft_exit(t_command *command, t_env *env, int fork)
 {
 	int		flag;
 
@@ -93,10 +101,13 @@ void	ft_exit(t_command *command, int fork)
 	if (!command->input && !command->flags)
 	{
 		if (!fork)
+		{
 			ft_putstr_fd("exit\n", 1, 0);
+			ft_exit_free(command, env);
+		}
 		exit(0);
 	}
-	num_arg_check(command->full_cmd, fork);
+	num_arg_check(command->full_cmd, fork, command, env);
 	flag = amount_check(command->full_cmd, fork);
 	if (flag)
 		return ;
@@ -104,6 +115,7 @@ void	ft_exit(t_command *command, int fork)
 	{
 		if (!fork)
 			ft_putstr_fd("exit\n", 1, 0);
+		ft_exit_free(command, env);
 		exit(g_info.exit_code);
 	}
 }

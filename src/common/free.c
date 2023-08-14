@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:46:53 by jhusso           ###   ########.fr       */
+/*   Created: 2023/08/14 11:47:24 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/14 12:07:39 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,11 @@ static void	unlink_heredoc(char *filename)
 	return ;
 }
 
-void	free_and_nullify(void *to_be_freed)
-{
-	free(to_be_freed);
-	to_be_freed = NULL;
-}
-
 void	free_cmd_struct(t_command *command, int cmd_count)
 {
 	int	i;
 
 	i = 0;
-
 	while (i < cmd_count)
 	{
 		if (command[i].command)
@@ -86,7 +79,5 @@ void	free_in_minishell(t_command *cmd, int cmd_count)
 {
 	if (cmd != NULL)
 		free_cmd_struct(cmd, cmd_count);
-	// if (cmd_line)
-	// 	free_char_array(cmd_line);
 	close_free_fd_arrays();
 }

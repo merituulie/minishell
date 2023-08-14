@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:11:37 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/13 10:08:18 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 11:47:00 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	update_command_redir(t_command *command)
 {
 	int	fd;
+
 	if (command->infile_name && !ft_strncmp_all(command->infile_name, HEREDOC))
 	{
 		fd = open_file(HEREDOC, O_RDONLY);
