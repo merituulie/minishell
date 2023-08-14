@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:56:32 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/14 11:45:54 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H

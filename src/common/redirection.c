@@ -6,11 +6,9 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:57:38 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:52:11 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
@@ -83,8 +81,6 @@ void	clear_failed_redir(t_command *cmd)
 		free(cmd->flags);
 		cmd->flags = NULL;
 	}
-	// if (cmd->input)
-	// 	free_char_array(cmd->input);
 	if (cmd->infile_name)
 	{
 		free(cmd->infile_name);
