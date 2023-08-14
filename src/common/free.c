@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:47:24 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/14 11:47:38 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:07:39 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	close_free_fd_arrays(void)
 
 void	free_in_minishell(t_command *cmd, int cmd_count)
 {
-	if (cmd == NULL)
-		return ;
-	free_cmd_struct(cmd, cmd_count);
+	if (cmd != NULL)
+		free_cmd_struct(cmd, cmd_count);
 	close_free_fd_arrays();
 }
