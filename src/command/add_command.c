@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 18:14:33 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:53:43 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,10 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 			ft_heredoc(&cmd[track], &ms->env, input[index - 1]);
 			continue ;
 		}
-		printf("\n\nBEFORE REDIRS!");
-		printf("index: %d, input: %s\n", index, input[index]);
-		printf("track: %d\n\n\n", track);
 		if (check_null_index_handle_redirs(cmd, track, input, &index) == -1)
 			break ;
 		if (ft_strchr("|", input[index][0]))
 		{
-			printf("\n\n\nAFTER PIPE!");
-			printf("index: %d\n", index);
-			printf("track %d\n\n\n", track);
 			index++;
 			track++;
 			continue ;

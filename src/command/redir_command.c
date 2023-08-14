@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:57:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 17:55:59 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:53:57 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ static int	handle_redirection(t_command *cmd, int *index, \
 	char	*str;
 
 	str = NULL;
-	cmd->redir_fd_index_in = -2;
-	cmd->redir_fd_index_out = -2;
-	printf("in handle redirection:\n");
-	printf("command: %s\n", cmd->command);
-	printf("redir in index %d\n", cmd->redir_fd_index_in);
-	printf("redir out index %d\n\n\n", cmd->redir_fd_index_out);
-	printf("global iterator %d\n\n\n", g_info.redir_index_count);
 	while (ft_strchr_null("<>", input[(*index)][0]) \
 	&& ft_strncmp_all("<<", input[(*index)]))
 	{

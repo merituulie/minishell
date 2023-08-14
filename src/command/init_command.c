@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/14 18:24:35 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:48:39 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ t_command	*init_cmds(t_data *ms, char **input)
 	t_command	*cmd;
 	int			track;
 
-	ms->struct_count = 0;
 	track = 0;
 	ms->struct_count = count_struct(input);
 	if (!ft_strncmp_all(input[0], ""))
