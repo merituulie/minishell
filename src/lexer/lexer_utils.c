@@ -66,7 +66,6 @@ int	trim_last_line(char **array, int line_index)
 
 int	check_if_nothing(char *str, int i)
 {
-	// i++;
 	while (str[i] && is_delim(str[i]) == true)
 	{
 		i++;
