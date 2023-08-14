@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/13 09:44:35 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 07:56:39 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 		not_echo = copy_input(input, index, not_echo);
 	put_to_input(cmd, track, str, not_echo);
 }
-
 
 void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 {

@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/13 11:58:07 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 10:46:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 	int	i;
 
 	i = 0;
+
 	while (i < cmd_count)
 	{
 		if (command[i].command)
@@ -81,9 +82,11 @@ void	close_free_fd_arrays(void)
 		free_and_nullify(g_info.pipe_fds);
 }
 
-void	free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line)
+void	free_in_minishell(t_command *cmd, int cmd_count)
 {
-	free_cmd_struct(cmd, cmd_count);
-	free_char_array(cmd_line);
+	if (cmd != NULL)
+		free_cmd_struct(cmd, cmd_count);
+	// if (cmd_line)
+	// 	free_char_array(cmd_line);
 	close_free_fd_arrays();
 }
