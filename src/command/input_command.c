@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by                   #+#    #+#             */
-/*   Updated: 2023/08/14 17:59:54 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:56:14 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void	put_to_input2(t_command *cmd, int track, char **not_echo)
 		free_char_array(not_echo);
 }
 
-void	 put_to_input(t_command *cmd, int track, char *str, char **not_echo)
+void	put_to_input(t_command *cmd, int track, char *str, char **not_echo)
 {
 	if (!ft_strncmp_all(cmd[track].command, "echo"))
 	{
