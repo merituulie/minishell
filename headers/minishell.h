@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 17:49:47 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/14 10:47:02 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void		heredoc_signal(int signo);
 void		free_and_nullify(void *to_be_freed);
 void		free_cmd_struct(t_command *command, int cmd_count);
 void		free_in_main(t_data *data);
-void		free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line);
+void		free_in_minishell(t_command *cmd, int cmd_count);
 void		close_free_fd_arrays(void);
 
 #endif

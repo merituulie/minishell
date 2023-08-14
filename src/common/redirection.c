@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/14 09:30:47 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 10:24:25 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	clear_failed_redir(t_command *cmd)
 		free(cmd->flags);
 		cmd->flags = NULL;
 	}
-	if (cmd->input)
-		free_char_array(cmd->input);
+	// if (cmd->input)
+	// 	free_char_array(cmd->input);
 	if (cmd->infile_name)
 	{
 		free(cmd->infile_name);
