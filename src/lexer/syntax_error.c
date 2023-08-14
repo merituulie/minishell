@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/05 07:43:17 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 11:48:27 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static int	check_pipe_syntax(char *str, int i)
 
 static int	out_redir_syntax_error(char *str, int i)
 {
-	if (check_if_nothing(str, i))
+	if (check_if_nothing(str, i + 1))
 		return (syntax_error_msg(2, str));
-	else if ((str[i + 1] == '>') && check_if_nothing(str, i + 1))
+	else if ((str[i + 1] == '>') && check_if_nothing(str, i))
 		return (syntax_error_msg(2, str));
 	else if ((str[i + 1] == '>' && str[i + 2] == '>'))
 		return (syntax_error_msg(3, str));
@@ -74,7 +74,7 @@ static int	in_redir_syntax_error(char *str, int i)
 {
 	if (check_if_nothing(str, i + 1))
 		return (syntax_error_msg(2, str));
-	else if ((str[i + 1] == '<') && check_if_nothing(str, i + 1))
+	else if ((str[i + 1] == '<') && check_if_nothing(str, i))
 		return (syntax_error_msg(2, str));
 	else if ((str[i + 1] == '<' && str[i + 2] == '<'))
 		return (syntax_error_msg(4, str));
