@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:50:09 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 16:29:19 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,10 @@ static int	process_input_line(t_data *ms, char *input_line)
 	t_command	*cmd;
 
 	cmd_line = ft_lexer(input_line);
-	free(input_line);
+	if (input_line)
+	{
+		free(input_line);
+	}
 	if (cmd_line == NULL)
 		return (1);
 	cmd = ft_parser(ms, cmd_line);
@@ -167,6 +170,7 @@ void	minishell(t_data *ms)
 		ctrl_d_cmd(line, ms);
 		if (space_newline(line) || line[0] == '\0' || line[0] == '\n')
 		{
+			printf("is it here in free minishell?");
 			free(line);
 			continue ;
 		}

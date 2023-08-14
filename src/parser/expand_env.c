@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 16:54:51 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:15:33 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 		ms->out = NULL;
 	else
 	{
-		ms->out = ft_calloc(size, sizeof(char));
+		ms->out = ft_calloc(size + 1, sizeof(char));
 		if (!ms->out)
 			return ;
 		ms->out = ft_memcpy(ms->out, str, ms->start);
@@ -127,6 +127,8 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 				if (!str[ms->i])
 					break ;
 				free_case(ms);
+				if (ms->end - 1 >= (int)ft_strlen(str[ms->i]))
+					break;
 				ms->j = ms->end - 1;
 			}
 		}
@@ -138,7 +140,7 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 s_quotes is single quote, d_quote is double quote.
 s_quotes will be 1 if it happens before d_quotes but if it closes,
 it will become 0.
-expanding to env only happens if there is $ and something after, and
+Expanding to env only happens if there is $ and something after, and
 if there is no single quote in front of it. it does not count if double quote
 exists or not.*/
 

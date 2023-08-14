@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:46:53 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 16:23:10 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 	int	i;
 
 	i = 0;
-
 	while (i < cmd_count)
 	{
 		if (command[i].command)
@@ -76,17 +75,21 @@ void	free_in_main(t_data *data)
 void	close_free_fd_arrays(void)
 {
 	close_files(g_info.redir_fds, g_info.redir_count);
-	if (g_info.redir_fds)
-		free_and_nullify(g_info.redir_fds);
-	if (g_info.pipe_fds)
-		free_and_nullify(g_info.pipe_fds);
+	if (g_info.redir_count > 0 && g_info.redir_fds)
+	{
+		free(g_info.redir_fds);
+		g_info.redir_fds = NULL;
+	}
+	if (g_info.pipe_count > 0 && g_info.pipe_fds)
+	{
+		free(g_info.pipe_fds);
+		g_info.pipe_fds = NULL;
+	}
 }
 
 void	free_in_minishell(t_command *cmd, int cmd_count)
 {
 	if (cmd != NULL)
 		free_cmd_struct(cmd, cmd_count);
-	// if (cmd_line)
-	// 	free_char_array(cmd_line);
 	close_free_fd_arrays();
 }
