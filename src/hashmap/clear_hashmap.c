@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_hashmap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:53:34 by meskelin          #+#    #+#             */
-/*   Updated: 2023/07/22 12:56:45 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/14 09:59:19 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static void	ft_clr_rec(t_node *node)
 		return ;
 	ft_clr_rec(node->next);
 	node->next = NULL;
+	free(node->key);
 	node->key = NULL;
+	free(node->value);
 	node->value = NULL;
 	free(node);
 }

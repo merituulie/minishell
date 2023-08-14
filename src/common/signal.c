@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 10:44:29 by                   #+#    #+#             */
-/*   Updated: 2023/08/04 11:57:01 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/14 09:51:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ctrl_d_cmd(char *line, t_data *ms)
 	{
 		restore_terminal(ms);
 		ft_putstr_fd("exit\n", 0, 1);
+		clear_hashmap((ms->env)->vars);
 		exit(EXIT_SUCCESS);
 	}
 }

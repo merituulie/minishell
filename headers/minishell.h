@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 17:49:47 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/14 10:50:58 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command, t_env **env, char *delim);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
-void		ft_exit(t_command *command, int fork);
+void		ft_exit(t_command *command, t_env *env, int fork);
 void		ft_export(char **input, t_env *env);
 void		ft_unset(char **input, t_env *env);
 int			execute_ft_execve(t_command *command, t_env **env);
@@ -151,7 +151,7 @@ void		heredoc_signal(int signo);
 void		free_and_nullify(void *to_be_freed);
 void		free_cmd_struct(t_command *command, int cmd_count);
 void		free_in_main(t_data *data);
-void		free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line);
+void		free_in_minishell(t_command *cmd, int cmd_count);
 void		close_free_fd_arrays(void);
 
 #endif

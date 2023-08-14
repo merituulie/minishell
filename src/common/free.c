@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/13 11:58:07 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 10:50:32 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ void	close_free_fd_arrays(void)
 		free_and_nullify(g_info.pipe_fds);
 }
 
-void	free_in_minishell(t_command *cmd, int cmd_count, char **cmd_line)
+void	free_in_minishell(t_command *cmd, int cmd_count)
 {
 	free_cmd_struct(cmd, cmd_count);
-	free_char_array(cmd_line);
 	close_free_fd_arrays();
 }
