@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:55:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:14:41 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@
 // 				j++;
 // 			}
 // 		}
+// 		printf("cmd[%d].redir_fd_index_in is %d\n", i, cmd[i].redir_fd_index_in);
+// 		printf("cmd[%d].redir_fd_index_out is %d\n", i, cmd[i].redir_fd_index_out);
 // 		if (cmd[i].infile_name)
 // 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
 // 		if (cmd[i].outfile_name)
@@ -152,6 +154,7 @@ static int	process_input_line(t_data *ms, char *input_line)
 		free_in_minishell(cmd, ms->struct_count);
 		return (1);
 	}
+	// print_command(cmd);
 	execute_commands(cmd, ms->struct_count, &ms->env);
 	free_in_minishell(cmd, ms->struct_count);
 	return (0);

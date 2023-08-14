@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 11:52:11 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:16:03 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ checks if g_info.redir_fds[current->redir_fd_index_in] is -1,
 opening infile fails(with pipe)*/
 void	redirect_files(t_command *current)
 {
+	printf("----------before dup2 redirect files function---------\n");
+	printf("current.redir_fd_index_in is %d\n", current->redir_fd_index_in);
+	printf("current.redir_fd_index_out is %d\n", current->redir_fd_index_out);
+	printf("-----------------------------------------------------\n");
 	if (current->redir_fd_index_in != -2 \
 		&& g_info.redir_fds[current->redir_fd_index_in] != -1)
 		ft_dup2(g_info.redir_fds[current->redir_fd_index_in], -2);
