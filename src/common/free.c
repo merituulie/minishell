@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:50:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 10:57:05 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	free_cmd_struct(t_command *command, int cmd_count)
 	int	i;
 
 	i = 0;
+
 	while (i < cmd_count)
 	{
 		if (command[i].command)
@@ -83,6 +84,9 @@ void	close_free_fd_arrays(void)
 
 void	free_in_minishell(t_command *cmd, int cmd_count)
 {
-	free_cmd_struct(cmd, cmd_count);
+	if (cmd != NULL)
+		free_cmd_struct(cmd, cmd_count);
+	// if (cmd_line)
+	// 	free_char_array(cmd_line);
 	close_free_fd_arrays();
 }

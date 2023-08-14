@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:50:02 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 10:55:48 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,43 @@
 // 	}
 // }
 
+// static void	print_command(t_command *cmd)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = -1;
+// 	while (cmd[++i].command)
+// 	{
+// 		if (cmd[i].command)
+// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
+// 		if (cmd[i].full_cmd)
+// 		{
+// 			j = 0;
+// 			while (cmd[i].full_cmd[j])
+// 			{
+// 				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+// 				j++;
+// 			}
+// 		}
+// 		if (cmd[i].flags)
+// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
+// 		if (cmd[i].input)
+// 		{
+// 			j = 0;
+// 			while (cmd[i].input[j])
+// 			{
+// 				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
+// 				j++;
+// 			}
+// 		}
+// 		if (cmd[i].infile_name)
+// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
+// 		if (cmd[i].outfile_name)
+// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
+// 	}
+// }
+
 t_command	*ft_parser(t_data *ms, char **cmd_line)
 {
 	t_command	*temp;
@@ -94,16 +131,35 @@ t_command	*ft_parser(t_data *ms, char **cmd_line)
 	if (cmd_line == NULL)
 		return (NULL);
 	temp = init_cmds(ms, cmd_line);
+	free_char_array(cmd_line);
 	if (temp == NULL)
 		return (NULL);
 	return (temp);
 }
 
+static int	process_input_line(t_data *ms, char *input_line)
+{
+	char		**cmd_line;
+	t_command	*cmd;
+
+	cmd_line = ft_lexer(input_line);
+	free(input_line);
+	if (cmd_line == NULL)
+		return (1);
+	cmd = ft_parser(ms, cmd_line);
+	if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
+	{
+		free_in_minishell(cmd, ms->struct_count);
+		return (1);
+	}
+	execute_commands(cmd, ms->struct_count, &ms->env);
+	free_in_minishell(cmd, ms->struct_count);
+	return (0);
+}
+
 void	minishell(t_data *ms)
 {
 	char		*line;
-	char		**cmd_line;
-	t_command	*cmd;
 
 	while (42)
 	{
@@ -116,19 +172,8 @@ void	minishell(t_data *ms)
 		}
 		else
 			add_history(line);
-		cmd_line = ft_lexer(line);
-		free(line);
-		if (cmd_line == NULL)
+		if (process_input_line(ms, line) == 1)
 			continue ;
-		cmd = ft_parser(ms, cmd_line);
-		if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
-		{
-			if (cmd->input)
-				free_char_array(cmd->input);
-			continue ;
-		}
-		execute_commands(cmd, ms->struct_count, &ms->env);
-		free_in_minishell(cmd, ms->struct_count);
 	}
 }
 
