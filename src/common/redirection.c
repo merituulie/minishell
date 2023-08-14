@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 18:41:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 18:55:56 by meskelin         ###   ########.fr       */
+/*   Created: 2023/08/14 18:41:58 by meskelinn          #+#    #+#             */
+/*   Updated: 2023/08/14 18:41:58 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,25 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 void	clear_failed_redir(t_command *cmd)
 {
 	if (cmd->command)
-		free_and_nullify(cmd->command);
+	{
+		free(cmd->command);
+		cmd->command = NULL;
+	}
 	if (cmd->flags)
-		free_and_nullify(cmd->flags);
+	{
+		free(cmd->flags);
+		cmd->flags = NULL;
+	}
 	if (cmd->infile_name)
-		free_and_nullify(cmd->infile_name);
+	{
+		free(cmd->infile_name);
+		cmd->infile_name = NULL;
+	}
 	if (cmd->outfile_name)
-		free_and_nullify(cmd->outfile_name);
+	{
+		free(cmd->outfile_name);
+		cmd->outfile_name = NULL;
+	}
 	cmd->redir_fd_index_in = -2;
 	cmd->redir_fd_index_out = -2;
 	if (cmd->token)
