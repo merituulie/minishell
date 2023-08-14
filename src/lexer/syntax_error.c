@@ -105,13 +105,13 @@ int	syntax_error(char *str)
 	{
 		if (str[i] == '|')
 			return (check_pipe_syntax(str, i));
-		else if (str[i] == '>')
+		if (str[i] == '>')
 		{
 			ret = out_redir_syntax_error(str, i);
 			if (ret)
 				return (ret);
 		}
-		else if (str[i] == '<')
+		if (str[i] == '<')
 		{
 			ret = in_redir_syntax_error(str, i);
 			if (ret)
