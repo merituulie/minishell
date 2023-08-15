@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/14 11:45:54 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:18:52 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void		ft_exit(t_command *command, t_env *env, int fork);
 void		ft_export(char **input, t_env *env);
 void		ft_unset(char **input, t_env *env);
 int			execute_ft_execve(t_command *command, t_env **env);
+void		exp_unset_err_msg(char *input, int command);
 
 //	SHLVL
 void		add_shlvl(t_env **env);
