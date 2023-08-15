@@ -6,15 +6,15 @@
 #    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/15 11:21:21 by emeinert         ###   ########.fr        #
+#    Updated: 2023/08/15 11:23:23 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror
-# -fsanitize=address
+BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror #-fsanitize=address,undefined
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \

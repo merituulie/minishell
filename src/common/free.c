@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:47:24 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/14 12:07:39 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:04:24 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,16 @@ void	free_in_main(t_data *data)
 
 void	close_free_fd_arrays(void)
 {
-	close_files(g_info.redir_fds, g_info.redir_count);
 	if (g_info.redir_fds)
-		free_and_nullify(g_info.redir_fds);
+	{
+		close_files(g_info.redir_fds, g_info.redir_count);
+		g_info.redir_fds = NULL;
+	}
 	if (g_info.pipe_fds)
-		free_and_nullify(g_info.pipe_fds);
+	{
+		close_files(g_info.pipe_fds, g_info.pipe_count);
+		g_info.pipe_fds = NULL;
+	}
 }
 
 void	free_in_minishell(t_command *cmd, int cmd_count)
