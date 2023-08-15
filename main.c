@@ -95,7 +95,7 @@ t_command	*ft_parser(t_data *ms, char **cmd_line)
 	if (cmd_line == NULL)
 		return (NULL);
 	temp = init_cmds(ms, cmd_line);
-	print_command(temp);
+	//print_command(temp);
 	free_char_array(cmd_line);
 	if (temp == NULL)
 		return (NULL);

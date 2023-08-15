@@ -116,7 +116,7 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	t_data	ms;
 
 	g_info.sig_status = 0;
-	fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
+	fd = open_file(command->infile_name, O_CREAT | O_WRONLY | O_TRUNC);
 	line = readline("> ");
 	while (line)
 	{

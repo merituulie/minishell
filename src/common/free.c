@@ -18,8 +18,8 @@
 
 static void	unlink_heredoc(char *filename)
 {
-	if (!ft_strncmp_all(filename, HEREDOC))
-		unlink(HEREDOC);
+	if (!ft_strncmp(filename, "HEREDOC", 7))
+		unlink(filename);
 	return ;
 }
 

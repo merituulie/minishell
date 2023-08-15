@@ -16,15 +16,15 @@ void	update_command_redir(t_command *command)
 {
 	int	fd;
 
-	if (command->infile_name && !ft_strncmp_all(command->infile_name, HEREDOC))
+	if (command->infile_name && !ft_strncmp(command->infile_name, "HEREDOC", 7))
 	{
-		fd = open_file(HEREDOC, O_RDONLY);
+		fd = open_file(command->infile_name, O_RDONLY);
 		command->token = INPUT;
 		command->redir_fd_index_in = g_info.redir_index_count;
 		g_info.redir_fds[g_info.redir_index_count++] = fd;
 	}
-	else
-		unlink(HEREDOC);
+	//else
+		unlink(command->infile_name);
 }
 
 static int	check_for_cat_grep(char *str)
@@ -38,14 +38,13 @@ static int	check_for_cat_grep(char *str)
 int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 {
 	int		cmd_index;
-	// char	*file_name;
-	// char	*number;
+	char	*file_name;
+	char	*number;
 
-	// number = ft_itoa(track);
-	// file_name = ft_strjoin("HEREDOC", number);
+	number = ft_itoa(track);
+	file_name = ft_strjoin("HEREDOC", number);
+	free(number);
 	cmd_index = 0;
-	printf("input[cmd_index]: %s\n", input[cmd_index]);
-	printf("index: %d\n", *index);
 	if (!ft_strncmp_all("<<", input[(*index)]))
 	{
 		if ((*index) > 0 && input[(*index) - 1] \
@@ -54,16 +53,13 @@ int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 		else if (input[(*index) + 1] && input[(*index) + 2] \
 		&& input[(*index) + 2][0] != '|')
 			cmd_index = (*index) + 2;
-	printf("input[cmd_index]: %s\n", input[cmd_index]);
-		if (check_for_cat_grep(input[cmd_index]))
-		{
-			printf("store here\n");
-			cmd[track].infile_name = ft_strdup(HEREDOC);
-		}
-		// if (!ft_strncmp(input[cmd_index + 1], "-", 1))
-		// 	(*index) += 3;
+		if (check_for_cat_grep(input[cmd_index]) || \
+			check_for_cat_grep(input[cmd_index - 1]))
+			cmd[track].infile_name = ft_strdup(file_name);
+		free(file_name);
 		(*index) += 2;
 		return (1);
 	}
+	free(file_name);
 	return (0);
 }
