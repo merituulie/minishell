@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/14 11:41:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:06:38 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_exit(t_command *command, t_env *env, int fork)
 			ft_putstr_fd("exit\n", 1, 0);
 			ft_exit_free(command, env);
 		}
-		exit(0);
+		exit(g_info.exit_code);
 	}
 	num_arg_check(command->full_cmd, fork, command, env);
 	flag = amount_check(command->full_cmd, fork);
