@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:47:24 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 11:26:25 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/15 13:35:36 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/parsing.h"
 #include "../../headers/lexer.h"
@@ -69,10 +70,16 @@ void	free_in_main(t_data *data)
 void	close_free_fd_arrays(void)
 {
 	close_files(g_info.redir_fds, g_info.redir_count);
-	if (g_info.redir_fds)
-		free_and_nullify(g_info.redir_fds);
-	if (g_info.pipe_fds)
-		free_and_nullify(g_info.pipe_fds);
+	if (g_info.redir_count > 0 && g_info.redir_fds)
+	{
+		free(g_info.redir_fds);
+		g_info.redir_fds = NULL;
+	}
+	if (g_info.pipe_count > 0 && g_info.pipe_fds)
+	{
+		free(g_info.pipe_fds);
+		g_info.pipe_fds = NULL;
+	}
 }
 
 void	free_in_minishell(t_command *cmd, int cmd_count)

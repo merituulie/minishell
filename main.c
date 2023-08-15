@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 18:47:19 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 20:01:04 by meskelin         ###   ########.fr       */
+/*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/15 15:19:28 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,81 +46,43 @@
 // 	}
 // }
 
-// static void	print_command(t_command *cmd)
-// {
-// 	int	i;
-// 	int	j;
+static void	print_command(t_command *cmd)
+{
+	int	i;
+	int	j;
 
-// 	i = -1;
-// 	while (cmd[++i].command)
-// 	{
-// 		if (cmd[i].command)
-// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-// 		if (cmd[i].full_cmd)
-// 		{
-// 			j = 0;
-// 			while (cmd[i].full_cmd[j])
-// 			{
-// 				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
-// 				j++;
-// 			}
-// 		}
-// 		if (cmd[i].flags)
-// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-// 		if (cmd[i].input)
-// 		{
-// 			j = 0;
-// 			while (cmd[i].input[j])
-// 			{
-// 				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
-// 				j++;
-// 			}
-// 		}
-// 		if (cmd[i].infile_name)
-// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-// 		if (cmd[i].outfile_name)
-// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-// 	}
-// }
+	i = -1;
+	while (cmd[++i].command)
+	{
+		if (cmd[i].command)
+			printf("cmd[%d].command is %s\n", i, cmd[i].command);
+		if (cmd[i].full_cmd)
+		{
+			j = 0;
+			while (cmd[i].full_cmd[j])
+			{
+				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
+				j++;
+			}
+		}
+		if (cmd[i].flags)
+			printf("cmd[%d].flags is %s\n", i, cmd[i].flags);
+		if (cmd[i].input)
+		{
+			j = 0;
+			while (cmd[i].input[j])
+			{
+				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
+				j++;
+			}
+		}
+		if (cmd[i].infile_name)
+			printf("cmd[%d].infile is %s\n", i, cmd[i].infile_name);
+		if (cmd[i].outfile_name)
+			printf("cmd[%d].outfile is %s\n", i, cmd[i].outfile_name);
+	}
+}
 
-// static void	print_command(t_command *cmd)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = -1;
-// 	while (cmd[++i].command)
-// 	{
-// 		if (cmd[i].command)
-// 			printf("cmd[%d].command is %s$\n", i, cmd[i].command);
-// 		if (cmd[i].full_cmd)
-// 		{
-// 			j = 0;
-// 			while (cmd[i].full_cmd[j])
-// 			{
-// 				printf("cmd[%d].full_cmd[%d] is %s\n", i, j, cmd[i].full_cmd[j]);
-// 				j++;
-// 			}
-// 		}
-// 		if (cmd[i].flags)
-// 			printf("cmd[%d].flags is %s$\n", i, cmd[i].flags);
-// 		if (cmd[i].input)
-// 		{
-// 			j = 0;
-// 			while (cmd[i].input[j])
-// 			{
-// 				printf("cmd[%d].input[%d] is %s\n", i, j, cmd[i].input[j]);
-// 				j++;
-// 			}
-// 		}
-// 		printf("cmd[%d].redir_fd_index_in is %d\n", i, cmd[i].redir_fd_index_in);
-// 		printf("cmd[%d].redir_fd_index_out is %d\n", i, cmd[i].redir_fd_index_out);
-// 		if (cmd[i].infile_name)
-// 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
-// 		if (cmd[i].outfile_name)
-// 			printf("cmd[%d].outfile is %s$\n", i, cmd[i].outfile_name);
-// 	}
-// }
 
 t_command	*ft_parser(t_data *ms, char **cmd_line)
 {
@@ -145,7 +107,10 @@ static int	process_input_line(t_data *ms, char *input_line)
 	t_command	*cmd;
 
 	cmd_line = ft_lexer(input_line);
-	free(input_line);
+	if (input_line)
+	{
+		free(input_line);
+	}
 	if (cmd_line == NULL)
 		return (1);
 	cmd = ft_parser(ms, cmd_line);
@@ -167,7 +132,7 @@ void	minishell(t_data *ms)
 	{
 		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (line && (space_newline(line)
+		if (line && (space_newline(line) \
 					|| line[0] == '\0' || line[0] == '\n'))
 		{
 			free(line);
