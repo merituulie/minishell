@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/15 10:49:43 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/15 13:42:19 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	free_in_main(t_data *data)
 
 void	close_free_fd_arrays(void)
 {
-	close_files(g_info.redir_fds, g_info.redir_count);
 	if (g_info.redir_count > 0 && g_info.redir_fds)
 	{
+		close_files(g_info.redir_fds, g_info.redir_count);
 		free(g_info.redir_fds);
 		g_info.redir_fds = NULL;
 	}
