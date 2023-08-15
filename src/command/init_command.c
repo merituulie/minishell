@@ -91,7 +91,6 @@ t_command	*init_cmds(t_data *ms, char **input)
 		cmd[track].redir_fd_index_out = -2;
 		track++;
 	}
-	track = 0;
 	put_cmds_to_struct(cmd, input, ms);
 	full_cmd(cmd, ms->struct_count, track);
 	return (cmd);
