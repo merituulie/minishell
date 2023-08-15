@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 13:36:38 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:19:03 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ static int	process_input_line(t_data *ms, char *input_line)
 		free_in_minishell(cmd, ms->struct_count);
 		return (1);
 	}
-	print_command(cmd);
 	execute_commands(cmd, ms->struct_count, &ms->env);
 	free_in_minishell(cmd, ms->struct_count);
 	return (0);
@@ -136,7 +135,6 @@ void	minishell(t_data *ms)
 		if (line && (space_newline(line)
 					|| line[0] == '\0' || line[0] == '\n'))
 		{
-			printf("is it here in free minishell?");
 			free(line);
 			continue ;
 		}
