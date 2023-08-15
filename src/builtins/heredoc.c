@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 10:27:43 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:41:39 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,11 @@ static int	find_index(char *str, char c)
 	return (-1);
 }
 
-int	ft_heredoc(t_command *command, t_env **env, char *delim)
+void	write_heredoc(char *delim, t_env **env, int fd)
 {
-	int		fd;
 	char	*line;
 	t_data	ms;
 
-	g_info.sig_status = 0;
-	fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
 	line = readline("> ");
 	while (line)
 	{
@@ -133,7 +130,17 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 		line = NULL;
 		line = readline("> ");
 	}
+}
+
+int	ft_heredoc(t_command *command, t_env **env, char *delim)
+{
+	int		fd;
+
+	g_info.sig_status = 0;
+	fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
+	write_heredoc(delim, env, fd);
 	close(fd);
 	update_command_redir(command);
+	g_info.exit_code = 0;
 	return (-1);
 }

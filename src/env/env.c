@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 13:57:14 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:34:56 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ void	ft_env(t_env **env, t_command *command)
 		return ;
 	}
 	ft_putstr_fd(env_to_string(env), 1, 0);
+	g_info.exit_code = 0;
 }
