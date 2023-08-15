@@ -6,10 +6,9 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/15 15:33:10 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:33:55 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
@@ -133,10 +132,9 @@ void	minishell(t_data *ms)
 	{
 		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (line && (space_newline(line)
+		if (line && (space_newline(line) \
 					|| line[0] == '\0' || line[0] == '\n'))
 		{
-			printf("is it here in free minishell?");
 			free(line);
 			continue ;
 		}
