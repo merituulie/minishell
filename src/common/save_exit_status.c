@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 16:47:52 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 16:58:35 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/15 16:59:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cmd_is_not_executable(t_command *command)
 	{
 		if (access(command->command, X_OK) == -1)
 		{
-			ft_puterror(126, ": permission denied\n", command);
+			ft_puterror(126, ": Permission denied\n", command);
 			exit(126);
 		}
 	}
