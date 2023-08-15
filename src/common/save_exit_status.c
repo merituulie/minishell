@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 13:54:42 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:16:00 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cmd_is_not_executable(t_command *command)
 	{
 		if (access(command->command, X_OK) == -1)
 		{
-			ft_puterror(126, ": permission denied\n", command);
+			ft_puterror(126, ": Permission denied\n", command);
 			exit(126);
 		}
 	}
