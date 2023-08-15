@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/04 11:13:21 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/08/14 11:44:14 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ ft_strchr_null \
 ft_putnbr_fd \
 ft_isalpha \
 ft_lltoa \
+free_and_nullify \
 
 H_FILES = libft
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/27 13:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/14 10:24:25 by jhusso           ###   ########.fr       */
+/*   Created: 2023/08/14 18:41:58 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/14 19:56:05 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ void	clear_failed_redir(t_command *cmd)
 		free(cmd->flags);
 		cmd->flags = NULL;
 	}
-	// if (cmd->input)
-	// 	free_char_array(cmd->input);
 	if (cmd->infile_name)
 	{
 		free(cmd->infile_name);

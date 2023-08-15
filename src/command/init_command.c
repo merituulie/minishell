@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/14 16:28:35 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/15 10:22:52 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
 #include "../../libft/libft.h"
-
 
 static int	count_struct(char **input)
 {
@@ -73,7 +72,6 @@ t_command	*init_cmds(t_data *ms, char **input)
 	t_command	*cmd;
 	int			track;
 
-	ms->struct_count = 0;
 	track = 0;
 	ms->struct_count = count_struct(input);
 	if (!ft_strncmp_all(input[0], ""))
@@ -86,8 +84,13 @@ t_command	*init_cmds(t_data *ms, char **input)
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)
 		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
-	cmd->redir_fd_index_in = -2;
-	cmd->redir_fd_index_out = -2;
+	while (track < ms->struct_count + 1)
+	{
+		cmd[track].redir_fd_index_in = -2;
+		cmd[track].redir_fd_index_out = -2;
+		track++;
+	}
+	track = 0;
 	put_cmds_to_struct(cmd, input, ms);
 	full_cmd(cmd, ms->struct_count, track);
 	return (cmd);

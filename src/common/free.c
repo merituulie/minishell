@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 16:23:10 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/15 10:23:07 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ static void	unlink_heredoc(char *filename)
 	if (!ft_strncmp_all(filename, HEREDOC))
 		unlink(HEREDOC);
 	return ;
-}
-
-void	free_and_nullify(void *to_be_freed)
-{
-	free(to_be_freed);
-	to_be_freed = NULL;
 }
 
 void	free_cmd_struct(t_command *command, int cmd_count)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 13:41:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/14 10:47:02 by jhusso           ###   ########.fr       */
+/*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/14 11:45:54 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command, t_env **env, char *delim);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
-void		ft_exit(t_command *command, int fork);
+void		ft_exit(t_command *command, t_env *env, int fork);
 void		ft_export(char **input, t_env *env);
 void		ft_unset(char **input, t_env *env);
 int			execute_ft_execve(t_command *command, t_env **env);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 13:38:18 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:43:55 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int			ft_isdigit(char c);
 int			ft_strchr_index(const char *s, int c);
 char		*ft_strchr_null(const char *s, int c);
 void		ft_putnbr_fd(int n, int fd);
+void		free_and_nullify(void *to_be_freed);
 
 #endif

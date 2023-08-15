@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 16:29:19 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/15 10:22:03 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@
 // 				j++;
 // 			}
 // 		}
+// 		printf("cmd[%d].redir_fd_index_in is %d\n", i, cmd[i].redir_fd_index_in);
+// 		printf("cmd[%d].redir_fd_index_out is %d\n", i, cmd[i].redir_fd_index_out);
 // 		if (cmd[i].infile_name)
 // 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
 // 		if (cmd[i].outfile_name)
@@ -168,7 +170,8 @@ void	minishell(t_data *ms)
 	{
 		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (space_newline(line) || line[0] == '\0' || line[0] == '\n')
+		if (line && (space_newline(line)
+					|| line[0] == '\0' || line[0] == '\n'))
 		{
 			printf("is it here in free minishell?");
 			free(line);
