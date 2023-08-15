@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:57:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 09:30:18 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/14 18:53:57 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static void	reset_redir_file(t_command *cmd, char **input,	\
 	}
 }
 
-static int	handle_redirection(t_command *cmd, int *index, int track, char **input)
+static int	handle_redirection(t_command *cmd, int *index, \
+		int track, char **input)
 {
 	char	*str;
 
