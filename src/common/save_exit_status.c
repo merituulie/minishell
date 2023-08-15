@@ -3,15 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   save_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/08 16:55:21 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/15 13:54:42 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
+
+void	cmd_is_not_executable(t_command *command)
+{
+	int	accessable;
+
+	accessable = access(command->command, F_OK);
+	if (accessable == 0)
+	{
+		if (access(command->command, X_OK) == -1)
+		{
+			ft_puterror(126, ": permission denied\n", command);
+			exit(126);
+		}
+	}
+}
 
 void	set_exit_code(int number)
 {

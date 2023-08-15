@@ -3,19 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 16:29:19 by rmakinen         ###   ########.fr       */
-=========
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 18:47:19 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 20:01:04 by meskelin         ###   ########.fr       */
->>>>>>>>> Temporary merge branch 2
+/*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/15 13:36:38 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"

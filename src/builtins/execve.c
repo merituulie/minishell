@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:35:02 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 14:46:38 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/15 13:57:12 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	ft_execve(t_command *command, t_env **env)
 	t_node	*temp;
 
 	cmd_is_dir(command, env);
+	cmd_is_not_executable(command);
 	temp = get_value((*env)->vars, "PATH");
 	if (temp == NULL || (command->command
 			&& command->command[0] == '/'))
