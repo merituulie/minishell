@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 17:16:18 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:36:02 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static char	*cd_error_msg(t_command *command, char *str)
 	free(temp);
 	temp = NULL;
 	temp = out;
-	return (out);
+	free(out);
+	return (temp);
 }
 
 /*chdir changes the current working directory to dirctory path that is given.
@@ -66,8 +67,9 @@ static void	go_dir(t_env **env, t_command *command)
 		{
 			out = cd_error_msg(command, ": No such file or directory\n");
 			ft_puterror(1, out, command);
-			free(out);
 		}
+		else
+			g_info.exit_code = 0;
 		free(path);
 	}
 }
