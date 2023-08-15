@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/14 10:55:48 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/14 18:47:19 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/14 20:01:04 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@
 // 				j++;
 // 			}
 // 		}
+// 		printf("cmd[%d].redir_fd_index_in is %d\n", i, cmd[i].redir_fd_index_in);
+// 		printf("cmd[%d].redir_fd_index_out is %d\n", i, cmd[i].redir_fd_index_out);
 // 		if (cmd[i].infile_name)
 // 			printf("cmd[%d].infile is %s$\n", i, cmd[i].infile_name);
 // 		if (cmd[i].outfile_name)
@@ -165,7 +167,8 @@ void	minishell(t_data *ms)
 	{
 		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (space_newline(line) || line[0] == '\0' || line[0] == '\n')
+		if (line && (space_newline(line)
+					|| line[0] == '\0' || line[0] == '\n'))
 		{
 			free(line);
 			continue ;
