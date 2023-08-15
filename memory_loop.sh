@@ -1,3 +1,5 @@
+#!bin/bash
+
 while TRUE
 do
 	echo "Checking for memory leaks ....."
