@@ -6,7 +6,7 @@
 #    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/15 11:02:30 by meskelin         ###   ########.fr        #
+#    Updated: 2023/08/15 11:24:20 by meskelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ ft_strchr_null \
 ft_putnbr_fd \
 ft_isalpha \
 ft_lltoa \
+free_and_nullify \
 
 H_FILES = libft
 
