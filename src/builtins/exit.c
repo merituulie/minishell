@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/15 17:35:52 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:55:56 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_exit(t_command *command, t_env *env, int fork)
 			ft_putstr_fd("exit\n", 1, 0);
 			ft_exit_free(command, env);
 		}
-		exit(0);
+		exit(g_info.exit_code);
 	}
 	num_arg_check(command->full_cmd, fork, command, env);
 	flag = amount_check(command->full_cmd, fork);
