@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 15:19:03 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:19:28 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	minishell(t_data *ms)
 	{
 		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (line && (space_newline(line)
+		if (line && (space_newline(line) \
 					|| line[0] == '\0' || line[0] == '\n'))
 		{
 			free(line);
