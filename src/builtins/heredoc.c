@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/13 09:44:26 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/15 10:27:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 		size = ft_strlen(str) - ft_strlen(var);
 	else
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
-	ms->out = ft_calloc(size, sizeof(char));
+	ms->out = ft_calloc(size + 1, sizeof(char));
 	if (!ms->out)
 		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	ms->out = ft_memcpy(ms->out, str, ms->start);

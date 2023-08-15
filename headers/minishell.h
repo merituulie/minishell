@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/14 11:45:54 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 13:52:26 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void		set_exit_code(int number);
 void		ft_puterror(int code, char *str, t_command *command);
 char		*get_exit_code(void);
 int			*allocate_pids(int pid_count);
+void		cmd_is_not_executable(t_command *command);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);

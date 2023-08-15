@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 17:14:12 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:16:18 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ static char	*get_path(char *command_input)
 	return (path);
 }
 
+static char	*cd_error_msg(t_command *command, char *str)
+{
+	char	*temp;
+	char	*out;
+
+	temp = ft_strjoin("cd: ", command->full_cmd[1]);
+	out = ft_strjoin(temp, str);
+	free(temp);
+	temp = NULL;
+	temp = out;
+	return (out);
+}
+
 /*chdir changes the current working directory to dirctory path that is given.
 chdir returns 0 if successful, 1 if not.
 go_dir function will chdir with the arguments that is given*/
@@ -35,6 +48,7 @@ static void	go_dir(t_env **env, t_command *command)
 {
 	t_node	*temp;
 	char	*path;
+	char	*out;
 
 	temp = *((*env)->vars);
 	if (command->input == NULL)
@@ -49,7 +63,11 @@ static void	go_dir(t_env **env, t_command *command)
 	{
 		path = get_path(command->full_cmd[1]);
 		if (chdir(path))
-			ft_puterror(1, "No such file or directory\n", command);
+		{
+			out = cd_error_msg(command, ": No such file or directory\n");
+			ft_puterror(1, out, command);
+			free(out);
+		}
 		free(path);
 	}
 }
