@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/16 11:17:01 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:51:01 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,19 @@
 static char	*get_path(char *command_input)
 {
 	char	*path;
+	char	*temp;
 	int		end;
 
 	end = 0;
 	while (command_input[end] != '\0' && command_input[end] != ' ')
 		end++;
 	path = ft_substr(command_input, 0, end);
+	if (path[0] == '/')
+	{
+		temp = ft_substr(path, 1, ft_strlen(path) - 1);
+		free (path);
+		return (temp);
+	}
 	return (path);
 }
 
