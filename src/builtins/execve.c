@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:35:02 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/16 11:08:31 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:08:52 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,10 @@ static char	*find_cmd_path(char *cmd, t_node *temp)
 
 static void	cmd_is_dir(t_command *command)
 {
-	struct stat	filestat;
-
-	if (stat(command->command, &filestat) == -1)
+	if (!ft_strncmp_all(command->command, "/home"))
 	{
-		if (!S_ISDIR(filestat.st_mode))
-		{
-			ft_puterror(126, ": is a directory\n", command);
-			exit(126);
-		}
+		ft_puterror(126, ": is a directory\n", command);
+		exit(126);
 	}
 	return ;
 }
