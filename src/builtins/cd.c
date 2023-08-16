@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/16 11:15:36 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:17:01 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	go_dir(t_env **env, t_command *command)
 			ft_puterror(1, out, command);
 		}
 		else
-			g_info.exit_code = 0;
+			set_exit_code(0);
 		free(path);
 	}
 }

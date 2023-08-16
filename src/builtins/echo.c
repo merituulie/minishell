@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/08 15:06:39 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:22:57 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	ft_echo(t_command *command)
 		if (new_line == 0)
 			ft_putchar_fd('\n', 1);
 	}
+	set_exit_code(0);
 }
