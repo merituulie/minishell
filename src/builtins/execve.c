@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:35:02 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/15 13:57:12 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:45:46 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,19 @@ static char	*find_cmd_path(char *cmd, t_node *temp)
 	return (path);
 }
 
-static void	cmd_is_dir(t_command *command, t_env **env)
+static void	cmd_is_dir(t_command *command)
 {
-	t_node	*temp;
+	struct stat	filestat;
 
-	temp = check_value((*env)->vars, command->command);
-	if (temp && command->command && command->command[0] == '/')
+	if (stat(command->command, &filestat) == -1)
 	{
-		ft_puterror(126, ": is a directory\n", command);
-		exit(126);
+		if (!S_ISDIR(filestat.st_mode))
+		{
+			ft_puterror(126, ": is a directory\n", command);
+			exit(126);
+		}
 	}
-	else
-		return ;
+	return ;
 }
 
 int	execute_ft_execve(t_command *command, t_env **env)
@@ -85,11 +86,10 @@ int	ft_execve(t_command *command, t_env **env)
 	char	**vars;
 	t_node	*temp;
 
-	cmd_is_dir(command, env);
+	cmd_is_dir(command);
 	cmd_is_not_executable(command);
 	temp = get_value((*env)->vars, "PATH");
-	if (temp == NULL || (command->command
-			&& command->command[0] == '/'))
+	if (temp == NULL)
 		return (-2);
 	path = find_cmd_path(command->command, temp);
 	if (path == NULL || !ft_strncmp_all(path, ".."))
