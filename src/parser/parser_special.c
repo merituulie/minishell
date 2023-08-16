@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_special.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/14 16:19:46 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:47:36 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,16 @@ int	space_newline(char *str)
 		i++;
 	}
 	return (1);
+}
+
+int	break_in_expand_quote(char *str, t_data *ms)
+{
+	if (!str)
+		return (-1);
+	free_case(ms);
+	if (ms->end - 1 >= (int)ft_strlen(str))
+		return (-1);
+	return (0);
 }
 
 int	find_index(char *str, char c)

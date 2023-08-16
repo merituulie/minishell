@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 16:15:33 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:51:09 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,11 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 				ms->s_quotes = 0;
 			else if (str[ms->i][ms->j] == '$' && str[ms->i][ms->j + 1] \
 													&& !ms->s_quotes)
-			{	
-				if (extend_expand_quote_check2(ms, str))
+			{
+				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
+				if (break_in_expand_quote(str[ms->i], ms) == -1)
 					break ;
+				ms->j = ms->end - 1;
 			}
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 10:27:43 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:23:15 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,22 @@ static char	*expand_var_here(t_data *ms, char *str, int start, t_env **env)
 	return (ms->out);
 }
 
-int	ft_heredoc(t_command *command, t_env **env, char *delim)
+static int	find_index(char *str, char c)
 {
-	int		fd;
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+void	write_heredoc(char *delim, t_env **env, int fd)
+{
 	char	*line;
 	t_data	ms;
 
@@ -126,7 +139,17 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 		line = readline("> ");
 	}
 	free(line);
+}
+
+int	ft_heredoc(t_command *command, t_env **env, char *delim)
+{
+	int		fd;
+
+	g_info.sig_status = 0;
+	fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
+	write_heredoc(delim, env, fd);
 	close(fd);
 	update_command_redir(command);
+	set_exit_code(0);
 	return (-1);
 }
