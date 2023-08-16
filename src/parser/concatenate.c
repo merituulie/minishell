@@ -83,3 +83,16 @@ char	**concatenate(char **str, t_data *ms)
 	}
 	return (str);
 }
+
+//This function help for the line too long in expand_env.c:
+int	extend_expand_quote_check2(t_data *ms, char **str)
+{
+	str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
+	if (!str[ms->i])
+		return (1);
+	free_case(ms);
+	if (ms->end - 1 >= (int)ft_strlen(str[ms->i]))
+		return (1);
+	ms->j = ms->end - 1;
+	return (0);
+}

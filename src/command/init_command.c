@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vvu <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/15 10:34:31 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/16 12:04:51 by vvu               #+#    #+#             */
+/*   Updated: 2023/08/16 12:04:56 by vvu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"

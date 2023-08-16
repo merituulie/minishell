@@ -23,8 +23,7 @@ void	update_command_redir(t_command *command)
 		command->redir_fd_index_in = g_info.redir_index_count;
 		g_info.redir_fds[g_info.redir_index_count++] = fd;
 	}
-	//else
-		unlink(command->infile_name);
+	unlink(HEREDOC);
 }
 
 static int	check_for_cat_grep(char *str)
@@ -54,7 +53,7 @@ int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 		&& input[(*index) + 2][0] != '|')
 			cmd_index = (*index) + 2;
 		if (check_for_cat_grep(input[cmd_index]) || \
-			check_for_cat_grep(input[cmd_index - 1]))
+			(input[cmd_index][0] == '-' && ft_isalpha(input[cmd_index][1])))
 			cmd[track].infile_name = ft_strdup(file_name);
 		free(file_name);
 		(*index) += 2;

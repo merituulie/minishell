@@ -69,3 +69,18 @@ int	space_newline(char *str)
 	}
 	return (1);
 }
+
+int	find_index(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c && !is_delim(str[i + 1]) && str[i + 1] \
+		&& str[i + 1] != c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}

@@ -105,6 +105,8 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 	free(var);
 }
 
+// the function extend expand quote check2 is in the 
+// concatenate.c:
 static char	**expand_quote_check2(t_data *ms, char **str)
 {
 	while (str[++(ms->i)])
@@ -122,14 +124,9 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 				ms->s_quotes = 0;
 			else if (str[ms->i][ms->j] == '$' && str[ms->i][ms->j + 1] \
 													&& !ms->s_quotes)
-			{
-				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
-				if (!str[ms->i])
+			{	
+				if (extend_expand_quote_check2(ms, str))
 					break ;
-				free_case(ms);
-				if (ms->end - 1 >= (int)ft_strlen(str[ms->i]))
-					break;
-				ms->j = ms->end - 1;
 			}
 		}
 	}
