@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 16:15:33 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/16 07:26:58 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	if (!ft_strncmp_all(var, "$?"))
 		return (get_exit_code());
 	var_size--;
-	search = ft_calloc(var_size, sizeof(char));
+	search = ft_calloc(var_size + 1, sizeof(char));
 	if (!search)
 		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	while (i++ < var_size)

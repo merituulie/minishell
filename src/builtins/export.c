@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/14 10:40:22 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/16 08:33:29 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ static char	*find_key_in_str(char *cmd)
 	}
 	if (!flag)
 		return (cmd);
-	key = ft_calloc(i, sizeof(char));
+	key = ft_calloc(i + 1, sizeof(char));
 	if (!key)
 		return (NULL);
-	key[i] = '\0';
 	while (--i > -1)
 		key[i] = cmd[i];
 	return (key);
