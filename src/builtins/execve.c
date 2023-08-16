@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:35:02 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/15 13:57:12 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:22:15 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ static void	cmd_is_dir(t_command *command, t_env **env)
 {
 	t_node	*temp;
 
+	if (!ft_strncmp_all(command->command, "/home"))
+	{
+		ft_puterror(126, ": is a directory\n", command);
+		exit(126);
+	}
 	temp = check_value((*env)->vars, command->command);
 	if (temp && command->command && command->command[0] == '/')
 	{
@@ -88,8 +93,7 @@ int	ft_execve(t_command *command, t_env **env)
 	cmd_is_dir(command, env);
 	cmd_is_not_executable(command);
 	temp = get_value((*env)->vars, "PATH");
-	if (temp == NULL || (command->command
-			&& command->command[0] == '/'))
+	if (temp == NULL)
 		return (-2);
 	path = find_cmd_path(command->command, temp);
 	if (path == NULL || !ft_strncmp_all(path, ".."))

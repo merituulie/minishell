@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+         #
+#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/16 09:23:12 by emmameinert      ###   ########.fr        #
+#    Updated: 2023/08/16 11:45:57 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 
 NAME = minishell
