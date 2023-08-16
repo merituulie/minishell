@@ -34,15 +34,6 @@ char	*special_expand(t_data *ms, char *str)
 	}
 }
 
-void	free_case(t_data *ms)
-{
-	if (ms->out)
-	{
-		free(ms->out);
-		ms->out = NULL;
-	}
-}
-
 int	count_size(char *str, char *var, char *new)
 {
 	int	size;
@@ -74,7 +65,11 @@ int	break_in_expand_quote(char *str, t_data *ms)
 {
 	if (!str)
 		return (-1);
-	free_case(ms);
+	if (ms->out)
+	{
+		free(ms->out);
+		ms->out = NULL;
+	}
 	if (ms->end - 1 >= (int)ft_strlen(str))
 		return (-1);
 	return (0);

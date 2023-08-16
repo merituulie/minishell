@@ -67,7 +67,6 @@ char	*expand_var_init(t_data *ms, char *str, int start);
 
 /*parser_special.c*/
 char	*special_expand(t_data *ms, char *str);
-void	free_case(t_data *ms);
 int		count_size(char *str, char *var, char *new);
 int		space_newline(char *str);
 int		break_in_expand_quote(char *str, t_data *ms);
