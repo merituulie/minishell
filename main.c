@@ -119,7 +119,6 @@
 // 	}
 // }
 
-
 t_command	*ft_parser(t_data *ms, char **cmd_line)
 {
 	t_command	*temp;
