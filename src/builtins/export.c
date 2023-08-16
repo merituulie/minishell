@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/15 11:20:39 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/16 09:45:19 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static char	*find_value_in_str(char *cmd)
 		i++;
 		j++;
 	}
-	printf("j: %d\n", j);
 	value[j] = '\0';
 	return (value);
 }
@@ -94,6 +93,7 @@ static	void	export_loop(char **input, t_node *temp)
 	char	*temp_char;
 
 	i = -1;
+	set_exit_code(0);
 	while (input[++i])
 	{
 		temp_char = find_key_in_str(input[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_special.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/02 17:38:27 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:19:46 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ char	*special_expand(t_data *ms, char *str)
 void	free_case(t_data *ms)
 {
 	if (ms->out)
+	{
 		free(ms->out);
+		ms->out = NULL;
+	}
 }
 
 int	count_size(char *str, char *var, char *new)

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 14:04:49 by vvu               #+#    #+#             */
-/*   Updated: 2023/08/14 18:48:39 by meskelin         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/15 10:34:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
@@ -51,14 +52,20 @@ static void	init_fds_count_redirs(int *struct_count, char **input)
 {
 	g_info.redir_index_count = 0;
 	g_info.pipe_count = (*struct_count) * 2 - 2;
-	g_info.pipe_fds = ft_calloc(g_info.pipe_count, sizeof(*g_info.pipe_fds));
-	if (!g_info.pipe_fds)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+	if (g_info.pipe_count > 0)
+	{
+		g_info.pipe_fds = ft_calloc(g_info.pipe_count, sizeof(g_info.pipe_fds));
+		if (!g_info.pipe_fds)
+			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+	}
 	g_info.redir_count = count_redirs(input);
-	g_info.redir_fds = ft_calloc(g_info.redir_count, \
-	sizeof(*g_info.redir_fds));
-	if (!g_info.redir_fds)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+	if (g_info.redir_count > 0)
+	{
+		g_info.redir_fds = ft_calloc(g_info.redir_count, \
+		sizeof(g_info.redir_fds));
+		if (!g_info.redir_fds)
+			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+	}
 }
 
 t_command	*init_cmds(t_data *ms, char **input)

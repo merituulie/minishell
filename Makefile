@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
+#    By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/15 11:23:23 by emeinert         ###   ########.fr        #
+#    Updated: 2023/08/16 09:23:12 by emmameinert      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/15 11:18:04 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/16 09:54:51 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
 
-void	exp_unset_err_msg(char *input, int command)
+void	exp_unset_err_msg(char *input, int export)
 {
-	if (command)
+	if (export)
 		ft_putstr_fd("export: '", 2, 1);
 	else
 		ft_putstr_fd("unset: '", 2, 1);
 	ft_putstr_fd(input, 2, 0);
 	ft_putstr_fd("': not a valid identifier\n", 2, 0);
-	g_info.exit_code = 1;
+	set_exit_code(1);
 }
 
 static int	check_unset_input(char *input)
@@ -49,6 +49,7 @@ static	void	unset_loop(char **input, t_node *temp)
 	int	i;
 
 	i = 0;
+	set_exit_code(0);
 	while (input[i])
 	{
 		if (check_unset_input(input[i]) == 1)

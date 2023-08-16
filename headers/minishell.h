@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 11:18:52 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/16 09:57:20 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void		ft_exit(t_command *command, t_env *env, int fork);
 void		ft_export(char **input, t_env *env);
 void		ft_unset(char **input, t_env *env);
 int			execute_ft_execve(t_command *command, t_env **env);
-void		exp_unset_err_msg(char *input, int command);
+void		exp_unset_err_msg(char *input, int export);
 
 //	SHLVL
 void		add_shlvl(t_env **env);
@@ -137,6 +137,7 @@ void		set_exit_code(int number);
 void		ft_puterror(int code, char *str, t_command *command);
 char		*get_exit_code(void);
 int			*allocate_pids(int pid_count);
+void		cmd_is_not_executable(t_command *command);
 
 // TO STRINGS
 char		*env_to_string(t_env **env);
