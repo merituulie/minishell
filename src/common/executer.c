@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/15 15:54:32 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:41:41 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ void	execute_command(t_command *command, t_env **env, int fork)
 	{
 		if (!fork)
 			return ;
-	}
-	else if (ft_strncmp_all(command->command, "./minishell") == 0)
-	{
-		add_shlvl(env);
-		return ;
 	}
 	else
 		execute_ft_execve(command, env);

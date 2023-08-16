@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/16 09:45:19 by emmameinert      ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/16 10:40:21 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
@@ -36,7 +37,6 @@ static char	*find_key_in_str(char *cmd)
 	key = ft_calloc(i + 1, sizeof(char));
 	if (!key)
 		return (NULL);
-	key[i] = '\0';
 	while (--i > -1)
 		key[i] = cmd[i];
 	return (key);

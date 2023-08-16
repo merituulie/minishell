@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 16:52:11 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:51:01 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,19 @@
 static char	*get_path(char *command_input)
 {
 	char	*path;
+	char	*temp;
 	int		end;
 
 	end = 0;
 	while (command_input[end] != '\0' && command_input[end] != ' ')
 		end++;
 	path = ft_substr(command_input, 0, end);
+	if (path[0] == '/')
+	{
+		temp = ft_substr(path, 1, ft_strlen(path) - 1);
+		free (path);
+		return (temp);
+	}
 	return (path);
 }
 
@@ -38,7 +45,8 @@ static char	*cd_error_msg(t_command *command, char *str)
 	free(temp);
 	temp = NULL;
 	temp = out;
-	return (out);
+	free(out);
+	return (temp);
 }
 
 /*chdir changes the current working directory to dirctory path that is given.
@@ -66,8 +74,9 @@ static void	go_dir(t_env **env, t_command *command)
 		{
 			out = cd_error_msg(command, ": No such file or directory\n");
 			ft_puterror(1, out, command);
-			free(out);
 		}
+		else
+			set_exit_code(0);
 		free(path);
 	}
 }
