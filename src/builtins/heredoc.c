@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 17:41:39 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:23:15 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,6 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	write_heredoc(delim, env, fd);
 	close(fd);
 	update_command_redir(command);
-	g_info.exit_code = 0;
+	set_exit_code(0);
 	return (-1);
 }
