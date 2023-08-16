@@ -120,6 +120,8 @@ void	write_heredoc(char *delim, t_env **env, int fd)
 		line = NULL;
 		line = readline("> ");
 	}
+	if (!line)
+		write(1, "> ", 2);
 	free(line);
 }
 

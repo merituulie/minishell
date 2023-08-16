@@ -33,7 +33,7 @@ long long	ft_atoll(const char *str)
 		i++;
 		if (sign == 1 && result > 9223372036854775807)
 			return (-1);
-		if (sign == -1 && result > 9223372036854775807)
+		else if (sign == -1 && result > 9223372036854775807)
 			return (0);
 	}
 	return (sign * result);
