@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/15 13:35:25 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/08/16 09:23:12 by emmameinert      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 LIBFT_PATH = ./libft

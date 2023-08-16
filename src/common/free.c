@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 11:47:24 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 13:35:36 by yoonslee         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/15 17:52:03 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/parsing.h"
 #include "../../headers/lexer.h"
@@ -69,9 +68,9 @@ void	free_in_main(t_data *data)
 
 void	close_free_fd_arrays(void)
 {
-	close_files(g_info.redir_fds, g_info.redir_count);
 	if (g_info.redir_count > 0 && g_info.redir_fds)
 	{
+		close_files(g_info.redir_fds, g_info.redir_count);
 		free(g_info.redir_fds);
 		g_info.redir_fds = NULL;
 	}

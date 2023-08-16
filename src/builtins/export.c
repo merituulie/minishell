@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:50:36 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/14 10:40:22 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/16 09:45:19 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*find_key_in_str(char *cmd)
 	}
 	if (!flag)
 		return (cmd);
-	key = ft_calloc(i, sizeof(char));
+	key = ft_calloc(i + 1, sizeof(char));
 	if (!key)
 		return (NULL);
 	key[i] = '\0';
@@ -93,15 +93,12 @@ static	void	export_loop(char **input, t_node *temp)
 	char	*temp_char;
 
 	i = -1;
+	set_exit_code(0);
 	while (input[++i])
 	{
 		temp_char = find_key_in_str(input[i]);
 		if (!temp_char)
-		{
-			ft_putstr_fd("export: '", 2, 1);
-			ft_putstr_fd(input[i], 2, 0);
-			ft_putstr_fd("': not a valid identifier\n", 2, 0);
-		}
+			exp_unset_err_msg(input[i], 1);
 		else if (ft_strncmp_all(temp_char, input[i]))
 		{
 			new_key = ft_strdup(temp_char);
