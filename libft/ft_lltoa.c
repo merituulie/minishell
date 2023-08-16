@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
 static long int	ft_intlen(long long nb)
 {
@@ -37,6 +38,8 @@ char	*ft_lltoa(long long n)
 	long long	nb;
 
 	nb = (long long)n;
+	if (nb == LLONG_MIN)
+		return (ft_strdup("-9223372036854775808"));
 	len = ft_intlen(nb);
 	if (nb < 0)
 	{
@@ -49,8 +52,8 @@ char	*ft_lltoa(long long n)
 	str[len] = '\0';
 	while (len--)
 	{
-	str[len] = (nb % 10) + '0';
-	nb = nb / 10;
+		str[len] = (nb % 10) + '0';
+		nb = nb / 10;
 	}
 	if (n < 0)
 		str[0] = '-';
