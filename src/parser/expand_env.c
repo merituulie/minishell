@@ -105,6 +105,8 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 	free(var);
 }
 
+// the function extend expand quote check2 is in the 
+// concatenate.c:
 static char	**expand_quote_check2(t_data *ms, char **str)
 {
 	while (str[++(ms->i)])

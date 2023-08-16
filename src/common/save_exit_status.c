@@ -30,7 +30,10 @@ void	cmd_is_not_executable(t_command *command)
 
 void	set_exit_code(int number)
 {
-	g_info.exit_code = number;
+	if (g_info.sig_status == 1)
+		g_info.exit_code = 1;
+	else
+		g_info.exit_code = number;
 }
 
 char	*get_exit_code(void)

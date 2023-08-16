@@ -37,6 +37,18 @@ static char	*find_env_here(char *var, int var_size, t_env **env)
 	return (node->value);
 }
 
+static int	extend_realloc(char *new, char *out, int k, int start)
+{
+	int	leftover;
+
+	leftover = 0;
+	k = -1;
+	while (new[++k])
+		out[start + k] = new[k];
+	leftover = start + k;
+	return (leftover);
+}
+
 static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 {
 	int		leftover;
@@ -49,18 +61,13 @@ static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 		size = ft_strlen(str) - ft_strlen(var);
 	else
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
-	ms->out = ft_calloc(size + 1, sizeof(char));
+	ms->out = ft_calloc(size, sizeof(char));
 	if (!ms->out)
 		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
 	ms->out = ft_memcpy(ms->out, str, ms->start);
 	leftover = ms->start;
 	if (new)
-	{
-		ms->k = -1;
-		while (new[++(ms->k)])
-			ms->out[ms->start + ms->k] = new[ms->k];
-		leftover = ms->start + ms->k;
-	}
+		leftover = extend_realloc(new, ms->out, ms->k, ms->start);
 	ms->k = -1;
 	while ((leftover + (++(ms->k))) < size)
 		ms->out[leftover + ms->k] = str[ms->end + ms->k];
@@ -95,20 +102,6 @@ static char	*expand_var_here(t_data *ms, char *str, int start, t_env **env)
 	return (ms->out);
 }
 
-static int	find_index(char *str, char c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 void	write_heredoc(char *delim, t_env **env, int fd)
 {
 	char	*line;
@@ -118,10 +111,7 @@ void	write_heredoc(char *delim, t_env **env, int fd)
 	while (line)
 	{
 		if (!ft_strncmp_all(line, delim) || g_info.sig_status)
-		{
-			free(line);
 			break ;
-		}
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
@@ -130,6 +120,7 @@ void	write_heredoc(char *delim, t_env **env, int fd)
 		line = NULL;
 		line = readline("> ");
 	}
+	free(line);
 }
 
 int	ft_heredoc(t_command *command, t_env **env, char *delim)
@@ -137,7 +128,10 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	int		fd;
 
 	g_info.sig_status = 0;
-	fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
+	if (command->infile_name)
+		fd = open_file(command->infile_name, O_CREAT | O_WRONLY | O_TRUNC);
+	else
+		fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
 	write_heredoc(delim, env, fd);
 	close(fd);
 	update_command_redir(command);
