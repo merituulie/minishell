@@ -6,9 +6,11 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/16 06:42:08 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/08/16 10:40:44 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 NAME = minishell
 LIBFT_PATH = ./libft

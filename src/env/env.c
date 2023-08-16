@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 16:25:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/16 06:51:08 by rmakinen         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/16 10:40:56 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
@@ -73,4 +74,5 @@ void	ft_env(t_env **env, t_command *command)
 		return ;
 	}
 	ft_putstr_fd(env_to_string(env), 1, 0);
+	set_exit_code(0);
 }

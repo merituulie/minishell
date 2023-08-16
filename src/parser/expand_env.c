@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/16 07:26:58 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:40:09 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,8 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 													&& !ms->s_quotes)
 			{
 				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
-				if (!str[ms->i])
+				if (break_in_expand_quote(str[ms->i], ms) == -1)
 					break ;
-				free_case(ms);
-				if (ms->end - 1 >= (int)ft_strlen(str[ms->i]))
-					break;
 				ms->j = ms->end - 1;
 			}
 		}
