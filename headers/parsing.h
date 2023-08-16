@@ -56,6 +56,7 @@ char	*find_env(t_data *ms, char *var, int var_size);
 
 /*conctenate.c*/
 char	**concatenate(char **str, t_data *ms);
+int		extend_expand_quote_check2(t_data *ms, char **str);
 
 /*utils.c*/
 void	quotes_init(t_data *ms);

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../headers/lexer.h"
 
 void	ft_putstr_fd(char *s, int fd, int print_shellname)
 {
@@ -20,7 +21,7 @@ void	ft_putstr_fd(char *s, int fd, int print_shellname)
 	if (!s)
 		return ;
 	if (print_shellname)
-		ft_putstr_fd("PinkShell: ", fd, 0);
+		ft_putstr_fd(PINK"PinkShell: "BORING, fd, 0);
 	while (s[i])
 	{
 		ft_putchar_fd(s[i], fd);
