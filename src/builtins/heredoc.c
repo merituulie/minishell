@@ -102,29 +102,11 @@ static char	*expand_var_here(t_data *ms, char *str, int start, t_env **env)
 	return (ms->out);
 }
 
-static int	find_index(char *str, char c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 void	write_heredoc(char *delim, t_env **env, int fd)
 {
 	char	*line;
 	t_data	ms;
 
-	if (command->infile_name)
-		fd = open_file(command->infile_name, O_CREAT | O_WRONLY | O_TRUNC);
-	else
-		fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
 	line = readline("> ");
 	while (line)
 	{
@@ -146,7 +128,10 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	int		fd;
 
 	g_info.sig_status = 0;
-	fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
+	if (command->infile_name)
+		fd = open_file(command->infile_name, O_CREAT | O_WRONLY | O_TRUNC);
+	else
+		fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
 	write_heredoc(delim, env, fd);
 	close(fd);
 	update_command_redir(command);
