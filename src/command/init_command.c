@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/15 17:59:18 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:56:58 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	init_fds_count_redirs(int *struct_count, char **input)
 	g_info.redir_count = count_redirs(input);
 	if (g_info.redir_count > 0)
 	{
+		printf("%d\n", g_info.redir_count);
 		g_info.redir_fds = ft_calloc(g_info.redir_count, \
 		sizeof(g_info.redir_fds));
 		if (!g_info.redir_fds)
