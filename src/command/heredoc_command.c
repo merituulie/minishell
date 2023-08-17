@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:11:37 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 11:47:00 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:55:41 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ void	update_command_redir(t_command *command)
 {
 	int	fd;
 
+	printf("infile : %s\n", command->infile_name);
+	printf("outfile : %s\n", command->outfile_name);
 	if (command->infile_name && !ft_strncmp(command->infile_name, "HEREDOC", 7))
 	{
 		fd = open_file(command->infile_name, O_RDONLY);
 		command->token = INPUT;
 		command->redir_fd_index_in = g_info.redir_index_count;
 		g_info.redir_fds[g_info.redir_index_count++] = fd;
+		printf("unlinkin : %s\n", command->infile_name);
+		unlink(command->infile_name);
 	}
-	unlink(HEREDOC);
 }
 
 static int	check_for_cat_grep(char *str)
@@ -54,7 +57,20 @@ int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 			cmd_index = (*index) + 2;
 		if (check_for_cat_grep(input[cmd_index]) || \
 			(input[cmd_index][0] == '-' && ft_isalpha(input[cmd_index][1])))
+			{
+				printf("HERE\n");
+				cmd[track].infile_name = ft_strdup(file_name);
+				printf("cmd[track].infile_name = %s\n", cmd[track].infile_name);
+			}
+		if (cmd[track].infile_name && ft_strncmp(cmd[track].infile_name, "HEREDOC", 7))
+		{
+			free(cmd[track].infile_name);
+			cmd[track].infile_name = NULL;
+			close_file(g_info.redir_fds[cmd->redir_fd_index_in]);
+			g_info.redir_fds[cmd->redir_fd_index_in] = -1;
+			cmd->redir_fd_index_in = -2;
 			cmd[track].infile_name = ft_strdup(file_name);
+		}
 		free(file_name);
 		(*index) += 2;
 		return (1);

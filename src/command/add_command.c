@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 18:53:43 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:20:36 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 		}
 		if (check_null_index_handle_redirs(cmd, track, input, &index) == -1)
 			break ;
+		if (ft_strchr_null("<>", input[(index)][0]))
+			continue ;
 		if (ft_strchr("|", input[index][0]))
 		{
 			index++;

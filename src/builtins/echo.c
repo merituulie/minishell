@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:25:17 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/16 10:22:57 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:25:11 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	ft_echo(t_command *command)
 			ft_putchar_fd(' ', 1);
 		}
 	}
-	if (!command->input)
+	if (ft_strncmp_all(command->flags, "-n") && !command->input)
 		ft_putchar_fd('\n', 1);
-	else
+	if (command->input)
 	{
 		ft_putstr_fd(command->input[0], 1, 0);
 		if (new_line == 0)

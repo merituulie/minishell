@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:57:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 18:53:57 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:35:10 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ static int	handle_redirection(t_command *cmd, int *index, \
 	while (ft_strchr_null("<>", input[(*index)][0]) \
 	&& ft_strncmp_all("<<", input[(*index)]))
 	{
+
 		reset_redir_file(cmd, input, index, track);
 		str = parse_redirection_filename(input, (*index + 1));
 		parse_redirection(cmd, track, str, input[(*index)]);
+		printf("cmd[track].infile_name = %s\n", cmd[track].infile_name);
 		if (str)
 			free(str);
 		if (open_redirection_file(&cmd[track]) < 0)
