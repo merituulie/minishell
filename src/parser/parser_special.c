@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/17 16:34:20 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:49:54 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*special_expand(t_data *ms, char *str)
 	char	*temp2;
 
 	while (!ft_isalnum(str[ms->end]) && str[ms->end] != ' ' && \
-			str[ms->end] != '$' && str[ms->end])
+			str[ms->end + 1] != '$' && str[ms->end])
 		ms->end++;
 	if (!str[ms->end])
 	{

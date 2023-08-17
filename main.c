@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/17 16:12:31 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:42:29 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,13 @@ t_command	*ft_parser(t_data *ms, char **cmd_line)
 	cmd_line = expand_quote_check(ms, cmd_line);
 	if (cmd_line == NULL)
 		return (NULL);
-	print_cmd_line(cmd_line);
-	// cmd_line = concatenate(cmd_line, ms);
-	// if (cmd_line == NULL)
-	// 	return (NULL);
-	// temp = init_cmds(ms, cmd_line);
-	// print_command(temp);
-	// free_char_array(cmd_line);
-	// if (temp == NULL)
-	// 	return (NULL);
-	temp = NULL;
+	cmd_line = concatenate(cmd_line, ms);
+	if (cmd_line == NULL)
+		return (NULL);
+	temp = init_cmds(ms, cmd_line);
+	free_char_array(cmd_line);
+	if (temp == NULL)
+		return (NULL);
 	return (temp);
 }
 
@@ -116,13 +113,13 @@ static int	process_input_line(t_data *ms, char *input_line)
 	if (cmd_line == NULL)
 		return (1);
 	cmd = ft_parser(ms, cmd_line);
-	// if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
-	// {
-	// 	free_in_minishell(cmd, ms->struct_count);
-	// 	return (1);
-	// }
-	// execute_commands(cmd, ms->struct_count, &ms->env);
-	// free_in_minishell(cmd, ms->struct_count);
+	if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
+	{
+		free_in_minishell(cmd, ms->struct_count);
+		return (1);
+	}
+	execute_commands(cmd, ms->struct_count, &ms->env);
+	free_in_minishell(cmd, ms->struct_count);
 	return (0);
 }
 
