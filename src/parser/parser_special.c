@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_special.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/15 17:47:36 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:17:51 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	space_newline(char *str)
 			return (0);
 		i++;
 	}
+	set_exit_code(0);
 	return (1);
 }
 

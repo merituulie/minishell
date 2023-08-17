@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/16 11:45:57 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/08/17 09:32:22 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

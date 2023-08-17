@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/14 11:48:27 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/17 10:51:46 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,18 @@ static int	in_redir_syntax_error(char *str, int i)
 /*check the syntax error: if there is error, send exit message with
 proper exit value.
 can we use exit(258)? I don't know :/ */
-int	syntax_error(char *str)
+int	syntax_error(char *str, int i)
 {
-	int	i;
 	int	ret;
 
-	i = -1;
 	while (str[++i])
 	{
 		if (str[i] == '|')
-			return (check_pipe_syntax(str, i));
+		{
+			ret = check_pipe_syntax(str, i);
+			if (ret)
+				return (ret);
+		}
 		if (str[i] == '>')
 		{
 			ret = out_redir_syntax_error(str, i);
