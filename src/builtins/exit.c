@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/15 17:55:56 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:49:55 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,17 @@ static void	ft_exit_free(t_command *cmd, t_env *env)
 static	void	num_arg_check(char **input, int fork, \
 						t_command *cmd, t_env *env)
 {
+	long long exit_value;
 	if (ft_is_number(input))
 	{
-		g_info.exit_code = ft_atoll(input[1]);
-		if (g_info.exit_code < 0)
+		exit_value = ft_atoll(input[1]);
+		if (exit_value < 0)
 		{
-			g_info.exit_code = g_info.exit_code * (-1);
-			g_info.exit_code = 256 - g_info.exit_code;
+			exit_value = exit_value * (-1);
+			g_info.exit_code = 256 - (exit_value % 256);
 		}
-		if (g_info.exit_code > 255)
-			g_info.exit_code = g_info.exit_code % 256;
+		else if (exit_value > 255)
+			g_info.exit_code = exit_value % 256;
 	}
 	else
 	{
