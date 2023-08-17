@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/17 16:33:13 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:34:20 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	space_newline(char *str)
 			return (0);
 		i++;
 	}
+	set_exit_code(0);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/16 11:08:03 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:36:30 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,21 @@
 void	print_export_env(t_env **env)
 {
 	char	**export;
-
+	int 	i;
+	
 	export = ft_split(env_to_string(env), '\n');
-	while (export)
+	if (!export)
+		return ;
+	i = 0;
+	while (export[i])
 	{
-		if (*export[0] != '\0')
+		if (export[i][0] != '\0')
 		{
 			ft_putstr_fd("declare -x ", 1, 0);
-			ft_putstr_fd(*export, 1, 0);
+			ft_putstr_fd(export[i], 1, 0);
 			ft_putchar_fd('\n', 1);
 		}
-		export++;
+		i++;
 	}
 	ft_free_array(export);
 }

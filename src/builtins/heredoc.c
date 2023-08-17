@@ -110,7 +110,7 @@ void	write_heredoc(char *delim, t_env **env, int fd)
 	line = readline("> ");
 	while (line)
 	{
-		if (!ft_strncmp_all(line, delim) || g_info.sig_status)
+		if (!ft_memcmp(line, delim, ft_strlen(line)) || g_info.sig_status)
 			break ;
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
