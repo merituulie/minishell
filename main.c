@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/17 17:42:29 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:54:42 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 #include "libft/libft.h"
 #include <termios.h>
 
-void	print_cmd_line(char **str)
-{
-	int	i;
+// void	print_cmd_line(char **str)
+// {
+// 	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		printf("cmd_line is %s\n", str[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		printf("cmd_line is %s\n", str[i]);
+// 		i++;
+// 	}
+// }
 
 // //printf("cmd[%d].input is %s$\t%p\n", i, cmd[i].input, &(*cmd[i].input));
 // static void	print_full_command(t_command *cmd)
