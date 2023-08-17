@@ -52,5 +52,6 @@ int			ft_strchr_index(const char *s, int c);
 char		*ft_strchr_null(const char *s, int c);
 void		ft_putnbr_fd(int n, int fd);
 void		free_and_nullify(void *to_be_freed);
+int			ft_memcmp(const void *s1, const void *s2, size_t n);
 
 #endif

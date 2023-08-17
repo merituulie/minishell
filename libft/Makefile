@@ -46,6 +46,7 @@ ft_putnbr_fd \
 ft_isalpha \
 ft_lltoa \
 free_and_nullify \
+ft_memcmp \
 
 H_FILES = libft
 
