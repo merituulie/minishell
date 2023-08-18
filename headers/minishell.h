@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 09:02:08 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/18 10:25:57 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void		ft_echo(t_command *command);
 void		ft_env(t_env **env, t_command *command);
 void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command, t_env **env, char *delim);
+char		*expand_var_here(t_data *ms, char *str, int start, t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command, t_env *env, int fork);

@@ -6,7 +6,7 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/18 09:46:10 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/08/18 10:39:37 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ BUILTIN_SRC = export \
 			echo \
 			cd \
 			heredoc \
+			heredoc_expand \
 			pwd \
 			execve \
 			unset \
