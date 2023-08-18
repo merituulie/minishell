@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/16 10:22:30 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:53:07 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*get_exit_code(void)
 
 	nbr = g_info.exit_code;
 	str = ft_itoa(nbr);
-	g_info.exit_code = 0;
 	return (str);
 }
 

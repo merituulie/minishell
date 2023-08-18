@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/16 10:40:21 by rmakinen         ###   ########.fr       */
+/*   Created: 2023/08/18 07:53:21 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/18 14:24:32 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static	void	export_loop(char **input, t_node *temp)
 	{
 		temp_char = find_key_in_str(input[i]);
 		if (!temp_char)
-			exp_unset_err_msg(input[i], 1);
+			exp_unset_exit_msg(input[i], 1);
 		else if (ft_strncmp_all(temp_char, input[i]))
 		{
 			new_key = ft_strdup(temp_char);

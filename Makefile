@@ -6,16 +6,14 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/17 17:53:40 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/08/18 14:29:37 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror #-fsanitize=address,undefined
+BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror -fsanitize=address,undefined
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -58,6 +56,7 @@ BUILTIN_SRC = export \
 			echo \
 			cd \
 			heredoc \
+			heredoc_expand \
 			pwd \
 			execve \
 			unset \

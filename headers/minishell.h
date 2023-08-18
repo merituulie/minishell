@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/16 09:57:20 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/08/18 14:23:20 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,21 @@ void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
 void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
 char		**copy_input(char **input, int *index, char **not_echo);
+void		update_infile_redir_heredoc(t_command *cmd, int track);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);
 void		ft_env(t_env **env, t_command *command);
 void		ft_cd(t_command *command, t_env **env);
 int			ft_heredoc(t_command *command, t_env **env, char *delim);
+char		*expand_var_here(t_data *ms, char *str, int start, t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 int			ft_pwd(t_env *env);
 void		ft_exit(t_command *command, t_env *env, int fork);
 void		ft_export(char **input, t_env *env);
 void		ft_unset(char **input, t_env *env);
 int			execute_ft_execve(t_command *command, t_env **env);
-void		exp_unset_err_msg(char *input, int export);
+void		exp_unset_exit_msg(char *input, int command);
 
 //	SHLVL
 void		add_shlvl(t_env **env);

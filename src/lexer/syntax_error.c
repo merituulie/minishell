@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/17 10:51:46 by emeinert         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/18 14:39:09 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	syntax_error2(char *str, int i)
 	return (0);
 }
 
-static int	check_pipe_syntax(char *str, int i)
+int	check_pipe_syntax(char *str, int i)
 {
 	if (str[0] == '|')
 		return (syntax_error_msg(1, str));
@@ -42,7 +42,7 @@ static int	check_pipe_syntax(char *str, int i)
 	{
 		while (is_delim(str[i + 1]) == true)
 			i++;
-		if (str[i + 1] == '|')
+		if (str[i + 1] == '|' || !str[i + 1])
 			return (syntax_error_msg(1, str));
 	}
 	return (0);
@@ -50,7 +50,7 @@ static int	check_pipe_syntax(char *str, int i)
 
 static int	out_redir_syntax_error(char *str, int i)
 {
-	if (check_if_nothing(str, i + 1))
+	if (check_if_nothing(str, i + 1) || str[i + 1] == '|')
 		return (syntax_error_msg(2, str));
 	else if ((str[i + 1] == '>') && check_if_nothing(str, i))
 		return (syntax_error_msg(2, str));
@@ -72,7 +72,7 @@ static int	out_redir_syntax_error(char *str, int i)
 
 static int	in_redir_syntax_error(char *str, int i)
 {
-	if (check_if_nothing(str, i + 1))
+	if (check_if_nothing(str, i + 1) || str[i + 1] == '|')
 		return (syntax_error_msg(2, str));
 	else if ((str[i + 1] == '<') && check_if_nothing(str, i))
 		return (syntax_error_msg(2, str));

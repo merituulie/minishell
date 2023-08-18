@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 18:53:43 by meskelin         ###   ########.fr       */
+/*   Created: 2023/08/18 14:15:26 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/18 14:15:34 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 
 	not_echo = NULL;
 	str = NULL;
-	cmd[track].command = ft_strdup(input[(*index)++]);
+	if (!cmd[track].command)
+		cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
 		ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
@@ -55,6 +56,8 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 		}
 		if (check_null_index_handle_redirs(cmd, track, input, &index) == -1)
 			break ;
+		if (ft_strchr_null("<>", input[(index)][0]))
+			continue ;
 		if (ft_strchr("|", input[index][0]))
 		{
 			index++;

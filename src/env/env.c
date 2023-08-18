@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/17 11:36:30 by emeinert         ###   ########.fr       */
+/*   Created: 2023/08/18 07:54:49 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/18 07:54:52 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
@@ -18,8 +16,8 @@
 void	print_export_env(t_env **env)
 {
 	char	**export;
-	int 	i;
-	
+	int		i;
+
 	export = ft_split(env_to_string(env), '\n');
 	if (!export)
 		return ;
