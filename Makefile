@@ -6,9 +6,10 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/18 10:40:58 by jhusso           ###   ########.fr        #
+#    Updated: 2023/08/18 12:47:19 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 LIBFT_PATH = ./libft
