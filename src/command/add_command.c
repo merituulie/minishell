@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 18:08:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/18 11:35:28 by yoonslee         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/18 12:50:51 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"
@@ -21,7 +22,8 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 
 	not_echo = NULL;
 	str = NULL;
-	cmd[track].command = ft_strdup(input[(*index)++]);
+	if (!cmd[track].command)
+		cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
 		ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
