@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 13:47:29 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 13:09:37 by yoonslee         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/18 14:30:07 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
@@ -30,7 +32,7 @@ static int	syntax_error2(char *str, int i)
 	return (0);
 }
 
-static int	check_pipe_syntax(char *str, int i)
+int	check_pipe_syntax(char *str, int i)
 {
 	if (str[0] == '|')
 		return (syntax_error_msg(1, str));
@@ -42,7 +44,7 @@ static int	check_pipe_syntax(char *str, int i)
 	{
 		while (is_delim(str[i + 1]) == true)
 			i++;
-		if (str[i + 1] == '|')
+		if (str[i + 1] == '|' || !str[i + 1])
 			return (syntax_error_msg(1, str));
 	}
 	return (0);

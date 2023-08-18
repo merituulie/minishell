@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/18 12:50:51 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/18 14:15:26 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/18 14:15:34 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 #include "../../headers/hashmap.h"

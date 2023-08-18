@@ -3,21 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 16:44:34 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/16 09:54:51 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/08/18 14:24:21 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
 
-void	exp_unset_err_msg(char *input, int export)
+void	exp_unset_exit_msg(char *input, int command)
 {
-	if (export)
+	if (command == 2)
+	{
+		ft_putstr_fd("exit: ", 2, 1);
+		ft_putstr_fd(input, 2, 0);
+		ft_putstr_fd(": numeric argument required\n", 2, 0);
+		return ;
+	}
+	else if (command == 1)
 		ft_putstr_fd("export: '", 2, 1);
-	else
+	else if (command == 0)
 		ft_putstr_fd("unset: '", 2, 1);
 	ft_putstr_fd(input, 2, 0);
 	ft_putstr_fd("': not a valid identifier\n", 2, 0);
@@ -53,7 +60,7 @@ static	void	unset_loop(char **input, t_node *temp)
 	while (input[i])
 	{
 		if (check_unset_input(input[i]) == 1)
-			exp_unset_err_msg(input[i], 0);
+			exp_unset_exit_msg(input[i], 0);
 		if (!get_value(&temp, input[i]))
 			i++;
 		else

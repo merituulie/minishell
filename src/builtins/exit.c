@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/18 12:52:38 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:22:48 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_exit_free(t_command *cmd, t_env *env)
 	free_in_minishell(cmd, g_info.pipe_count + 1);
 }
 
-static	void	num_arg_check(char **input, int fork, \
+static void	num_arg_check(char **input, int fork, \
 						t_command *cmd, t_env *env)
 {
 	long long	exit_value;
@@ -69,9 +69,7 @@ static	void	num_arg_check(char **input, int fork, \
 		g_info.exit_code = 255;
 		if (!fork)
 			ft_putstr_fd("exit\n", 1, 0);
-		ft_putstr_fd("exit: ", 2, 1);
-		ft_putstr_fd(input[1], 2, 0);
-		ft_putstr_fd(": numeric argument required\n", 2, 0);
+		exp_unset_exit_msg(input[1], 2);
 		ft_exit_free(cmd, env);
 		exit(g_info.exit_code);
 	}
