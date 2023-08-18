@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/18 10:38:24 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/18 10:42:29 by yoonslee          #+#    #+#             */
+/*   Updated: 2023/08/18 10:42:43 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 #include "../../libft/libft.h"
@@ -36,9 +35,7 @@ void	ft_echo(t_command *command)
 		}
 	}
 	if (ft_strncmp_all(command->flags, "-n") && !command->input)
-	if (ft_strncmp_all(command->flags, "-n") && !command->input)
 		ft_putchar_fd('\n', 1);
-	if (command->input)
 	if (command->input)
 	{
 		ft_putstr_fd(command->input[0], 1, 0);
