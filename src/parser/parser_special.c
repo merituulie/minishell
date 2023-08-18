@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_special.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/17 10:17:51 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:49:54 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 char	*special_expand(t_data *ms, char *str)
 {
+	char	*temp;
+	char	*temp2;
+
 	while (!ft_isalnum(str[ms->end]) && str[ms->end] != ' ' && \
-			str[ms->end] != '$' && str[ms->end])
+			str[ms->end + 1] != '$' && str[ms->end])
 		ms->end++;
 	if (!str[ms->end])
 	{
@@ -25,11 +28,15 @@ char	*special_expand(t_data *ms, char *str)
 	}
 	else
 	{
-		ms->out = ft_substr(str, ms->end, ft_strlen(str) - ms->end);
+		temp = ft_substr(str, 0, ms->start);
+		temp2 = ft_substr(str, ms->end + 1, ft_strlen(str) - ms->end - 1);
+		ms->out = ft_strjoin(temp, temp2);
+		free(temp);
+		free(temp2);
 		if (!ms->out)
 			return (NULL);
 		free(str);
-		ms->end = 0;
+		ms->end = ms->start;
 		return (ms->out);
 	}
 }

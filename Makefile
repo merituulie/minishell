@@ -6,7 +6,7 @@
 #    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/18 08:51:37 by jhusso           ###   ########.fr        #
+#    Updated: 2023/08/18 10:28:52 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ BUILTIN_SRC = export \
 			echo \
 			cd \
 			heredoc \
+			heredoc_expand \
 			pwd \
 			execve \
 			unset \
