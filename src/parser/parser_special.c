@@ -19,7 +19,7 @@ char	*special_expand(t_data *ms, char *str)
 	char	*temp2;
 
 	while (str[ms->end] && !ft_isalnum(str[ms->end]) \
-		&& str[ms->end] != ' ' && str[ms->end + 1] != '$')
+		&& str[ms->end] != ' ' && str[ms->end] != '$')
 		ms->end++;
 	if (!str[ms->end])
 	{
