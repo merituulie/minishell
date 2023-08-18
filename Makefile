@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/17 17:57:14 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/08/18 08:51:37 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

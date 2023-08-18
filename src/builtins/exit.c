@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/17 13:49:55 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/18 07:51:28 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	ft_exit_free(t_command *cmd, t_env *env)
 static	void	num_arg_check(char **input, int fork, \
 						t_command *cmd, t_env *env)
 {
-	long long exit_value;
+	long long	exit_value;
+
 	if (ft_is_number(input))
 	{
 		exit_value = ft_atoll(input[1]);
