@@ -1,5 +1,0 @@
-HASHMAP_PRE = $(addprefix ./src/hashmap/, $(HASHMAP_SRC))
-ENV_PRE = $(addprefix ./src/env/, $(ENV_SRC))
-COMMON_PRE = $(addprefix ./src/common/, $(COMMON_SRC))
-COMMAND_PRE = $(addprefix ./src/command/, $(COMMAND_SRC))
-LEXER_PRE = $(addprefix ./src/lexer/, $(LEXER_SRC))
