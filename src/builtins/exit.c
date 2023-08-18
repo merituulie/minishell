@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/18 07:51:28 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/18 12:52:38 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static	void	num_arg_check(char **input, int fork, \
 		}
 		else if (exit_value > 255)
 			g_info.exit_code = exit_value % 256;
+		else
+			g_info.exit_code = exit_value;
 	}
 	else
 	{
