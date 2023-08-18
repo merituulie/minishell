@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/17 13:49:55 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/18 11:03:38 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static	void	num_arg_check(char **input, int fork, \
 		}
 		else if (exit_value > 255)
 			g_info.exit_code = exit_value % 256;
+		else
+			g_info.exit_code = exit_value;
 	}
 	else
 	{
