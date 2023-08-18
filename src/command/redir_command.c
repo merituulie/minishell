@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:57:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 18:53:57 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:01:50 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,20 @@ static char	*parse_redirection_filename(char **input, int index)
 	return (str);
 }
 
+void	update_infile_redir_heredoc(t_command *cmd, int track)
+{
+	free(cmd[track].infile_name);
+	cmd[track].infile_name = NULL;
+	close_file(g_info.redir_fds[cmd->redir_fd_index_in]);
+	g_info.redir_fds[cmd->redir_fd_index_in] = -1;
+	cmd->redir_fd_index_in = -2;
+}
+
 static void	reset_redir_file(t_command *cmd, char **input,	\
 											int *index, int track)
 {
 	if (!(ft_strncmp(input[(*index)], "<", 1)) && cmd[track].infile_name)
-	{
-		free(cmd[track].infile_name);
-		cmd[track].infile_name = NULL;
-		close_file(g_info.redir_fds[cmd->redir_fd_index_in]);
-		g_info.redir_fds[cmd->redir_fd_index_in] = -1;
-		cmd->redir_fd_index_in = -2;
-	}
+		update_infile_redir_heredoc(cmd, track);
 	else if (!(ft_strncmp(input[(*index)], ">", 1)) && cmd[track].outfile_name)
 	{
 		free(cmd[track].outfile_name);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/16 09:57:20 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/08/18 09:02:08 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		put_fullcmd(t_command *cmd, int i, int track);
 void		full_cmd(t_command *cmd, int struct_count, int track);
 void		put_fullcmd_input(t_command	*cmd, int i, int track, int index);
 char		**copy_input(char **input, int *index, char **not_echo);
+void		update_infile_redir_heredoc(t_command *cmd, int track);
 
 // IMPLEMENTED COMMANDS
 void		ft_echo(t_command *command);

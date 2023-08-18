@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:11:37 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 11:47:00 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:01:56 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	update_command_redir(t_command *command)
 		command->token = INPUT;
 		command->redir_fd_index_in = g_info.redir_index_count;
 		g_info.redir_fds[g_info.redir_index_count++] = fd;
+		unlink(command->infile_name);
 	}
-	unlink(HEREDOC);
 }
 
 static int	check_for_cat_grep(char *str)
@@ -55,6 +55,12 @@ int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 		if (check_for_cat_grep(input[cmd_index]) || \
 			(input[cmd_index][0] == '-' && ft_isalpha(input[cmd_index][1])))
 			cmd[track].infile_name = ft_strdup(file_name);
+		if (cmd[track].infile_name && \
+			ft_strncmp(cmd[track].infile_name, "HEREDOC", 7))
+		{
+			update_infile_redir_heredoc(cmd, track);
+			cmd[track].infile_name = ft_strdup(file_name);
+		}
 		free(file_name);
 		(*index) += 2;
 		return (1);
