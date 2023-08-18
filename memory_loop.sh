@@ -5,6 +5,6 @@ do
 	echo "Checking for memory leaks ....."
 	leaks minishell
 	echo "*********************************************************"
-	# lsof -c minishell
+	lsof -c minishell
 	sleep 3
 done

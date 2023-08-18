@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/18 12:52:38 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:14:28 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_exit_free(t_command *cmd, t_env *env)
 	free_in_minishell(cmd, g_info.pipe_count + 1);
 }
 
-static	void	num_arg_check(char **input, int fork, \
+static void	num_arg_check(char **input, int fork, \
 						t_command *cmd, t_env *env)
 {
 	long long	exit_value;
