@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/16 10:40:09 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:43:25 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*expand_var(t_data *ms, char *str, int start)
 		free(str);
 		return (ms->out);
 	}
-	while (ft_isalnum(str[ms->end]))
+	while (ft_isalnum(str[ms->end]) && ft_strncmp_all(var, "$?"))
 		ms->end++;
 	if (!var)
 		var = ft_substr(str, ms->start, ms->end - ms->start);

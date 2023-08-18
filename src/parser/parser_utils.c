@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:42:15 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/17 10:48:12 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:43:48 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ms_init(t_data *ms)
 void	realloc_var2(t_data *ms, int leftover, int size, char *str)
 {
 	ms->k = -1;
-	while ((leftover + (++(ms->k))) < size && ms->end + ms->k < size)
+	while ((leftover + (++(ms->k))) < size && str[ms->end + ms->k])
 		ms->out[leftover + ms->k] = str[ms->end + ms->k];
 	ms->out[leftover + ms->k] = '\0';
 	ms->end = leftover;
