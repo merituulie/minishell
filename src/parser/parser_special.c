@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_special.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:48:00 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 12:27:49 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/19 14:25:34 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*special_expand(t_data *ms, char *str)
 		&& str[ms->end + 1] != '$' && str[ms->end + 1] \
 		&& !ft_isalnum(str[ms->end + 1]))
 		ms->end++;
-	if (ms->start == 0 && (int)ft_strlen(str) == ms->end + 1])
+	if (ms->start == 0 && (int)ft_strlen(str) == ms->end + 1)
 	{
 		free(str);
 		return ("");
