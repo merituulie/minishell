@@ -18,10 +18,11 @@ char	*special_expand(t_data *ms, char *str)
 	char	*temp;
 	char	*temp2;
 
-	while (str[ms->end] && !ft_isalnum(str[ms->end]) \
-		&& str[ms->end] != ' ' && str[ms->end] != '$')
+	while (!ft_isalnum(str[ms->end]) && str[ms->end] != ' ' \
+		&& str[ms->end + 1] != '$' && str[ms->end + 1] \
+		&& !ft_isalnum(str[ms->end + 1]))
 		ms->end++;
-	if (!str[ms->end])
+	if (ms->start == 0 && (int)ft_strlen(str) == ms->end + 1])
 	{
 		free(str);
 		return ("");
@@ -34,7 +35,7 @@ char	*special_expand(t_data *ms, char *str)
 		free(temp);
 		free(temp2);
 		if (!ms->out)
-			return (NULL);
+			ft_putstr_fd("Memory Allocation Failed!\n", 2, 1);
 		free(str);
 		ms->end = ms->start;
 		return (ms->out);
