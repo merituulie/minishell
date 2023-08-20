@@ -111,11 +111,9 @@ static int	process_input_line(t_data *ms, char *input_line)
 	if (cmd_line == NULL)
 		return (1);
 	cmd = ft_parser(ms, cmd_line);
-	if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL \
-		&& !cmd->infile_name && !cmd->outfile_name))
+	if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
 	{
 		free_in_minishell(cmd, ms->struct_count);
-		set_exit_code(1);
 		return (1);
 	}
 	execute_commands(cmd, ms->struct_count, &ms->env);
