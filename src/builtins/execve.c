@@ -43,7 +43,7 @@ static void	cmd_is_dir(t_command *command, t_env **env)
 
 	if (!ft_strncmp_all(command->command, "/home") \
 		|| !ft_strncmp_all(command->command, "/bin") \
-		|| !ft_strncmp_all(command->command, "/bin"))
+		|| !ft_strncmp_all(command->command, "/"))
 	{
 		ft_puterror(126, ": is a directory\n", command);
 		exit(126);
