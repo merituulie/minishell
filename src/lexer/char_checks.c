@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   char_checks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:53:56 by jhusso            #+#    #+#             */
-/*   Updated: 2023/07/17 13:13:03 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:43:04 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/lexer.h"
-#include "../../libft/libft.h"
 
 bool	is_delim(char c)
 {

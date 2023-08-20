@@ -3,32 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 16:43:14 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:04:12 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
+# include "minishell.h"
+
 # include <stdlib.h> //malloc, free, exit, getenv
-# include <unistd.h> //access, fork, wait, isatty, ttyname, getcwd, execve
-# include <sys/wait.h> //waitpid, wait3, wait 4
-# include <fcntl.h>
 # include <signal.h> //signal,sigaction, sigemptyset, sigaddset
 # include <sys/stat.h> // lstat, fstat, stat,
 # include <sys/ioctl.h> //ioctl
 # include <dirent.h> // opendir, readdir, closedir
-# include <termios.h> //tcsetattr, tcgetattr
 # include <curses.h>
 # include <term.h> //tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <errno.h>
-# include "../libft/libft.h"
-# include "minishell.h"
 
 typedef struct s_data
 {
@@ -48,26 +41,21 @@ typedef struct s_data
 	int					struct_count;
 }	t_data;
 
-/*expand_env.c*/
-char	**expand_quote_check(t_data *ms, char **str);
-char	*expand_var(t_data *ms, char *str, int start);
-void	realloc_var(t_data *ms, char *str, char *var, int size);
-char	*find_env(t_data *ms, char *var, int var_size);
-char	**realloc_stack(char **str, int count);
-int		check_quote_cases(t_data **ms, char c);
-
 /*conctenate.c*/
-void	delete_quotes(char *str, int index, int size, t_data *ms);
 void	delete_quotes2(char *str, int index, int size, t_data *ms);
+void	delete_quotes(char *str, int index, int size, t_data *ms);
 char	**concatenate(char **str, t_data *ms);
 int		extend_expand_quote_check2(t_data *ms, char **str);
 
-/*utils.c*/
-void	quotes_init(t_data *ms);
-void	free_str_array(char **str);
-void	ms_init(t_data *ms);
-void	realloc_var2(t_data *ms, int leftover, int size, char *str);
-char	*expand_var_init(t_data *ms, char *str, int start);
+/*expand_env_utils.c*/
+int		check_quote_cases(t_data **ms, char c);
+char	**realloc_stack(char **str, int count);
+
+/*expand_env.c*/
+char	*expand_var(t_data *ms, char *str, int start);
+char	*find_env(t_data *ms, char *var, int var_size);
+void	realloc_var(t_data *ms, char *str, char *var, int size);
+char	**expand_quote_check(t_data *ms, char **str);
 
 /*parser_special.c*/
 char	*special_expand(t_data *ms, char *str);
@@ -75,5 +63,12 @@ int		count_size(char *str, char *var, char *new);
 int		space_newline(char *str);
 int		break_in_expand_quote(char *str, t_data *ms);
 int		find_index(char *str, char c);
+
+/*parser_utils.c*/
+void	quotes_init(t_data *ms);
+void	free_str_array(char **str);
+void	ms_init(t_data *ms);
+void	realloc_var2(t_data *ms, int leftover, int size, char *str);
+char	*expand_var_init(t_data *ms, char *str, int start);
 
 #endif

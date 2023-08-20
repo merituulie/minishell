@@ -6,14 +6,11 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:53:59 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/18 07:54:03 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 17:28:38 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parsing.h"
-#include "../../headers/lexer.h"
 #include "../../headers/minishell.h"
-#include "../../libft/libft.h"
 
 static void	unlink_heredoc(char *filename)
 {

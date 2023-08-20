@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 10:21:33 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:51:56 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../libft/libft.h"
 
-//first time when cd is called, oldPWD is created, from second onwards, update.
-//error code 1
-
+/*first time when cd is called, oldPWD is created, from second onwards, update.
+error code 1*/
 static char	*get_path(char *command_input)
 {
 	char	*path;

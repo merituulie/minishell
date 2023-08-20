@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 10:44:29 by                   #+#    #+#             */
-/*   Updated: 2023/08/14 09:51:31 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:30:29 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parsing.h"
 #include "../../headers/minishell.h"
 
 static void	handle_sig(int signo)
