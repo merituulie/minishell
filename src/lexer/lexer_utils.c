@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/20 10:50:33 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 16:18:49 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	check_if_nothing(char *str, int i)
 /* If finds pair for quote, returns i, otherwise prints error message */
 int	quote_check(char *str, int i, char quote)
 {
-	i++;
 	while (str[i])
 	{
 		if (str[i] == quote)
