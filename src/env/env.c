@@ -6,12 +6,11 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:54:49 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/20 07:11:41 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 17:30:57 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../libft/libft.h"
 
 void	print_export_env(t_env **env)
 {

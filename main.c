@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/20 16:38:31 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/20 18:13:53 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/20 18:13:56 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-#include "headers/parsing.h"
-#include "headers/lexer.h"
 #include "headers/minishell.h"
-#include "libft/libft.h"
-#include <termios.h>
 
 // void	print_cmd_line(char **str)
 // {

@@ -6,13 +6,11 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:25:09 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/18 10:26:03 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 17:22:50 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../headers/parsing.h"
-#include "../../libft/libft.h"
 
 static char	*find_env_here(char *var, int var_size, t_env **env)
 {

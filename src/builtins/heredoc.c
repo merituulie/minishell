@@ -6,13 +6,11 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 10:26:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 17:23:03 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../headers/parsing.h"
-#include "../../libft/libft.h"
 
 static void	write_heredoc(char *delim, t_env **env, int fd)
 {

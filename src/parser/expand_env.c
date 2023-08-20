@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/20 16:50:09 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:47:23 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
-#include "../../headers/hashmap.h"
 #include "../../headers/minishell.h"
-#include "../../headers/parsing.h"
 
 /*check if the word comes after '$' is expandable part
 using env variables.*/
@@ -105,7 +102,7 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 	free(var);
 }
 
-// the function extend expand quote check2 is in the 
+// the function extend expand quote check2 is in the
 // concatenate.c:
 static char	**expand_quote_check2(t_data *ms, char **str, int count)
 {

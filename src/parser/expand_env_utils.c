@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:13:20 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/20 14:25:26 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:46:48 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
-#include "../../headers/hashmap.h"
 #include "../../headers/minishell.h"
-#include "../../headers/parsing.h"
 
 int	check_quote_cases(t_data **ms, char c)
 {
