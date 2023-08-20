@@ -135,14 +135,18 @@ void	minishell(t_data *ms)
 	{
 		line = readline("minishell >");
 		ctrl_d_cmd(line, ms);
-		if (line && (space_newline(line) \
-					|| line[0] == '\0' || line[0] == '\n'))
+		if (line && (line[0] == '\0' || line[0] == '\n'))
 		{
 			free(line);
 			continue ;
 		}
 		else
 			add_history(line);
+		if (space_newline(line))
+		{
+			free(line);
+			continue ;
+		}
 		if (process_input_line(ms, line) == 1)
 			continue ;
 	}
