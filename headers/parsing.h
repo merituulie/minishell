@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 11:27:02 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:40:27 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char	**expand_quote_check(t_data *ms, char **str);
 char	*expand_var(t_data *ms, char *str, int start);
 void	realloc_var(t_data *ms, char *str, char *var, int size);
 char	*find_env(t_data *ms, char *var, int var_size);
+char	**realloc_stack(char **str, int count);
+int		check_quote_cases(t_data **ms, char c);
 
 /*conctenate.c*/
 void	delete_quotes(char *str, int index, int size, t_data *ms);

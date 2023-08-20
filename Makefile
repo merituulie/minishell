@@ -6,9 +6,10 @@
 #    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/20 16:21:18 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/08/20 16:38:44 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 LIBFT_PATH = ./libft
@@ -51,7 +52,8 @@ COMMAND_SRC = init_command \
 PARSER_SRC = expand_env \
 			parser_utils \
 			concatenate \
-			parser_special
+			parser_special \
+			expand_env_utils \
 
 BUILTIN_SRC = export \
 			echo \
