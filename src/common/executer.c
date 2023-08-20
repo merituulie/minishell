@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/17 17:39:10 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:34:42 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 	return (0);
 }
 
-int	execute_commands(t_command *commands, int command_count, t_env **env)
+void	execute_commands(t_command *commands, int command_count, t_env **env)
 {
 	int	i;
 	int	*pids;
 
 	if (exec_one_command(commands, command_count, env))
-		return (0);
+		return ;
 	i = -1;
 	pids = allocate_pids(command_count);
 	while (command_count != 1 && ++i < command_count)
@@ -110,5 +110,4 @@ int	execute_commands(t_command *commands, int command_count, t_env **env)
 	close_files(g_info.pipe_fds, g_info.pipe_count);
 	wait_children(pids, i - 1);
 	free(pids);
-	return (0);
 }
