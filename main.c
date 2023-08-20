@@ -16,14 +16,14 @@
 #include "libft/libft.h"
 #include <termios.h>
 
-// void	print_cmd_line(char **str, int len)
+// void	print_cmd_line(char **str)
 // {
 // 	int	i;
 
 // 	i = 0;
-// 	while (i < len)
+// 	while (str[i])
 // 	{
-// 		printf("cmd_line [%i] %s\n", i, str[i]);
+// 		printf("cmd_line is %s\n", str[i]);
 // 		i++;
 // 	}
 // }
