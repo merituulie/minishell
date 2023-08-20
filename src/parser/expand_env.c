@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/17 17:43:25 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:38:53 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 // concatenate.c:
 static char	**expand_quote_check2(t_data *ms, char **str)
 {
+	printf("HERE\n");
 	while (str[++(ms->i)])
 	{
 		ms->j = -1;

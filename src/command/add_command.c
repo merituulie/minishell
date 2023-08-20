@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:15:26 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/18 14:15:34 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 11:43:34 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void	put_cmds_to_struct(t_command *cmd, char **input, t_data *ms)
 		}
 		parse_command(cmd, track, &index, input);
 	}
+	delete_quotes_struct(cmd, ms);
 }

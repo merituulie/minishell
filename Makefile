@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
+#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/20 08:16:30 by jhusso           ###   ########.fr        #
+#    Updated: 2023/08/20 13:29:31 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ COMMAND_SRC = init_command \
 			input_command \
 			full_command \
 			flags_command \
-			heredoc_command
+			heredoc_command \
+			concatenate_struct \
 
 PARSER_SRC = expand_env \
 			parser_utils \

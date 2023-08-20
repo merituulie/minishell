@@ -6,14 +6,14 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:26:44 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 10:50:22 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:38:18 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/parsing.h"
 #include "../../libft/libft.h"
 
-static void	delete_quotes2(char *str, int index, int size, t_data *ms)
+void	delete_quotes2(char *str, int index, int size, t_data *ms)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ static void	delete_quotes2(char *str, int index, int size, t_data *ms)
 }
 
 /*reallocate the string and delete the first matching quotes*/
-static void	delete_quotes(char *str, int index, int size, t_data *ms)
+void	delete_quotes(char *str, int index, int size, t_data *ms)
 {
 	char	quote;
 

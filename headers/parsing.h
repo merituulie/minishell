@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/16 14:30:19 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 11:27:02 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	realloc_var(t_data *ms, char *str, char *var, int size);
 char	*find_env(t_data *ms, char *var, int var_size);
 
 /*conctenate.c*/
+void	delete_quotes(char *str, int index, int size, t_data *ms);
+void	delete_quotes2(char *str, int index, int size, t_data *ms);
 char	**concatenate(char **str, t_data *ms);
 int		extend_expand_quote_check2(t_data *ms, char **str);
 
