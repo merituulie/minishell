@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:26:44 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/16 14:39:39 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 10:50:22 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,22 @@ static void	delete_quotes(char *str, int index, int size, t_data *ms)
 	delete_quotes2(str, index, size, ms);
 }
 
-/*check if the str has quotes, then find the other matching quote,
-delete the quote and returns the string and changes index to where the
-last quote deletion happened*/
+static void	delete_quotes_fname(char **str, t_data *ms, int i, int j)
+{
+	delete_quotes(str[i], j, ft_strlen(str[i]), ms);
+	free(str[i]);
+	str[i] = ft_strdup(ms->out);
+	if (!str[i])
+		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+	free(ms->out);
+	ms->out = NULL;
+	j = ms->end - 2;
+}
+
+/**
+ * @brief check if the str has double quotes that comes after redir.
+ * Only quotes for the file names are removed here.
+ */
 char	**concatenate(char **str, t_data *ms)
 {
 	int	i;
@@ -65,24 +78,22 @@ char	**concatenate(char **str, t_data *ms)
 	quotes_init(ms);
 	while (str[++i])
 	{
-		j = -1;
-		while (str[i][++j])
+		if (ft_strchr_null("<>", str[i][0]))
 		{
-			if (str[i][j] == 34 || str[i][j] == 39)
+			i++;
+			j = -1;
+			while (str[i][++j])
 			{
-				delete_quotes(str[i], j, ft_strlen(str[i]), ms);
-				free(str[i]);
-				str[i] = ft_strdup(ms->out);
-				if (!str[i])
-					ft_putstr_fd("Memory allocation failure!\n", 2, 1);
-				free(ms->out);
-				ms->out = NULL;
-				j = ms->end - 2;
+				if (str[i][j] == 34 || str[i][j] == 39)
+				{
+					delete_quotes_fname(str, ms, i, j);
+				}
 			}
 		}
 	}
 	return (str);
 }
+
 
 //This function help for the line too long in expand_env.c:
 int	extend_expand_quote_check2(t_data *ms, char **str)
