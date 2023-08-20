@@ -112,7 +112,7 @@ static int	process_input_line(t_data *ms, char *input_line)
 		return (1);
 	cmd = ft_parser(ms, cmd_line);
 	if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL \
-		&& !cmd->infile_name && !cmd->outfile_name))))
+		&& !cmd->infile_name && !cmd->outfile_name))
 	{
 		free_in_minishell(cmd, ms->struct_count);
 		set_exit_code(1);
