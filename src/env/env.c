@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:54:49 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/18 07:54:52 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 07:11:41 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	ft_env(t_env **env, t_command *command)
 		ft_putstr_fd(": ", 2, 0);
 		ft_putstr_fd(command->full_cmd[1], 2, 0);
 		ft_putstr_fd(": no such file or directory\n", 2, 0);
-		g_info.exit_code = 127;
-		return ;
+		set_exit_code(127);
+		exit(g_info.exit_code);
 	}
 	ft_putstr_fd(env_to_string(env), 1, 0);
 	set_exit_code(0);

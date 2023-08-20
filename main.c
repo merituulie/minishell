@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 10:37:47 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 07:09:09 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,20 +125,24 @@ static int	process_input_line(t_data *ms, char *input_line)
 
 void	minishell(t_data *ms)
 {
-	char		*line;
+	char	*line;
 
 	while (42)
 	{
 		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (line && (space_newline(line) \
-					|| line[0] == '\0' || line[0] == '\n'))
+		if (line && (line[0] == '\0' || line[0] == '\n'))
 		{
 			free(line);
 			continue ;
 		}
 		else
 			add_history(line);
+		if (space_newline(line))
+		{
+			free(line);
+			continue ;
+		}
 		if (process_input_line(ms, line) == 1)
 			continue ;
 	}

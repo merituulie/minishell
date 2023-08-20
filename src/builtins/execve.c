@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:35:02 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/08/17 11:16:09 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 07:07:46 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static void	cmd_is_dir(t_command *command, t_env **env)
 {
 	t_node	*temp;
 
-	if (!ft_strncmp_all(command->command, "/home"))
+	if (!ft_strncmp_all(command->command, "/home") \
+		|| !ft_strncmp_all(command->command, "/bin"))
 	{
 		ft_puterror(126, ": is a directory\n", command);
 		exit(126);
