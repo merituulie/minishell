@@ -133,7 +133,7 @@ void	minishell(t_data *ms)
 
 	while (42)
 	{
-		line = readline("minishell >");
+		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
 		if (line && (line[0] == '\0' || line[0] == '\n'))
 		{
