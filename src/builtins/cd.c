@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 11:50:27 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 09:52:13 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_cd(t_command *command, t_env **env)
 	temp = *(*env)->vars;
 	old_pwd = getcwd(NULL, 0);
 	if (get_value((*env)->vars, "OLDPWD") == NULL)
-		set_value((*env)->vars, "OLDPWD", old_pwd);
+		set_value((*env)->vars, ft_strdup("OLDPWD"), old_pwd);
 	else
 	{
 		temp = get_value(&temp, "OLDPWD");
