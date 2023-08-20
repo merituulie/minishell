@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 10:59:32 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:44:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ static int	process_input_line(t_data *ms, char *input_line)
 	{
 		free(input_line);
 	}
-	cmd = ft_parser(ms, cmd_line);
 	if (cmd_line == NULL)
 		return (1);
+	cmd = ft_parser(ms, cmd_line);
 	if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
 	{
 		free_in_minishell(cmd, ms->struct_count);
