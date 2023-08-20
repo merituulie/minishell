@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
+#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/20 08:16:30 by jhusso           ###   ########.fr        #
+#    Updated: 2023/08/20 14:21:37 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ COMMAND_SRC = init_command \
 PARSER_SRC = expand_env \
 			parser_utils \
 			concatenate \
-			parser_special
+			parser_special \
+			expand_env_utils \
 
 BUILTIN_SRC = export \
 			echo \

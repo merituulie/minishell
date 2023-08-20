@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 10:51:06 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 14:22:39 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // 	i = 0;
 // 	while (str[i])
 // 	{
-// 		printf("cmd_line [%i] %s\n", i, str[i]);
+// 		printf("cmd_line is %s\n", str[i]);
 // 		i++;
 // 	}
 // }

@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 14:23:20 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:42:01 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void		exp_unset_exit_msg(char *input, int command);
 void		add_shlvl(t_env **env);
 
 // COMMAND HANDLER
-int			execute_commands(t_command *commands, int command_count, \
-					t_env **env);
+void		execute_commands(t_command *commands, int command_count, \
+			t_env **env);
 void		execute_command(t_command *command, t_env **env, int fork);
 
 // PIPING
