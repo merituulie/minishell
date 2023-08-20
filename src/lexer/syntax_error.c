@@ -3,32 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/18 14:39:09 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 10:51:05 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/lexer.h"
 #include "../../libft/libft.h"
-
-/*if the single quotes or double quotes doesn't have a pair ending
-if succee return 0 */
-static int	syntax_error2(char *str, int i)
-{
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == 34 || str[i] == 39)
-		{
-			i = quote_check(str, i, str[i]);
-			if (i == -1)
-				return (i);
-		}
-	}
-	return (0);
-}
 
 int	check_pipe_syntax(char *str, int i)
 {
@@ -92,33 +75,45 @@ static int	in_redir_syntax_error(char *str, int i)
 	return (0);
 }
 
-/*check the syntax error: if there is error, send exit message with
-proper exit value.
-can we use exit(258)? I don't know :/ */
-int	syntax_error(char *str, int i)
+static int	check_for_pipe_redir(char *str, int i)
 {
 	int	ret;
 
-	while (str[++i])
+	ret = 0;
+	if (str[i] == '|')
+		ret = check_pipe_syntax(str, i);
+	else if (str[i] == '>')
+		ret = out_redir_syntax_error(str, i);
+	else if (str[i] == '<')
+		ret = in_redir_syntax_error(str, i);
+	return (ret);
+}
+
+/*check the syntax error: if there is error, send exit message with
+proper exit value.
+can we use exit(258)? I don't know :/ */
+int	syntax_error(char *str, int len)
+{
+	int	ret;
+	int	i;
+
+	i = 0;
+	while (i < len)
 	{
-		if (str[i] == '|')
+		if (str[i] == 34 || str[i] == 39)
 		{
-			ret = check_pipe_syntax(str, i);
+			i = quote_check(str, i, str[i]);
+			if (i == -1)
+				return (i);
+			i++;
+		}
+		else
+		{
+			ret = check_for_pipe_redir(str, i);
 			if (ret)
 				return (ret);
 		}
-		if (str[i] == '>')
-		{
-			ret = out_redir_syntax_error(str, i);
-			if (ret)
-				return (ret);
-		}
-		if (str[i] == '<')
-		{
-			ret = in_redir_syntax_error(str, i);
-			if (ret)
-				return (ret);
-		}
+		i ++;
 	}
-	return (syntax_error2(str, i));
+	return (ret);
 }
