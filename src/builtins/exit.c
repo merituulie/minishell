@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/18 14:22:48 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:40:44 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	ft_is_number(char **input)
 			return (0);
 		i++;
 	}
+	if (i < 19)
+		return (1);
 	temp = ft_lltoa(ft_atoll(input[1]));
 	if (ft_strncmp_all(input[1], temp) \
 	|| (i > 20 && input[1][0] == '-' && input[1][0] == '+') \

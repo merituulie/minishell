@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/17 17:43:25 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:24:48 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,21 +107,15 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 
 // the function extend expand quote check2 is in the 
 // concatenate.c:
-static char	**expand_quote_check2(t_data *ms, char **str)
+static char	**expand_quote_check2(t_data *ms, char **str, int count)
 {
-	while (str[++(ms->i)])
+	while (++ms->i < count)
 	{
 		ms->j = -1;
 		while (str[ms->i][++(ms->j)])
 		{
-			if (str[ms->i][ms->j] == 34 && !ms->s_quotes && !ms->d_quotes)
-				ms->d_quotes = 1;
-			else if (str[ms->i][ms->j] == 34 && ms->d_quotes)
-				ms->d_quotes = 0;
-			else if (str[ms->i][ms->j] == 39 && !ms->s_quotes && !ms->d_quotes)
-				ms->s_quotes = 1;
-			else if (str[ms->i][ms->j] == 39 && ms->s_quotes)
-				ms->s_quotes = 0;
+			if (check_quote_cases(&ms, str[ms->i][ms->j]))
+				continue ;
 			else if (str[ms->i][ms->j] == '$' && str[ms->i][ms->j + 1] \
 													&& !ms->s_quotes)
 			{
@@ -130,6 +124,12 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 					break ;
 				ms->j = ms->end - 1;
 			}
+		}
+		if (str[ms->i] == NULL)
+		{
+			count--;
+			str = realloc_stack(str, count);
+			ms->i--;
 		}
 	}
 	return (str);
@@ -142,14 +142,15 @@ it will become 0.
 Expanding to env only happens if there is $ and something after, and
 if there is no single quote in front of it. it does not count if double quote
 exists or not.*/
-
 char	**expand_quote_check(t_data *ms, char **str)
 {
 	char	**res;
+	int		len;
 
 	ms_init(ms);
+	len = ft_arrlen(str);
 	ms->i = -1;
-	res = expand_quote_check2(ms, str);
+	res = expand_quote_check2(ms, str, len);
 	if (res == NULL)
 		return (NULL);
 	return (res);
