@@ -78,7 +78,6 @@ int	check_if_nothing(char *str, int i)
 /* If finds pair for quote, returns i, otherwise prints error message */
 int	quote_check(char *str, int i, char quote)
 {
-	// i++;
 	while (str[i])
 	{
 		if (str[i] == quote)
