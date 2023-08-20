@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 11:50:27 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 10:21:33 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,12 @@
 static char	*get_path(char *command_input)
 {
 	char	*path;
-	char	*temp;
 	int		end;
 
 	end = 0;
 	while (command_input[end] != '\0' && command_input[end] != ' ')
 		end++;
 	path = ft_substr(command_input, 0, end);
-	if (path[0] == '/')
-	{
-		temp = ft_substr(path, 1, ft_strlen(path) - 1);
-		free (path);
-		return (temp);
-	}
 	return (path);
 }
 
@@ -84,7 +77,7 @@ void	ft_cd(t_command *command, t_env **env)
 	temp = *(*env)->vars;
 	old_pwd = getcwd(NULL, 0);
 	if (get_value((*env)->vars, "OLDPWD") == NULL)
-		set_value((*env)->vars, "OLDPWD", old_pwd);
+		set_value((*env)->vars, ft_strdup("OLDPWD"), old_pwd);
 	else
 	{
 		temp = get_value(&temp, "OLDPWD");
