@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
+#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/20 16:49:18 by yoonslee         ###   ########.fr        #
+#    Updated: 2023/08/20 17:36:05 by emeinert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror #-fsanitize=address,undefined
+BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror -fsanitize=address,undefined
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
