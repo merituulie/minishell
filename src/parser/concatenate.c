@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 09:26:44 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 13:38:18 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:18:42 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ void	delete_quotes2(char *str, int index, int size, t_data *ms)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	index = 0;
-	while (++i < size)
+	while (i < size && str[index + i])
 	{
 		if (((index + i) == ms->start || (index + i) == ms->end) \
 								&& ms->start != ms->end - 1)
 			index++;
 		else if ((index + i) == ms->start && ms->start == ms->end - 1)
 			index = index + 2;
+		if (!str[index + i])
+			break ;
 		ms->out[i] = str[index + i];
+		i++;
 	}
 	ms->out[i] = '\0';
 }

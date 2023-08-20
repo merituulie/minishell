@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 14:21:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:20:16 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 // 	int	j;
 
 // 	i = -1;
+// 	printf("this is in the main\n");
 // 	while (cmd[++i].command)
 // 	{
 // 		if (cmd[i].command)
@@ -126,24 +127,20 @@ static int	process_input_line(t_data *ms, char *input_line)
 
 void	minishell(t_data *ms)
 {
-	char	*line;
+	char		*line;
 
 	while (42)
 	{
-		line = readline(PINK "PinkShell: " BORING);
+		line = readline("minishell >");
 		ctrl_d_cmd(line, ms);
-		if (line && (line[0] == '\0' || line[0] == '\n'))
+		if (line && (space_newline(line) \
+					|| line[0] == '\0' || line[0] == '\n'))
 		{
 			free(line);
 			continue ;
 		}
 		else
 			add_history(line);
-		if (space_newline(line))
-		{
-			free(line);
-			continue ;
-		}
 		if (process_input_line(ms, line) == 1)
 			continue ;
 	}
@@ -153,14 +150,17 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	ms;
 
-	(void)argc;
 	(void)argv;
-	ms.env = NULL;
-	fill_env(envp, &ms.env);
-	add_shlvl(&ms.env);
-	set_signal_action(&ms);
-	minishell(&ms);
-	restore_terminal(&ms);
-	free_in_main(&ms);
-	return (0);
+	if (argc == 1)
+	{
+		ms.env = NULL;
+		fill_env(envp, &ms.env);
+		add_shlvl(&ms.env);
+		set_signal_action(&ms);
+		minishell(&ms);
+		restore_terminal(&ms);
+		free_in_main(&ms);
+		return (0);
+	}
+	return (1);
 }
