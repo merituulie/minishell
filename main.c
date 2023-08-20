@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 13:36:36 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 14:22:39 by emeinert         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/20 16:38:31 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "headers/parsing.h"
 #include "headers/lexer.h"
@@ -53,6 +55,7 @@
 // 	int	j;
 
 // 	i = -1;
+// 	printf("this is in the main\n");
 // 	while (cmd[++i].command)
 // 	{
 // 		if (cmd[i].command)
@@ -126,11 +129,11 @@ static int	process_input_line(t_data *ms, char *input_line)
 
 void	minishell(t_data *ms)
 {
-	char	*line;
+	char		*line;
 
 	while (42)
 	{
-		line = readline(PINK "PinkShell: " BORING);
+		line = readline("minishell >");
 		ctrl_d_cmd(line, ms);
 		if (line && (line[0] == '\0' || line[0] == '\n'))
 		{
@@ -153,14 +156,17 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	ms;
 
-	(void)argc;
 	(void)argv;
-	ms.env = NULL;
-	fill_env(envp, &ms.env);
-	add_shlvl(&ms.env);
-	set_signal_action(&ms);
-	minishell(&ms);
-	restore_terminal(&ms);
-	free_in_main(&ms);
-	return (0);
+	if (argc == 1)
+	{
+		ms.env = NULL;
+		fill_env(envp, &ms.env);
+		add_shlvl(&ms.env);
+		set_signal_action(&ms);
+		minishell(&ms);
+		restore_terminal(&ms);
+		free_in_main(&ms);
+		return (0);
+	}
+	return (1);
 }

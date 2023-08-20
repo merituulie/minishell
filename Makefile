@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+         #
+#    By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/20 14:21:37 by emeinert         ###   ########.fr        #
+#    Updated: 2023/08/20 16:49:18 by yoonslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror -fsanitize=address,undefined
+BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror #-fsanitize=address,undefined
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -45,7 +46,8 @@ COMMAND_SRC = init_command \
 			input_command \
 			full_command \
 			flags_command \
-			heredoc_command
+			heredoc_command \
+			concatenate_struct \
 
 PARSER_SRC = expand_env \
 			parser_utils \

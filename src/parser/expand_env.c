@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/20 14:24:48 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:50:09 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 
 	new = find_env(ms, var, ft_strlen(var));
 	size = count_size(str, var, new);
-	if (size == 0)
+	if (size == 0 && !new)
 		ms->out = NULL;
 	else
 	{
@@ -117,7 +117,7 @@ static char	**expand_quote_check2(t_data *ms, char **str, int count)
 			if (check_quote_cases(&ms, str[ms->i][ms->j]))
 				continue ;
 			else if (str[ms->i][ms->j] == '$' && str[ms->i][ms->j + 1] \
-													&& !ms->s_quotes)
+				&& ft_strncmp_all(str[ms->i], "\"$\"") && !ms->s_quotes)
 			{
 				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
 				if (break_in_expand_quote(str[ms->i], ms) == -1)

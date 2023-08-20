@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:25:47 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 14:25:43 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:43:14 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	**realloc_stack(char **str, int count);
 int		check_quote_cases(t_data **ms, char c);
 
 /*conctenate.c*/
+void	delete_quotes(char *str, int index, int size, t_data *ms);
+void	delete_quotes2(char *str, int index, int size, t_data *ms);
 char	**concatenate(char **str, t_data *ms);
 int		extend_expand_quote_check2(t_data *ms, char **str);
 
