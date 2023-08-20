@@ -6,7 +6,7 @@
 /*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:53:38 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/20 13:38:53 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:32:56 by yoonslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 
 	new = find_env(ms, var, ft_strlen(var));
 	size = count_size(str, var, new);
-	if (size == 0)
+	if (size == 0 && !new)
 		ms->out = NULL;
 	else
 	{
@@ -109,7 +109,6 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 // concatenate.c:
 static char	**expand_quote_check2(t_data *ms, char **str)
 {
-	printf("HERE\n");
 	while (str[++(ms->i)])
 	{
 		ms->j = -1;
@@ -124,7 +123,7 @@ static char	**expand_quote_check2(t_data *ms, char **str)
 			else if (str[ms->i][ms->j] == 39 && ms->s_quotes)
 				ms->s_quotes = 0;
 			else if (str[ms->i][ms->j] == '$' && str[ms->i][ms->j + 1] \
-													&& !ms->s_quotes)
+				&& ft_strncmp_all(str[ms->i], "\"$\"") && !ms->s_quotes)
 			{
 				str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));
 				if (break_in_expand_quote(str[ms->i], ms) == -1)
