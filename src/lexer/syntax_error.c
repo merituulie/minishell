@@ -6,7 +6,7 @@
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/20 10:51:05 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/20 16:33:34 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,9 @@ int	syntax_error(char *str, int len)
 	{
 		if (str[i] == 34 || str[i] == 39)
 		{
-			i = quote_check(str, i, str[i]);
+			i = quote_check(str, i + 1, str[i]);
 			if (i == -1)
 				return (i);
-			i++;
 		}
 		else
 		{
@@ -113,7 +112,7 @@ int	syntax_error(char *str, int len)
 			if (ret)
 				return (ret);
 		}
-		i ++;
+		i++;
 	}
 	return (ret);
 }
