@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:06:45 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/15 17:34:59 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:31:14 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../libft/libft.h"
 
 static char	*find_key(char *env_line, int del_index)
 {

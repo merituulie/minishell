@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 18:41:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/14 19:56:05 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:29:22 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../headers/hashmap.h"
-#include "../../libft/libft.h"
 
 void	ft_dup2(int infile_fd, int outfile_fd)
 {

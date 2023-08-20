@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   full_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:02:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/10 14:01:56 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:25:27 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../headers/hashmap.h"
-#include "../../libft/libft.h"
 
 void	put_fullcmd_input(t_command	*cmd, int i, int track, int index)
 {

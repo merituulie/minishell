@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:15:26 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/20 16:17:58 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:23:51 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../headers/hashmap.h"
-#include "../../libft/libft.h"
 
 static void	parse_command(t_command *cmd, int track, int *index, char **input)
 {

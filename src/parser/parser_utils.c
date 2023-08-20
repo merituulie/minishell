@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:42:15 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/17 17:43:48 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:48:48 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/parsing.h"
-#include "../../libft/libft.h"
 
 /*initialize the quotes count to zero*/
 void	quotes_init(t_data *ms)

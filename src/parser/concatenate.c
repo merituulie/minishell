@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   concatenate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 09:26:44 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 16:18:42 by yoonslee         ###   ########.fr       */
+/*   Created: 2023/08/20 18:13:23 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/20 18:13:35 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/parsing.h"
-#include "../../libft/libft.h"
 
 void	delete_quotes2(char *str, int index, int size, t_data *ms)
 {
@@ -96,7 +95,6 @@ char	**concatenate(char **str, t_data *ms)
 	}
 	return (str);
 }
-
 
 //This function help for the line too long in expand_env.c:
 int	extend_expand_quote_check2(t_data *ms, char **str)

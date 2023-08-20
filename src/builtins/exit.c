@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/20 15:40:44 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:11:18 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,15 @@ static int	ft_is_number(char **input)
 	int		i;
 	char	*temp;
 
-	i = 0;
+	i = -1;
 	if (ft_strlen(input[1]) == 1 && !ft_isdigit(input[1][0]))
 		return (0);
 	if (input[1][0] == '-' || input[1][0] == '+')
 			i++;
-	while (input[1][i] != '\0')
+	while (input[1][++i] != '\0')
 	{
 		if (!ft_isdigit(input[1][i]))
 			return (0);
-		i++;
 	}
 	if (i < 19)
 		return (1);

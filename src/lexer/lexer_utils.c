@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/20 16:18:49 by jhusso           ###   ########.fr       */
+/*   Created: 2023/08/20 18:12:06 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/20 18:12:09 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/lexer.h"
-#include "../../libft/libft.h"
 
 /* 1 is pipe, 2 is < or > or << or >>
 error value 258 needs to be returned*/

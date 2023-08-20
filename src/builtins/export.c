@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:53:21 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/18 14:24:32 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:22:21 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../libft/libft.h"
 
 static char	*find_key_in_str(char *cmd)
 {

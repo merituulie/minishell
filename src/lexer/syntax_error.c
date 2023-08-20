@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/20 16:33:34 by jhusso           ###   ########.fr       */
+/*   Created: 2023/08/20 18:12:26 by jhusso            #+#    #+#             */
+/*   Updated: 2023/08/20 18:12:41 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/lexer.h"
-#include "../../libft/libft.h"
 
 int	check_pipe_syntax(char *str, int i)
 {

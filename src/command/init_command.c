@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 07:54:30 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/20 16:18:01 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:56:53 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../headers/hashmap.h"
-#include "../../libft/libft.h"
 
 static int	count_struct(char **input)
 {
@@ -74,12 +72,6 @@ t_command	*init_cmds(t_data *ms, char **input)
 
 	track = 0;
 	ms->struct_count = count_struct(input);
-	if (!ft_strncmp_all(input[0], ""))
-	{
-		ft_putstr_fd("command not found\n", 2, 1);
-		g_info.exit_code = 127;
-		return (NULL);
-	}
 	init_fds_count_redirs(&ms->struct_count, input);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)

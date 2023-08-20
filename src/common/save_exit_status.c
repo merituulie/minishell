@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   save_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoonslee <yoonslee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/18 12:53:07 by yoonslee         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:29:45 by jhusso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include "../../libft/libft.h"
 
 void	cmd_is_not_executable(t_command *command)
 {
