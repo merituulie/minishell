@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/15 11:24:20 by meskelin         ###   ########.fr        #
+#    Updated: 2023/08/20 07:11:26 by jhusso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ ft_strjoin \
 ft_strchr \
 ft_strdup \
 ft_strlcat \
-free_array \
+free_char_array \
 ft_atoll \
 ft_isdigit \
 ft_strchr_index \
