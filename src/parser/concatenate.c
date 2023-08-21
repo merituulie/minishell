@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 18:13:23 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/21 11:29:19 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:40:59 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ char	**concatenate(char **str, t_data *ms)
 				{
 					delete_quotes_fname(str, ms, i, j);
 				}
+				if (str[i][0] == '\0')
+					break ;
 			}
 		}
 	}
