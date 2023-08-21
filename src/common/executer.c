@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/21 09:34:52 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:49:57 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,18 @@ static int	execute_builtin(t_command **command, t_env ***env, int fork)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	if (command->command[0] == '\0' && !fork)
+	if (command && command->command)
 	{
-		ft_putstr_fd("command not found\n", 2, 1);
-		set_exit_code(127);
-		return ;
+		if (command->command[0] == '\0')
+		{
+			ft_putstr_fd("command not found\n", 2, 1);
+			set_exit_code(127);
+			if (fork)
+				exit(g_info.exit_code); 
+			return ;
+		}
 	}
-	else if (command->command[0] == '\0' && fork)
-	{
-		ft_putstr_fd("command not found\n", 2, 1);
-		set_exit_code(127);
-		exit(g_info.exit_code);
-	}
-	if (!command || !command->command)
+	else
 		exit(1);
 	if (execute_builtin(&command, &env, fork))
 	{
