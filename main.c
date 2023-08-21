@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 18:13:53 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/20 18:13:56 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 09:37:13 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,5 +162,7 @@ int	main(int argc, char **argv, char **envp)
 		free_in_main(&ms);
 		return (0);
 	}
+	ft_putstr_fd("If you tried to run minishell, please try with\
+	./minishell and NO arguments\n", 2, 0);
 	return (1);
 }
