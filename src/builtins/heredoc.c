@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/21 09:07:33 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/21 09:21:01 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	write_heredoc(char *delim, t_env **env, int fd)
 	line = readline("> ");
 	while (line)
 	{
-		if (!ft_memcmp(line, delim, ft_strlen(line)) || g_info.sig_status)
+		if (((ft_strlen(line) == ft_strlen(delim)) && !ft_memcmp(line, delim, ft_strlen(line))) \
+		|| g_info.sig_status)
 			break ;
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
