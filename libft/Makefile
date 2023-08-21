@@ -1,18 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/20 18:14:31 by jhusso           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 NAME = libft.a
 
 SRC_FILES = free_and_nullify \
+	free_array \
 	free_char_array \
 	ft_arrlen \
 	ft_atoll \
@@ -44,6 +34,7 @@ SRC_FILES = free_and_nullify \
 	ft_strncmp_all \
 	ft_strncmp \
 	ft_strtrim \
+	ft_strcpy \
 	ft_substr \
 
 H_FILES = libft
