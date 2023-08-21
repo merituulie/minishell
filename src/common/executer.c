@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/21 16:14:26 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:19:01 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static int	execute_builtin(t_command **command, t_env ***env, int fork)
 	else if (ft_strncmp_all((*command)->command, "unset") == 0)
 		ft_unset((*command)->input, **env);
 	else if (ft_strncmp_all((*command)->command, "exit") == 0)
+	{
+		set_exit_code(0);
 		ft_exit((*command), **env, fork);
+	}
 	else
 		return (0);
 	return (1);
@@ -46,7 +49,10 @@ void	execute_command(t_command *command, t_env **env, int fork)
 			return ;
 		}
 	}
-	else
+    else if (command && !command->command && \
+        (command->infile_name || command->outfile_name))
+        exit(0);
+    else
 		exit(1);
 	if (execute_builtin(&command, &env, fork))
 	{
