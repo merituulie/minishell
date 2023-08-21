@@ -6,7 +6,7 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2023/08/21 11:36:48 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/08/21 12:47:43 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror #-fsanitize=address,undefined
+BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror -fsanitize=address,undefined
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 17:29:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 13:15:16 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	cmd_is_not_executable(t_command *command)
 
 void	set_exit_code(int number)
 {
-	if (g_info.sig_status == 1)
-		g_info.exit_code = 1;
-	else
-		g_info.exit_code = number;
+	g_info.exit_code = number;
 }
 
 char	*get_exit_code(void)
