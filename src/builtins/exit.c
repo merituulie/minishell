@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/20 18:22:14 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/21 09:34:04 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	num_arg_check(char **input, int fork, \
 	}
 	else
 	{
-		g_info.exit_code = 255;
+		set_exit_code(255);
 		if (!fork)
 			ft_putstr_fd("exit\n", 1, 0);
 		exp_unset_exit_msg(input[1], 2);
@@ -90,7 +90,7 @@ static int	amount_check(char **input, int fork)
 		if (!fork)
 			ft_putstr_fd("exit\n", 1, 0);
 		ft_putstr_fd("exit: too many arguments\n", 2, 1);
-		g_info.exit_code = 1;
+		set_exit_code(1);
 		return (1);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:21:18 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/20 17:21:22 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 09:33:18 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_execve(t_command *command, t_env **env)
 	vars = ft_split(env_to_string(env), '\n');
 	if (execve(path, command->full_cmd, vars) < 0)
 	{
-		ft_putstr_fd("Error with execve call!\n", 2, 1);
+		ft_putstr_fd("Error with execution\n", 2, 1);
 		exit (1);
 	}
 	free_char_array(vars);
