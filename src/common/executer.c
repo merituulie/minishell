@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/21 17:11:40 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:15:15 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	execute_command(t_command *command, t_env **env, int fork)
 			return ;
 		}
 	}
-    else if (command && !command->command && \
-        (command->infile_name || command->outfile_name))
-        exit(0);
-    else
+	else if (command && !command->command && \
+		(command->infile_name || command->outfile_name))
+		exit(0);
+	else
 		exit(1);
 	if (execute_builtin(&command, &env, fork))
 	{
