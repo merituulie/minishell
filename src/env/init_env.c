@@ -26,6 +26,8 @@ static t_env	*init_env(void)
 	t_env	*env;
 
 	env = ft_calloc(1, sizeof(*env));
+	if (!env)
+		malloc_error();
 	return (env);
 }
 

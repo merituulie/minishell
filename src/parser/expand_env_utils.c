@@ -23,6 +23,8 @@ char	**realloc_stack(char **str, int count)
 	int		j;
 
 	cpy = (char **)ft_calloc(count + 1, sizeof(char *));
+	if (!cpy)
+		malloc_error();
 	i = 0;
 	j = 0;
 	while (i < count)

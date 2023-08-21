@@ -75,7 +75,7 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 	{
 		ms->out = ft_calloc(size + 1, sizeof(char));
 		if (!ms->out)
-			return ;
+			malloc_error();
 		ms->out = ft_memcpy(ms->out, str, ms->start);
 		leftover = ms->start;
 		if (new)
