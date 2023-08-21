@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:15:26 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/20 17:23:51 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:09:53 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	parse_command(t_command *cmd, int track, int *index, char **input)
 	if (!cmd[track].command)
 		cmd[track].command = ft_strdup(input[(*index)++]);
 	if (!cmd[track].command)
-		ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+		malloc_error();
 	if (!input[(*index)] || ft_strchr_null("<|>", input[*index][0]))
 		return ;
 	str = ft_strdup(parse_flags(input, &(*index)));

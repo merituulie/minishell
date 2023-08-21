@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:57:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/18 09:01:50 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:07:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*parse_redirection_filename(char **input, int index)
 	(index)++;
 	str = ft_calloc((str_len + 1), sizeof(char));
 	if (!str)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	ft_strlcpy(str, input[cur_index], ft_strlen(input[cur_index]) + 1);
 	return (str);
 }

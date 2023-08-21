@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   concatenate_struct.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:15:27 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 17:58:53 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:07:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*delete_quotes_str(char *input, t_data *ms)
 			free(input);
 			input = ft_strdup(ms->out);
 			if (!input)
-				ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+				malloc_error();
 			free(ms->out);
 			ms->out = NULL;
 			i = ms->end - 2;

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pid.c                                              :+:      :+:    :+:   */
+/*   malloc_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 18:19:09 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/21 16:07:43 by rmakinen         ###   ########.fr       */
+/*   Created: 2023/08/21 16:04:55 by rmakinen          #+#    #+#             */
+/*   Updated: 2023/08/21 16:12:50 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-int	*allocate_pids(int pid_count)
+void	malloc_error(void)
 {
-	int	*pids;
-
-	pids = ft_calloc(pid_count, sizeof(*pids));
-	if (!pids)
-		malloc_error();
-	return (pids);
+	ft_putstr_fd("Memory allocation failed\n", 2, 1);
+	exit(1);
 }

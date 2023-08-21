@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   concatenate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 18:13:23 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/20 18:13:35 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:07:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	delete_quotes(char *str, int index, int size, t_data *ms)
 	ms->end = index;
 	ms->out = ft_calloc(size + 1, sizeof(char));
 	if (!ms->out)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	delete_quotes2(str, index, size, ms);
 }
 
@@ -61,7 +61,7 @@ static void	delete_quotes_fname(char **str, t_data *ms, int i, int j)
 	free(str[i]);
 	str[i] = ft_strdup(ms->out);
 	if (!str[i])
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	free(ms->out);
 	ms->out = NULL;
 	j = ms->end - 2;
@@ -90,6 +90,8 @@ char	**concatenate(char **str, t_data *ms)
 				{
 					delete_quotes_fname(str, ms, i, j);
 				}
+				if (str[i][0] == '\0')
+					break ;
 			}
 		}
 	}

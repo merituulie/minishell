@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/21 09:34:52 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:19:01 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static int	execute_builtin(t_command **command, t_env ***env, int fork)
 	else if (ft_strncmp_all((*command)->command, "unset") == 0)
 		ft_unset((*command)->input, **env);
 	else if (ft_strncmp_all((*command)->command, "exit") == 0)
+	{
+		set_exit_code(0);
 		ft_exit((*command), **env, fork);
+	}
 	else
 		return (0);
 	return (1);
@@ -35,19 +38,21 @@ static int	execute_builtin(t_command **command, t_env ***env, int fork)
 
 void	execute_command(t_command *command, t_env **env, int fork)
 {
-	if (command->command[0] == '\0' && !fork)
+	if (command && command->command)
 	{
-		ft_putstr_fd("command not found\n", 2, 1);
-		set_exit_code(127);
-		return ;
+		if (command->command[0] == '\0')
+		{
+			ft_putstr_fd("command not found\n", 2, 1);
+			set_exit_code(127);
+			if (fork)
+				exit (g_info.exit_code);
+			return ;
+		}
 	}
-	else if (command->command[0] == '\0' && fork)
-	{
-		ft_putstr_fd("command not found\n", 2, 1);
-		set_exit_code(127);
-		exit(g_info.exit_code);
-	}
-	if (!command || !command->command)
+    else if (command && !command->command && \
+        (command->infile_name || command->outfile_name))
+        exit(0);
+    else
 		exit(1);
 	if (execute_builtin(&command, &env, fork))
 	{

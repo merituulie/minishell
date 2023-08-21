@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:57:40 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 17:51:56 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:07:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,13 @@ void	ft_cd(t_command *command, t_env **env)
 	go_dir(env, command);
 	temp = NULL;
 	temp = get_value((*env)->vars, "PWD");
+	if (!temp)
+	{
+		set_value((*env)->vars, ft_strdup("PWD"), getcwd(NULL, 0));
+		return ;
+	}
 	free(temp->value);
 	temp->value = getcwd(NULL, 0);
 	if (!temp->value)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 }

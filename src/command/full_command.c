@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   full_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:02:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/20 17:25:27 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:09:53 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	put_fullcmd_input(t_command	*cmd, int i, int track, int index)
 	{
 		cmd[i].full_cmd[j + index] = ft_strdup(cmd[track].input[j]);
 		if (!cmd[i].full_cmd[j + index])
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+			malloc_error();
 		j++;
 	}
 }
@@ -32,20 +32,20 @@ void	put_fullcmd(t_command *cmd, int i, int track)
 		return ;
 	cmd[i].full_cmd[0] = ft_strdup(cmd[track].command);
 	if (!cmd[i].full_cmd[0])
-		ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+		malloc_error();
 	if (!cmd[track].flags && cmd[track].input)
 		put_fullcmd_input(cmd, i, track, 1);
 	else if (cmd[track].flags && !cmd[track].input)
 	{
 		cmd[i].full_cmd[1] = ft_strdup(cmd[track].flags);
 		if (!cmd[i].full_cmd[1])
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+			malloc_error();
 	}
 	else if (cmd[track].flags && cmd[track].input)
 	{
 		cmd[i].full_cmd[1] = ft_strdup(cmd[track].flags);
 		if (!cmd[i].full_cmd[1])
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+			malloc_error();
 		put_fullcmd_input(cmd, i, track, 2);
 	}
 }
@@ -73,7 +73,7 @@ void	full_cmd(t_command *cmd, int struct_count, int track)
 			cmd[i].full_cmd = ft_calloc(ft_arrlen(cmd[track].input) + 3, \
 			sizeof (char *));
 		if (!cmd[i].full_cmd)
-			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+			malloc_error();
 		put_fullcmd(cmd, i, track);
 		i++;
 	}

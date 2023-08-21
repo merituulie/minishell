@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_exit_status.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 17:29:45 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:07:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	cmd_is_not_executable(t_command *command)
 
 void	set_exit_code(int number)
 {
-	if (g_info.sig_status == 1)
-		g_info.exit_code = 1;
-	else
-		g_info.exit_code = number;
+	g_info.exit_code = number;
 }
 
 char	*get_exit_code(void)
@@ -54,14 +51,14 @@ void	ft_puterror(int code, char *str, t_command *command)
 	{
 		temp = ft_strdup(command->command);
 		if (!temp)
-			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+			malloc_error();
 		msg = ft_strjoin(temp, str);
 		free(temp);
 	}
 	else
 		msg = ft_strdup(str);
 	if (!msg)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	ft_putstr_fd(msg, 2, 1);
 	free(msg);
 	set_exit_code(code);

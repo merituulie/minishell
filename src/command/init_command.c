@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/20 18:20:25 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:14:51 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../headers/minishell.h"
 
@@ -54,7 +53,7 @@ static void	init_fds_count_redirs(int *struct_count, char **input)
 	{
 		g_info.pipe_fds = ft_calloc(g_info.pipe_count, sizeof(g_info.pipe_fds));
 		if (!g_info.pipe_fds)
-			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+			malloc_error();
 	}
 	g_info.redir_count = count_redirs(input);
 	if (g_info.redir_count > 0)
@@ -62,7 +61,7 @@ static void	init_fds_count_redirs(int *struct_count, char **input)
 		g_info.redir_fds = ft_calloc(g_info.redir_count, \
 		sizeof(g_info.redir_fds));
 		if (!g_info.redir_fds)
-			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+			malloc_error();
 	}
 }
 
@@ -76,7 +75,7 @@ t_command	*init_cmds(t_data *ms, char **input)
 	init_fds_count_redirs(&ms->struct_count, input);
 	cmd = ft_calloc(ms->struct_count + 1, sizeof(t_command));
 	if (!cmd)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	while (track < ms->struct_count + 1)
 	{
 		cmd[track].redir_fd_index_in = -2;

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:11:37 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/21 08:43:02 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:34:58 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int	handle_heredoc(t_command *cmd, int *index, int track, char **input)
 	free(number);
 	if (!ft_strncmp_all("<<", input[(*index)]))
 	{
-		cmd[track].infile_name = ft_strdup(file_name);
-		if (cmd[track].infile_name && \
-			ft_strncmp(cmd[track].infile_name, "HEREDOC", 7))
+		if (cmd[track].infile_name)
 		{
 			update_infile_redir_heredoc(cmd, track);
 			cmd[track].infile_name = ft_strdup(file_name);
 		}
+		else
+			cmd[track].infile_name = ft_strdup(file_name);
 		free(file_name);
 		(*index) += 2;
 		return (1);
