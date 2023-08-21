@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/21 16:15:30 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:11:34 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int			execute_ft_execve(t_command *command, t_env **env);
 int			ft_execve(t_command *command, t_env **env);
 
 /*exit.c*/
-void		ft_exit(t_command *command, t_env *env, int fork);
+void		ft_exit(t_command *command, t_env *env, int fork, int flag);
 
 /*export.c*/
 void		ft_export(char **input, t_env *env);

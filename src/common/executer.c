@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/21 16:19:01 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:11:40 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ static int	execute_builtin(t_command **command, t_env ***env, int fork)
 	else if (ft_strncmp_all((*command)->command, "unset") == 0)
 		ft_unset((*command)->input, **env);
 	else if (ft_strncmp_all((*command)->command, "exit") == 0)
-	{
-		set_exit_code(0);
-		ft_exit((*command), **env, fork);
-	}
+		ft_exit((*command), **env, fork, 0);
 	else
 		return (0);
 	return (1);

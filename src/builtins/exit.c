@@ -6,7 +6,7 @@
 /*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:52:51 by emeinert          #+#    #+#             */
-/*   Updated: 2023/08/21 15:46:22 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:13:33 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,17 @@ static int	amount_check(char **input, int fork)
 	return (0);
 }
 
-void	ft_exit(t_command *command, t_env *env, int fork)
+void	ft_exit(t_command *command, t_env *env, int fork, int flag)
 {
-	int		flag;
-
-	flag = 0;
 	if (!command->input && !command->flags)
 	{
 		if (!fork)
 		{
 			ft_putstr_fd("exit\n", 1, 0);
 			ft_exit_free(command, env);
+			exit(g_info.exit_code);
 		}
+		set_exit_code(0);
 		exit(g_info.exit_code);
 	}
 	num_arg_check(command->full_cmd, fork, command, env);
