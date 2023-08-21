@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:39:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/21 13:49:57 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:14:26 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	execute_command(t_command *command, t_env **env, int fork)
 			ft_putstr_fd("command not found\n", 2, 1);
 			set_exit_code(127);
 			if (fork)
-				exit(g_info.exit_code); 
+				exit (g_info.exit_code);
 			return ;
 		}
 	}

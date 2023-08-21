@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expand.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:25:09 by jhusso            #+#    #+#             */
-/*   Updated: 2023/08/20 17:22:50 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:07:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*find_env_here(char *var, int var_size, t_env **env)
 	var_size--;
 	search = ft_calloc(var_size, sizeof(char));
 	if (!search)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	while (i++ < var_size)
 		search[i] = var[1 + i];
 	i = 0;
@@ -61,7 +61,7 @@ static void	realloc_var_here(t_data *ms, char *str, char *var, t_env **env)
 		size = ft_strlen(str) - ft_strlen(var) + ft_strlen(new);
 	ms->out = ft_calloc(size, sizeof(char));
 	if (!ms->out)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	ms->out = ft_memcpy(ms->out, str, ms->start);
 	leftover = ms->start;
 	if (new)
@@ -91,7 +91,7 @@ char	*expand_var_here(t_data *ms, char *str, int start, t_env **env)
 	else
 		var = ft_substr(str, ms->start, ms->end - ms->start);
 	if (!var)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	realloc_var_here(ms, str, var, env);
 	free(var);
 	free(str);

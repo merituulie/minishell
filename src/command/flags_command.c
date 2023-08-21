@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:06:48 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/08 13:47:50 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:09:53 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	put_to_flags(t_command **cmd, int track, char *str)
 	{
 		(*cmd)[track].flags = ft_strdup(str);
 		if (!(*cmd)[track].flags)
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+			malloc_error();
 	}
 }

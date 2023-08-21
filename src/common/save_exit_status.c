@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:50:22 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/21 13:15:16 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:07:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	ft_puterror(int code, char *str, t_command *command)
 	{
 		temp = ft_strdup(command->command);
 		if (!temp)
-			ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+			malloc_error();
 		msg = ft_strjoin(temp, str);
 		free(temp);
 	}
 	else
 		msg = ft_strdup(str);
 	if (!msg)
-		ft_putstr_fd("Memory allocation failure!\n", 2, 1);
+		malloc_error();
 	ft_putstr_fd(msg, 2, 1);
 	free(msg);
 	set_exit_code(code);

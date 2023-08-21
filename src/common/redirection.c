@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 18:41:58 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/20 17:29:22 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 16:09:53 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ int	parse_redirection(t_command *cmd, int track, char *str, char *input)
 	{
 		cmd[track].infile_name = ft_strdup(str);
 		if (!cmd[track].infile_name)
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+			malloc_error();
 		cmd[track].token = INPUT;
 	}
 	else if (!ft_strncmp_all(">", input))
 	{
 		cmd[track].outfile_name = ft_strdup(str);
 		if (!cmd[track].outfile_name)
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+			malloc_error();
 		cmd[track].token = OUTPUT_TRUNC;
 	}
 	else if (!ft_strncmp_all(">>", input))
 	{
 		cmd[track].outfile_name = ft_strdup(str);
 		if (!cmd[track].outfile_name)
-			ft_putstr_fd("Strdup memory allocation failure!\n", 2, 1);
+			malloc_error();
 		cmd[track].token = OUTPUT_APPEND;
 	}
 	return (0);

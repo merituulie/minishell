@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:45:41 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/21 07:24:10 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:15:30 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,9 @@ void		free_cmd_struct(t_command *command, int cmd_count);
 void		free_in_main(t_data *data);
 void		close_free_fd_arrays(void);
 void		free_in_minishell(t_command *cmd, int cmd_count);
+
+/*malloc_error.c*/
+void		malloc_error(void);
 
 /*pid.c*/
 int			*allocate_pids(int pid_count);
