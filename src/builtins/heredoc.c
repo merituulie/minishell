@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhusso <jhusso@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:50:19 by yoonslee          #+#    #+#             */
-/*   Updated: 2023/08/20 17:23:03 by jhusso           ###   ########.fr       */
+/*   Updated: 2023/08/21 07:59:47 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,12 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	int		fd;
 
 	g_info.sig_status = 0;
+	fd = -1;
 	if (command->infile_name && !ft_strncmp(command->infile_name, "HEREDOC", 7))
 		fd = open_file(command->infile_name, O_CREAT | O_WRONLY | O_TRUNC);
-	else
-		fd = open_file(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC);
 	write_heredoc(delim, env, fd);
 	close(fd);
 	update_command_redir(command);
 	set_exit_code(0);
-	unlink(HEREDOC);
 	return (-1);
 }
