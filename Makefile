@@ -32,7 +32,8 @@ COMMON_SRC =	file_checker \
 				pid \
 				shlvl \
 				executer \
-				free
+				free \
+				malloc_error \
 
 LEXER_SRC = lexer \
 			lexer_utils \
