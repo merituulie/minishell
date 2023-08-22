@@ -17,7 +17,7 @@ static void	handle_sig(int signo)
 /// @brief leaving the minishell with ctrl + d
 void	ctrl_d_cmd(char *line, t_data *ms)
 {
-	if (line == NULL)
+	if (!line)
 	{
 		restore_terminal(ms);
 		ft_putstr_fd("exit\n", 0, 1);

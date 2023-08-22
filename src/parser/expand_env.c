@@ -1,8 +1,8 @@
 
 #include "../../headers/minishell.h"
 
-/*check if the word comes after '$' is expandable part
-using env variables.*/
+// Check if the word comes after '$' is expandable part
+// using env variables.
 char	*expand_var(t_data *ms, char *str, int start)
 {
 	char	*var;
@@ -32,8 +32,8 @@ char	*expand_var(t_data *ms, char *str, int start)
 	return (ms->out);
 }
 
-/*finding matching variable and send the value back
- If no matches, return NULL*/
+// Finding matching variable and send the value back
+// If no matches, return NULL.
 char	*find_env(t_data *ms, char *var, int var_size)
 {
 	int		i;
@@ -60,8 +60,8 @@ char	*find_env(t_data *ms, char *var, int var_size)
 	return (search);
 }
 
-/*takes back the expanded result from '$something'
-and append it to original string in its space*/
+// Takes back the expanded result from '$something'
+// and append it to original string in its space.
 void	realloc_var(t_data *ms, char *str, char *var, int size)
 {
 	int		leftover;
@@ -91,8 +91,6 @@ void	realloc_var(t_data *ms, char *str, char *var, int size)
 	free(var);
 }
 
-// the function extend expand quote check2 is in the
-// concatenate.c:
 static char	**expand_quote_check2(t_data *ms, char **str, int count)
 {
 	while (++ms->i < count)
@@ -111,7 +109,7 @@ static char	**expand_quote_check2(t_data *ms, char **str, int count)
 				ms->j = ms->end - 1;
 			}
 		}
-		if (str[ms->i] == NULL)
+		if (!str[ms->i])
 		{
 			count--;
 			str = realloc_stack(str, count);
@@ -121,13 +119,13 @@ static char	**expand_quote_check2(t_data *ms, char **str, int count)
 	return (str);
 }
 
-/*check the occurence of double quotes '"'
-s_quotes is single quote, d_quote is double quote.
-s_quotes will be 1 if it happens before d_quotes but if it closes,
-it will become 0.
-Expanding to env only happens if there is $ and something after, and
-if there is no single quote in front of it. it does not count if double quote
-exists or not.*/
+// Check the occurence of double quotes '"'
+// s_quotes is single quote, d_quote is double quote.
+// s_quotes will be 1 if it happens before d_quotes but if it closes,
+// it will become 0.
+// Expanding to env only happens if there is $ and something after, and
+// if there is no single quote in front of it. it does not count if double quote
+// exists or not.
 char	**expand_quote_check(t_data *ms, char **str)
 {
 	char	**res;
@@ -137,7 +135,7 @@ char	**expand_quote_check(t_data *ms, char **str)
 	len = ft_arrlen(str);
 	ms->i = -1;
 	res = expand_quote_check2(ms, str, len);
-	if (res == NULL)
+	if (!res)
 		return (NULL);
 	return (res);
 }

@@ -1,8 +1,6 @@
 
 #include "../../headers/minishell.h"
 
-/*first time when cd is called, oldPWD is created, from second onwards, update.
-error code 1*/
 static char	*get_path(char *command_input)
 {
 	char	*path;
@@ -22,16 +20,13 @@ static void	cd_error_msg(t_command *command, char *str)
 	ft_putstr_fd(str, 2, 0);
 }
 
-/*chdir changes the current working directory to dirctory path that is given.
-chdir returns 0 if successful, 1 if not.
-go_dir function will chdir with the arguments that is given*/
 static void	go_dir(t_env **env, t_command *command)
 {
 	t_node	*temp;
 	char	*path;
 
 	temp = *((*env)->vars);
-	if (command->full_cmd[1] == NULL)
+	if (!command->full_cmd[1])
 	{
 		temp = get_value((*env)->vars, "HOME");
 		if (!temp)
@@ -53,9 +48,6 @@ static void	go_dir(t_env **env, t_command *command)
 	}
 }
 
-/*when cd function is called, OLDPWD is created in env.
-After create the OLDPWD, update PWD and return from
-the function. cd, cd ., cd .. cases are handled*/
 void	ft_cd(t_command *command, t_env **env)
 {
 	char	*old_pwd;
@@ -63,7 +55,7 @@ void	ft_cd(t_command *command, t_env **env)
 
 	temp = *(*env)->vars;
 	old_pwd = getcwd(NULL, 0);
-	if (get_value((*env)->vars, "OLDPWD") == NULL)
+	if (!get_value((*env)->vars, "OLDPWD"))
 		set_value((*env)->vars, ft_strdup("OLDPWD"), old_pwd);
 	else
 	{

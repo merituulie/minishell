@@ -31,8 +31,8 @@ char	*ft_strtrim(char const *s1, char *set)
 	while (j > i && is_set(s1[j - 1], set))
 		j --;
 	trim = (char *)malloc(sizeof(char) * (j - i + 1));
-	if (trim == 0)
-		return (0);
+	if (!trim)
+		malloc_error();
 	k = 0;
 	while (i < j)
 		trim[k++] = s1[i++];

@@ -36,7 +36,7 @@ static char	**parse_line(t_lexer l)
 	{
 		l.j = -1;
 		l.new_arr = parse_line_helper(&l);
-		if (l.new_arr == NULL)
+		if (!l.new_arr)
 			return (NULL);
 	}
 	return (l.new_arr);
@@ -63,10 +63,10 @@ char	**ft_lexer(char *str)
 		return (NULL);
 	l.new_arr = (char **)ft_calloc(2, sizeof(char *));
 	if (!l.new_arr)
-		return (NULL);
+		malloc_error();
 	l.new_arr[0] = ft_strdup(trimmed_str);
 	free(trimmed_str);
-	if (l.new_arr == NULL)
+	if (!l.new_arr)
 		return (NULL);
 	l.arr = parse_line(l);
 	if (!l.arr)

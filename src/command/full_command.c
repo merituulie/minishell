@@ -17,7 +17,7 @@ void	put_fullcmd_input(t_command	*cmd, int i, int track, int index)
 
 void	put_fullcmd(t_command *cmd, int i, int track)
 {
-	if (cmd[track].command == NULL)
+	if (!cmd[track].command)
 		return ;
 	cmd[i].full_cmd[0] = ft_strdup(cmd[track].command);
 	if (!cmd[i].full_cmd[0])
@@ -43,7 +43,7 @@ void	full_cmd(t_command *cmd, int struct_count, int track)
 {
 	int	i;
 
-	if (struct_count == 1 && cmd->command == NULL)
+	if (struct_count == 1 && !cmd->command)
 		return ;
 	track = -1;
 	i = 0;

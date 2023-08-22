@@ -7,7 +7,7 @@ t_node	*new_node(char *key, char *value)
 
 	new = (t_node *)ft_calloc(1, sizeof(*new));
 	if (!new)
-		return (NULL);
+		malloc_error();
 	new->key = key;
 	new->value = value;
 	new->next = NULL;
@@ -37,6 +37,8 @@ t_node	**set_value(t_node **head, char *key, char *value)
 	if (!head || !*head)
 	{
 		head = (t_node **)ft_calloc(1, sizeof(*head));
+		if (!head)
+			malloc_error();
 		*head = new_node(key, value);
 	}
 	else

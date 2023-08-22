@@ -1,12 +1,6 @@
 
 #include "../../headers/minishell.h"
 
-/*
--takes in an array of strings, each index is a string from the command line.
--if the first string is "-n" echo adds a newline at the end of the last string.
--echo returns 0 if successfull and 1 if not.
-*/
-
 void	ft_echo(t_command *command)
 {
 	int	new_line;

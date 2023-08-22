@@ -37,7 +37,7 @@ char	*ft_lltoa(long long n)
 	}
 	str = (char *)malloc (sizeof(char) * (len + 1));
 	if (!str)
-		return (NULL);
+		malloc_error();
 	str[len] = '\0';
 	while (len--)
 	{

@@ -32,9 +32,9 @@ char	*ft_itoa(int n)
 		nb = -1 * nb;
 		len += 1;
 	}
-	str = (char *)malloc (sizeof(char) * (len + 1));
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (NULL);
+		malloc_error();
 	str[len] = '\0';
 	while (len--)
 	{

@@ -6,14 +6,14 @@ t_command	*ft_parser(t_data *ms, char **cmd_line)
 	t_command	*temp;
 
 	cmd_line = expand_quote_check(ms, cmd_line);
-	if (cmd_line == NULL)
+	if (!cmd_line)
 		return (NULL);
 	cmd_line = concatenate(cmd_line, ms);
-	if (cmd_line == NULL)
+	if (!cmd_line)
 		return (NULL);
 	temp = init_cmds(ms, cmd_line);
 	free_char_array(cmd_line);
-	if (temp == NULL)
+	if (!temp)
 		return (NULL);
 	return (temp);
 }
@@ -28,10 +28,10 @@ static int	process_input_line(t_data *ms, char *input_line)
 	{
 		free(input_line);
 	}
-	if (cmd_line == NULL)
+	if (!cmd_line)
 		return (1);
 	cmd = ft_parser(ms, cmd_line);
-	if (cmd == NULL || (ms->struct_count == 1 && cmd->command == NULL))
+	if (!cmd || (ms->struct_count == 1 && !cmd->command))
 	{
 		free_in_minishell(cmd, ms->struct_count);
 		return (1);
@@ -49,7 +49,7 @@ void	minishell(t_data *ms)
 	{
 		line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (line && (line[0] == '\0' || line[0] == '\n'))
+		if (line && (!line[0] || line[0] == '\n'))
 		{
 			free(line);
 			continue ;
@@ -83,6 +83,6 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	}
 	ft_putstr_fd("If you tried to run minishell, please try with\
-	./minishell and NO arguments\n", 2, 0);
+	./minishell with no arguments\n", 2, 0);
 	return (1);
 }

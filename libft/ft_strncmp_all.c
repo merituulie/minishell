@@ -9,7 +9,7 @@ int	ft_strncmp_all(const char *s1, const char *s2)
 	size_t			index;
 	size_t			len;
 
-	if (s1 == NULL || s2 == NULL)
+	if (!s1 || !s2)
 		return (-1);
 	index = 0;
 	len = ft_strlen(s1);

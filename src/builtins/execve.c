@@ -84,11 +84,11 @@ int	ft_execve(t_command *command, t_env **env)
 	cmd_is_dir(command, env);
 	cmd_is_not_executable(command);
 	temp = get_value((*env)->vars, "PATH");
-	if (temp == NULL || (ft_strchr(command->command, '/') && \
+	if (!temp || (ft_strchr(command->command, '/') && \
 		access(command->command, F_OK) == -1))
 		return (-2);
 	path = find_cmd_path(command->command, temp);
-	if (path == NULL || !ft_strncmp_all(path, ".."))
+	if (!path || !ft_strncmp_all(path, ".."))
 		return (-1);
 	vars = ft_split(env_to_string(env), '\n');
 	if (execve(path, command->full_cmd, vars) < 0)

@@ -2,7 +2,7 @@
 NAME = libft.a
 
 SRC_FILES = free_and_nullify \
-	free_array \
+	ft_free_array \
 	free_char_array \
 	ft_arrlen \
 	ft_atoll \
@@ -36,6 +36,7 @@ SRC_FILES = free_and_nullify \
 	ft_strtrim \
 	ft_strcpy \
 	ft_substr \
+	malloc_error \
 
 H_FILES = libft
 

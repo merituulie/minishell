@@ -6,7 +6,7 @@ static char	*find_key(char *env_line, int del_index)
 	char	*key;
 
 	key = ft_substr(env_line, 0, del_index);
-	if (key == NULL)
+	if (!key)
 		return (NULL);
 	return (key);
 }
@@ -16,7 +16,7 @@ static char	*find_value(char *env_line, int del_index)
 	char	*value;
 
 	value = ft_substr(env_line, del_index, ft_strlen(env_line) - del_index);
-	if (value == NULL)
+	if (!value)
 		return (NULL);
 	return (value);
 }
@@ -45,7 +45,7 @@ void	fill_env(char **envp, t_env **env)
 		del_index = ft_strchr_index(envp[i], '=');
 		env_key = find_key(envp[i], del_index);
 		env_value = find_value(envp[i], del_index + 1);
-		if (env_key == NULL || env_value == NULL)
+		if (!env_key || !env_value)
 			return ;
 		(*env)->vars = set_value((*env)->vars, env_key, env_value);
 		i++;

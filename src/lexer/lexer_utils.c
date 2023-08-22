@@ -30,7 +30,7 @@ char	**allocate_2d_array(char **old_array)
 	arr_len = ft_arrlen(old_array);
 	new_array = (char **)ft_calloc(arr_len + 2, sizeof(char *));
 	if (!new_array)
-		return (NULL);
+		malloc_error();
 	return (new_array);
 }
 

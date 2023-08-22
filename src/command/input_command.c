@@ -71,7 +71,7 @@ static void	put_to_input2(t_command *cmd, int track, char **not_echo)
 	int	len;
 
 	i = 0;
-	if (not_echo == NULL)
+	if (!not_echo)
 		cmd[track].input = NULL;
 	len = ft_arrlen(not_echo);
 	cmd[track].input = ft_calloc(len + 1, sizeof (char *));
@@ -93,7 +93,7 @@ void	put_to_input(t_command *cmd, int track, char *str, char **not_echo)
 {
 	if (!ft_strncmp_all(cmd[track].command, "echo"))
 	{
-		if (str == NULL)
+		if (!str)
 			cmd[track].input = NULL;
 		else
 		{

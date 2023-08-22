@@ -17,7 +17,7 @@ char	*parse_flags(char **input, int	*index)
 
 void	put_to_flags(t_command **cmd, int track, char *str)
 {
-	if (str == NULL)
+	if (!str)
 		(*cmd)[track].flags = NULL;
 	else
 	{

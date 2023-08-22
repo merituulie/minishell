@@ -13,8 +13,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (ft_strlen(s + start) < len)
 		len = ft_strlen(s + start);
 	sub = (char *)malloc((len + 1) * sizeof(char));
-	if (sub == NULL)
-		return (NULL);
+	if (!sub)
+		malloc_error();
 	i = 0;
 	while (s[start + i] != '\0' && len > 0)
 	{

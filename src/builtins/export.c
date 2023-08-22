@@ -23,7 +23,7 @@ static char	*find_key_in_str(char *cmd)
 		return (cmd);
 	key = ft_calloc(i + 1, sizeof(char));
 	if (!key)
-		return (NULL);
+		malloc_error();
 	while (--i > -1)
 		key[i] = cmd[i];
 	return (key);
@@ -43,7 +43,7 @@ static char	*find_value_in_str(char *cmd)
 	len = ft_strlen(cmd);
 	value = ft_calloc((len - i), sizeof(char));
 	if (!value)
-		return (NULL);
+		malloc_error();
 	i += 1;
 	while (i < len)
 	{

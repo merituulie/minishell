@@ -39,5 +39,6 @@ int			ft_strncmp_all(const char *s1, const char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strtrim(char const *s1, char *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+void		malloc_error(void);
 
 #endif

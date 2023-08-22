@@ -1,5 +1,5 @@
 
-#include "../../headers/minishell.h"
+#include "libft.h"
 
 void	malloc_error(void)
 {
