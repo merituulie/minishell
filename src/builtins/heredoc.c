@@ -23,7 +23,10 @@ static void	write_heredoc(char *delim, t_env **env, int fd)
 		if (((ft_strlen(line) == ft_strlen(delim)) \
 		&& !ft_memcmp(line, delim, ft_strlen(line))) \
 		|| g_info.sig_status)
+		{
+			set_exit_code(1);
 			break ;
+		}
 		if (find_index(line, '$') != -1)
 			line = expand_var_here(&ms, line, find_index(line, '$'), env);
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
@@ -46,6 +49,7 @@ int	ft_heredoc(t_command *command, t_env **env, char *delim)
 	write_heredoc(delim, env, fd);
 	close(fd);
 	update_command_redir(command);
-	set_exit_code(0);
+	if (g_info.sig_status != 1)
+		set_exit_code(0);
 	return (-1);
 }

@@ -52,9 +52,6 @@ void	set_signal_action(t_data *ms)
 	ms->new_tio = ms->old_tio;
 	ms->new_tio.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSANOW, &(ms->new_tio));
-	ms->sa.sa_handler = &handle_sig;
-	sigemptyset(&(ms->sa.sa_mask));
-	ms->sa.sa_flags = 0;
-	sigaction(SIGINT, &(ms->sa), NULL);
+	signal(SIGINT, handle_sig);
 	signal(SIGQUIT, SIG_IGN);
 }

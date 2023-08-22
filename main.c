@@ -34,11 +34,11 @@ static int	process_input_line(t_data *ms, char *input_line)
 	char		**cmd_line;
 	t_command	*cmd;
 
+	if (!input_line)
+		return (0);
 	cmd_line = ft_lexer(input_line);
 	if (input_line)
-	{
 		free(input_line);
-	}
 	if (!cmd_line)
 		return (1);
 	cmd = ft_parser(ms, cmd_line);
@@ -58,9 +58,15 @@ void	minishell(t_data *ms)
 
 	while (42)
 	{
-		line = readline(PINK "PinkShell: " BORING);
+		if (g_info.sig_status == 2)
+		{
+			line = readline("");
+			g_info.sig_status = 0;
+		}
+		else
+			line = readline(PINK "PinkShell: " BORING);
 		ctrl_d_cmd(line, ms);
-		if (line && (!line[0] || line[0] == '\n'))
+		if (line && (line[0] == '\n' || !line[0]))
 		{
 			free(line);
 			continue ;
@@ -72,8 +78,7 @@ void	minishell(t_data *ms)
 			free(line);
 			continue ;
 		}
-		if (process_input_line(ms, line) == 1)
-			continue ;
+		process_input_line(ms, line);
 	}
 }
 

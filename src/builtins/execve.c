@@ -74,6 +74,8 @@ int	execute_ft_execve(t_command *command, t_env **env)
 {
 	int	exec;
 
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	exec = ft_execve(command, env);
 	if (exec < 0)
 	{

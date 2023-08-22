@@ -66,6 +66,8 @@ int	space_newline(char *str)
 		i++;
 	}
 	set_exit_code(0);
+	if (len == 0)
+		return (0);
 	return (1);
 }
 
