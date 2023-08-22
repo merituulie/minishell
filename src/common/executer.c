@@ -92,9 +92,9 @@ static	int	exec_one_command(t_command *command, int command_count, t_env **env)
 			{
 				redirect_files(command);
 				execute_command(command, env, 1);
-			}
+			}	
 			waitpid(pid_test, &status, 0);
-			set_exit_code(WEXITSTATUS(status));
+			adjust_status(status);
 		}
 		return (1);
 	}

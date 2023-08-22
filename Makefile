@@ -2,7 +2,7 @@
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror #-fsanitize=address,undefined
+BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror -fsanitize=address,undefined
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
@@ -21,6 +21,7 @@ COMMON_SRC =	file_checker \
 				shlvl \
 				executer \
 				free \
+				signal_check
 
 LEXER_SRC = lexer \
 			lexer_utils \

@@ -135,6 +135,7 @@ void		ft_puterror(int code, char *str, t_command *command);
 void		add_shlvl(t_env **env);
 void		ctrl_d_cmd(char *line, t_data *ms);
 void		restore_terminal(t_data *ms);
+void		adjust_status(int status);
 void		set_signal_action(t_data *ms);
 
 // ENV
