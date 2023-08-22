@@ -6,14 +6,14 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 09:59:13 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/22 09:59:15 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:40:27 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# define PINK "\x1b[38;2;255;192;203m"
+# define PURPLE "\x1b[38;5;128m"
 # define BORING "\x1b[0m"
 
 # include "minishell.h"

@@ -6,13 +6,13 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:00:36 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/22 11:00:38 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:40:29 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/minishell.h"
 
-t_command	*ft_parser(t_data *ms, char **cmd_line)
+static t_command	*ft_parser(t_data *ms, char **cmd_line)
 {
 	t_command	*temp;
 
@@ -52,19 +52,22 @@ static int	process_input_line(t_data *ms, char *input_line)
 	return (0);
 }
 
-void	minishell(t_data *ms)
+static char	*readline_setstatus(void)
+{
+	g_info.sig_status = 0;
+	return (readline(""));
+}
+
+static void	minishell(t_data *ms)
 {
 	char		*line;
 
 	while (42)
 	{
 		if (g_info.sig_status == 2)
-		{
-			line = readline("");
-			g_info.sig_status = 0;
-		}
+			line = readline_setstatus();
 		else
-			line = readline(PINK "PinkShell: " BORING);
+			line = readline(PURPLE "minishell: " BORING);
 		ctrl_d_cmd(line, ms);
 		if (line && (line[0] == '\n' || !line[0]))
 		{

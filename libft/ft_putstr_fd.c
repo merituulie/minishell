@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:52:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/08/22 10:52:02 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:40:27 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_putstr_fd(char *s, int fd, int print_shellname)
 	if (!s)
 		return ;
 	if (print_shellname)
-		ft_putstr_fd(PINK"PinkShell: "BORING, fd, 0);
+		ft_putstr_fd(PURPLE"minishell: "BORING, fd, 0);
 	while (s[i])
 	{
 		ft_putchar_fd(s[i], fd);
