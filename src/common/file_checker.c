@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file_checker.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 10:53:36 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/22 10:53:40 by meskelin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-/*if there is writing permission, accessable is 0
-if not, it returns -1*/
 static int	accessable_for_write(char *filename, char *path, int accessable)
 {
 	if (accessable != 0)

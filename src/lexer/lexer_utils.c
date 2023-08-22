@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 10:55:04 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/22 10:56:01 by meskelin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../headers/lexer.h"
 
-/* 1 is pipe, 2 is < or > or << or >>
-error value 258 needs to be returned*/
+// 1 -> |
+// 2 -> <, or >, or <<, or >>
 int	syntax_error_msg(int i, char *str)
 {
 	if (i == 1)
@@ -63,7 +74,6 @@ int	check_if_nothing(char *str, int i)
 	return (0);
 }
 
-/* If finds pair for quote, returns i, otherwise prints error message */
 int	quote_check(char *str, int i, char quote)
 {
 	while (str[i])

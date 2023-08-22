@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirection.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 10:54:02 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/22 10:54:03 by meskelin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
@@ -16,9 +27,6 @@ void	redirect_io(int infile_fd, int outfile_fd)
 	close_files(g_info.pipe_fds, g_info.pipe_count);
 }
 
-/*checks if index is -2, if opening infile fails(without pipe)
-checks if g_info.redir_fds[current->redir_fd_index_in] is -1,
-opening infile fails(with pipe)*/
 void	redirect_files(t_command *current)
 {
 	if (current->redir_fd_index_in != -2 \

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   concatenate.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 10:58:10 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/22 10:58:11 by meskelin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../headers/parsing.h"
 
@@ -22,7 +33,6 @@ void	delete_quotes2(char *str, int index, int size, t_data *ms)
 	ms->out[i] = '\0';
 }
 
-/*reallocate the string and delete the first matching quotes*/
 void	delete_quotes(char *str, int index, int size, t_data *ms)
 {
 	char	quote;
@@ -56,10 +66,6 @@ static void	delete_quotes_fname(char **str, t_data *ms, int i, int j)
 	j = ms->end - 2;
 }
 
-/**
- * @brief check if the str has double quotes that comes after redir.
- * Only quotes for the file names are removed here.
- */
 char	**concatenate(char **str, t_data *ms)
 {
 	int	i;
@@ -87,7 +93,6 @@ char	**concatenate(char **str, t_data *ms)
 	return (str);
 }
 
-//This function help for the line too long in expand_env.c:
 int	extend_expand_quote_check2(t_data *ms, char **str)
 {
 	str[ms->i] = ft_strdup(expand_var(ms, str[ms->i], ms->j));

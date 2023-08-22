@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp_all.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 10:52:45 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/22 10:52:50 by meskelin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-/*returns 0 if s1 and s2 is same, if not returns something that is not 0*/
 int	ft_strncmp_all(const char *s1, const char *s2)
 {
 	unsigned char	*ptr1;

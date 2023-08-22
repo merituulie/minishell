@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 10:58:22 by meskelin          #+#    #+#             */
+/*   Updated: 2023/08/22 10:58:29 by meskelin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../headers/parsing.h"
 
-/*initialize the quotes count to zero*/
 void	quotes_init(t_data *ms)
 {
 	ms->s_quotes = 0;
