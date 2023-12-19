@@ -1,8 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/08/22 14:45:10 by meskelin          #+#    #+#              #
+#    Updated: 2023/08/29 13:41:56 by meskelin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = minishell
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -g -lreadline -Werror -fsanitize=address,undefined
+BUILD_FLAGS = -Wall -Wextra -lreadline -Werror
 
 HASHMAP_SRC = add_hashmap \
 				clear_hashmap \
