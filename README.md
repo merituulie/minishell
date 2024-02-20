@@ -1,6 +1,6 @@
 # Introduction to Minishell
 
-Welcome to Minishell, your gateway to the world of shell programming! 🐚 This project implements a simple yet powerful shell environment, providing users with a versatile interface to interact with their operating system.
+🐚 This project implements a simple yet powerful shell environment, providing users with a versatile interface to interact with their operating system.
 
 ## Features 🚀
 
@@ -22,8 +22,42 @@ Welcome to Minishell, your gateway to the world of shell programming! 🐚 This 
 
 ## Get Started 🛠️
 
-To start using Minishell, simply clone the repository and follow the setup instructions in the provided README. Once set up, unleash the power of Minishell and explore the vast possibilities of shell programming!
+Follow these steps to set up your Minishell using the provided Makefile.
 
----
+## 1. Clone the Repository 📁
+
+git clone <repository_url>
+cd <repository_name>
+
+# Setting Up Minishell with Makefile
+
+Follow these steps to set up your Minishell project using the provided Makefile.
+
+## 2. Compile the Project
+
+To compile the Minishell project, run the following command:
+
+```make all```
+
+## 3. Cleaning Up
+
+If needed, you can remove the built files using:
+
+```make clean```
+```make fclean```
+
+## 4. Rebuilding the Project
+
+To perform a clean rebuild, removing all object files and recompiling the project, use:
+
+```make re```
+
+## 5. Running the Minishell
+
+Once compiled, you can run the Minishell executable by typing:
+
+```./minishell```
+
+Enjoy exploring the capabilities of your Minishell environment!
 
 Happy shell scripting! 🌟
